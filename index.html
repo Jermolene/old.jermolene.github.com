@@ -331,16 +331,16 @@ DAMAGE.
 * [[Docs]]
 *{{divider-vertical}}
 
-{{pull-right btn btn-info{
+{{btn btn-info{
 &lt;&lt;button popup:ViewDropDownState&gt;&lt;View &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&gt;&gt;
 }}}
 
 }}}
 
 &lt;&lt;linkcatcher store:[[$:/CurrentView]]&gt;&lt;
-&lt;&lt;reveal state:ViewDropDownState type:popup position:belowleft&gt;&lt;
+&lt;&lt;reveal state:ViewDropDownState type:popup position:below&gt;&lt;
 &lt;div class=&quot;open&quot;&gt;
-{{dropdown-menu pull-right tw-suppress-missing-tiddlylink{
+{{dropdown-menu tw-suppress-missing-tiddlylink{
 * &lt;&lt;link to:classic&gt;&lt; &lt;&lt;hide tiddler:[[$:/CurrentView]] notequal:classic&gt;&lt; &lt;span class=&quot;tw-ticked-menu-item&quot;&gt;&lt;/span&gt; &gt;&gt; Classic&gt;&gt;
 * &lt;&lt;link to:sideways&gt;&lt; &lt;&lt;hide tiddler:[[$:/CurrentView]] notequal:sideways&gt;&lt; &lt;span class=&quot;tw-ticked-menu-item&quot;&gt;&lt;/span&gt; &gt;&gt; Sideways&gt;&gt;
 * &lt;&lt;link to:zoomin&gt;&lt; &lt;&lt;hide tiddler:[[$:/CurrentView]] notequal:zoomin&gt;&lt; &lt;span class=&quot;tw-ticked-menu-item&quot;&gt;&lt;/span&gt; &gt;&gt; Zoomin&gt;&gt;
@@ -931,6 +931,7 @@ These are the individual rules that make up WikiText:
 * PrettyLinkWikiText
 * RuleWikiText
 * StyleBlockWikiText
+* TranscludeWikiText
 * TypedBlockWikiText
 * WikiLinkWikiText
 
@@ -938,24 +939,26 @@ These are the individual rules that make up WikiText:
 
 Macros give WikiText dynamic functionality:
 
-* ViewMacro
-* EditMacro
-* StoryMacro
-* TiddlerMacro
 * ButtonMacro
+* ChooserMacro
+* ColorMacro
 * CommentMacro
 * DownloadMacro
 * EchoMacro
+* EditMacro
+* HideMacro
 * ImageMacro
 * IncludeMacro
 * LinkMacro
+* LinkCatcherMacro
 * ListMacro
-* VideoMacro
 * SliderMacro
+* StoryMacro
+* TiddlerMacro
+* TranscludeMacro
+* VideoMacro
+* ViewMacro
 * ZoomerMacro
-* ChooserMacro
-* TagsMacro
-* ColorMacro
 
 ! Commands
 
@@ -4565,8 +4568,13 @@ exports.eventMap["tw-CloseTiddler"] = function(event) {
 	for(t=story.tiddlers.length-1; t>=0; t--) {
 		if(story.tiddlers[t].title === event.tiddlerTitle) {
 			storyElement = this.storyNode.children[t];
-			// Remove the DOM node
-			storyElement.domNode.parentNode.removeChild(storyElement.domNode);
+			// Invoke the storyview to animate the closure
+			if(this.storyview && this.storyview.close) {
+				if(!this.storyview.close(storyElement,this.lastNavigationEvent)) {
+					// Only delete the DOM element if the storyview.close() returned false
+					storyElement.domNode.parentNode.removeChild(storyElement.domNode);
+				}
+			}
 			// Remove the story element node
 			this.storyNode.children.splice(t,1);
 			// Remove the record in the story
@@ -4738,6 +4746,38 @@ Visualise navigation to the specified tiddler macro, optionally specifying a sou
 */
 ClassicScroller.prototype.navigate = function(targetTiddlerNode,isNew,sourceEvent) {
 	$tw.utils.scrollIntoView(targetTiddlerNode.domNode);
+};
+
+ClassicScroller.prototype.close = function(targetTiddlerNode,sourceEvent) {
+	var targetElement = targetTiddlerNode.domNode;
+	// Get the current height of the tiddler
+	var currHeight = targetElement.offsetHeight;
+	// Put a wrapper around the dom node we're closing
+	var wrapperElement = document.createElement("div");
+	targetElement.parentNode.insertBefore(wrapperElement,targetElement);
+	wrapperElement.appendChild(targetElement);
+	// Animate the closure
+	var d = ($tw.config.preferences.animationDuration/1000).toFixed(8) + "s"
+	wrapperElement.style[$tw.browser.transformorigin] = "0% 0%";
+	wrapperElement.style[$tw.browser.transform] = "translateX(0px)";
+	wrapperElement.style.opacity = "1.0";
+	wrapperElement.style.height = currHeight + "px";
+	wrapperElement.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, " +
+															"opacity " + d + " ease-out, " +
+															"height " + d + " ease-in-out";
+	$tw.utils.nextTick(function() {
+		wrapperElement.style[$tw.browser.transform] = "translateX(" + window.innerWidth + "px)";
+		wrapperElement.style.opacity = "0.0";
+		wrapperElement.style.height = "0px";
+	});
+	// Attach an event handler for th eend of the transition
+	wrapperElement.addEventListener("webkitTransitionEnd",function(event) {
+		if(wrapperElement.parentNode) {
+			wrapperElement.parentNode.removeChild(wrapperElement);
+		}
+	},true);
+	// Returning true causes the DOM node not to be deleted
+	return true;
 };
 
 exports.classic = ClassicScroller;
