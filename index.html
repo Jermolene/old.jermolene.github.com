@@ -697,6 +697,8 @@ Whenever a change is made to a tiddler, the wikistore registers a `nexttick` han
 
 For example, you can create a link to a tiddler by wrapping its title in double square brackets -- `[[My Tiddler]]` -- or, if the tiddler title conforms to the CamcelCase rules, it is automatically linked without needing the brackets. In this way,  linking become part of the punctuation of your writing.
 
+* Paragraphs
+
 Another key feature of wikitext is the ability to include one tiddler within another (referred to as //transclusion//). For example, one could have a tiddler called //Disclaimer// that contains the boilerplate of a legal disclaimer, and then include it within lots of different tiddlers with the macro call `&lt;&lt;tiddler Disclaimer&gt;&gt;`. 
 
 ! This is a heading
@@ -1027,6 +1029,7 @@ Serializers are modules that convert tiddlers to different text formats:
 
 ! Developer Cookbooks
 
+* [[Using TiddlyWiki for GitHub Pages project documentation]]
 * [[Using TiddlyWiki as a component in node.js applications]]
 
 ! Miscellaneous
@@ -1719,7 +1722,17 @@ $$$
 </div></div>
 <!----------- Library modules ----------->
 <div id="libraryModules" style="display:none;">
-</div>
+<script data-tiddler-library='yes' data-tiddler-title='$:/wiki/analytics' data-tiddler-type='application/javascript' type='text/javascript'>  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32839735-1']);
+  _gaq.push(['_setDomainName', 'tiddlywiki.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script></div>
 <!----------- Boot kernel prologue ----------->
 <div id="bootKernelPrefix" style="display:none;">
 <script data-tiddler-title='$:/core/bootprefix.js' type='text/javascript'>/*\
