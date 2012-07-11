@@ -42,7 +42,16 @@ DAMAGE.
 <title>TiddlyWiki5— a reusable non-linear personal web notebook</title>
 <!----------- This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ----------->
 <div id="styleArea">
-<style data-tiddler-title='$:/core/lib/tiddlywiki.css' data-tiddler-type='text/css' type='text/css'>/*!
+<style data-tiddler-title='$:/core/lib/tiddlywiki.css' data-tiddler-type='text/css' type='text/css'>/*
+TiddlyWiki
+Base CSS from Twitter Bootstrap plus TiddlyWiki-specific overrides
+*/
+
+/*
+Base Twitter Bootstrap
+*/
+
+/*!
  * Bootstrap v2.0.4
  *
  * Copyright 2012 Twitter, Inc
@@ -5026,11 +5035,27 @@ a.badge:hover {
   visibility: hidden;
 }
 
+/*
+TiddlyWiki overrides of Bootstrap variables
+*/
+
+/*
+TiddlyWiki mixins
+*/
+
+/*
+Base re-definitions
+*/
+
 body {
   position: relative;
   padding-top: 40px;
   background: #eeeeee;
 }
+
+/*
+Tiddler styles
+*/
 
 .tw-story-element {
   position: relative;
@@ -5105,6 +5130,10 @@ a.tw-tiddlylink-missing {
   font-style: inherit;
 }
 
+/*
+Dropdown menus
+*/
+
 .tw-ticked-menu-item::before {
   position: absolute;
   left: 4px;
@@ -5129,6 +5158,10 @@ a.tw-tiddlylink-missing {
   top: -3px;
 }
 
+/*
+Buttons
+*/
+
 .btn-invisible {
   padding: 0;
   margin: 0;
@@ -5139,6 +5172,10 @@ a.tw-tiddlylink-missing {
 .tw-tags-wrapper .label {
   margin-right: 6px;
 }
+
+/*
+Split label
+*/
 
 .splitLabel {
   margin-right: 5px;
@@ -5160,6 +5197,10 @@ a.tw-tiddlylink-missing {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+
+/*
+Includes
+*/
 
 .javascript-source {
   padding: 18px 18px 18px 18px;
@@ -6044,7 +6085,7 @@ a.tw-tiddlylink-missing {
 <!----------- Static content for Google and browsers without JavaScript ----------->
 <noscript>
 <div id="splashArea" style="display:none;">
-<ul><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Acknowledgements'>Acknowledgements</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='AllTiddlers'>AllTiddlers</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='concepts'>concepts</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ContextTiddler'>ContextTiddler</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Docs'>Docs</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='docs'>docs</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='DumpCommand'>DumpCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='EmbeddingTiddlyWiki'>EmbeddingTiddlyWiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='FederatialLimited'>FederatialLimited</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Getting%20started%20with%20TiddlyWiki%20under%20node.js'>Getting started with TiddlyWiki under node.js</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='HelloThere'>HelloThere</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='History'>History</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ImageMacro'>ImageMacro</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ImageWikiText'>ImageWikiText</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Improvements'>Improvements</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='introduction'>introduction</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Introduction'>Introduction</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston'>JeremyRuston</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='LoadCommand'>LoadCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Motovun%20Jack.jpg'>Motovun Jack.jpg</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Motovun%20Jack.svg'>Motovun Jack.svg</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='node.js'>node.js</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='OpenSource'>OpenSource</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ParsingMechanism'>ParsingMechanism</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='PluginMechanism'>PluginMechanism</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Quine'>Quine</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ReadMe'>ReadMe</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='RenderingMechanism'>RenderingMechanism</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='RoadMap'>RoadMap</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleJavaScriptTiddler'>SampleJavaScriptTiddler</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleJavaScriptTiddlerWithError'>SampleJavaScriptTiddlerWithError</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleJsonTiddler'>SampleJsonTiddler</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='sampletag1'>sampletag1</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='sampletag2'>sampletag2</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleTiddlerFirst'>SampleTiddlerFirst</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleTiddlerSecond'>SampleTiddlerSecond</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleTiddlerThird'>SampleTiddlerThird</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SaveTiddlerCommand'>SaveTiddlerCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ServerCommand'>ServerCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ShadowTiddlers'>ShadowTiddlers</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SliderMacro'>SliderMacro</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='StyleBlockWikiText'>StyleBlockWikiText</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SubStories'>SubStories</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TextReference'>TextReference</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Tiddler%20Fishes.svg'>Tiddler Fishes.svg</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFiles'>TiddlerFiles</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFilters'>TiddlerFilters</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Tiddlers'>Tiddlers</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki'>TiddlyWiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWikiArchitecture'>TiddlyWikiArchitecture</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TypedBlockWikiText'>TypedBlockWikiText</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='VerboseCommand'>VerboseCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='VersionCommand'>VersionCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='VideoMacro'>VideoMacro</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WaysToUseTiddlyWiki'>WaysToUseTiddlyWiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Wiki'>Wiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiTestCommand'>WikiTestCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText'>WikiText</a></li></ul></div>
+<ul><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='%24%3A%2FHistory'>$:/History</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Acknowledgements'>Acknowledgements</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='AllTiddlers'>AllTiddlers</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='concepts'>concepts</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ContextTiddler'>ContextTiddler</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Docs'>Docs</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='docs'>docs</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='DumpCommand'>DumpCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='EmbeddingTiddlyWiki'>EmbeddingTiddlyWiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='FederatialLimited'>FederatialLimited</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Getting%20started%20with%20TiddlyWiki%20under%20node.js'>Getting started with TiddlyWiki under node.js</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='HelloThere'>HelloThere</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='History'>History</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ImageMacro'>ImageMacro</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ImageWikiText'>ImageWikiText</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Improvements'>Improvements</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Introduction'>Introduction</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='introduction'>introduction</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston'>JeremyRuston</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='LoadCommand'>LoadCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Motovun%20Jack.jpg'>Motovun Jack.jpg</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Motovun%20Jack.svg'>Motovun Jack.svg</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='node.js'>node.js</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='OpenSource'>OpenSource</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ParsingMechanism'>ParsingMechanism</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='PluginMechanism'>PluginMechanism</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Quine'>Quine</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ReadMe'>ReadMe</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='RenderingMechanism'>RenderingMechanism</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='RoadMap'>RoadMap</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleJavaScriptTiddler'>SampleJavaScriptTiddler</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleJavaScriptTiddlerWithError'>SampleJavaScriptTiddlerWithError</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleJsonTiddler'>SampleJsonTiddler</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='sampletag1'>sampletag1</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='sampletag2'>sampletag2</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleTiddlerFirst'>SampleTiddlerFirst</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleTiddlerSecond'>SampleTiddlerSecond</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SampleTiddlerThird'>SampleTiddlerThird</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SaveTiddlerCommand'>SaveTiddlerCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ServerCommand'>ServerCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ShadowTiddlers'>ShadowTiddlers</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SliderMacro'>SliderMacro</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='StyleBlockWikiText'>StyleBlockWikiText</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='SubStories'>SubStories</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TextReference'>TextReference</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Tiddler%20Fishes.svg'>Tiddler Fishes.svg</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFiles'>TiddlerFiles</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFilters'>TiddlerFilters</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Tiddlers'>Tiddlers</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki'>TiddlyWiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWikiArchitecture'>TiddlyWikiArchitecture</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TypedBlockWikiText'>TypedBlockWikiText</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='VerboseCommand'>VerboseCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='VersionCommand'>VersionCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='VideoMacro'>VideoMacro</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WaysToUseTiddlyWiki'>WaysToUseTiddlyWiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Wiki'>Wiki</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiTestCommand'>WikiTestCommand</a></li><li><a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText'>WikiText</a></li></ul></div>
 </noscript>
 <!----------- Miscellaneous shadow tiddlers ----------->
 <div id="shadowArea" style="display:none;">
@@ -6124,6 +6165,9 @@ DAMAGE.
 {{btn btn-danger{
 &lt;&lt;button popup:ViewDropDownState&gt;&lt;View &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&gt;&gt;
 }}}
+
+
+&lt;&lt;button save-wiki class:&quot;btn&quot;&gt;&lt;Save Changes&gt;&gt;
 
 }}}
 
@@ -6299,15 +6343,8 @@ Docs
 <div title="SiteTitle" modifier="JeremyRuston">
 <pre>TiddlyWiki5</pre>
 </div>
-<div title="$:/StoryTiddlers" type="application/json">
-<pre>{
-	&quot;tiddlers&quot;: [
-		{&quot;title&quot;: &quot;HelloThere&quot;},
-		{&quot;title&quot;: &quot;Introduction&quot;},
-		{&quot;title&quot;: &quot;Improvements&quot;},
-		{&quot;title&quot;: &quot;Docs&quot;}
-	]
-}</pre>
+<div title="$:/StoryTiddlers">
+<pre>{&quot;tiddlers&quot;:[{&quot;title&quot;:&quot;HelloThere&quot;},{&quot;title&quot;:&quot;Introduction&quot;},{&quot;title&quot;:&quot;Improvements&quot;},{&quot;title&quot;:&quot;Docs&quot;}]}</pre>
 </div></div>
 <!----------- Ordinary tiddlers ----------->
 <div id="storeArea" style="display:none;">
@@ -7154,6 +7191,8 @@ The following commands are available:
 <div title="HelloThere" modifier="JeremyRuston" tags="introduction greetings" type="text/x-tiddlywiki">
 <pre>Welcome to TiddlyWiki5, a reboot of TiddlyWiki, the venerable, reusable non-linear personal web notebook [[first released in 2004|History]]. It is a complete interactive wiki that can run from a single HTML file in the browser or as a powerful [[node.js application|node.js]].
 
+This is some typing that is perfectly fast and reasonable.
+
 TiddlyWiki offers a radically better way of managing your data compared to traditional documents and emails. The fundamental idea is that information is more useful and reusable if we cut up into the smallest semantically meaningful chunks -- [[tiddlers|Tiddlers]] -- and use links, tags and macros to model the structured relationships between them.  TiddlyWiki aims to provide a fluid interface for working with tiddlers, allowing them to be aggregated and composed into longer narratives.
 
 TiddlyWiki5 has many [[improvements|Improvements]] over the original. It is currently at an early alpha stage, and is not yet ready for general use. But it's the best possible time to get involved and support its future development. You can:
@@ -7492,40 +7531,40 @@ Currently, the only macro that supports rerendering is the `&lt;&lt;story&gt;&gt
 
 There has already been a series of alpha releases of TiddlyWiki5. The goal of these releases is to test the new technical architecture and to explore user interface features.
 
-! Beta Release
-
-TiddlyWiki5 will progress to a beta release when it is feature complete.
-
 Some of the features and fixes required before the beta is declared include:
 
 * Synchronisation via HTTP in the browser
 * Synchronisation via direct file access under node.js
-* Operation with TiddlySpace
-* Operation with TiddlySpot
+* Preliminary integration with TiddlySpace
+* Preliminary integration with TiddlySpot
 * Saving changes to a file URI:// using Firefox
 * Move default tiddler storage from TiddlyWiki-style `&lt;div&gt;` elements to JSON
-* Ability to inspect and edit tiddler fields
-* WikiText table support
-* More user interface gadgets, including: tabs, popovers, toolbars, carousel, dropdown,
-* Checkbox support via tags
-** For example, `&lt;&lt;checkbox {filter} {tag} {template}&gt;&gt;` displays a filtered list of tiddlers along with a checkbox representing whether or not each tiddler carries the specified tag
-* Search
-* Tiddler themes and wiki themes
-* Text references: slices and sections, JSON references
 * Aliases/inheritance
 * Lazy loading
 * Better handling of binary tiddlers
+
+! Beta Release
+
+TiddlyWiki5 will progress to a beta release when it is practical for cautious everyday use.
+
+Some of the additional features under consideration during the beta include:
+
+* Ability to inspect and edit tiddler fields
+* WikiText table and block quote support
+* More user interface gadgets, including: tabs, popovers, toolbars, carousel, dropdown,
+* Checkbox support
+** For example, `&lt;&lt;checkbox {tag}&gt;&gt;` in a template displays a checkbox representing whether or not each tiddler carries the specified tag
+* Search
+* Tiddler themes and wiki themes
+* Text references: slices and sections, JSON references
 * Timed refreshed relative dates (eg, 'last modified 30 minutes ago')
 * Encrypted tiddlers and encrypted TiddlyWikis
+* Facebook, Twitter, G+ and LinkedIn macros
+* Integration with the browser back and forwards buttons
 
 ! 1.0 Release
 
 Hopefully, TiddlyWiki5 will reach version 1.0 around September. This is the point at which it is declared stable enough for general use. It will continue to improve and evolve after 1.0, although constrained to remain backwards compatible so that plugins and content created for version 1.0 will continue to work into the indefinite future.
-
-Some of the features under consideration for development after release 1.0 include:
-
-* Facebook, Twitter, G+ and LinkedIn macros
-
 </pre>
 </div>
 <div title="SampleJavaScriptTiddler" tags="demo" type="application/javascript">
@@ -7880,6 +7919,9 @@ $$$text/unknown
 Some plain text, which will not be //formatted//.
 $$$
 </pre>
+</div>
+<div title="$:/History">
+<pre>{&quot;stack&quot;:[{&quot;title&quot;:&quot;Docs&quot;},{&quot;title&quot;:&quot;Improvements&quot;,&quot;fromTitle&quot;:&quot;Docs&quot;},{&quot;title&quot;:&quot;Introduction&quot;,&quot;fromTitle&quot;:&quot;Improvements&quot;},{&quot;title&quot;:&quot;HelloThere&quot;,&quot;fromTitle&quot;:&quot;Introduction&quot;}]}</pre>
 </div></div>
 <!----------- Library modules ----------->
 <div id="libraryModules" style="display:none;">
@@ -8676,7 +8718,9 @@ exports["application/json"] = function(text,fields) {
 		getKnownFields = function(tid) {
 			var fields = {};
 			"title text created creator modified modifier type tags".split(" ").forEach(function(value) {
-				fields[value] = tid[value];
+				if(tid[value] !== null) {
+					fields[value] = tid[value];
+				}
 			});
 			return fields;
 		};
@@ -9517,16 +9561,8 @@ exports.refreshInDom = function(changes) {
 	var t;
 	// Only refresh if a dependency is triggered
 	if(this.dependencies.hasChanged(changes,this.tiddlerTitle)) {
-		// Only refresh if the editor lets us
-		if(this.editor.isRefreshable()) {
-			// Remove the previous child
-			var parent = this.child.domNode.parentNode,
-				nextSibling = this.child.domNode.nextSibling;
-			parent.removeChild(this.child.domNode);
-			// Execute the macro
-			this.execute(this.parents,this.tiddlerTitle);
-			// Render to the DOM
-			this.child.renderInDom(parent,nextSibling);
+		if(this.editor.refreshInDom) {
+			this.editor.refreshInDom();
 		}
 	} else {
 		// Refresh any children
@@ -9695,11 +9731,6 @@ BitmapEditor.prototype.saveChanges = function() {
 	}
 };
 
-BitmapEditor.prototype.isRefreshable = function() {
-	// Don't ever refresh the bitmap editor
-	return false;
-};
-
 exports["image/jpg"] = BitmapEditor;
 exports["image/jpeg"] = BitmapEditor;
 exports["image/png"] = BitmapEditor;
@@ -9728,7 +9759,10 @@ function TextEditor(macroNode) {
 	this.macroNode = macroNode;
 }
 
-TextEditor.prototype.getChild = function() {
+/*
+Get the tiddler being editted, field name and current value
+*/
+TextEditor.prototype.getEditText = function() {
 	// Get the current tiddler and the field name
 	var tiddler = this.macroNode.wiki.getTiddler(this.macroNode.tiddlerTitle),
 		field = this.macroNode.hasParameter("field") ? this.macroNode.params.field : "title",
@@ -9750,19 +9784,24 @@ TextEditor.prototype.getChild = function() {
 				break;
 		}
 	}
+	return {tiddler: tiddler, field: field, value: value};
+};
+
+TextEditor.prototype.getChild = function() {
+	var edit = this.getEditText();
 	var attributes = {
 			"class": ["tw-edit-field"]
 		},
 		tagName,
 		content = [];
 	// Make a textarea for text fields and an input box for other fields
-	if(field === "text") {
+	if(edit.field === "text") {
 		tagName = "textarea";
-		content.push($tw.Tree.Text(value));
+		content.push($tw.Tree.Text(edit.value));
 	} else {
 		tagName = "input";
 		attributes.type = "text";
-		attributes.value = value;
+		attributes.value = edit.value;
 	}
 	// Wrap the editor control in a div
 	return $tw.Tree.Element("div",{},[$tw.Tree.Element(tagName,attributes,content)],{
@@ -9802,7 +9841,7 @@ TextEditor.prototype.fixHeight = function() {
 		var prevWrapperHeight = wrapper.style.height;
 		wrapper.style.height = textarea.style.height + "px";
 		textarea.style.overflow = "hidden";
-		textarea.style.height = "1px";
+//		textarea.style.height = "1px";
 		textarea.style.height = Math.max(textarea.scrollHeight,MIN_TEXT_AREA_HEIGHT) + "px";
 		wrapper.style.height = prevWrapperHeight;
 	}
@@ -9812,9 +9851,13 @@ TextEditor.prototype.postRenderInDom = function() {
 	this.fixHeight();
 };
 
-TextEditor.prototype.isRefreshable = function() {
-	// Don't refresh the editor if it contains the caret or selection
-	return document.activeElement !== this.macroNode.child.children[0].domNode;
+TextEditor.prototype.refreshInDom = function() {
+	if(document.activeElement !== this.macroNode.child.children[0].domNode) {
+		var edit = this.getEditText();
+		this.macroNode.child.children[0].domNode.value = edit.value;
+	}
+	// Fix the height if needed
+	this.fixHeight();
 };
 
 exports["text/x-tiddlywiki"] = TextEditor;
@@ -11635,7 +11678,6 @@ Transclude macro
 
 exports.info = {
 	name: "transclude",
-	dependentAll: true, // Nodes containing <<transclude>> macro are dependent on every tiddler
 	params: {
 		filter: {byPos: 0, type: "filter"},
 		title: {byPos: 1, type: "tiddler"},
@@ -11898,7 +11940,6 @@ exports.executeMacro = function() {
 };
 
 })();
-
 });
 </script>
 <script data-module='yes' data-tiddler-module-type='macro' data-tiddler-title='$:/core/modules/macros/zoomer.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/macros/zoomer.js","macro",function(module,exports,require) {/*\
@@ -18311,6 +18352,122 @@ exports.Renderer = Renderer;
 })();
 });
 </script>
+<script data-module='yes' data-tiddler-module-type='saver' data-tiddler-title='$:/core/modules/savers/download.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/savers/download.js","saver",function(module,exports,require) {/*\
+title: $:/core/modules/savers/download.js
+type: application/javascript
+module-type: saver
+
+Handles saving changes via HTML5's download APIs
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+/*
+Select the appropriate saver module and set it up
+*/
+var DownloadSaver = function() {
+};
+
+DownloadSaver.prototype.save = function() {
+};
+
+/*
+Information about this saver
+*/
+DownloadSaver.prototype.info = {
+	name: "download",
+	priority: 0
+};
+
+/*
+Static method that returns true if this saver is capable of working
+*/
+exports.canSave = function() {
+	return true;
+};
+
+/*
+Create an instance of this saver
+*/
+exports.create = function() {
+	return new DownloadSaver();
+};
+
+})();
+});
+</script>
+<script data-module='yes' data-tiddler-module-type='saver' data-tiddler-title='$:/core/modules/savers/firefox.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/savers/firefox.js","saver",function(module,exports,require) {/*\
+title: $:/core/modules/savers/firefox.js
+type: application/javascript
+module-type: saver
+
+Handles saving changes via Firefox's XUL APIs
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+var FirefoxSaver = function() {
+};
+
+FirefoxSaver.prototype.save = function(text) {
+	try {
+		netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+		// Generate the local file path from the file URI
+		var url = document.location.toString(),
+			ioService = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService),
+			fileHandler = ioService.getProtocolHandler("file").QueryInterface(Components.interfaces.nsIFileProtocolHandler),
+			fileSpec = fileHandler.getFileFromURLSpec(url);
+		// Try to save the file
+		var file = Components.classes["@mozilla.org/file/local;1"].createInstance(Components.interfaces.nsILocalFile);
+		file.initWithPath(fileSpec.path);
+		if(!file.exists()) {
+			file.create(0,0x01B4);// 0x01B4 = 0664
+		}
+		var out = Components.classes["@mozilla.org/network/file-output-stream;1"].createInstance(Components.interfaces.nsIFileOutputStream);
+		out.init(file,0x22,0x04,null);
+		var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].createInstance(Components.interfaces.nsIConverterOutputStream);
+		converter.init(out, "UTF-8", 0, 0);
+		converter.writeString(text);
+		converter.close();
+		return true;
+	} catch(ex) {
+		return false;
+	}
+};
+
+/*
+Information about this saver
+*/
+FirefoxSaver.prototype.info = {
+	name: "firefox",
+	priority: 1000
+};
+
+/*
+Static method that returns true if this saver is capable of working
+*/
+exports.canSave = function() {
+	return !!window.Components;
+};
+
+/*
+Create an instance of this saver
+*/
+exports.create = function() {
+	return new FirefoxSaver();
+};
+
+})();
+});
+</script>
 <script data-module='yes' data-tiddler-module-type='utils' data-tiddler-title='$:/core/modules/scroller.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/scroller.js","utils",function(module,exports,require) {/*\
 title: $:/core/modules/scroller.js
 type: application/javascript
@@ -18563,6 +18720,14 @@ exports.startup = function() {
 		});
 		// Install the scroller
 		$tw.scroller = new $tw.utils.Scroller();
+		// Install the save action handler
+		$tw.wiki.initSavers();
+		document.addEventListener("tw-save-wiki",function(event) {
+			$tw.wiki.saveWiki({
+				template: "$:/core/templates/tiddlywiki5.template.html",
+				downloadType: "text/plain"
+			});
+		},false);
 		// Get the default tiddlers
 		var defaultTiddlersTitle = "$:/DefaultTiddlers",
 			defaultTiddlersTiddler = $tw.wiki.getTiddler(defaultTiddlersTitle),
@@ -20404,6 +20569,59 @@ exports.initStoryViews = function(moduleType) {
 	}
 };
 
+/*
+Select the appropriate saver modules and set them up
+*/
+exports.initSavers = function(moduleType) {
+	moduleType = moduleType || "saver";
+	// Instantiate the available savers
+	this.savers = [];
+	for(var t=0; t<$tw.plugins.moduleTypes[moduleType].length; t++) {
+		var saver = $tw.plugins.moduleTypes[moduleType][t];
+		if(saver.canSave()) {
+			this.savers.push(saver.create());
+		}
+	}
+	// Sort the savers into priority order
+	this.savers.sort(function(a,b) {
+		if(a.info.priority < b.info.priority) {
+			return -1;
+		} else {
+			if(a.info.priority > b.info.priority) {
+				return +1;
+			} else {
+				return 0;
+			}
+		}
+	});
+};
+
+/*
+Invoke the highest priority saver that successfully handles a method
+*/
+exports.callSaver = function(method /*, args */ ) {
+	for(var t=this.savers.length-1; t>=0; t--) {
+		var saver = this.savers[t];
+		if(saver[method].apply(saver,Array.prototype.slice.call(arguments,1))) {
+			return true;
+		}
+	}
+	return false;
+};
+
+/*
+Save the wiki contents
+	template: the tiddler containing the template to save
+	downloadType: the content type for the saved file
+*/
+exports.saveWiki = function(options) {
+	options = options || {};
+	var template = options.template || "$:/core/templates/tiddlywiki5.template.html",
+		downloadType = options.downloadType || "text/plain",
+		text = this.renderTiddler(downloadType,template);
+	this.callSaver("save",text);
+};
+
 })();
 });
 </script>
@@ -20933,7 +21151,7 @@ $tw.plugins.registerPlugin($tw.config.root + "/kernel/tiddlerdeserializer/dom","
 						s = text.indexOf("{"),
 						e = text.lastIndexOf("}");
 					if(node.hasAttribute("data-module") && s !== -1 && e !== -1) {
-						text = text.substring(s+1,e-1);
+						text = text.substring(s+1,e);
 					}
 					var fields = {text: text},
 						attributes = node.attributes;

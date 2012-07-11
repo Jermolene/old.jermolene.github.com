@@ -39,7 +39,16 @@ DAMAGE.
 <title></title>
 <!----------- This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ----------->
 <div id="styleArea">
-<style data-tiddler-title='$:/core/lib/tiddlywiki.css' data-tiddler-type='text/css' type='text/css'>/*!
+<style data-tiddler-title='$:/core/lib/tiddlywiki.css' data-tiddler-type='text/css' type='text/css'>/*
+TiddlyWiki
+Base CSS from Twitter Bootstrap plus TiddlyWiki-specific overrides
+*/
+
+/*
+Base Twitter Bootstrap
+*/
+
+/*!
  * Bootstrap v2.0.4
  *
  * Copyright 2012 Twitter, Inc
@@ -5023,11 +5032,27 @@ a.badge:hover {
   visibility: hidden;
 }
 
+/*
+TiddlyWiki overrides of Bootstrap variables
+*/
+
+/*
+TiddlyWiki mixins
+*/
+
+/*
+Base re-definitions
+*/
+
 body {
   position: relative;
   padding-top: 40px;
   background: #eeeeee;
 }
+
+/*
+Tiddler styles
+*/
 
 .tw-story-element {
   position: relative;
@@ -5102,6 +5127,10 @@ a.tw-tiddlylink-missing {
   font-style: inherit;
 }
 
+/*
+Dropdown menus
+*/
+
 .tw-ticked-menu-item::before {
   position: absolute;
   left: 4px;
@@ -5126,6 +5155,10 @@ a.tw-tiddlylink-missing {
   top: -3px;
 }
 
+/*
+Buttons
+*/
+
 .btn-invisible {
   padding: 0;
   margin: 0;
@@ -5136,6 +5169,10 @@ a.tw-tiddlylink-missing {
 .tw-tags-wrapper .label {
   margin-right: 6px;
 }
+
+/*
+Split label
+*/
 
 .splitLabel {
   margin-right: 5px;
@@ -5157,6 +5194,10 @@ a.tw-tiddlylink-missing {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+
+/*
+Includes
+*/
 
 .javascript-source {
   padding: 18px 18px 18px 18px;
