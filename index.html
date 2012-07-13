@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.0.a3" />
+<meta name="tiddlywiki-version" content="5.0.0-alpha.7" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -6252,7 +6252,7 @@ DAMAGE.
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
 &lt;meta name=&quot;application-name&quot; content=&quot;TiddlyWiki&quot; /&gt;
 &lt;meta name=&quot;generator&quot; content=&quot;TiddlyWiki&quot; /&gt;
-&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;&lt;&lt;include &quot;$:/core/version.txt&quot; text/plain&gt;&gt;&quot; /&gt;
+&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;&lt;&lt;version&gt;&gt;&quot; /&gt;
 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
 &lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;
 &lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;black-translucent&quot; /&gt;
@@ -6320,9 +6320,6 @@ DAMAGE.
 	&lt;&lt;view text wikified&gt;&gt;
 &lt;/div&gt;
 </pre>
-</div>
-<div title="$:/core/version.txt" type="text/plain">
-<pre>5.0.0.a3</pre>
 </div>
 <div title="$:/core/wiki/title" type="text/x-tiddlywiki">
 <pre>&lt;&lt;tiddler SiteTitle&gt;&gt; --- &lt;&lt;tiddler SiteSubtitle&gt;&gt;</pre>
@@ -8479,7 +8476,7 @@ var Command = function(params,commander) {
 };
 
 Command.prototype.execute = function() {
-	this.commander.streams.output.write($tw.utils.getVersionString() + "\n");
+	this.commander.streams.output.write($tw.version + "\n");
 	return null; // No error
 };
 
@@ -11837,7 +11834,7 @@ exports.info = {
 };
 
 exports.executeMacro = function() {
-	return $tw.Tree.Text($tw.utils.getVersionString());
+	return $tw.Tree.Text($tw.version);
 };
 
 })();
@@ -18342,7 +18339,7 @@ exports["application/x-tiddlywiki-recipe"] = function(text,fields) {
 				fields = {title: sourcePath},
 				tids = self.deserializeTiddlers(ext,data,fields),
 				metafile = sourcePath + ".meta";
-			if(ext !== ".json" && tids.length === 1 && path.existsSync(metafile)) {
+			if(ext !== ".json" && tids.length === 1 && fs.existsSync(metafile)) {
 				var metadata = fs.readFileSync(metafile).toString("utf8");
 				if(metadata) {
 					tids = [$tw.utils.parseFields(metadata,tids[0])];
@@ -18554,7 +18551,9 @@ title: $:/core/modules/savers/upload.js
 type: application/javascript
 module-type: saver
 
-Handles saving changes via upload to a server
+Handles saving changes via upload to a server.
+
+Designed to be compatible with BidiX's UploadPlugin at http://tiddlywiki.bidix.info/#UploadPlugin
 
 \*/
 (function(){
@@ -20212,36 +20211,6 @@ exports.unHyphenateCss = function(propName) {
 };
 
 /*
-Parse a version number string of the form "1.2.3", "1.2.3.a4", or "1.2.3.b4" into:
-	{major: <number>, minor: <number>, revision: <number>, alpha: <number>, beta: <number>}
-*/
-exports.parseVersion = function(versionString) {
-	versionString = versionString || "0.0.0";
-	var components = versionString.split("."),
-		version = {
-			major: components[0] ? parseInt(components[0],10) : null,
-			minor: components[1] ? parseInt(components[1],10) : null,
-			revision: components[2] ? parseInt(components[2],10) : null
-		};
-	if(components[3]) {
-		if(components[3].charAt(0) === "a") {
-			version.alpha = parseInt(components[3].substr(1),10);
-		} else if(components[3].charAt(0) === "b") {
-			version.beta = parseInt(components[3].substr(1),10);
-		}
-	}
-	return version;
-};
-
-exports.getVersionString = function() {
-	return ($tw.version.major || "0") + "." +
-			($tw.version.minor || "0") + "." +
-			($tw.version.revision || "0") +
-			($tw.version.alpha ? ".a" + $tw.version.alpha : "") +
-			($tw.version.beta ? ".b" + $tw.version.beta : "");
-};
-
-/*
 Extract the version number from the meta tag or from the boot file
 */
 
@@ -20253,10 +20222,10 @@ exports.extractVersionInfo = function() {
 	for(var t=0; t<metatags.length; t++) {
 		var m = metatags[t];
 		if(m.name === "tiddlywiki-version") {
-			return $tw.utils.parseVersion(m.content);
+			return m.content;
 		}
 	}
-	return $tw.utils.parseVersion();
+	return null;
 };
 
 } else {
@@ -20264,7 +20233,7 @@ exports.extractVersionInfo = function() {
 // Server version
 exports.extractVersionInfo = function() {
 	var fs = require("fs");
-	return $tw.utils.parseVersion(fs.readFileSync($tw.boot.bootPath + "/version.txt").toString("utf8"));
+	return JSON.parse(fs.readFileSync($tw.boot.bootPath + "/../package.json")).version;
 };
 
 }
@@ -20862,6 +20831,7 @@ In practice, each module is wrapped in a separate script block.
 // Set up $tw global for the server
 if(typeof(window) === "undefined" && !global.$tw) {
 	global.$tw = {}; // No ``browser`` member for the server
+	exports.$tw = $tw;
 }
 
 // Temporary switch for replacing the old wiki text parser with the new one
@@ -21399,7 +21369,7 @@ $tw.loadTiddlersFromFile = function(file,fields,isShadow) {
 		data = fs.readFileSync(file).toString(typeInfo ? typeInfo.encoding : "utf8"),
 		tiddlers = $tw.wiki.deserializeTiddlers(ext,data,fields),
 		metafile = file + ".meta";
-	if(ext !== ".json" && tiddlers.length === 1 && path.existsSync(metafile)) {
+	if(ext !== ".json" && tiddlers.length === 1 && fs.existsSync(metafile)) {
 		var metadata = fs.readFileSync(metafile).toString("utf8");
 		if(metadata) {
 			tiddlers = [$tw.utils.parseFields(metadata,tiddlers[0])];
@@ -21414,7 +21384,7 @@ Load all the plugins from the plugins directory
 $tw.loadTiddlersFromFolder = function(filepath,basetitle,excludeRegExp,isShadow) {
 	basetitle = basetitle || "$:/plugins";
 	excludeRegExp = excludeRegExp || /^\.DS_Store$|.meta$/;
-	if(path.existsSync(filepath)) {
+	if(fs.existsSync(filepath)) {
 		var stat = fs.statSync(filepath);
 		if(stat.isDirectory()) {
 			var files = fs.readdirSync(filepath);
