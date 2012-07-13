@@ -6177,7 +6177,6 @@ DAMAGE.
 &lt;&lt;button popup:ViewDropDownState&gt;&lt;View &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&gt;&gt;
 }}}
 
-
 &lt;&lt;button save-wiki class:&quot;btn&quot;&gt;&lt;Save Changes&gt;&gt;
 
 }}}
@@ -6223,7 +6222,7 @@ DAMAGE.
 &lt;/div&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;&lt;include &quot;PageTemplate&quot; text/html&gt;&gt;
+&lt;&lt;include &quot;$:/templates/PageTemplate&quot; text/html&gt;&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -7291,9 +7290,7 @@ The internal changes mean that TiddlyWiki5 is not compatible with previous versi
 
 * Try editing some tiddlers here on tiddlywiki.com to try out the new WikiText. Your changes will not be visible to other users
 * Use TiddlySpot to host an instance of TiddlyWiki5
-* If you're running [[Google Chrome Canary|https://tools.google.com/dlpage/chromesxs]] you can:
-** Modify this wiki, and then download a copy by clicking this button: &lt;&lt;download filename:&quot;TiddlyWiki.html&quot; label:&quot;Save Changes&quot;&gt;&gt;
-** Download a static copy of the tiddlers that are currently displayed in this wiki by clicking this button: &lt;&lt;download title:&quot;$:/core/static.template.html&quot; filename:&quot;Story.html&quot; label:&quot;Static Wiki&quot;&gt;&gt;
+* Save this wiki as a static HTML file: &lt;&lt;button save-wiki param:&quot;$:/core/templates/static.template.html&quot; class:&quot;btn&quot;&gt;&lt;Save Static&gt;&gt;
 * If you're running on a touch browser like Mobile Safari on the iPad or iPhone:
 ** The zooming chooser appears by swiping into the left edge of the screen. (It's currently broken but you get the idea)
 ** The zooming navigator appears by swiping in from the right edge of the screen. (It currently only works in the 'Classic' storyview)
@@ -9133,6 +9130,7 @@ exports.info = {
 	name: "button",
 	params: {
 		message: {byName: "default", type: "text"},
+		param: {byName: true, type: "text"},
 		popup: {byName: true, type: "tiddler"},
 		qualifyTiddlerTitles: {byName: true, type: "text"},
 		"class": {byName: true, type: "text"}
@@ -9142,6 +9140,7 @@ exports.info = {
 exports.dispatchMessage = function(event) {
 	var buttonEvent = document.createEvent("Event");
 	buttonEvent.initEvent("tw-" + this.params.message,true,true);
+	buttonEvent.param = this.params.param;
 	buttonEvent.tiddlerTitle = this.tiddlerTitle;
 	event.target.dispatchEvent(buttonEvent);
 };
@@ -9423,66 +9422,6 @@ exports.executeMacro = function() {
 	return null;
 };
 
-
-})();
-});
-</script>
-<script data-module='yes' data-tiddler-module-type='macro' data-tiddler-title='$:/core/modules/macros/download.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/macros/download.js","macro",function(module,exports,require) {/*\
-title: $:/core/modules/macros/download.js
-type: application/javascript
-module-type: macro
-
-Download macro
-
-\*/
-(function(){
-
-/*jslint node: true, browser: true */
-/*global $tw: false */
-"use strict";
-
-exports.info = {
-	name: "download",
-	params: {
-		title: {byName: "default", type: "text"},
-		type: {byName: true, type: "text"},
-		"filename": {byName: true, type: "text"},
-		"label": {byName: true, type: "text"}
-	}
-};
-
-exports.handleEvent = function(event) {
-	if(event.type === "click") {
-		var text = this.wiki.renderTiddler(this.downloadType,this.downloadTitle),
-			link = document.createElement("a");
-		link.setAttribute("download",this.downloadFilename);
-		link.setAttribute("href","data:" + this.downloadType + "," + encodeURIComponent(text));
-		link.click();
-		event.preventDefault();
-		return false;
-	}
-	return true;
-};
-
-exports.executeMacro = function() {
-	this.downloadTitle = this.params.title || "$:/core/templates/tiddlywiki5.template.html";
-	this.downloadType = this.params.type || "text/plain";
-	this.downloadFilename = this.params.filename || this.downloadTitle;
-	var attributes = {},
-		content = [];
-	if(this.hasParameter("label")) {
-		content.push($tw.Tree.Text(this.params.label));
-	} else {
-		content.push($tw.Tree.Text("Download \"" + this.downloadFilename + "\""));
-	}
-	if(this.classes) {
-		attributes["class"] = this.classes.slice(0);
-	}
-	return $tw.Tree.Element("button",attributes,content,{
-		events: ["click"],
-		eventHandler: this
-	});
-};
 
 })();
 });
@@ -18903,7 +18842,7 @@ exports.startup = function() {
 		$tw.wiki.initSavers();
 		document.addEventListener("tw-save-wiki",function(event) {
 			$tw.wiki.saveWiki({
-				template: "$:/core/templates/tiddlywiki5.template.html",
+				template: event.param,
 				downloadType: "text/plain"
 			});
 		},false);
