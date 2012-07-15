@@ -6144,8 +6144,20 @@ DAMAGE.
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xl=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;1.1&quot; viewBox=&quot;244 193 20 22&quot; width=&quot;20pt&quot; height=&quot;22pt&quot;&gt;&lt;g stroke=&quot;none&quot; stroke-opacity=&quot;1&quot; stroke-dasharray=&quot;none&quot; fill=&quot;none&quot; fill-opacity=&quot;1&quot;&gt;&lt;g&gt;&lt;title&gt;Body&lt;/title&gt;&lt;path d=&quot;M 257.33334 196.80951 L 245.90476 207.2857 L 244 212.0476 L 248.7619 210.14284 L 260.19048 199.66665 Z M 259.2381 194.90475 L 258.28566 195.85716 L 261.14284 198.71428 L 262.09522 197.76187 Z M 261.14286 193 L 260.19042 193.95241 L 263.04762 196.80953 L 264 195.85714 Z M 244 213.72882 C 244 213.72882 247.4281 215.43353 250.8572 213.7288 C 254.28599 212.02405 261.14284 214.86531 261.14284 214.86531 L 261.14284 213.72884 C 261.14284 213.72884 254.28577 210.88755 250.8572 212.5923 C 247.42858 214.29712 244 212.59228 244 212.59228 Z&quot; fill=&quot;#ccc&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;
 </pre>
 </div>
+<div title="$:/messages/EnterEditMode" subtitle="Editing this wiki" type="text/x-tiddlywiki">
+<pre>You can edit this wiki and save your changes. You are strongly advised to verify that saving is working correctly before working.
+
+Running in this browser with this configuration, ~TiddlyWiki can use these methods of saving changes:
+
+* Using Firefox's built-in file system access
+* Uploading to a simple server script
+* Using HTML5's data URI and download attribute
+
+
+[x] Don't show this message again</pre>
+</div>
 <div title="$:/messages/SaveInstructions" subtitle="Save your work" type="text/x-tiddlywiki">
-<pre>Your changes to this ~TiddlyWiki document need to be saved.
+<pre>Your changes to this wiki need to be saved as a ~TiddlyWiki HTML file.
 
 !!! Desktop browsers
 
@@ -6198,7 +6210,9 @@ DAMAGE.
 	&lt;&lt;list all&gt;&gt;
 &gt;&gt;
 }}}
+
 &lt;&lt;zoomer&gt;&gt;
+
 &lt;div class=&quot;navbar navbar-fixed-top&quot;&gt;
 &lt;div class=&quot;navbar-inner&quot;&gt;
 &lt;div class=&quot;container&quot;&gt;
@@ -6208,12 +6222,17 @@ DAMAGE.
 * [[Docs]]
 *{{divider-vertical}}
 
-{{btn btn-danger{
-&lt;&lt;button popup:ViewDropDownState&gt;&lt;View &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&gt;&gt;
+&lt;&lt;button popup:ViewDropDownState class:&quot;btn btn-danger&quot;&gt;&lt;View &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&gt;&gt;
+
+{{pull-right{
+&lt;&lt;reveal state:[[$:/EditMode]] type:nomatch text:yes&gt;&lt;
+&lt;&lt;button modal param:[[$:/messages/EnterEditMode]] set:[[$:/EditMode]] setTo:yes class:&quot;btn btn-success&quot;&gt;&lt;Edit&gt;&gt;
+&gt;&gt;
+
+&lt;&lt;reveal state:[[$:/EditMode]] type:match text:yes&gt;&lt;
+&lt;&lt;button save-wiki class:&quot;btn pull-right&quot;&gt;&lt;Save Changes&gt;&gt;
+&gt;&gt;
 }}}
-
-
-&lt;&lt;button save-wiki class:&quot;btn&quot;&gt;&lt;Save Changes&gt;&gt;
 
 }}}
 
@@ -6351,9 +6370,8 @@ DAMAGE.
 </pre>
 </div>
 <div title="$:/templates/ViewTemplate" modifier="JeremyRuston">
-<pre>&lt;div class=&quot;title&quot;&gt;
-	&lt;span&gt;&lt;&lt;view title&gt;&gt;&lt;/span&gt;
-	&lt;&lt;button EditTiddler class:&quot;btn-invisible&quot;&gt;&lt;[img[$:/core/images/edit-button.svg]]&gt;&gt;
+<pre>&lt;div class=&quot;title&quot;&gt; 
+	&lt;span&gt;&lt;&lt;view title&gt;&gt;&lt;/span&gt; &lt;span&gt; &lt;&lt;reveal state:[[$:/EditMode]] type:match text:yes&gt;&lt; &lt;&lt;button EditTiddler class:&quot;btn-invisible&quot;&gt;&lt;[img[$:/core/images/edit-button.svg]]&gt;&gt; &gt;&gt; &lt;/span&gt;
 	&lt;&lt;button close class:&quot;btn-invisible pull-right&quot;&gt;&lt;[img[$:/core/images/close-button.svg]]&gt;&gt;
 &lt;/div&gt;
 &lt;div class=&quot;small&quot;&gt;
@@ -9177,6 +9195,8 @@ exports.info = {
 	params: {
 		message: {byName: "default", type: "text"},
 		param: {byName: true, type: "text"},
+		set: {byName: true, type: "tiddler"},
+		setTo: {byName: true, type: "text"},
 		popup: {byName: true, type: "tiddler"},
 		qualifyTiddlerTitles: {byName: true, type: "text"},
 		"class": {byName: true, type: "text"}
@@ -9218,6 +9238,13 @@ exports.triggerPopup = function(event,cancel) {
 	}
 };
 
+exports.setTiddler = function() {
+	var set = this.params.set,
+		setTo = this.params.setTo,
+		tiddler = this.wiki.getTiddler(set);
+	this.wiki.addTiddler(new $tw.Tiddler(tiddler,{title: set, text: setTo}));
+};
+
 exports.handleEvent = function(event) {
 	if(event.type === "click") {
 		if(this.hasParameter("message")) {
@@ -9225,6 +9252,9 @@ exports.handleEvent = function(event) {
 		}
 		if(this.hasParameter("popup")) {
 			this.triggerPopup(event);
+		}
+		if(this.hasParameter("set") && this.hasParameter("setTo")) {
+			this.setTiddler();
 		}
 		event.preventDefault();
 		return false;
@@ -10462,6 +10492,10 @@ exports.readState = function() {
 			case "match":
 				this.readMatchState(state);
 				break;
+			case "nomatch":
+				this.readMatchState(state);
+				this.isOpen = !this.isOpen;
+				break;
 		}
 	}
 };
@@ -10524,7 +10558,7 @@ exports.executeMacro = function() {
 			attributes["class"].push("tw-popup");
 			break;
 	}
-	attributes.style = {display: this.isOpen ? "block" : "none"};
+	attributes.style = {display: this.isOpen ? (this.isBlock ? "block" : "inline") : "none"};
 	var child = $tw.Tree.Element(this.isBlock ? "div" : "span",attributes,this.isOpen ? this.content : [],{
 		events: ["click"],
 		eventHandler: this
@@ -10588,7 +10622,7 @@ exports.refreshInDom = function(changes) {
 		}
 	}
 	// Set the visibility of the children
-	this.child.domNode.style.display = this.isOpen ? "block" : "none";
+	this.child.domNode.style.display = this.isOpen ? (this.isBlock ? "block" : "inline") : "none";
 	// Position the content if required
 	this.postRenderInDom();
 };
@@ -16177,6 +16211,49 @@ exports.parse = function(match,isBlock) {
 })();
 });
 </script>
+<script data-module='yes' data-tiddler-module-type='wikitextrule' data-tiddler-title='$:/core/modules/parsers/newwikitextparser/rules/classrun.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/parsers/newwikitextparser/rules/classrun.js","wikitextrule",function(module,exports,require) {/*\
+title: $:/core/modules/parsers/newwikitextparser/rules/classrun.js
+type: application/javascript
+module-type: wikitextrule
+
+Wiki text run rule for assigning classes to paragraphs and other blocks. For example:
+
+{{{
+{{myClass{This text will have the CSS class `myClass`.
+
+* This will not be recognised as a list
+
+List item 2}}}
+}}}
+
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+exports.name = "class";
+
+exports.runParser = true;
+
+exports.regExpString = "\\{\\{(?:[^\\{\\r\\n]+)\\{";
+
+exports.parse = function(match,isBlock) {
+	var tree,
+		reStart = /\{\{([^\{\r\n]+){/mg,
+		reEnd = /(\}\}\})/g;
+	reStart.lastIndex = this.pos;
+	match = reStart.exec(this.source);
+	this.pos = match.index + match[0].length;
+	tree = this.parseRun(reEnd,{leaveTerminator: false});
+	return [$tw.Tree.Element("span",{"class":match[0]},tree)];
+};
+
+})();
+});
+</script>
 <script data-module='yes' data-tiddler-module-type='wikitextrule' data-tiddler-title='$:/core/modules/parsers/newwikitextparser/rules/codeblock.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/parsers/newwikitextparser/rules/codeblock.js","wikitextrule",function(module,exports,require) {/*\
 title: $:/core/modules/parsers/newwikitextparser/rules/codeblock.js
 type: application/javascript
@@ -16545,10 +16622,13 @@ exports.regExpString = "<[A-Za-z]+\\s*[^>]*>";
 
 exports.parse = function(match,isBlock) {
 	var reStart = /<([A-Za-z]+)(\s*[^>]*)>/mg,
+		reLineBreak = /(\r?\n)/mg,
 		reAttr = /\s*([A-Za-z\-_]+)(?:\s*=\s*(?:("[^"]*")|('[^']*')|([^"'\s]+)))?/mg;
+	// Process the start regexp to get the attribute portion
 	reStart.lastIndex = this.pos;
 	var startMatch = reStart.exec(this.source);
 	if(startMatch && startMatch.index === this.pos) {
+		// Process the attributes
 		var attrMatch = reAttr.exec(startMatch[2]),
 			attributes = {};
 		while(attrMatch) {
@@ -16567,6 +16647,15 @@ exports.parse = function(match,isBlock) {
 			attrMatch = reAttr.exec(startMatch[2]);
 		}
 		this.pos = startMatch.index + startMatch[0].length;
+		// Check for a line break immediate after the opening tag
+		reLineBreak.lastIndex = this.pos;
+		var lineBreakMatch = reLineBreak.exec(this.source);
+		if(lineBreakMatch && lineBreakMatch.index === this.pos) {
+			this.pos = lineBreakMatch.index + lineBreakMatch[0].length;
+			isBlock = true;
+		} else {
+			isBlock = false;
+		}
 		var reEndString = "(</" + startMatch[1] + ">)",
 			reEnd = new RegExp(reEndString,"mg"),
 			content;
@@ -19824,9 +19913,8 @@ Modal.prototype.display = function(title) {
 		renderer.refreshInDom(changes);
 	});
 	wrapper.addEventListener("tw-close",function(event) {
-console.log("Got tw-close event");
 		document.body.removeChild(wrapper);
-		event.stopPropogation();
+		event.stopPropagation();
 		return false;
 	},false);
 	document.body.appendChild(wrapper);
