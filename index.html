@@ -6549,19 +6549,21 @@ The current shadow tiddlers are:
 
 The mechanism is easiest to understand by first presenting some example filter strings:
 
-* `HelloThere` - the single tiddler titled `HelloThere` (if it exists)
-* `[[A Title With Several Words]]` - the single tiddler titled `A Title With Several Words` (if it exists)
-* `[title[MyTiddler]]` - the single tiddler titled `MyTiddler` (if it exists)
-* `HelloThere Introduction` - The tiddlers titled `HelloThere` and `Introduction` (if they exist)
-* `[tag[important]]` - any tiddlers with the tag `important`
-* `[!tag[important]]` - any tiddlers not with the tag `important`
-* `[tag[important]sort[title]]` - any tiddlers with the tag `important` sorted by title
-* `[tag[important]!sort[title]]` - any tiddlers with the tag `important` reverse sorted by title
-* `[[one][two][three]tag[tom]]` - any of the tiddlers called `one`, `two` or `three` that exist and are tagged with tom`
-* `[[one][two][three]] [tag[tom]]` - any of the tiddlers called `one`, `two` or `three` that exist, along with all of the source tiddlers that are tagged with `tom`
-* `[tag[tom]] [tag[harry]] -[[one][two][three]]` - all tiddlers tagged either `tom` or `harry`, but excluding `one`, two` and `three`
-* `[[MyTiddler]tags[]]` - all tiddlers being used as tags on the tiddler `MyTiddler`
-* `[[MyTiddler]tagging[]]` - all tiddlers being tagged with `MyTiddler`
+|!Filter |!Results |
+|`HelloThere` |The single tiddler titled `HelloThere` (if it exists) |
+|`[[A Title With Several Words]]` |The single tiddler titled `A Title With Several Words` (if it exists) |
+|`[title[MyTiddler]]` |The single tiddler titled `MyTiddler` (if it exists) |
+|`HelloThere Introduction` |The tiddlers titled `HelloThere` and `Introduction` (if they exist) |
+|`[tag[important]]` |Any tiddlers with the tag `important` |
+|`[!tag[important]]` |Any tiddlers not with the tag `important` |
+|`[tag[important]sort[title]]` |Any tiddlers with the tag `important` sorted by title |
+|`[tag[important]!sort[title]]` |Any tiddlers with the tag `important` reverse sorted by title |
+|`[[one][two][three]tag[tom]]` |Any of the tiddlers called `one`, `two` or `three` that exist and are tagged with `tom` |
+|`[[one][two][three]] [tag[tom]]` |Any of the tiddlers called `one`, `two` or `three` that exist, along with all of the source tiddlers that are tagged with `tom` |
+|`[tag[tom]] [tag[harry]] -[[one][two][three]]` |All tiddlers tagged either `tom` or `harry`, but excluding `one`, `two` and `three` |
+|`[[MyTiddler]tags[]]` |all tiddlers being used as tags on the tiddler `MyTiddler` |
+|`[[MyTiddler]tagging[]]` |all tiddlers being tagged with `MyTiddler` |
+
 
 ! Explanation
 
@@ -17074,6 +17076,168 @@ exports.parse = function(match,isBlock) {
 })();
 });
 </script>
+<script data-module='yes' data-tiddler-module-type='wikitextrule' data-tiddler-title='$:/core/modules/parsers/newwikitextparser/rules/table.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/parsers/newwikitextparser/rules/table.js","wikitextrule",function(module,exports,require) {/*\
+title: $:/core/modules/parsers/newwikitextparser/rules/table.js
+type: application/javascript
+module-type: wikitextrule
+
+Wiki text block rule for tables.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+exports.name = "table";
+
+exports.blockParser = true;
+
+exports.regExpString = "^\\|(?:[^\\n]*)\\|(?:[fhck]?)\\r?\\n";
+
+var processRow = function(prevColumns) {
+	var cellRegExp = /(?:\|([^\n\|]*)\|)|(\|[fhck]?\r?\n)/mg,
+		cellTermRegExp = /((?:\x20*)\|)/mg,
+		tree = [],
+		col = 0,
+		colSpanCount = 1,
+		prevCell;
+	// Match a single cell
+	cellRegExp.lastIndex = this.pos;
+	var cellMatch = cellRegExp.exec(this.source);
+	while(cellMatch && cellMatch.index === this.pos) {
+		if(cellMatch[1] === "~") {
+			// Rowspan
+			var last = prevColumns[col];
+			if(last) {
+				last.rowSpanCount++;
+				last.element.attributes.rowspan = last.rowSpanCount;
+				last.element.attributes.valign = "center";
+				if(colSpanCount > 1) {
+					last.element.attributes.colspan = colSpanCount;
+					colSpanCount = 1;
+				}
+			}
+			// Move to just before the `|` terminating the cell
+			this.pos = cellRegExp.lastIndex - 1;
+		} else if(cellMatch[1] === ">") {
+			// Colspan
+			colSpanCount++;
+			// Move to just before the `|` terminating the cell
+			this.pos = cellRegExp.lastIndex - 1;
+		} else if(cellMatch[2]) {
+			// End of row
+			if(prevCell && colSpanCount > 1) {
+				prevCell.attributes.colspan = colSpanCount;
+			}
+			this.pos = cellRegExp.lastIndex - 1;
+			break;
+		} else {
+			// For ordinary cells, step beyond the opening `|`
+			this.pos++;
+			// Look for a space at the start of the cell
+			var spaceLeft = false,
+				chr = this.source.substr(this.pos,1);
+			while(chr === " ") {
+				spaceLeft = true;
+				this.pos++;
+				chr = this.source.substr(this.pos,1);
+			}
+			// Check whether this is a heading cell
+			var cell;
+			if(chr === "!") {
+				this.pos++;
+				cell = $tw.Tree.Element("th",{},[]);
+			} else {
+				cell = $tw.Tree.Element("td",{},[]);
+			}
+			tree.push(cell);
+			// Record information about this cell
+			prevCell = cell;
+			prevColumns[col] = {rowSpanCount:1,element:cell};
+			// Check for a colspan
+			if(colSpanCount > 1) {
+				cell.attributes.colspan = colSpanCount;
+				colSpanCount = 1;
+			}
+			// Parse the cell
+			cell.children = this.parseRun(cellTermRegExp);
+			// Set the alignment for the cell
+			if(cellMatch[1].substr(cellMatch[1].length-2,1) === " ") { // spaceRight
+				cell.attributes.align = spaceLeft ? "center" : "left";
+			} else if(spaceLeft) {
+				cell.attributes.align = "right";
+			}
+			// Move back to the closing `|`
+			this.pos--;
+		}
+		col++;
+		cellRegExp.lastIndex = this.pos;
+		cellMatch = cellRegExp.exec(this.source);
+	}
+	return tree;
+};
+
+exports.parse = function(match,isBlock) {
+	var rowContainerTypes = {"c":"caption", "h":"thead", "":"tbody", "f":"tfoot"},
+		table = $tw.Tree.Element("table",{"class": ["table"]},[]),
+		rowRegExp = /^\|([^\n]*)\|([fhck]?)\r?\n/mg,
+		rowTermRegExp = /(\|(?:[fhck]?)\r?\n)/mg,
+		prevColumns = [],
+		currRowType,
+		rowContainer,
+		rowCount = 0;
+	// Match the row
+	rowRegExp.lastIndex = this.pos;
+	var rowMatch = rowRegExp.exec(this.source);
+	while(rowMatch && rowMatch.index === this.pos) {
+		var rowType = rowMatch[2];
+		// Check if it is a class assignment
+		if(rowType === "k") {
+			table.attributes["class"].push(rowMatch[1]);
+			this.pos = rowMatch.index + rowMatch[0].length;
+		} else {
+			// Otherwise, create a new row if this one is of a different type
+			if(rowType != currRowType) {
+				rowContainer = $tw.Tree.Element(rowContainerTypes[rowType],{},[]);
+				table.children.push(rowContainer);
+				currRowType = rowType;
+			}
+			// Is this a caption row?
+			if(currRowType === "c") {
+				// If so, move past the opening `|` of the row
+				this.pos++;
+				// Move the caption to the first row if it isn't already
+				if(table.children.length !== 1) {
+					table.children.pop(); // Take rowContainer out of the children array
+					table.children.splice(0,0,rowContainer); // Insert it at the bottom						
+				}
+				// Set the alignment - TODO: figure out why TW did this
+				rowContainer.attributes.align = rowCount === 0 ? "top" : "bottom";
+				// Parse the caption
+				rowContainer.children = this.parseRun(rowTermRegExp);
+			} else {
+				// Create the row
+				var theRow = $tw.Tree.Element("tr",{},[]);
+				theRow.attributes["class"] = rowCount%2 ? "oddRow" : "evenRow";
+				rowContainer.children.push(theRow);
+				// Process the row
+				theRow.children = processRow.call(this,prevColumns);
+				this.pos = rowMatch.index + rowMatch[0].length;
+				// Increment the row count
+				rowCount++;
+			}
+		}
+		rowRegExp.lastIndex = this.pos;
+		rowMatch = rowRegExp.exec(this.source);
+	}
+	return [table];
+};
+
+})();
+});
+</script>
 <script data-module='yes' data-tiddler-module-type='wikitextrule' data-tiddler-title='$:/core/modules/parsers/newwikitextparser/rules/transclude.js' data-tiddler-type='application/javascript' type='text/javascript'>$tw.modules.define("$:/core/modules/parsers/newwikitextparser/rules/transclude.js","wikitextrule",function(module,exports,require) {/*\
 title: $:/core/modules/parsers/newwikitextparser/rules/transclude.js
 type: application/javascript
@@ -19940,7 +20104,13 @@ Modal.prototype.display = function(title) {
 	modalFooter.appendChild(modalFooterButtons);
 	modalWrapper.appendChild(modalFooter);
 	// Render the title of the message
-	var headerRenderer = this.wiki.parseText("text/x-tiddlywiki-run","<<view subtitle wikified>>");
+	var titleText;
+	if(tiddler && tiddler.fields && tiddler.fields.subtitle) {
+		titleText = tiddler.fields.subtitle;
+	} else {
+		titleText = title;
+	}
+	var headerRenderer = this.wiki.parseText("text/x-tiddlywiki-run",titleText);
 	headerRenderer.execute([],title);
 	headerRenderer.renderInDom(headerTitle);
 	this.wiki.addEventListener("",function(changes) {
@@ -19962,7 +20132,13 @@ Modal.prototype.display = function(title) {
 		modalFooterHelp.appendChild(link);
 		modalFooterHelp.style.float = "left";
 	}
-	var footerRenderer = this.wiki.parseText("text/x-tiddlywiki-run","<<view footer wikified>>");
+	var footerText;
+	if(tiddler && tiddler.fields && tiddler.fields.footer) {
+		footerText = tiddler.fields.footer;
+	} else {
+		footerText = "<<button close class:'btn btn-primary'><Close>>";
+	}
+	var footerRenderer = this.wiki.parseText("text/x-tiddlywiki-run",footerText);
 	footerRenderer.execute([],title);
 	footerRenderer.renderInDom(modalFooterButtons);
 	this.wiki.addEventListener("",function(changes) {
