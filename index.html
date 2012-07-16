@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.0-alpha.7" />
+<meta name="tiddlywiki-version" content="5.0.0-alpha.8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -6144,10 +6144,10 @@ DAMAGE.
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xl=&quot;http://www.w3.org/1999/xlink&quot; version=&quot;1.1&quot; viewBox=&quot;244 193 20 22&quot; width=&quot;20pt&quot; height=&quot;22pt&quot;&gt;&lt;g stroke=&quot;none&quot; stroke-opacity=&quot;1&quot; stroke-dasharray=&quot;none&quot; fill=&quot;none&quot; fill-opacity=&quot;1&quot;&gt;&lt;g&gt;&lt;title&gt;Body&lt;/title&gt;&lt;path d=&quot;M 257.33334 196.80951 L 245.90476 207.2857 L 244 212.0476 L 248.7619 210.14284 L 260.19048 199.66665 Z M 259.2381 194.90475 L 258.28566 195.85716 L 261.14284 198.71428 L 262.09522 197.76187 Z M 261.14286 193 L 260.19042 193.95241 L 263.04762 196.80953 L 264 195.85714 Z M 244 213.72882 C 244 213.72882 247.4281 215.43353 250.8572 213.7288 C 254.28599 212.02405 261.14284 214.86531 261.14284 214.86531 L 261.14284 213.72884 C 261.14284 213.72884 254.28577 210.88755 250.8572 212.5923 C 247.42858 214.29712 244 212.59228 244 212.59228 Z&quot; fill=&quot;#ccc&quot;/&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;
 </pre>
 </div>
-<div title="$:/messages/EnterEditMode" subtitle="Editing this wiki" type="text/x-tiddlywiki">
-<pre>You can edit this wiki and save your changes. You are strongly advised to verify that saving is working correctly before working.
+<div title="$:/messages/EnterEditMode" footer="&lt;&lt;button close class:&quot;btn btn-primary&quot;&gt;&lt;Close&gt;&gt;" help="http://alpha.tiddlywiki.com/#help:EditMode" subtitle="Editing this wiki" type="text/x-tiddlywiki">
+<pre>You can edit this wiki and save your changes. You are strongly advised to verify that saving is working properly before trusting ~TiddlyWiki with your data.
 
-Running in this browser with this configuration, ~TiddlyWiki can use these methods of saving changes:
+The following methods of saving changes are available:
 
 * Using Firefox's built-in file system access
 * Uploading to a simple server script
@@ -6156,23 +6156,23 @@ Running in this browser with this configuration, ~TiddlyWiki can use these metho
 
 [x] Don't show this message again</pre>
 </div>
-<div title="$:/messages/SaveInstructions" subtitle="Save your work" type="text/x-tiddlywiki">
+<div title="$:/messages/SaveInstructions" footer="&lt;&lt;button close class:&quot;btn btn-primary&quot;&gt;&lt;Close&gt;&gt;" help="http://alpha.tiddlywiki.com/#help:SavingChanges" subtitle="Save your work" type="text/x-tiddlywiki">
 <pre>Your changes to this wiki need to be saved as a ~TiddlyWiki HTML file.
 
 !!! Desktop browsers
 
 # Select ''Save As'' from the ''File'' menu
 # Choose a filename and location
-## Some browsers also require you to explicitly specify the file saving format as ''Webpage, HTML only'' or similar
+#* Some browsers also require you to explicitly specify the file saving format as ''Webpage, HTML only'' or similar
 # Close this tab
 
 !!! Smartphone browsers
 
 # Create a bookmark to this page
+#* If you've got iCloud or Google Sync set up then the bookmark will automatically sync to your desktop where you can open it and save it as above
 # Close this tab
 
-* If you've got iCloud set up then the bookmark will automatically sync to your desktop where you can open it and save it as above
-* If you open the bookmark again in Mobile Safari you will see this message again. If you want to go ahead and use the file, just click the close button below
+//If you open the bookmark again in Mobile Safari you will see this message again. If you want to go ahead and use the file, just click the ''close'' button below//
 </pre>
 </div>
 <div title="$:/templates/EditTemplate" modifier="JeremyRuston">
@@ -6186,7 +6186,7 @@ Running in this browser with this configuration, ~TiddlyWiki can use these metho
 }}}</pre>
 </div>
 <div title="$:/templates/ModalMessage" type="text/x-tiddlywiki">
-<pre>&lt;div class=&quot;modal-backdrop fade in&quot;&gt;&lt;/div&gt;
+<pre>&lt;div class=&quot;modal-backdrop&quot;&gt;&lt;/div&gt;
 &lt;div class=&quot;container&quot;&gt;
 &lt;div class=&quot;modal&quot;&gt;
 &lt;div class=&quot;modal-header&quot;&gt;
@@ -18562,7 +18562,7 @@ UploadSaver.prototype.save = function(text) {
 		if(http.readyState == 4 && http.status == 200) {
 			alert(http.responseText);
 		}
-	}
+	};
 	http.send(data);
 	return true;
 };
@@ -18707,7 +18707,7 @@ exports["application/x-tiddler-html-div"] = function(tiddler) {
 	pullField("title");
 	// Output the fields
 	for(f=0; f<fields.length; f++) {
-		result.push(" " + fields[f] + "=\"" + tiddler.getFieldString(fields[f]) + "\"");
+		result.push(" " + fields[f] + "=\"" + $tw.utils.htmlEncode(tiddler.getFieldString(fields[f])) + "\"");
 	}
 	result.push(">\n<pre>");
 	result.push($tw.utils.htmlEncode(tiddler.fields.text));
@@ -18765,7 +18765,7 @@ exports.startup = function() {
 			rootElement: document.body
 		});
 		// Install the modal message mechanism
-		$tw.modal = new $tw.utils.Modal(this);
+		$tw.modal = new $tw.utils.Modal($tw.wiki);
 		document.addEventListener("tw-modal",function(event) {
 			$tw.modal.display(event.param);
 		},false);
@@ -19903,20 +19903,59 @@ var Modal = function(wiki) {
 };
 
 Modal.prototype.display = function(title) {
+	// Create the wrapper divs
 	var wrapper = document.createElement("div"),
-		template,renderer;
-	template = "$:/templates/ModalMessage";
-	renderer = $tw.wiki.parseTiddler(template);
-	renderer.execute([],title);
-	renderer.renderInDom(wrapper);
-	$tw.wiki.addEventListener("",function(changes) {
-		renderer.refreshInDom(changes);
+		modalBackdrop = document.createElement("div"),
+		modalWrapper = document.createElement("div"),
+		modalHeader = document.createElement("div"),
+		headerTitle = document.createElement("h1"),
+		modalBody = document.createElement("div"),
+		modalFooter = document.createElement("div"),
+		modalFooterHelp = document.createElement("div"),
+		modalFooterButtons = document.createElement("div");
+	// Add classes
+	$tw.utils.addClass(modalBackdrop,"modal-backdrop");
+	$tw.utils.addClass(modalWrapper,"modal");
+	$tw.utils.addClass(modalHeader,"modal-header");
+	$tw.utils.addClass(modalBody,"modal-body");
+	$tw.utils.addClass(modalFooter,"modal-footer");
+	// Join them together
+	wrapper.appendChild(modalBackdrop);
+	wrapper.appendChild(modalWrapper);
+	modalHeader.appendChild(headerTitle);
+	modalWrapper.appendChild(modalHeader);
+	modalWrapper.appendChild(modalBody);
+	modalFooter.appendChild(modalFooterHelp);
+	modalFooter.appendChild(modalFooterButtons);
+	modalWrapper.appendChild(modalFooter);
+	// Render the title of the message
+	var headerRenderer = this.wiki.parseText("text/x-tiddlywiki-run","<<view subtitle wikified>>");
+	headerRenderer.execute([],title);
+	headerRenderer.renderInDom(headerTitle);
+	this.wiki.addEventListener("",function(changes) {
+		headerRenderer.refreshInDom(changes);
 	});
+	// Render the body of the message
+	var bodyRenderer = this.wiki.parseTiddler(title);
+	bodyRenderer.execute([],title);
+	bodyRenderer.renderInDom(modalBody);
+	this.wiki.addEventListener("",function(changes) {
+		bodyRenderer.refreshInDom(changes);
+	});
+	// Render the footer of the message
+	var footerRenderer = this.wiki.parseText("text/x-tiddlywiki-run","<<view footer wikified>>");
+	footerRenderer.execute([],title);
+	footerRenderer.renderInDom(modalFooterButtons);
+	this.wiki.addEventListener("",function(changes) {
+		footerRenderer.refreshInDom(changes);
+	});
+	// Add the close event handler
 	wrapper.addEventListener("tw-close",function(event) {
 		document.body.removeChild(wrapper);
 		event.stopPropagation();
 		return false;
 	},false);
+	// Put the message into the document
 	document.body.appendChild(wrapper);
 };
 
