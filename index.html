@@ -6545,7 +6545,7 @@ The current shadow tiddlers are:
 </pre>
 </div>
 <div title="TiddlerFilters" tags="docs concepts">
-<pre>TiddlyWiki has a special syntax for expressing filters. They can be used to select tiddlers for an operation, or to filter a set of tiddlers to add or remove members.
+<pre>Filters are used in TiddlyWiki to choose tiddlers by specifying simple match criteria.
 
 ! Examples
 
@@ -6570,17 +6570,15 @@ The mechanism is easiest to understand by first presenting some example filter s
 
 ! Operators
 
-A filter string consists of one or more filter operations, each comprising one or more filter operators with associated operands.
-
-The operations look like `[operator[operand]]`, where `operator` is one of:
+A filter string consists of one or more runs of filter operators that each look like `[operator[operand]]`, where `operator` is one of:
 
 * ''title'': selects the tiddler with the title given in the operand
 * ''is'': tests whether a tiddler is a member of the system defined set named in the operand (see below)
-* ''has'': tests whether a tiddler has a specified field
-* ''sort'': sorts the tiddlers by a given field
-* ''sort-case-sensitive'': a case sensitive sort of the current tiddlers
-* ''prefix'': tests whether a tiddlers title starts with a particular prefix
-* ''limit'': limits the number of subresults
+* ''has'': tests whether a tiddler has the field specified in the operand
+* ''sort'': sorts the tiddlers by the field specified in the operand
+* ''sort-case-sensitive'': a case sensitive sort of the current tiddlers by the field specified in the operand
+* ''prefix'': tests whether a tiddlers title starts with the prefix specified in the operand
+* ''limit'': limits the number of subresults to the integer specified in the operand
 * ''tag'': tests whether a given tag is (`[tag[mytag]]`) or is not (`[!tag[mytag]]`) present on the tiddler
 * ''{field}'': tests whether a tiddler field has a specified value (`[modifier[Jeremy]]`) or not (`[!modifier[Jeremy]]`)
 * ''tags'': selects the tags on the currently selected tiddlers
@@ -6603,18 +6601,18 @@ Operators are combined into runs that function as logically ANDed expressions by
 [tag[one]] [tag[two]] ---&gt; [tag[one]tag[two]]
 }}}
 
-Operation runs can be preceded with `-` to negate their action, removing the selected tiddlers from the results. For example, `[tag[Tommy]] -HelloThere -[[Another One]]` selects all tiddlers tagged with `Tommy` except those titled `HelloThere` or `Another One`.
+Runs can be preceded with `-` to negate their action, removing the selected tiddlers from the results. For example, `[tag[Tommy]] -HelloThere -[[Another One]]` selects all tiddlers tagged with `Tommy` except those titled `HelloThere` or `Another One`.
 
-Operation runs can be preceded with `+` in order to make them apply to all of the accumulated results, rather than the original source. For example, `[tag[Jeremy]] [tag[Tommy]] +[sort[title]]` selects the tiddlers tagged `Tommy` or `Jeremy`, and sorts them by the `title` field.
+Runs can be preceded with `+` in order to make them apply to all of the accumulated results, rather than the original source. For example, `[tag[Jeremy]] [tag[Tommy]] +[sort[title]]` selects the tiddlers tagged `Tommy` or `Jeremy`, and sorts them by the `title` field.
 
 ! Processing model
 
 Filters are processed with the following elements:
 
-* a string of filter operations, each made up of one or more filter operators
-* the incoming source tiddlers
+* a sequence of runs of filter operations
+* the incoming source tiddlers, typically all the tiddlers available in the wiki
 * the overall result stack
-* the subresult stack of the tiddlers selected by the current operation
+* the subresult stack of the tiddlers selected by the current run
 </pre>
 </div>
 <div title="Tiddlers" tags="docs concepts">
@@ -20157,8 +20155,20 @@ Modal.prototype.display = function(title) {
 		event.stopPropagation();
 		return false;
 	},false);
+	// Set the initial styles for the message
+	modalBackdrop.style.opacity = 0;
+	modalWrapper.style[$tw.browser.transformorigin] = "0% 0%";
+	modalWrapper.style[$tw.browser.transform] = "translateY(-500px)";
 	// Put the message into the document
 	document.body.appendChild(wrapper);
+	// Animate the styles
+	var d = $tw.config.preferences.animationDuration + "ms";
+	modalBackdrop.style[$tw.browser.transition] = "opacity " + d + " ease-out";
+	modalWrapper.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out";
+	$tw.utils.nextTick(function() {
+		modalBackdrop.style.opacity = 1;
+		modalWrapper.style[$tw.browser.transform] = "translateY(0px)";
+	});
 };
 
 exports.Modal = Modal;
