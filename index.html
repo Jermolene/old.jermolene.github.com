@@ -6708,7 +6708,7 @@ short lines
 
 Available character formatting includes:
 
-* backticks for `code`
+* {{{`backticks`}}} for `code`
 * `''bold''` for ''bold text''
 * `//italic//` for //italic text//
 * `__underscore__` for __underscored text__
@@ -7360,6 +7360,7 @@ Serializers are modules that convert tiddlers to different text formats:
 <pre>Here are a few features of TiddlyWiki that you can explore:
 
 * Try editing some tiddlers here on tiddlywiki.com to try out the new WikiText. Your changes will not be visible to other users
+* Invoke a demonstration &lt;&lt;button modal param:[[Motovun Jack.jpg]] class:&quot;btn btn-inverse&quot;&gt;&lt;wizard&gt;&gt;
 * Use TiddlySpot to host an instance of TiddlyWiki5
 * Save this wiki as a static HTML file: &lt;&lt;button save-wiki param:&quot;$:/core/templates/static.template.html&quot; class:&quot;btn&quot;&gt;&lt;Save Static&gt;&gt;
 * If you're running on a touch browser like Mobile Safari on the iPad or iPhone:
@@ -11238,11 +11239,10 @@ ClassicScroller.prototype.remove = function(storyElementNode) {
 	wrapperElement.style[$tw.browser.transform] = "translateX(0px)";
 	wrapperElement.style.opacity = "1.0";
 	wrapperElement.style.height = currHeight + "px";
-	$tw.utils.nextTick(function() {
-		wrapperElement.style[$tw.browser.transform] = "translateX(" + window.innerWidth + "px)";
-		wrapperElement.style.opacity = "0.0";
-		wrapperElement.style.height = "0px";
-	});
+	wrapperElement.offsetWidth; // Force layout
+	wrapperElement.style[$tw.browser.transform] = "translateX(" + window.innerWidth + "px)";
+	wrapperElement.style.opacity = "0.0";
+	wrapperElement.style.height = "0px";
 	// Returning true causes the DOM node not to be deleted
 	return true;
 };
@@ -11329,17 +11329,17 @@ SidewaysView.prototype.remove = function(storyElementNode) {
 	wrapperElement.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, " +
 															"opacity " + d + " ease-out, " +
 															"width " + d + " ease-in-out";
-	$tw.utils.nextTick(function() {
-		wrapperElement.style[$tw.browser.transform] = "translateY(" + window.innerHeight + "px)";
-		wrapperElement.style.opacity = "0.0";
-		wrapperElement.style.width = "0px";
-	});
 	// Attach an event handler for th eend of the transition
 	wrapperElement.addEventListener($tw.browser.transitionEnd,function(event) {
 		if(wrapperElement.parentNode) {
 			wrapperElement.parentNode.removeChild(wrapperElement);
 		}
 	},true);
+	// Animate
+	wrapperElement.offsetWidth; // Force layout
+	wrapperElement.style[$tw.browser.transform] = "translateY(" + window.innerHeight + "px)";
+	wrapperElement.style.opacity = "0.0";
+	wrapperElement.style.width = "0px";
 	// Returning true causes the DOM node not to be deleted
 	return true;
 };
@@ -11444,34 +11444,34 @@ Zoomin.prototype.navigateForward = function(toStoryElement,fromStoryElement,hist
 	var self = this,
 		prevCurrentTiddler = this.currentTiddler;
 	this.currentTiddler = toStoryElement;
-	$tw.utils.nextTick(function() {
-		// Transform the target tiddler to its natural size
-		toStoryElement.domNode.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, opacity " + d + " ease-out";
-		toStoryElement.domNode.style.opacity = "1.0";
-		toStoryElement.domNode.style[$tw.browser.transform] = "translateX(0px) translateY(0px) scale(1)";
-		toStoryElement.domNode.style.zIndex = "500";
-		// Transform the previous tiddler out of the way and then hide it
-		if(prevCurrentTiddler && prevCurrentTiddler !== toStoryElement) {
-			var scale = titleBounds.width / sourceBounds.width;
-			x =  titleBounds.left - targetBounds.left - (sourceBounds.left - targetBounds.left) * scale;
-			y =  titleBounds.top - targetBounds.top - (sourceBounds.top - targetBounds.top) * scale;
-			prevCurrentTiddler.domNode.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, opacity " + d + " ease-out";
-			prevCurrentTiddler.domNode.style.opacity = "0.0";
-			prevCurrentTiddler.domNode.style[$tw.browser.transformorigin] = "0 0";
-			prevCurrentTiddler.domNode.style[$tw.browser.transform] = "translateX(" + x + "px) translateY(" + y + "px) scale(" + scale + ")";
-			prevCurrentTiddler.domNode.style.zIndex = "0";
-			var eventHandler = function(event) {
-					// Hide the DOM node when the transition is over
-					if(self.currentTiddler !== prevCurrentTiddler) {
-						prevCurrentTiddler.domNode.style.display = "none";
-					}
-					prevCurrentTiddler.domNode.removeEventListener($tw.browser.transitionEnd,eventHandler,true);
-				};
-			prevCurrentTiddler.domNode.addEventListener($tw.browser.transitionEnd,eventHandler,true);
-		}
-		// Scroll the target into view
-		$tw.scroller.scrollIntoView(toStoryElement.domNode);
-	});
+	// Force layout
+	this.storyNode.offsetWidth;
+	// Transform the target tiddler to its natural size
+	toStoryElement.domNode.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, opacity " + d + " ease-out";
+	toStoryElement.domNode.style.opacity = "1.0";
+	toStoryElement.domNode.style[$tw.browser.transform] = "translateX(0px) translateY(0px) scale(1)";
+	toStoryElement.domNode.style.zIndex = "500";
+	// Transform the previous tiddler out of the way and then hide it
+	if(prevCurrentTiddler && prevCurrentTiddler !== toStoryElement) {
+		var scale = titleBounds.width / sourceBounds.width;
+		x =  titleBounds.left - targetBounds.left - (sourceBounds.left - targetBounds.left) * scale;
+		y =  titleBounds.top - targetBounds.top - (sourceBounds.top - targetBounds.top) * scale;
+		prevCurrentTiddler.domNode.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, opacity " + d + " ease-out";
+		prevCurrentTiddler.domNode.style.opacity = "0.0";
+		prevCurrentTiddler.domNode.style[$tw.browser.transformorigin] = "0 0";
+		prevCurrentTiddler.domNode.style[$tw.browser.transform] = "translateX(" + x + "px) translateY(" + y + "px) scale(" + scale + ")";
+		prevCurrentTiddler.domNode.style.zIndex = "0";
+		var eventHandler = function(event) {
+				// Hide the DOM node when the transition is over
+				if(self.currentTiddler !== prevCurrentTiddler) {
+					prevCurrentTiddler.domNode.style.display = "none";
+				}
+				prevCurrentTiddler.domNode.removeEventListener($tw.browser.transitionEnd,eventHandler,true);
+			};
+		prevCurrentTiddler.domNode.addEventListener($tw.browser.transitionEnd,eventHandler,true);
+	}
+	// Scroll the target into view
+	$tw.scroller.scrollIntoView(toStoryElement.domNode);
 };
 
 /*
@@ -11505,27 +11505,27 @@ Zoomin.prototype.remove = function(storyElement,storyElementIndex) {
 		this.currentTiddler = toStoryElement;
 	}
 	// Animate them both
-	$tw.utils.nextTick(function() {
-		// First, the tiddler we're closing
-		storyElement.domNode.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, opacity " + d + " ease-out";
-		storyElement.domNode.style.opacity = "0.0";
-		storyElement.domNode.style[$tw.browser.transformorigin] = "50% 50%";
-		storyElement.domNode.style[$tw.browser.transform] = "translateX(0px) translateY(0px) scale(0.1)";
-		storyElement.domNode.style.zIndex = "0";
-		var eventHandler = function(event) {
-				// Delete the DOM node when the transition is over
-				if(storyElement.domNode.parentNode) {
-					storyElement.domNode.parentNode.removeChild(storyElement.domNode);
-				}
-			storyElement.domNode.removeEventListener($tw.browser.transitionEnd,eventHandler,true);
-			};
-		storyElement.domNode.addEventListener($tw.browser.transitionEnd,eventHandler,true);
-		// Now the tiddler we're going back to
-		if(toStoryElement) {
-			toStoryElement.domNode.style[$tw.browser.transform] = "translateX(0px) translateY(0px) scale(1)";
-			toStoryElement.domNode.style.opacity = "1.0";
-		}
-	});
+	// Force layout
+	this.storyNode.offsetWidth;
+	// First, the tiddler we're closing
+	storyElement.domNode.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out, opacity " + d + " ease-out";
+	storyElement.domNode.style.opacity = "0.0";
+	storyElement.domNode.style[$tw.browser.transformorigin] = "50% 50%";
+	storyElement.domNode.style[$tw.browser.transform] = "translateX(0px) translateY(0px) scale(0.1)";
+	storyElement.domNode.style.zIndex = "0";
+	var eventHandler = function(event) {
+			// Delete the DOM node when the transition is over
+			if(storyElement.domNode.parentNode) {
+				storyElement.domNode.parentNode.removeChild(storyElement.domNode);
+			}
+		storyElement.domNode.removeEventListener($tw.browser.transitionEnd,eventHandler,true);
+		};
+	storyElement.domNode.addEventListener($tw.browser.transitionEnd,eventHandler,true);
+	// Now the tiddler we're going back to
+	if(toStoryElement) {
+		toStoryElement.domNode.style[$tw.browser.transform] = "translateX(0px) translateY(0px) scale(1)";
+		toStoryElement.domNode.style.opacity = "1.0";
+	}
 	return true; // Indicate that we'll delete the DOM node
 };
 
@@ -20092,7 +20092,8 @@ Modal.prototype.display = function(title) {
 		modalFooter = document.createElement("div"),
 		modalFooterHelp = document.createElement("span"),
 		modalFooterButtons = document.createElement("span"),
-		tiddler = this.wiki.getTiddler(title);
+		tiddler = this.wiki.getTiddler(title),
+		d = $tw.config.preferences.animationDuration + "ms";
 	// Add classes
 	$tw.utils.addClass(modalBackdrop,"modal-backdrop");
 	$tw.utils.addClass(modalWrapper,"modal");
@@ -20151,24 +20152,37 @@ Modal.prototype.display = function(title) {
 	});
 	// Add the close event handler
 	wrapper.addEventListener("tw-close",function(event) {
-		document.body.removeChild(wrapper);
+		// Force layout and animate the modal message away
+		modalBackdrop.offsetWidth;
+		modalWrapper.offsetWidth;
+		modalBackdrop.style.opacity = 0;
+		modalWrapper.style[$tw.browser.transform] = "translateY(" + window.innerHeight + "px)";
+		// Set up an event for the transition end
+		modalWrapper.addEventListener($tw.browser.transitionEnd,function(event) {
+			if(wrapper.parentNode) {
+				// Remove the modal message from the DOM
+				document.body.removeChild(wrapper);
+			}
+		},false);
+		// Don't let anyone else handle the tw-close message
 		event.stopPropagation();
 		return false;
 	},false);
 	// Set the initial styles for the message
 	modalBackdrop.style.opacity = 0;
 	modalWrapper.style[$tw.browser.transformorigin] = "0% 0%";
-	modalWrapper.style[$tw.browser.transform] = "translateY(-500px)";
+	modalWrapper.style[$tw.browser.transform] = "translateY(" + (-window.innerHeight) + "px)";
 	// Put the message into the document
 	document.body.appendChild(wrapper);
-	// Animate the styles
-	var d = $tw.config.preferences.animationDuration + "ms";
+	// Set up animation for the styles
 	modalBackdrop.style[$tw.browser.transition] = "opacity " + d + " ease-out";
 	modalWrapper.style[$tw.browser.transition] = "-" + $tw.browser.prefix.toLowerCase() + "-transform " + d + " ease-in-out";
-	$tw.utils.nextTick(function() {
-		modalBackdrop.style.opacity = 1;
-		modalWrapper.style[$tw.browser.transform] = "translateY(0px)";
-	});
+	// Force layout
+	modalBackdrop.offsetWidth;
+	modalWrapper.offsetWidth;
+	// Set final animated styles
+	modalBackdrop.style.opacity = 1;
+	modalWrapper.style[$tw.browser.transform] = "translateY(0px)";
 };
 
 exports.Modal = Modal;
