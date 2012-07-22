@@ -6404,16 +6404,6 @@ a reusable non-linear personal web notebook
 </div>
 <div title="SiteTitle" modifier="JeremyRuston">
 <pre>TiddlyWiki5</pre>
-</div>
-<div title="$:/StoryTiddlers" type="application/json">
-<pre>{
-	&quot;tiddlers&quot;: [
-		{&quot;title&quot;: &quot;HelloThere&quot;},
-		{&quot;title&quot;: &quot;Introduction&quot;},
-		{&quot;title&quot;: &quot;Improvements&quot;},
-		{&quot;title&quot;: &quot;Docs&quot;}
-	]
-}</pre>
 </div></div>
 <!----------- Ordinary tiddlers ----------->
 <div id="storeArea" style="display:none;">
@@ -10199,30 +10189,22 @@ exports.info = {
 };
 
 exports.getStory = function() {
-	var storyTiddler = this.wiki.getTiddler(this.params.story);
-	this.story = {tiddlers: []};
-	if(storyTiddler && $tw.utils.hop(storyTiddler.fields,"text")) {
-		this.story = JSON.parse(storyTiddler.fields.text);
-	}
+	this.story = this.wiki.getTiddlerData(this.params.story,{tiddlers: []});
 };
 
 exports.saveStory = function() {
 	if(this.hasParameter("story")) {
-		this.wiki.addTiddler(new $tw.Tiddler(this.wiki.getTiddler(this.params.story),{title: this.params.story, text: JSON.stringify(this.story)}));
+		this.wiki.setTiddlerData(this.params.story,this.story);
 	}
 };
 
 exports.getHistory = function() {
-	var historyTiddler = this.wiki.getTiddler(this.params.history);
-	this.history = {stack: []};
-	if(historyTiddler && $tw.utils.hop(historyTiddler.fields,"text")) {
-		this.history = JSON.parse(historyTiddler.fields.text);
-	}
+	this.history = this.wiki.getTiddlerData(this.params.history,{stack: []});
 };
 
 exports.saveHistory = function() {
 	if(this.hasParameter("history")) {
-		this.wiki.addTiddler(new $tw.Tiddler(this.wiki.getTiddler(this.params.history),{title: this.params.history, text: JSON.stringify(this.history)}));
+		this.wiki.setTiddlerData(this.params.history,this.history);
 	}
 };
 
@@ -10944,21 +10926,11 @@ exports.info = {
 Get the data from the JSON story tiddler
 */
 exports.getStory = function() {
-	var storyTiddler = this.wiki.getTiddler(this.params.story);
-	this.story = {
-		tiddlers: []
-	};
-	if(storyTiddler && $tw.utils.hop(storyTiddler.fields,"text")) {
-		this.story = JSON.parse(storyTiddler.fields.text);
-	}
+	this.story = this.wiki.getTiddlerData(this.params.story,{tiddlers: []});
 };
 
 exports.getHistory = function() {
-	var historyTiddler = this.wiki.getTiddler(this.params.history);
-	this.history = {stack: []};
-	if(historyTiddler && $tw.utils.hop(historyTiddler.fields,"text")) {
-		this.history = JSON.parse(historyTiddler.fields.text);
-	}
+	this.history = this.wiki.getTiddlerData(this.params.history,{stack: []});
 };
 
 exports.getViewTemplate = function() {
@@ -18992,8 +18964,8 @@ exports.startup = function() {
 			story.tiddlers[t] = {title: defaultTiddlers[t]};
 			history.stack[defaultTiddlers.length - t - 1] = {title: defaultTiddlers[t], fromTitle: defaultTiddlers[t+1]};
 		}
-		$tw.wiki.addTiddler(new $tw.Tiddler({title: storyTitle,text: JSON.stringify(story)}));
-		$tw.wiki.addTiddler(new $tw.Tiddler({title: historyTitle,text: JSON.stringify(history)}));
+		$tw.wiki.addTiddler(new $tw.Tiddler({title: storyTitle,type: "application/json", text: JSON.stringify(story)}));
+		$tw.wiki.addTiddler(new $tw.Tiddler({title: historyTitle,type: "application/json", text: JSON.stringify(history)}));
 		// If we're being viewed on a data: URI then give instructions for how to save
 		if(document.location.protocol === "data:") {
 			var event = document.createEvent("Event");
@@ -20923,6 +20895,36 @@ exports.getTiddlersWithTag = function(tag) {
 	return titles;
 };
 
+/*
+Get a tiddlers content as a JavaScript object. How this is done depends on the type of the tiddler:
+
+application/json: the tiddler JSON is parsed into an object
+
+Other types currently just return null.
+*/
+exports.getTiddlerData = function(title,defaultData) {
+	var tiddler = this.tiddlers[title],
+		data;
+	if(tiddler && tiddler.fields.text && tiddler.fields.type === "application/json") {
+		// JSON tiddler
+		try {
+			data = JSON.parse(tiddler.fields.text);
+		} catch(ex) {
+			return defaultData;
+		}
+		return data;
+	}
+	return defaultData;
+};
+
+/*
+Set a tiddlers content to a JavaScript object. Currently this is done by setting the tiddler's type to "application/json" and setting the text to the JSON text of the data.
+*/
+exports.setTiddlerData = function(title,data) {
+	var tiddler = this.getTiddler(title);
+	this.addTiddler(new $tw.Tiddler(tiddler,{title: title, type: "application/json", text: JSON.stringify(data)}));
+};
+
 // Return the named cache object for a tiddler. If the cache doesn't exist then the initializer function is invoked to create it
 exports.getCacheForTiddler = function(title,cacheName,initializer) {
 	this.caches = this.caches || {};
@@ -21004,7 +21006,7 @@ Parse text in a specified format and render it into another format
 	outputType: content type for the output
 	textType: content type of the input text
 	text: input text
-	options: see below
+	options: see wiki.parseText()
 Options are:
 	defaultType: Default MIME type to use if the specified one is unknown
 */
