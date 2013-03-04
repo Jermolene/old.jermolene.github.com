@@ -2127,7 +2127,7 @@ TiddlyWiki5 is based on a 1,000 line boot kernel that runs on node.js or in the 
 
 The kernel boots just enough of the TiddlyWiki environment to allow it to load tiddlers and execute JavaScript modules. Plugin modules are written like `node.js` modules.
 
-There are many [[different types of module|ModuleType]]: parsers, serializers, deserializers, macros etc. It goes much further than you might expect. For example, individual tiddler fields are modules, too: there's a module that knows how to handle the `tags` field, and another that knows how to handle the special behaviour of the `modified` and `created` fields.
+There are many [[different types of module|ModuleType]]: parsers, deserializers, widgets etc. It goes much further than you might expect. For example, individual tiddler fields are modules, too: there's a module that knows how to handle the `tags` field, and another that knows how to handle the special behaviour of the `modified` and `created` fields.
 
 Some plugin modules have further sub-plugins: the wikitext parser, for instance, accepts rules as individual plugin modules.
 
@@ -2304,7 +2304,6 @@ The built in parser rules use regular expression matching. Such rules can take a
 </div>
 <div title="ReadMe" tags="introduction">
 <pre>\define tw-wikilinks() no
-
 ! Welcome to TiddlyWiki5
 
 {{HelloThere}}
@@ -2575,9 +2574,7 @@ Service URL: &lt;$edit tiddler=&quot;$:/UploadURL&quot; default=&quot;&quot; typ
 </pre>
 </div>
 <div title="TiddlyWikiArchitecture" modifier="JeremyRuston" tags="docs internals">
-<pre>! Overview
-
-The heart of TiddlyWiki can be seen as an extensible representation transformation engine for text and images. Given the text of a tiddler and its associated ContentType, the engine can produce a rendering of the tiddler in a new ContentType. Furthermore, it can efficiently selectively update the rendering to track any changes in the tiddler or its dependents.
+<pre>The heart of TiddlyWiki can be seen as an extensible representation transformation engine for text and images. Given the text of a tiddler and its associated ContentType, the engine can produce a rendering of the tiddler in a new ContentType. Furthermore, it can efficiently selectively update the rendering to track any changes in the tiddler or its dependents.
 
 The primary use of the engine is to convert raw `text/vnd.tiddlywiki` WikiText into a `text/html` or `text/plain` representation for display. The transclusion and templating features of WikiText allow the engine to also be used to generate TiddlyWiki HTML files from raw tiddlers.
 
@@ -2594,6 +2591,77 @@ $tw.wiki.addTiddler({title: &quot;IntentionallyMissingTiddler&quot;, text: &quot
 ```
 
 If you're interested in understanding more about the internal operation of TiddlyWiki, it is recommended that you review the DeveloperDocs and read the code -- start with the boot kernel [[$:/core/boot.js]].
+</pre>
+</div>
+<div title="LinkWidget" tags="docs widget">
+<pre>The `link` widget generates links to tiddlers and external URIs. Optionally, hovering over a link can trigger the display of another tiddler as a popup.
+
+! Attributes
+
+* `to` - link target can be a URL 
+* `hover` - the title of a tiddler containing the popup state to set when hovering over the link
+
+The `to` attribute is interpreted as an external link if it matches this regular expression:
+
+```
+/(?:file|http|https|mailto|ftp|irc|news|data):[^\s'&quot;]+(?:\/|\b)/i
+```
+
+! Examples
+
+The `hover` attribute is part of the PopupMechanism.
+
+For example:
+
+```
+`$:/MyHover` is {{$:/MyHover}}
+
+&lt;$link to=&quot;HelloThere&quot; hover=&quot;$:/MyHover&quot;&gt;Hover me to see ~HelloThere!&lt;/$link&gt;
+&lt;$reveal state=&quot;$:/MyHover&quot; type=&quot;popup&quot;&gt;
+&lt;div class=&quot;tw-drop-down&quot;&gt;
+{{HelloThere}}
+&lt;/div&gt;
+&lt;/$reveal&gt;
+```
+
+Renders as:
+
+`$:/MyHover` is {{$:/MyHover}}
+
+&lt;$link to=&quot;HelloThere&quot; hover=&quot;$:/MyHover&quot;&gt;Hover me to see ~HelloThere!&lt;/$link&gt;
+&lt;$reveal state=&quot;$:/MyHover&quot; type=&quot;popup&quot;&gt;
+&lt;div class=&quot;tw-drop-down&quot;&gt;
+{{HelloThere}}
+&lt;/div&gt;
+&lt;/$reveal&gt;
+
+! CSS Classes
+
+* `tw-tiddlylink` - applied to all links
+* `tw-tiddlylink-external` - applied to external, non-tiddler links
+* `tw-tiddlylink-internal` - applied to tiddler links
+* `tw-tiddlylink-missing` - applied to tiddler links where the target tiddler doesn't exist
+* `tw-tiddlylink-resolves` - applied to tiddler links when the target tiddler does exist
+
+! Configuration macros
+
+Configuration macros can be used to modify the behaviour of the link widget.
+
+!! tw-wikilinks
+
+Links are suppressed if the macro `tw-wikilinks` evaluates to the string `no`. For example:
+
+```
+\define tw-wikilinks() no
+```
+
+!! tw-wikilink-template
+
+Link targets default to the URL encoded title of the tiddler. The `href` can be templated by defining the configuration macro `tw-wikilink-template`, and including within it the token `$uri_encoded$`. For example:
+
+```
+\define tw-wikilink-template() http://tiddlywiki.com/#$uri_encoded$
+```
 </pre>
 </div>
 <div title="VideoWidget" tags="docs widget">
@@ -6410,6 +6478,20 @@ ElementRenderer.prototype.getContextScopeId = function() {
 	return guidBits.join("");
 };
 
+/*
+Find a named macro definition
+*/
+ElementRenderer.prototype.findMacroDefinition = function(name) {
+	var context = this.renderContext;
+	while(context) {
+		if(context.macroDefinitions && context.macroDefinitions[name]) {
+			return context.macroDefinitions[name];
+		}
+		context = context.parentContext;
+	}
+	return undefined;
+};
+
 exports.element = ElementRenderer
 
 })();
@@ -7861,15 +7943,30 @@ PageScroller.prototype.scrollIntoView = function(event) {
 		bounds.left += domNode.offsetLeft;
 		bounds.top += domNode.offsetTop;
 	}
-	// Now scroll the body
-	var scrollPosition = $tw.utils.getScrollPosition();
+	// Now get ready to scroll the body
 	this.cancelScroll();
 	this.startTime = new Date();
-	this.startX = scrollPosition.x;
-	this.startY = scrollPosition.y;
-	this.endX = bounds.left;
-	this.endY = bounds.top;
-	if((this.endX < this.startX) || (this.endX > (this.startX + window.innerWidth)) || (this.endY < this.startY) || (this.endY > (this.startY + window.innerHeight))) {
+	var scrollPosition = $tw.utils.getScrollPosition(),
+		// We'll consider the horizontal and vertical scroll directions separately via this function
+		getEndPos = function(targetPos,targetSize,currentPos,currentSize) {
+			// If the target is above/left of the current view, then scroll to it's top/left
+			if(targetPos <= currentPos) {
+				return targetPos;
+			// If the target is smaller than the window and the scroll position is too far up, then scroll till the target is at the bottom of the window
+			} else if(targetSize < currentSize && currentPos < (targetPos + targetSize - currentSize)) {
+				return targetPos + targetSize - currentSize;
+			// If the target is big, then just scroll to the top
+			} else if(currentPos < targetPos) {
+				return targetPos;
+			// Otherwise, stay where we are
+			} else {
+				return currentPos;
+			}
+		},
+		endX = getEndPos(bounds.left,bounds.width,scrollPosition.x,window.innerWidth),
+		endY = getEndPos(bounds.top,bounds.height,scrollPosition.y,window.innerHeight);
+	// Only scroll if necessary
+	if(endX !== scrollPosition.x || endY !== scrollPosition.y) {
 		var self = this;
 		this.timerId = window.setInterval(function() {
 			var t = ((new Date()) - self.startTime) / $tw.config.preferences.animationDuration;
@@ -7878,7 +7975,7 @@ PageScroller.prototype.scrollIntoView = function(event) {
 				t = 1;
 			}
 			t = $tw.utils.slowInSlowOut(t);
-			window.scrollTo(self.startX + (self.endX - self.startX) * t,self.startY + (self.endY - self.startY) * t);
+			window.scrollTo(scrollPosition.x + (endX - scrollPosition.x) * t,scrollPosition.y + (endY - scrollPosition.y) * t);
 		}, 10);
 	}
 };
@@ -9196,7 +9293,6 @@ LinkWidget.prototype.generate = function() {
 	// Get the parameters from the attributes
 	this.to = this.renderer.getAttribute("to");
 	this.hover = this.renderer.getAttribute("hover");
-	this.qualifyHoverTitle = this.renderer.getAttribute("qualifyHoverTitle");
 	// Determine the default link characteristics
 	this.isExternal = isLinkExternal(this.to);
 	if(!this.isExternal) {
@@ -9220,15 +9316,22 @@ LinkWidget.prototype.generate = function() {
 		events.push({name: "mouseout", handlerObject: this, handlerMethod: "handleMouseOverOrOutEvent"});
 	}
 	// Get the value of the tw-wikilinks configuration macro
-	var wikiLinksMacro = this.findMacroDefinition("tw-wikilinks"),
+	var wikiLinksMacro = this.renderer.findMacroDefinition("tw-wikilinks"),
 		useWikiLinks = wikiLinksMacro ? !(wikiLinksMacro.text.trim() === "no") : true;
 	// Set up the element
 	if(useWikiLinks) {
 		this.tag = "a";
 		this.attributes = {
-			href: this.isExternal ? this.to : encodeURIComponent(this.to),
 			"class": classes.join(" ")
 		};
+		if(this.isExternal) {
+			this.attributes.href = this.to;
+		} else {
+			var wikiLinkTemplateMacro = this.renderer.findMacroDefinition("tw-wikilink-template"),
+				wikiLinkTemplate = wikiLinkTemplateMacro ? wikiLinkTemplateMacro.text.trim() : "$uri_encoded$",
+				wikiLinkText = wikiLinkTemplate.replace("$uri_encoded$",encodeURIComponent(this.to));
+			this.attributes.href = wikiLinkText;
+		}
 	} else {
 		this.tag = "span";
 	}
@@ -9283,20 +9386,6 @@ LinkWidget.prototype.refreshInDom = function(changedAttributes,changedTiddlers) 
 			}
 		});
 	}
-};
-
-/*
-Find a named macro definition
-*/
-LinkWidget.prototype.findMacroDefinition = function(name) {
-	var context = this.renderer.renderContext;
-	while(context) {
-		if(context.macroDefinitions && context.macroDefinitions[name]) {
-			return context.macroDefinitions[name];
-		}
-		context = context.parentContext;
-	}
-	return undefined;
 };
 
 exports.link = LinkWidget;
@@ -9987,6 +10076,52 @@ NavigatorWidget.prototype.handleNewTiddlerEvent = function(event) {
 };
 
 exports.navigator = NavigatorWidget;
+
+})();
+});
+</script><script data-tiddler-title="$:/core/modules/widget/password.js" data-tiddler-type="application/javascript" data-tiddler-module-type="widget" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/widget/password.js","widget",function(module,exports,require) {/*\
+title: $:/core/modules/widget/password.js
+type: application/javascript
+module-type: widget
+
+Implements the password widget.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+var PasswordWidget = function(renderer) {
+	// Save state
+	this.renderer = renderer;
+	// Generate child nodes
+	this.generate();
+};
+
+PasswordWidget.prototype.generate = function() {
+	// Get the parameters from the attributes
+	this.name = this.renderer.getAttribute("name");
+	// Get the current password
+	var password = $tw.browser ? $tw.utils.getPassword(this.name) : "";
+	// Generate our element
+	this.tag = "input";
+	this.attributes = {
+		type: "password",
+		value: password
+	};
+	this.events = [
+		{name: "keyup", handlerObject: this},
+		{name: "input", handlerObject: this}];
+};
+
+PasswordWidget.prototype.handleEvent = function(event) {
+	var password = this.renderer.domNode.value;
+	return $tw.utils.savePassword(this.name,password);
+};
+
+exports.password = PasswordWidget;
 
 })();
 });

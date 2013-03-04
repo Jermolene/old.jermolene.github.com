@@ -4799,6 +4799,20 @@ ElementRenderer.prototype.getContextScopeId = function() {
 	return guidBits.join("");
 };
 
+/*
+Find a named macro definition
+*/
+ElementRenderer.prototype.findMacroDefinition = function(name) {
+	var context = this.renderContext;
+	while(context) {
+		if(context.macroDefinitions && context.macroDefinitions[name]) {
+			return context.macroDefinitions[name];
+		}
+		context = context.parentContext;
+	}
+	return undefined;
+};
+
 exports.element = ElementRenderer
 
 })();
@@ -6250,15 +6264,30 @@ PageScroller.prototype.scrollIntoView = function(event) {
 		bounds.left += domNode.offsetLeft;
 		bounds.top += domNode.offsetTop;
 	}
-	// Now scroll the body
-	var scrollPosition = $tw.utils.getScrollPosition();
+	// Now get ready to scroll the body
 	this.cancelScroll();
 	this.startTime = new Date();
-	this.startX = scrollPosition.x;
-	this.startY = scrollPosition.y;
-	this.endX = bounds.left;
-	this.endY = bounds.top;
-	if((this.endX < this.startX) || (this.endX > (this.startX + window.innerWidth)) || (this.endY < this.startY) || (this.endY > (this.startY + window.innerHeight))) {
+	var scrollPosition = $tw.utils.getScrollPosition(),
+		// We'll consider the horizontal and vertical scroll directions separately via this function
+		getEndPos = function(targetPos,targetSize,currentPos,currentSize) {
+			// If the target is above/left of the current view, then scroll to it's top/left
+			if(targetPos <= currentPos) {
+				return targetPos;
+			// If the target is smaller than the window and the scroll position is too far up, then scroll till the target is at the bottom of the window
+			} else if(targetSize < currentSize && currentPos < (targetPos + targetSize - currentSize)) {
+				return targetPos + targetSize - currentSize;
+			// If the target is big, then just scroll to the top
+			} else if(currentPos < targetPos) {
+				return targetPos;
+			// Otherwise, stay where we are
+			} else {
+				return currentPos;
+			}
+		},
+		endX = getEndPos(bounds.left,bounds.width,scrollPosition.x,window.innerWidth),
+		endY = getEndPos(bounds.top,bounds.height,scrollPosition.y,window.innerHeight);
+	// Only scroll if necessary
+	if(endX !== scrollPosition.x || endY !== scrollPosition.y) {
 		var self = this;
 		this.timerId = window.setInterval(function() {
 			var t = ((new Date()) - self.startTime) / $tw.config.preferences.animationDuration;
@@ -6267,7 +6296,7 @@ PageScroller.prototype.scrollIntoView = function(event) {
 				t = 1;
 			}
 			t = $tw.utils.slowInSlowOut(t);
-			window.scrollTo(self.startX + (self.endX - self.startX) * t,self.startY + (self.endY - self.startY) * t);
+			window.scrollTo(scrollPosition.x + (endX - scrollPosition.x) * t,scrollPosition.y + (endY - scrollPosition.y) * t);
 		}, 10);
 	}
 };
@@ -7585,7 +7614,6 @@ LinkWidget.prototype.generate = function() {
 	// Get the parameters from the attributes
 	this.to = this.renderer.getAttribute("to");
 	this.hover = this.renderer.getAttribute("hover");
-	this.qualifyHoverTitle = this.renderer.getAttribute("qualifyHoverTitle");
 	// Determine the default link characteristics
 	this.isExternal = isLinkExternal(this.to);
 	if(!this.isExternal) {
@@ -7609,15 +7637,22 @@ LinkWidget.prototype.generate = function() {
 		events.push({name: "mouseout", handlerObject: this, handlerMethod: "handleMouseOverOrOutEvent"});
 	}
 	// Get the value of the tw-wikilinks configuration macro
-	var wikiLinksMacro = this.findMacroDefinition("tw-wikilinks"),
+	var wikiLinksMacro = this.renderer.findMacroDefinition("tw-wikilinks"),
 		useWikiLinks = wikiLinksMacro ? !(wikiLinksMacro.text.trim() === "no") : true;
 	// Set up the element
 	if(useWikiLinks) {
 		this.tag = "a";
 		this.attributes = {
-			href: this.isExternal ? this.to : encodeURIComponent(this.to),
 			"class": classes.join(" ")
 		};
+		if(this.isExternal) {
+			this.attributes.href = this.to;
+		} else {
+			var wikiLinkTemplateMacro = this.renderer.findMacroDefinition("tw-wikilink-template"),
+				wikiLinkTemplate = wikiLinkTemplateMacro ? wikiLinkTemplateMacro.text.trim() : "$uri_encoded$",
+				wikiLinkText = wikiLinkTemplate.replace("$uri_encoded$",encodeURIComponent(this.to));
+			this.attributes.href = wikiLinkText;
+		}
 	} else {
 		this.tag = "span";
 	}
@@ -7672,20 +7707,6 @@ LinkWidget.prototype.refreshInDom = function(changedAttributes,changedTiddlers) 
 			}
 		});
 	}
-};
-
-/*
-Find a named macro definition
-*/
-LinkWidget.prototype.findMacroDefinition = function(name) {
-	var context = this.renderer.renderContext;
-	while(context) {
-		if(context.macroDefinitions && context.macroDefinitions[name]) {
-			return context.macroDefinitions[name];
-		}
-		context = context.parentContext;
-	}
-	return undefined;
 };
 
 exports.link = LinkWidget;
@@ -8376,6 +8397,52 @@ NavigatorWidget.prototype.handleNewTiddlerEvent = function(event) {
 };
 
 exports.navigator = NavigatorWidget;
+
+})();
+});
+</script><script data-tiddler-title="$:/core/modules/widget/password.js" data-tiddler-type="application/javascript" data-tiddler-module-type="widget" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/widget/password.js","widget",function(module,exports,require) {/*\
+title: $:/core/modules/widget/password.js
+type: application/javascript
+module-type: widget
+
+Implements the password widget.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+var PasswordWidget = function(renderer) {
+	// Save state
+	this.renderer = renderer;
+	// Generate child nodes
+	this.generate();
+};
+
+PasswordWidget.prototype.generate = function() {
+	// Get the parameters from the attributes
+	this.name = this.renderer.getAttribute("name");
+	// Get the current password
+	var password = $tw.browser ? $tw.utils.getPassword(this.name) : "";
+	// Generate our element
+	this.tag = "input";
+	this.attributes = {
+		type: "password",
+		value: password
+	};
+	this.events = [
+		{name: "keyup", handlerObject: this},
+		{name: "input", handlerObject: this}];
+};
+
+PasswordWidget.prototype.handleEvent = function(event) {
+	var password = this.renderer.domNode.value;
+	return $tw.utils.savePassword(this.name,password);
+};
+
+exports.password = PasswordWidget;
 
 })();
 });
