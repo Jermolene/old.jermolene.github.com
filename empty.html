@@ -962,6 +962,11 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 
 </pre>
 </div>
+<div title="$:/core/templates/static.template.css">
+<pre>{{{ [is[shadow]type[text/css]] ||$:/core/templates/css-tiddler}}}
+{{$:/core/styles/base}}
+</pre>
+</div>
 <div title="$:/core/templates/static.template.html" type="text/vnd.tiddlywiki-html">
 <pre>\define tw-wikilink-template() static/$uri_encoded$.html
 \rules only filteredtranscludeinline transcludeinline
@@ -995,13 +1000,8 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;`{{$:/core/templates/version}}`&quot; /&gt;
 &lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
 &lt;meta name=&quot;copyright&quot; content=&quot;`{{$:/core/copyright.txt}}`&quot; /&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;static.css&quot;&gt;
 &lt;title&gt;`{{$:/core/wiki/title}}`&lt;/title&gt;
-&lt;div id=&quot;styleArea&quot;&gt;
-`{{{ [is[shadow]type[text/css]] ||$:/core/templates/css-tiddler}}}`
-&lt;/div&gt;
-&lt;style type=&quot;text/css&quot;&gt;
-`{{$:/core/styles/base}}`
-&lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;section class=&quot;story-river&quot;&gt;
