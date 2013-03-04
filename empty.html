@@ -963,12 +963,13 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </pre>
 </div>
 <div title="$:/core/templates/static.template.html" type="text/vnd.tiddlywiki-html">
-<pre>\rules only filteredtranscludeinline transcludeinline
+<pre>\define tw-wikilink-template() static/$uri_encoded$.html
+\rules only filteredtranscludeinline transcludeinline
 &lt;!doctype html&gt;
 &lt;head&gt;
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
 &lt;meta name=&quot;generator&quot; content=&quot;TiddlyWiki&quot; /&gt;
-&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;{{version}}&quot; /&gt;
+&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;{{$:/core/templates/version}}&quot; /&gt;
 &lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
 &lt;meta name=&quot;copyright&quot; content=&quot;{{$:/core/copyright.txt}}&quot; /&gt;
 &lt;title&gt;{{$:/core/wiki/title}}&lt;/title&gt;
@@ -984,6 +985,42 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+</div>
+<div title="$:/core/templates/static.tiddler.html">
+<pre>\define tw-wikilink-template() $uri_encoded$.html
+`&lt;!doctype html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
+&lt;meta name=&quot;generator&quot; content=&quot;TiddlyWiki&quot; /&gt;
+&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;`{{$:/core/templates/version}}`&quot; /&gt;
+&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
+&lt;meta name=&quot;copyright&quot; content=&quot;`{{$:/core/copyright.txt}}`&quot; /&gt;
+&lt;title&gt;`{{$:/core/wiki/title}}`&lt;/title&gt;
+&lt;div id=&quot;styleArea&quot;&gt;
+`{{{ [is[shadow]type[text/css]] ||$:/core/templates/css-tiddler}}}`
+&lt;/div&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+`{{$:/core/styles/base}}`
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;section class=&quot;story-river&quot;&gt;
+&lt;div class=&quot;tw-tiddler-frame&quot;&gt;
+&lt;span class=&quot;title&quot;&gt;
+`&lt;$view field=&quot;title&quot;/&gt;`
+&lt;/span&gt;
+&lt;div class=&quot;small&quot;&gt;`&lt;$view field=&quot;modifier&quot; format=&quot;link&quot;/&gt;` `&lt;$view field=&quot;modified&quot; format=&quot;date&quot;/&gt;`&lt;/div&gt;
+
+&lt;div class=&quot;tw-tags-wrapper&quot;&gt;`&lt;$list filter=&quot;[is[current]tags[]]&quot; template=&quot;$:/templates/TagTemplate&quot; /&gt;`&lt;/div&gt;
+
+&lt;div class=&quot;body&quot;&gt;
+	`&lt;$transclude template=&quot;$:/core/templates/html-tiddler&quot; /&gt;`
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+`</pre>
 </div>
 <div title="$:/templates/StaticContent" type="text/vnd.tiddlywiki">
 <pre>&lt;!-- For Google, and people without JavaScript--&gt;
@@ -1641,6 +1678,61 @@ Command.prototype.execute = function() {
 		type = this.params[2] || "text/html";
 	fs.writeFile(filename,this.commander.wiki.renderTiddler(type,title),"utf8",function(err) {
 		self.callback(err);
+	});
+	return null;
+};
+
+exports.Command = Command;
+
+})();
+});
+</script><script data-tiddler-title="$:/core/modules/commands/savetiddlers.js" data-tiddler-type="application/javascript" data-tiddler-module-type="command" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/commands/savetiddlers.js","command",function(module,exports,require) {/*\
+title: $:/core/modules/commands/savetiddlers.js
+type: application/javascript
+module-type: command
+
+Command to save several tiddlers to a file
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+exports.info = {
+	name: "savetiddlers",
+	synchronous: false
+};
+
+var Command = function(params,commander,callback) {
+	this.params = params;
+	this.commander = commander;
+	this.callback = callback;
+};
+
+Command.prototype.execute = function() {
+	if(this.params.length < 2) {
+		return "Missing filename";
+	}
+	var self = this,
+		fs = require("fs"),
+		path = require("path"),
+		wiki = this.commander.wiki,
+		filter = this.params[0],
+		template = this.params[1],
+		pathname = this.params[2],
+		type = this.params[3] || "text/html",
+		extension = this.params[4] || ".html",
+		parser = wiki.parseTiddler(template),
+		tiddlers = wiki.filterTiddlers(filter);
+	$tw.utils.each(tiddlers,function(title) {
+		var renderTree = new $tw.WikiRenderTree(parser,{wiki: wiki});
+		renderTree.execute({tiddlerTitle: title});
+		var text = renderTree.render(type);
+		fs.writeFile(path.resolve(pathname,title + extension),text,"utf8",function(err) {
+			self.callback(err);
+		});
 	});
 	return null;
 };
@@ -9097,7 +9189,14 @@ var HtmlWikifiedViewer = function(viewWidget,tiddler,field,value) {
 
 HtmlWikifiedViewer.prototype.render = function() {
 	// Parse the field text
-	var text = this.viewWidget.renderer.renderTree.wiki.renderText("text/html","text/vnd.tiddlywiki",this.value);
+	var newRenderContext = {
+		parentContext: this.viewWidget.renderer.renderContext
+	};
+	var wiki = this.viewWidget.renderer.renderTree.wiki,
+		parser = wiki.parseText("text/vnd.tiddlywiki",this.value),
+		renderTree = new $tw.WikiRenderTree(parser,{wiki: wiki});
+	renderTree.execute(newRenderContext);
+	var text = renderTree.render("text/html");
 	// Set the element details
 	this.viewWidget.tag = "pre";
 	this.viewWidget.attributes = {

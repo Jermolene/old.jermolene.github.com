@@ -963,12 +963,13 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </pre>
 </div>
 <div title="$:/core/templates/static.template.html" type="text/vnd.tiddlywiki-html">
-<pre>\rules only filteredtranscludeinline transcludeinline
+<pre>\define tw-wikilink-template() static/$uri_encoded$.html
+\rules only filteredtranscludeinline transcludeinline
 &lt;!doctype html&gt;
 &lt;head&gt;
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
 &lt;meta name=&quot;generator&quot; content=&quot;TiddlyWiki&quot; /&gt;
-&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;{{version}}&quot; /&gt;
+&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;{{$:/core/templates/version}}&quot; /&gt;
 &lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
 &lt;meta name=&quot;copyright&quot; content=&quot;{{$:/core/copyright.txt}}&quot; /&gt;
 &lt;title&gt;{{$:/core/wiki/title}}&lt;/title&gt;
@@ -984,6 +985,42 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+</div>
+<div title="$:/core/templates/static.tiddler.html">
+<pre>\define tw-wikilink-template() $uri_encoded$.html
+`&lt;!doctype html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
+&lt;meta name=&quot;generator&quot; content=&quot;TiddlyWiki&quot; /&gt;
+&lt;meta name=&quot;tiddlywiki-version&quot; content=&quot;`{{$:/core/templates/version}}`&quot; /&gt;
+&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
+&lt;meta name=&quot;copyright&quot; content=&quot;`{{$:/core/copyright.txt}}`&quot; /&gt;
+&lt;title&gt;`{{$:/core/wiki/title}}`&lt;/title&gt;
+&lt;div id=&quot;styleArea&quot;&gt;
+`{{{ [is[shadow]type[text/css]] ||$:/core/templates/css-tiddler}}}`
+&lt;/div&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+`{{$:/core/styles/base}}`
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;section class=&quot;story-river&quot;&gt;
+&lt;div class=&quot;tw-tiddler-frame&quot;&gt;
+&lt;span class=&quot;title&quot;&gt;
+`&lt;$view field=&quot;title&quot;/&gt;`
+&lt;/span&gt;
+&lt;div class=&quot;small&quot;&gt;`&lt;$view field=&quot;modifier&quot; format=&quot;link&quot;/&gt;` `&lt;$view field=&quot;modified&quot; format=&quot;date&quot;/&gt;`&lt;/div&gt;
+
+&lt;div class=&quot;tw-tags-wrapper&quot;&gt;`&lt;$list filter=&quot;[is[current]tags[]]&quot; template=&quot;$:/templates/TagTemplate&quot; /&gt;`&lt;/div&gt;
+
+&lt;div class=&quot;body&quot;&gt;
+	`&lt;$transclude template=&quot;$:/core/templates/html-tiddler&quot; /&gt;`
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+`</pre>
 </div>
 <div title="$:/templates/StaticContent" type="text/vnd.tiddlywiki">
 <pre>&lt;!-- For Google, and people without JavaScript--&gt;
@@ -1266,6 +1303,20 @@ Dump the current core configuration
 
 ```
 --savetiddler &lt;title&gt; &lt;filename&gt; [&lt;type&gt;]
+```
+</pre>
+</div>
+<div title="SaveTiddlersCommand" tags="docs command">
+<pre>Save a set of tiddlers matching a filter as separate files of a specified ContentType (defaults to `text/html`) and extension (defaults to `.html`).
+
+```
+--savetiddlers &lt;filter&gt; &lt;template&gt; &lt;pathname&gt; [&lt;type&gt;] [&lt;extension&gt;]
+```
+
+For example:
+
+```
+--savetiddlers [!is[shadow]] $:/core/templates/static.tiddler.html ./static text/plain
 ```
 </pre>
 </div>
@@ -1791,21 +1842,21 @@ TiddlyWiki is an unusual example of a practical quine: it is this ability to pro
 <div title="TiddlerFiles" modifier="JeremyRuston" tags="internals">
 <pre>Tiddlers can be stored in text files in several different formats. Files containing single tiddlers can also have an auxiliary `.meta` file formatted as a sequence of name:value pairs:
 
-{{{
+```
 title: TheTitle
 modifier: someone
-}}}
+```
 
 !! ~TiddlyWeb-style .tid files
 
 These files consist of a sequence of lines containing name:value pairs, a blank line and then the text of the tiddler. For example:
 
-{{{
+```
 title: MyTiddler
 modifier: Jeremy
 
 This is the text of my tiddler.
-}}}
+```
 
 //The ContentType `application/x-tiddler` is used internally for these files//
 
@@ -1813,21 +1864,21 @@ This is the text of my tiddler.
 
 Modern `*.tiddler` files look like this:
 
-{{{
+```
 &lt;div title=&quot;AnotherExampleStyleSheet&quot; modifier=&quot;blaine&quot; created=&quot;201102111106&quot; modified=&quot;201102111310&quot; tags=&quot;examples&quot; creator=&quot;psd&quot;&gt;
 &lt;pre&gt;Note that there is an embedded &lt;pre&gt; tag, and line feeds are not escaped.
 	
 And, weirdly, there is no HTML encoding of the body.&lt;/pre&gt;
 &lt;/div&gt;
-}}}
+```
 
 These `*.tiddler` files are therefore not quite the same as the tiddlers found inside a TiddlyWiki HTML file, where the body is HTML encoded in the expected way.
 
 Older `*.tiddler` files more closely matched the store format used by TiddlyWiki at the time:
 
-{{{
+```
 &lt;div tiddler=&quot;AnotherExampleStyleSheet&quot; modifier=&quot;JeremyRuston&quot; modified=&quot;200508181432&quot; created=&quot;200508181432&quot; tags=&quot;examples&quot;&gt;This is an old-school .tiddler file, without an embedded &amp;lt;pre&amp;gt; tag.\nNote how the body is &amp;quot;HTML encoded&amp;quot; and new lines are escaped to \\n&lt;/div&gt;
-}}}
+```
 
 //The ContentType `application/x-tiddler-html-div` is used internally for these files//
 
@@ -2020,6 +2071,22 @@ The following commands are available:
 You can start with an empty copy of TiddlyWiki5 from http://five.tiddlywiki.com/empty.html
 
 The standalone edition of TiddlyWiki supports encryption of content using the StanfordJavaScriptCryptoLibrary.
+</pre>
+</div>
+<div title="TiddlyWiki5 Static Site Generation" tags="edition docs">
+<pre>TiddlyWiki5 can be used to generate a static HTML representation of a TiddlyWiki that doesn't need JavaScript.
+
+! Example
+
+You can explore a static representation of the TiddlyWiki5 site at &lt;a href=&quot;static.html&quot;&gt;static.html&lt;/a&gt;. That file is a static representation of the current DefaultTiddlers. Any tiddlers that it links to are referred to via URLs of the form `/static/HelloThere.html` that point to HTML representations of individual tiddlers.
+
+The included `bld.sh` script includes these commands that are involved in generating the sample static version of the TiddlyWiki5 site:
+
+```
+--savetiddler $:/core/templates/static.template.html $TW5_BUILD_OUTPUT/static.html text/plain \
+--savetiddlers [!is[shadow]] $:/core/templates/static.tiddler.html $TW5_BUILD_OUTPUT/static text/plain \
+```
+The SaveTiddlerCommand saves the static version of the DefaulTiddlers and the SaveTiddlersCommand generates the HTML representations of individual tiddlers.
 </pre>
 </div>
 <div title="HelloThere" modifier="JeremyRuston" tags="introduction greetings" type="text/vnd.tiddlywiki" modified="201208121934">
@@ -2567,6 +2634,7 @@ Service URL: &lt;$edit tiddler=&quot;$:/UploadURL&quot; default=&quot;&quot; typ
 
 * [[TiddlyWiki5 Standalone Edition]] for working purely within the browser
 ** Including [[TiddlyWiki5 in the Sky for TiddlySpot|TiddlySpot]]
+** And incorporating [[TiddlyWiki5 Static Site Generation]]
 * [[TiddlyWiki5 Node Edition]] for advanced command line work
 ** Including [[Building classic TiddlyWiki with TiddlyWiki5]]
 * [[TiddlyWiki5 in the Sky for TiddlyWeb]] (and TiddlySpace)
@@ -3320,6 +3388,61 @@ Command.prototype.execute = function() {
 		type = this.params[2] || "text/html";
 	fs.writeFile(filename,this.commander.wiki.renderTiddler(type,title),"utf8",function(err) {
 		self.callback(err);
+	});
+	return null;
+};
+
+exports.Command = Command;
+
+})();
+});
+</script><script data-tiddler-title="$:/core/modules/commands/savetiddlers.js" data-tiddler-type="application/javascript" data-tiddler-module-type="command" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/commands/savetiddlers.js","command",function(module,exports,require) {/*\
+title: $:/core/modules/commands/savetiddlers.js
+type: application/javascript
+module-type: command
+
+Command to save several tiddlers to a file
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+exports.info = {
+	name: "savetiddlers",
+	synchronous: false
+};
+
+var Command = function(params,commander,callback) {
+	this.params = params;
+	this.commander = commander;
+	this.callback = callback;
+};
+
+Command.prototype.execute = function() {
+	if(this.params.length < 2) {
+		return "Missing filename";
+	}
+	var self = this,
+		fs = require("fs"),
+		path = require("path"),
+		wiki = this.commander.wiki,
+		filter = this.params[0],
+		template = this.params[1],
+		pathname = this.params[2],
+		type = this.params[3] || "text/html",
+		extension = this.params[4] || ".html",
+		parser = wiki.parseTiddler(template),
+		tiddlers = wiki.filterTiddlers(filter);
+	$tw.utils.each(tiddlers,function(title) {
+		var renderTree = new $tw.WikiRenderTree(parser,{wiki: wiki});
+		renderTree.execute({tiddlerTitle: title});
+		var text = renderTree.render(type);
+		fs.writeFile(path.resolve(pathname,title + extension),text,"utf8",function(err) {
+			self.callback(err);
+		});
 	});
 	return null;
 };
@@ -10776,7 +10899,14 @@ var HtmlWikifiedViewer = function(viewWidget,tiddler,field,value) {
 
 HtmlWikifiedViewer.prototype.render = function() {
 	// Parse the field text
-	var text = this.viewWidget.renderer.renderTree.wiki.renderText("text/html","text/vnd.tiddlywiki",this.value);
+	var newRenderContext = {
+		parentContext: this.viewWidget.renderer.renderContext
+	};
+	var wiki = this.viewWidget.renderer.renderTree.wiki,
+		parser = wiki.parseText("text/vnd.tiddlywiki",this.value),
+		renderTree = new $tw.WikiRenderTree(parser,{wiki: wiki});
+	renderTree.execute(newRenderContext);
+	var text = renderTree.render("text/html");
 	// Set the element details
 	this.viewWidget.tag = "pre";
 	this.viewWidget.attributes = {

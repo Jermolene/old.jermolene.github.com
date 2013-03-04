@@ -1,0 +1,789 @@
+<!doctype html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.0-alpha.9" />
+<meta name="format-detection" content="telephone=no">
+<meta name="copyright" content="TiddlyWiki created by Jeremy Ruston, (jeremy [at] jermolene [dot] com)
+
+Copyright © Jeremy Ruston 2004-2007
+Copyright © UnaMesa Association 2007-2013
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+Redistributions in binary form must reproduce the above copyright notice, this
+list of conditions and the following disclaimer in the documentation and/or other
+materials provided with the distribution.
+
+Neither the name of the UnaMesa Association nor the names of its contributors may be
+used to endorse or promote products derived from this software without specific
+prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY
+EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGE.
+" />
+<title>TiddlyWiki5 — a reusable non-linear personal web notebook</title>
+<div id="styleArea">
+<style data-tiddler-title="$:/core/styles/boot.css" data-tiddler-type="text/css" type="text/css">/*
+Basic styles used before we boot up the parsing engine
+*/
+
+/*
+Password prompt
+*/
+.tw-password-wrapper {
+    font-family: sans-serif;
+	z-index: 20000;
+	position: fixed;
+	text-align: center;
+	width: 480px;
+	top: 4em;
+    left: 50%;
+    margin-left: -264px; /* - width/2 - paddingHorz/2 - border */
+	padding: 16px 16px 16px 16px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	color: #000;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	background-color: rgb(197, 235, 183);
+	border: 8px solid rgb(164, 197, 152);
+}
+
+.tw-password-wrapper form {
+	text-align: left;
+}
+
+.tw-password-wrapper h1 {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+</style>
+</div>
+<style type="text/css">
+/*! normalize.css v2.1.0 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+[hidden] {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    font-family: sans-serif; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -ms-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+
+q {
+    quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+
+img {
+    border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 2 */
+    margin: 0; /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+html {
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+body {
+	font-size: 14px;
+	line-height: 20px;
+	background-color: #ececec
+}
+
+code, pre {
+	padding: 0 3px 2px;
+	
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+
+}
+
+code {
+	padding: 1px 2px;
+	color: #d14;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+}
+
+pre {
+	display: block;
+	padding: 1em;
+	margin: 0 0 1em;
+	word-break: break-all;
+	word-wrap: break-word;
+	white-space: pre;
+	white-space: pre-wrap;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+}
+
+a.tw-tiddlylink {
+	text-decoration: none;
+	font-style: normal;
+	font-weight: normal;
+	color: #6a5ccc;
+}
+
+a.tw-tiddlylink:hover {
+	text-decoration: underline;
+}
+
+a.tw-tiddlylink-resolves {
+	font-style: normal;
+	font-weight: bold;
+}
+
+a.tw-tiddlylink-missing {
+	font-style: italic;
+}
+
+.btn-invisible {
+	padding: 0;
+	margin: 0;
+	background: none;
+	border: none;
+}
+
+.tw-tags-wrapper {
+	margin: 0.25em 0 1em 0;
+}
+
+.tw-tag-label {
+	display: inline-block;
+	padding: 2px 4px;
+	font-size: 11.844px;
+	font-weight: bold;
+	line-height: 14px;
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.44);
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #999999;
+	border: 1px solid rgba(0,0,0,0.0);
+	
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+
+	
+  -webkit-box-shadow: inset 1px 1px 0 rgba(255,255,255,0.22);
+     -moz-box-shadow: inset 1px 1px 0 rgba(255,255,255,0.22);
+          box-shadow: inset 1px 1px 0 rgba(255,255,255,0.22);
+
+}
+
+.tw-tag-label:hover {
+	
+  -webkit-box-shadow: inset 0px 2em 0 rgba(0,0,0,0.22);
+     -moz-box-shadow: inset 0px 2em 0 rgba(0,0,0,0.22);
+          box-shadow: inset 0px 2em 0 rgba(0,0,0,0.22);
+
+}
+
+.edit-header {
+}
+
+.sidebar-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 20%;
+	overflow-y: auto;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	padding: 4em 0em 2em 2em;
+	margin: 0;
+}
+
+.tw-menu-list-item {
+	white-space: nowrap;
+}
+
+.story-river {
+	margin-left: 20%;
+	padding: 2em;
+}
+
+.tw-tiddler-frame {
+	padding: 3em;
+	margin-bottom: 2em;
+	background-color: #fff;
+	max-width: 50em;
+	
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.title {
+	font-weight: bold;
+	font-size: 33px;
+	line-height: 40px;
+	color: #182955;
+}
+
+.tw-tiddler-missing .title {
+  font-style: italic;
+  font-weight: normal;
+}
+
+.tw-tiddler-frame .tw-tiddler-controls {
+	float: right;
+}
+
+.tw-tiddler-controls .tw-button {
+	margin: 0 0 0 0.5em;
+}
+
+.tw-drop-down {
+	display: block;
+	position: absolute;
+	min-width: 20em;
+	border: 1px solid #bbb;
+	background-color: #fff;
+	
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+
+	
+  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+
+	padding: 0.5em 0em 0.5em 0em;
+	margin: 0.25em 0 0 0;
+	white-space: nowrap;
+}
+
+.tw-drop-down a {
+	display: block;
+	padding: 0em 1em 0em 1em;
+}
+
+.tw-drop-down a:hover {
+	color: #fff;
+	background-color: #6a5ccc;
+	text-decoration: none;
+}
+
+.modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: #000;
+}
+
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 1100;
+	width: 560px;
+	margin: -250px 0 0 -280px;
+	background-color: #fff;
+	border: 1px solid #999;
+	border: 1px solid rgba(0,0,0,.3);
+	
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+
+	
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+          box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+
+}
+
+.modal-header {
+	padding: 9px 15px;
+	border-bottom: 1px solid #eee;
+}
+
+.modal-header h3 {
+	margin: 0;
+	line-height: 30px;
+}
+
+.modal-body {
+	overflow-y: auto;
+	max-height: 400px;
+	padding: 15px;
+}
+
+.modal-footer {
+	padding: 14px 15px 15px;
+	margin-bottom: 0;
+	text-align: right;
+	background-color: #f5f5f5;
+	border-top: 1px solid #ddd;
+	
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+
+	
+  -webkit-box-shadow: inset 0 1px 0 #fff;
+     -moz-box-shadow: inset 0 1px 0 #fff;
+          box-shadow: inset 0 1px 0 #fff;
+;
+}
+
+.tw-edit-texteditor input, .tw-edit-texteditor textarea {
+	width: 100%;
+}
+
+canvas.tw-edit-bitmapeditor  {
+	cursor: crosshair;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+img, canvas, embed {
+	max-width: 100%;
+}
+
+embed {
+	width: 100%;
+	height: 20em;
+}
+
+</style>
+</head>
+<body>
+<section class="story-river">
+<div class="tw-tiddler-frame">
+<span class="title">
+Motovun Jack.svg
+</span>
+<div class="small"> </div>
+
+<div class="tw-tags-wrapper">picture
+
+</div>
+
+<div class="body">
+	<p>
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE svg PUBLIC &quot;-<em>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='W3C.html'>
+W3C</a></em>DTD SVG 1.1<em>
+EN&quot; &quot;<a class='tw-tiddlylink tw-tiddlylink-external' href='http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd</a>&quot;&gt;
+<svg height='317pt' version='1.1' viewBox='34 107 510 317' width='510pt' xl='http://www.w3.org/1999/xlink' xmlns='true'>
+<metadata dc='http://purl.org/dc/elements/1.1/' xmlns='true'>
+<dc date='true'>
+2012-05-10 07:32Z&lt;/dc:date&gt;&lt;/metadata&gt;<defs>
+</defs><g fill='none' fill-opacity='1' stroke='none' stroke-dasharray='none' stroke-opacity='1'>
+<title>
+Canvas 1</title><rect fill='white' height='841.89' width='595.28998'>
+</rect><g>
+<title>
+Layer 1</title><path d='M 204.10294 372.67294 L 206.91333 373.50204 C 210.44484 371.92197 217.54364 374.36401 221.30923 375.55795 C 214.37523 367.871 203.92865 356.58286 196.40225 349.4665 C 193.93185 340.85104 194.98593 332.1817 195.51744 323.3866 L 195.62405 322.659 C 192.65733 329.6997 188.89246 336.5437 186.86893 343.95477 C 184.50095 353.95294 197.39323 364.74045 202.39233 370.92294 Z M 419.00293 414.95798 C 399.65295 414.411 391.14194 414.45804 381.28735 398.25296 L 373.60684 398.473 C 364.66696 398.076 368.39264 398.25595 362.42844 397.95901 C 352.45654 397.57098 354.05396 388.09604 352.29965 383.09003 C 349.49335 366.09698 356.01324 349.01611 355.80756 332.01971 C 355.73474 325.98639 347.19724 304.63062 344.14716 296.99548 C 334.58554 298.79572 324.97205 299.13895 315.27176 299.62231 C 292.91254 299.56754 270.70496 296.8295 248.65794 293.35248 C 244.36153 311.10052 231.59093 335.94183 242.14684 353.9793 C 254.95975 372.63696 263.95123 377.80597 277.88824 378.93094 C 291.8251 380.055 294.97214 395.78998 291.60031 401.40997 C 288.61584 405.294 283.37045 405.99902 278.91385 406.94 L 269.99945 407.35898 C 262.98456 407.12299 256.71454 405.229 250.46393 402.30798 C 240.02545 396.48102 229.24443 384.36703 221.23434 375.67001 C 223.09915 379.143 224.21146 385.92294 222.52005 389.07803 C 217.78415 395.78699 197.30133 395.746 187.92093 391.577 C 177.26495 386.84198 151.51596 353.59503 147.53493 328.69455 C 158.12593 308.66583 173.55493 291.2196 181.36093 269.41132 C 164.34593 258.55438 155.23293 240.88019 156.41594 220.8598 L 156.84294 218.5423 C 140.10095 221.67648 148.78296 220.51039 130.772964 221.87279 C 73.41696 221.6973 22.976959 182.80795 51.378967 122.367004 C 53.225952 118.787964 54.982956 115.534 58.113968 117.08801 C 60.626953 118.33496 60.265976 123.33699 59.001953 128.88399 C 42.766968 201.10277 122.11395 201.65552 170.88995 188.29181 C 175.73093 186.96521 185.35893 178.03061 192.02843 175.0687 C 202.93033 170.22757 214.76323 168.2634 226.50644 166.84811 C 255.71411 163.51997 290.81815 178.90649 308.65442 179.4089 C 326.4909 179.91129 351.86395 175.13808 367.43942 176.14308 C 378.74075 176.66016 389.83795 178.70007 400.74194 181.6059 C 407.79996 147.215 408.29895 121.867996 425.03094 116 C 434.85095 117.550995 442.4179 130.93298 448.01895 138.08301 L 448.04193 138.07898 C 459.4489 137.62897 470.30396 140.52301 481.09692 143.73497 C 500.63696 140.962006 517.03394 129.989 534.28992 121.45299 C 534.23596 121.721985 533.95398 121.81297 533.78595 121.99397 C 516.80396 135.72798 514.4319 158.952 516.42993 180.42822 C 517.17297 191.57237 514.02393 203.67166 510.13098 215.08179 C 502.84595 233.67169 488.77692 253.26677 472.44794 252.26176 C 466.27496 252.0665 462.68893 248.57117 458.10095 244.83946 C 457.21094 252.39809 453.71295 259.14267 450.34094 265.82758 C 442.55396 280.64941 422.20496 287.18097 403.36292 303.00763 C 384.52216 318.83453 409.39194 375.35904 415.42194 385.65802 C 421.45096 395.95798 438.28192 399.72598 431.75095 409.02194 C 429.75296 412.09198 426.69794 413.19 423.43292 414.38098 Z' fill='black'>
+</path></g></g>&lt;/svg&gt;
+</dc></metadata></svg></em></p>
+</div>
+</div>
+</section>
+</body>
+</html>
