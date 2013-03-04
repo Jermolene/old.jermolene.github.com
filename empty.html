@@ -1006,16 +1006,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;body&gt;
 &lt;section class=&quot;story-river&quot;&gt;
 &lt;div class=&quot;tw-tiddler-frame&quot;&gt;
-&lt;span class=&quot;title&quot;&gt;
-`&lt;$view field=&quot;title&quot;/&gt;`
-&lt;/span&gt;
-&lt;div class=&quot;small&quot;&gt;`&lt;$view field=&quot;modifier&quot; format=&quot;link&quot;/&gt;` `&lt;$view field=&quot;modified&quot; format=&quot;date&quot;/&gt;`&lt;/div&gt;
-
-&lt;div class=&quot;tw-tags-wrapper&quot;&gt;`&lt;$list filter=&quot;[is[current]tags[]]&quot; template=&quot;$:/templates/TagTemplate&quot; /&gt;`&lt;/div&gt;
-
-&lt;div class=&quot;body&quot;&gt;
-	`&lt;$transclude template=&quot;$:/core/templates/html-tiddler&quot; /&gt;`
-&lt;/div&gt;
+`&lt;$view tiddler=&quot;$:/templates/ViewTemplate&quot; format=&quot;htmlwikified&quot;/&gt;`
 &lt;/div&gt;
 &lt;/section&gt;
 &lt;/body&gt;
