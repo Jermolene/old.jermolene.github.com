@@ -1719,9 +1719,7 @@ Command.prototype.execute = function() {
 		var renderTree = new $tw.WikiRenderTree(parser,{wiki: wiki});
 		renderTree.execute({tiddlerTitle: title});
 		var text = renderTree.render(type);
-		fs.writeFile(path.resolve(pathname,title + extension),text,"utf8",function(err) {
-			self.callback(err);
-		});
+		fs.writeFileSync(path.resolve(pathname,title + extension),text,"utf8");
 	});
 	return null;
 };
@@ -7695,6 +7693,11 @@ LinkWidget.prototype.generate = function() {
 	// Get the parameters from the attributes
 	this.to = this.renderer.getAttribute("to");
 	this.hover = this.renderer.getAttribute("hover");
+	this.qualifyHoverTitles = this.renderer.getAttribute("qualifyHoverTitles");
+	// Qualify the hover tiddler title if needed
+	if(this.qualifyHoverTitles) {
+		this.hover =  this.hover + "-" + this.renderer.getContextScopeId();
+	}
 	// Determine the default link characteristics
 	this.isExternal = isLinkExternal(this.to);
 	if(!this.isExternal) {

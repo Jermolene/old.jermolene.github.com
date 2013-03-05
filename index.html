@@ -2360,7 +2360,7 @@ The built in parser rules use regular expression matching. Such rules can take a
 </pre>
 </div>
 <div title="ReadMe" tags="introduction">
-<pre>\define tw-wikilinks() no
+<pre>\define tw-wikilink-template() http://five.tiddlywiki.com/static/$uri_encoded$.html
 ! Welcome to TiddlyWiki5
 
 {{HelloThere}}
@@ -2658,6 +2658,7 @@ If you're interested in understanding more about the internal operation of Tiddl
 
 * `to` - link target can be a URL 
 * `hover` - the title of a tiddler containing the popup state to set when hovering over the link
+* `qualifyHoverTitles` - if this attribute is present then the title of the hover state tiddler is qualified as described in the PopupMechanism
 
 The `to` attribute is interpreted as an external link if it matches this regular expression:
 
@@ -3430,9 +3431,7 @@ Command.prototype.execute = function() {
 		var renderTree = new $tw.WikiRenderTree(parser,{wiki: wiki});
 		renderTree.execute({tiddlerTitle: title});
 		var text = renderTree.render(type);
-		fs.writeFile(path.resolve(pathname,title + extension),text,"utf8",function(err) {
-			self.callback(err);
-		});
+		fs.writeFileSync(path.resolve(pathname,title + extension),text,"utf8");
 	});
 	return null;
 };
@@ -9406,6 +9405,11 @@ LinkWidget.prototype.generate = function() {
 	// Get the parameters from the attributes
 	this.to = this.renderer.getAttribute("to");
 	this.hover = this.renderer.getAttribute("hover");
+	this.qualifyHoverTitles = this.renderer.getAttribute("qualifyHoverTitles");
+	// Qualify the hover tiddler title if needed
+	if(this.qualifyHoverTitles) {
+		this.hover =  this.hover + "-" + this.renderer.getContextScopeId();
+	}
 	// Determine the default link characteristics
 	this.isExternal = isLinkExternal(this.to);
 	if(!this.isExternal) {
