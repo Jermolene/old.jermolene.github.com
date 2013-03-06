@@ -2014,6 +2014,28 @@ When run under node.js, TiddlyWiki supports a [[command line interface|TiddlyWik
 * [[Acknowledgements]]
 </pre>
 </div>
+<div title="TiddlyWiki5 in the Sky for TiddlyWeb" modifier="JeremyRuston" tags="edition docs">
+<pre>The TiddlyWiki5 in the Sky for TiddlyWeb allows content to be synchronised between TiddlyWiki5 running in the browser and a TiddlyWeb (or TiddlySpace) server. Features include:
+
+* Lazy loading
+* Two way synchronisation between the browser and the server
+** Synchronising from the server is accomplished by polling (currently every 60 seconds)
+* Throttling so that rapidly changing tiddlers don't overwhelm the server
+
+The implementation is somewhat experimental, and includes these limitations:
+
+* Only works with tiddlers written in TiddlyWiki5 WikiText. Tiddlers in the old syntax will be parsed as TiddlyWiki5 syntax
+* New tiddlers are not saved to the server
+* No way to delete tiddlers
+
+To try out TiddlyWiki5 in the Sky for TiddlyWeb:
+
+# If necessary, create an account at http://tiddlyspace.com/
+# Create a new space, eg `myspace`
+# Include the space `tw5tiddlyweb`
+# Visit `http://myspace.tiddlyspace.com/tw5`
+</pre>
+</div>
 <div title="TiddlyWiki5 Node Edition" modifier="JeremyRuston" tags="docs edition">
 <pre>TiddlyWiki5 can be used on the command line to perform an extensive set of operations based on tiddlers, TiddlerFiles and TiddlyWikiFiles. For example, this loads the tiddlers from a TiddlyWiki HTML file and then saves one of them in HTML:
 
@@ -11162,7 +11184,7 @@ This method should be called after the changes it describes have been made to th
 	isDeleted: defaults to false (meaning the tiddler has been created or modified),
 		true if the tiddler has been created
 */
-exports.touchTiddler = function(title,isDeleted) {
+exports.enqueueTiddlerEvent = function(title,isDeleted) {
 	// Record the touch in the list of changed tiddlers
 	this.changedTiddlers = this.changedTiddlers || {};
 	this.changedTiddlers[title] = this.changedTiddlers[title] || [];
@@ -11203,7 +11225,7 @@ exports.getChangeCount = function(title) {
 exports.deleteTiddler = function(title) {
 	delete this.tiddlers[title];
 	this.clearCache(title);
-	this.touchTiddler(title,true);
+	this.enqueueTiddlerEvent(title,true);
 };
 
 exports.tiddlerExists = function(title) {
@@ -11220,7 +11242,7 @@ exports.addTiddler = function(tiddler) {
 	// Save the tiddler
 	this.tiddlers[title] = tiddler;
 	this.clearCache(title);
-	this.touchTiddler(title);
+	this.enqueueTiddlerEvent(title);
 };
 
 /*
