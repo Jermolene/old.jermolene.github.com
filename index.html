@@ -2042,11 +2042,12 @@ To try out TiddlyWiki5 in the Sky for TiddlyWeb:
 ```
 node tiddlywiki.js --verbose --load mywiki.html --savetiddler ReadMe ./readme.html
 ```
+
 !!Usage
 
 Running `tiddlywiki.js` from the command line boots the TiddlyWiki kernel, loads the core plugins and establishes an empty wiki store. It then sequentially processes the command line arguments from left to right. The arguments are separated with spaces.
 
-The first argument is the optional path to the wiki directory to be loaded. If not present, then the current directory is used.
+The first argument is the optional path to the WikiDirectory to be loaded. If not present, then the current directory is used.
 
 The commands and their individual arguments follow, each command being identified by the prefix `--`.
 
@@ -2646,8 +2647,8 @@ Service URL: &lt;$edit tiddler=&quot;$:/UploadURL&quot; default=&quot;&quot; typ
 
 * [[TiddlyWiki5 Standalone Edition]] for working purely within the browser
 ** Including [[TiddlyWiki5 in the Sky for TiddlySpot|TiddlySpot]]
-** And incorporating [[TiddlyWiki5 Static Site Generation]]
 * [[TiddlyWiki5 Node Edition]] for advanced command line work
+** Including [[TiddlyWiki5 Static Site Generation]]
 ** Including [[Building classic TiddlyWiki with TiddlyWiki5]]
 * [[TiddlyWiki5 in the Sky for TiddlyWeb]] (and TiddlySpace)
 * [[TiddlyWiki5 in the Sky for Dropbox]]
@@ -9189,15 +9190,15 @@ TextEditor.prototype.fixHeight = function() {
 	var self = this;
 	if(this.editWidget.children[0].domNode && this.editWidget.children[0].domNode.type === "textarea") {
 		$tw.utils.nextTick(function() {
-			var wrapper = self.editWidget.renderer.domNode,
-				textarea = self.editWidget.children[0].domNode;
-			// Set the text area height to 1px temporarily, which allows us to read the true scrollHeight
-			var prevWrapperHeight = wrapper.style.height;
-			wrapper.style.height = textarea.style.height + "px";
-			textarea.style.overflow = "hidden";
-			textarea.style.height = "1px";
-			textarea.style.height = Math.max(textarea.scrollHeight,MIN_TEXT_AREA_HEIGHT) + "px";
-			wrapper.style.height = prevWrapperHeight;
+			// Resize the textarea to fit its content
+			var textarea = self.editWidget.children[0].domNode,
+				scrollTop = document.body.scrollTop;
+			textarea.style.height = "auto";
+			var newHeight = Math.max(textarea.scrollHeight + textarea.offsetHeight - textarea.clientHeight,MIN_TEXT_AREA_HEIGHT);
+			if(newHeight !== textarea.offsetHeight) {
+				textarea.style.height =  newHeight + "px";
+				document.body.scrollTop = scrollTop;
+			}
 		});
 	}
 };
