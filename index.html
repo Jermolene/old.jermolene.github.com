@@ -156,7 +156,7 @@ The following methods of saving changes are available:
 
 [x] Don't show this message again</pre>
 </div>
-<div title="$:/messages/SaveInstructions" type="text/vnd.tiddlywiki" subtitle="Save your work" footer="&lt;&lt;button close class:&quot;btn btn-primary&quot;&gt;&lt;Close&gt;&gt;" help="http://five.tiddlywiki.com/#help:SavingChanges">
+<div title="$:/messages/SaveInstructions" type="text/vnd.tiddlywiki" subtitle="Save your work" footer="&lt;$button message=&quot;tw-close-tiddler&quot; class=&quot;btn btn-primary&quot;&gt;Close&lt;/$button&gt;" help="http://five.tiddlywiki.com/#help:SavingChanges">
 <pre>Your changes to this wiki need to be saved as a ~TiddlyWiki HTML file.
 
 !!! Desktop browsers
@@ -7054,6 +7054,7 @@ Handles saving changes via HTML5's download APIs
 /*global $tw: false */
 "use strict";
 
+// Title of the tiddler containing the download message
 var downloadInstructionsTitle = "$:/messages/Download"
 
 /*
@@ -7348,7 +7349,6 @@ exports.startup = function() {
 			var styleNode = document.createElement("style");
 			styleNode.type = "text/css";
 			var text = renderTree.render("text/plain");
-			console.log(text)
 			styleNode.appendChild(document.createTextNode(text));
 			document.getElementsByTagName("head")[0].appendChild(styleNode);
 		});
@@ -12044,7 +12044,11 @@ $tw.utils.PasswordPrompt.prototype.setWrapperDisplay = function() {
 };
 
 /*
-Adds a new password prompt
+Adds a new password prompt. Options are:
+submitText: text to use for submit button (defaults to "Login")
+serviceName: text of the human readable service name
+noUserName: set true to disable username prompt
+callback: function to be called on submission with parameter of object {username:,password:}. Callback must return `true` to remove the password prompt
 */
 $tw.utils.PasswordPrompt.prototype.createPrompt = function(options) {
 	// Create and add the prompt to the DOM
