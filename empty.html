@@ -855,7 +855,7 @@ This template is used for saving CSS tiddlers as a style tag with data attribute
 --&gt;`&lt;style`&lt;$fields template=' data-tiddler-$name$=&quot;$encoded_value$&quot;'&gt;&lt;/$fields&gt;` type=&quot;text/css&quot;&gt;`&lt;$view field=&quot;text&quot; format=&quot;text&quot; /&gt;`&lt;/style&gt;`</pre>
 </div>
 <div title="$:/templates/EditTemplate" modifier="JeremyRuston">
-<pre>&lt;$view field=&quot;title&quot;/&gt; &lt;$button message=&quot;tw-save-tiddler&quot; class=&quot;btn btn-mini btn-success&quot;&gt;done&lt;/$button&gt;
+<pre>&lt;$view field=&quot;title&quot;/&gt; &lt;$button message=&quot;tw-delete-tiddler&quot; class=&quot;btn btn-mini btn-success&quot;&gt;delete&lt;/$button&gt; &lt;$button message=&quot;tw-save-tiddler&quot; class=&quot;btn btn-mini btn-success&quot;&gt;done&lt;/$button&gt;
 
 @@.title
 &lt;$edit field=&quot;draft.title&quot;/&gt;
@@ -1104,6 +1104,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </div>
 <div title="$:/templates/ViewTemplate" modifier="JeremyRuston">
 <pre>&lt;span class=&quot;tw-tiddler-controls&quot;&gt;
+&lt;$button message=&quot;tw-delete-tiddler&quot; class=&quot;btn btn-mini btn-success&quot;&gt;delete&lt;/$button&gt;
 &lt;$button message=&quot;tw-edit-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/edit-button.svg}}&lt;/$button&gt;
 &lt;$button message=&quot;tw-close-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/close-button.svg}}&lt;/$button&gt;
 &lt;/span&gt;
@@ -1765,7 +1766,8 @@ Command.prototype.execute = function() {
 		renderType = this.params[2] || "text/plain",
 		serveType = this.params[3] || "text/html";
 	http.createServer(function(request, response) {
-		var path = url.parse(request.url).pathname;
+		var requestPath = url.parse(request.url).pathname,
+			text;
 		switch(request.method) {
 			case "PUT":
 				var data = "";
@@ -1773,22 +1775,70 @@ Command.prototype.execute = function() {
 					data += chunk.toString();
 				});
 				request.on("end",function() {
-					var title = decodeURIComponent(path.substr(1));
-					self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
-					response.writeHead(204, "OK");
-					response.end();
+					var prefix = "/tiddlers/";
+					if(requestPath.indexOf(prefix) === 0) {
+						var title = decodeURIComponent(requestPath.substr(prefix.length)),
+							fields = JSON.parse(data);
+						// Use the title from the PUT URL if we don't have one
+						if(!fields.title) {
+							fields.title = title;
+						}
+						// Pull up any subfields in the `fields` object
+						if(fields.fields) {
+							$tw.utils.each(fields.fields,function(field,name) {
+								fields[name] = field;
+							});
+							delete fields.fields;
+						}
+						// Remove any server.revision field
+						if(fields["server.revision"]) {
+							delete fields["server.revision"];
+						}
+console.log("PUT tiddler",title,fields)
+//						self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
+						response.writeHead(204, "OK");
+						response.end();
+					} else {
+						response.writeHead(404);
+						response.end();
+					}
 				});
 				break;
 			case "DELETE":
-				self.commander.wiki.deleteTiddler(decodeURIComponent(path.substr(1)));
+console.log("DELETE tiddler",requestPath.substr(1))
+//				self.commander.wiki.deleteTiddler(decodeURIComponent(requestPath.substr(1)));
 				response.writeHead(204, "OK");
 				response.end();
 				break;
 			case "GET":
-				if(path === "/") {
+				if(requestPath === "/") {
 					response.writeHead(200, {"Content-Type": serveType});
-					var text = self.commander.wiki.renderTiddler(renderType,rootTiddler);
-					response.end(text, "utf8");	
+					text = self.commander.wiki.renderTiddler(renderType,rootTiddler);
+					response.end(text,"utf8");
+				} else if(requestPath === "/status") {
+					response.writeHead(200, {"Content-Type": "application/json"});
+					text = JSON.stringify({
+						username: "ANONYMOUS",
+						tiddlywiki_version: $tw.version,
+						version: "1.4.7"
+					});
+					response.end(text,"utf8");
+				} else if(requestPath === "/tiddlers.json") {
+					response.writeHead(200, {"Content-Type": "application/json"});
+					var tiddlers = [];
+					$tw.wiki.forEachTiddler("title",function(title,tiddler) {
+						var tiddlerFields = {};
+						$tw.utils.each(tiddler.fields,function(field,name) {
+							if(name !== "text") {
+								tiddlerFields[name] = tiddler.getFieldString(name);
+							}
+						});
+						tiddlerFields["server.revision"] = $tw.wiki.getChangeCount(title);
+						tiddlerFields["created"] = "201203091234";
+						tiddlers.push(tiddlerFields);
+					});
+					text = JSON.stringify(tiddlers);
+					response.end(text,"utf8");
 				} else {
 					response.writeHead(404);
 					response.end();
@@ -5538,7 +5588,6 @@ exports.startup = function() {
 	// Set up the wiki store
 	$tw.wiki.initParsers();
 	$tw.wiki.initSyncers();
-	$tw.wiki.initServerConnections();
 	// Set up the command modules
 	$tw.Commander.initCommands();
 	// Get the default tiddlers
@@ -5573,11 +5622,12 @@ exports.startup = function() {
 			$tw.modal.display(event.param);
 		},false);
 		// Install the syncer message mechanism
-		var handleSyncerEvent = function(event) {
-			$tw.wiki.handleSyncerEvent.call($tw.wiki,event);
-		};
-		document.addEventListener("tw-login",handleSyncerEvent,false);
-		document.addEventListener("tw-logout",handleSyncerEvent,false);
+		document.addEventListener("tw-login",function(event) {
+			$tw.wiki.invokeSyncers("handleLoginEvent",event);
+		},false);
+		document.addEventListener("tw-logout",function(event) {
+			$tw.wiki.invokeSyncers("handleLogoutEvent",event);
+		},false);
 		// Install the scroller
 		$tw.pageScroller = new $tw.utils.PageScroller();
 		document.addEventListener("tw-scroll",$tw.pageScroller,false);
@@ -5589,7 +5639,7 @@ exports.startup = function() {
 				downloadType: "text/plain"
 			});
 		},false);
-		// Install the crypto event handler
+		// Install the crypto event handlers
 		document.addEventListener("tw-set-password",function(event) {
 			$tw.passwordPrompt.createPrompt({
 				serviceName: "Set a new password for this TiddlyWiki",
@@ -7663,6 +7713,57 @@ exports.fields = FieldsWidget;
 
 })();
 });
+</script><script data-tiddler-title="$:/core/modules/widget/info.js" data-tiddler-type="application/javascript" data-tiddler-module-type="widget" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/widget/info.js","widget",function(module,exports,require) {/*\
+title: $:/core/modules/widget/info.js
+type: application/javascript
+module-type: widget
+
+Implements the info widget that displays various information about a specified tiddler.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+var InfoWidget = function(renderer) {
+	// Save state
+	this.renderer = renderer;
+	// Generate child nodes
+	this.generate();
+};
+
+InfoWidget.types = {
+	changecount: function(options) {return options.wiki.getChangeCount(options.title);}
+};
+
+InfoWidget.prototype.generate = function() {
+	// Get attributes
+	this.tiddlerTitle = this.renderer.getAttribute("tiddler",this.renderer.getContextTiddlerTitle());
+	this.type = this.renderer.getAttribute("type","changecount");
+	// Get the appropriate value for the current tiddler
+	var value = "",
+		fn = InfoWidget.types[this.type];
+	if(fn) {
+		value = fn({
+			wiki: this.renderer.renderTree.wiki,
+			title: this.tiddlerTitle
+		});
+	}
+	// Set the element
+	this.tag = "span";
+	this.attributes = {};
+	this.children = this.renderer.renderTree.createRenderers(this.renderer.renderContext,[{
+		type: "text",
+		text: value
+	}]);
+};
+
+exports.info = InfoWidget;
+
+})();
+});
 </script><script data-tiddler-title="$:/core/modules/widget/link.js" data-tiddler-type="application/javascript" data-tiddler-module-type="widget" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/widget/link.js","widget",function(module,exports,require) {/*\
 title: $:/core/modules/widget/link.js
 type: application/javascript
@@ -8283,6 +8384,7 @@ NavigatorWidget.prototype.generate = function() {
 	this.events = [
 		{name: "tw-navigate", handlerObject: this, handlerMethod: "handleNavigateEvent"},
 		{name: "tw-edit-tiddler", handlerObject: this, handlerMethod: "handleEditTiddlerEvent"},
+		{name: "tw-delete-tiddler", handlerObject: this, handlerMethod: "handleDeleteTiddlerEvent"},
 		{name: "tw-save-tiddler", handlerObject: this, handlerMethod: "handleSaveTiddlerEvent"},
 		{name: "tw-close-tiddler", handlerObject: this, handlerMethod: "handleCloseTiddlerEvent"},
 		{name: "tw-new-tiddler", handlerObject: this, handlerMethod: "handleNewTiddlerEvent"}
@@ -8392,6 +8494,29 @@ NavigatorWidget.prototype.handleEditTiddlerEvent = function(event) {
 	return false;
 };
 
+// Delete a tiddler
+NavigatorWidget.prototype.handleDeleteTiddlerEvent = function(event) {
+	// Get the tiddler title we're deleting
+	var tiddler = this.renderer.renderTree.wiki.getTiddler(event.tiddlerTitle);
+	// Check if the tiddler we're deleting is in draft mode
+	if(tiddler.hasField("draft.title")) {
+		// Delete the original tiddler
+		this.renderer.renderTree.wiki.deleteTiddler(tiddler.fields["draft.of"]);
+	}
+	// Delete this tiddler
+	this.renderer.renderTree.wiki.deleteTiddler(event.tiddlerTitle);
+	// Remove the closed tiddler from the story
+	this.getStoryList();
+	// Look for tiddler with this title to close
+	var slot = this.findTitleInStory(event.tiddlerTitle,-1);
+	if(slot !== -1) {
+		this.storyList.splice(slot,1);
+		this.saveStoryList();
+	}
+	event.stopPropagation();
+	return false;
+};
+
 /*
 Generate a title for the draft of a given tiddler
 */
@@ -8411,7 +8536,7 @@ NavigatorWidget.prototype.handleSaveTiddlerEvent = function(event) {
 	for(var t=0; t<this.storyList.length; t++) {
 		if(this.storyList[t] === event.tiddlerTitle) {
 			var tiddler = this.renderer.renderTree.wiki.getTiddler(event.tiddlerTitle);
-			if(tiddler && $tw.utils.hop(tiddler.fields,"draft.title")) {
+			if(tiddler.hasField("draft.title")) {
 				// Save the draft tiddler as the real tiddler
 				this.renderer.renderTree.wiki.addTiddler(new $tw.Tiddler(tiddler,{
 					title: tiddler.fields["draft.title"],
@@ -9356,7 +9481,6 @@ last dispatched. Each entry is a hashmap containing two fields:
 	incremented each time a tiddler is created changed or deleted
 * `caches` is a hashmap by tiddler title containing a further hashmap of named cache objects. Caches
 	are automatically cleared when a tiddler is modified or deleted
-* `macros` is a hashmap by macro name containing an object class inheriting from the Macro tree node
 
 \*/
 (function(){
@@ -9489,6 +9613,7 @@ exports.getChangeCount = function(title) {
 };
 
 exports.deleteTiddler = function(title) {
+console.log("Deleting",title)
 	delete this.tiddlers[title];
 	this.clearCache(title);
 	this.enqueueTiddlerEvent(title,true);
@@ -9939,48 +10064,15 @@ exports.initSyncers = function() {
 };
 
 /*
-Initialise server connections
+Invoke all the active syncers
 */
-exports.initServerConnections = function() {
-	this.serverConnections = {};
-	var self = this;
-	$tw.modules.forEachModuleOfType("serverconnection",function(title,module) {
-		// Get the associated syncer
-		if(module.syncer) {
-			var syncer = self.syncers[module.syncer];
-			if(syncer) {
-				// Add the connection and save information about it
-				var connection = syncer.addConnection(module);
-				if(connection instanceof Error) {
-					console.log("Error adding connection: " + connection);
-				} else {
-					self.serverConnections[title] = {
-						syncer: syncer,
-						connection: connection
-					};
-				}
-			}
-		}
-	});
-};
-
-/*
-Invoke all the active server connections
-*/
-exports.invokeServerConnections = function(method /* ,args */) {
+exports.invokeSyncers = function(method /* ,args */) {
 	var args = Array.prototype.slice.call(arguments,1);
-	for(var title in this.serverConnections) {
-		var connection = this.serverConnections[title];
-		connection.syncer[method].apply(connection.syncer,[connection.connection].concat(args));
-	}
-};
-
-/*
-Handle a syncer message
-*/
-exports.handleSyncerEvent = function(event) {
-	for(var syncer in this.syncers) {
-		this.syncers[syncer].handleEvent(event);
+	for(var name in this.syncers) {
+		var syncer = this.syncers[name];
+		if(syncer[method]) {
+			syncer[method].apply(syncer,args);
+		}
 	}
 };
 
@@ -9997,8 +10089,8 @@ exports.getTiddlerText = function(title,defaultText) {
 		// Just return the text if we've got it
 		return tiddler.fields.text;
 	} else {
-		// Ask all the server connections to load the tiddler if they can
-		this.invokeServerConnections("lazyLoad",title,tiddler);
+		// Ask all the syncers to load the tiddler if they can
+		this.invokeSyncers("lazyLoad",title,tiddler);
 		// Indicate that the text is being loaded
 		return null;
 	}
