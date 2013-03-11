@@ -1104,7 +1104,6 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </div>
 <div title="$:/templates/ViewTemplate" modifier="JeremyRuston">
 <pre>&lt;span class=&quot;tw-tiddler-controls&quot;&gt;
-&lt;$button message=&quot;tw-delete-tiddler&quot; class=&quot;btn btn-mini btn-success&quot;&gt;delete&lt;/$button&gt;
 &lt;$button message=&quot;tw-edit-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/edit-button.svg}}&lt;/$button&gt;
 &lt;$button message=&quot;tw-close-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/close-button.svg}}&lt;/$button&gt;
 &lt;/span&gt;
@@ -1968,6 +1967,10 @@ TiddlyWiki5 can be used via these editions:
 
 {{{ [tag[edition]sort[title]] }}}
 
+! How to use TiddlyWiki5
+
+{{{ [tag[howto]sort[title]] }}}
+
 ! Concepts
 
 The core concepts underlying TiddlyWiki are:
@@ -2170,6 +2173,45 @@ The downside of writing the first version of TiddlyWiki in this way was that it 
 ! Leaving BT
 
 //To be continued...//
+</pre>
+</div>
+<div title="How to use TiddlyWiki5 as a standalone HTML file" tags="docs howto">
+<pre>! On desktop browsers
+
+# Right-click on this link to an empty TiddlyWiki5 file and select &quot;Save Link&quot; to save it to your hard drive:
+** http://five.tiddlywiki.com/empty
+# Open the file in your browser
+# Make some changes to it. For example:
+** Create new tiddlers by clicking the `New` button in the left sidebar
+** Edit existing tiddlers by clicking the `Edit` button at their upper right
+# Save your changes by clicking the `Save` button in the left sidebar. What happens next depends on your browser:
+## Newer browsers will ask for confirmation and then begin downloading your newly modified TiddlyWiki file, placing it in the default `Downloads` directory.
+## For older browsers, TiddlyWiki displays a dialogue including a link that you need to right-click and save
+
+! On mobile browsers
+
+# Visit http://five.tiddlywiki.com/empty in your browser
+# Make some changes. For example:
+** Create new tiddlers by clicking the `New` button in the left sidebar
+** Edit existing tiddlers by clicking the `Edit` button at their upper right
+# Save your changes by clicking the `Save` button in the left sidebar
+# TiddlyWiki displays a dialogue including a download link.
+## If your browser allows, add the link as a bookmark
+## Otherwise, open the link to open the page in a new browser tab, and then bookmark that page
+
+To re-open your file, simply open the bookmark.
+</pre>
+</div>
+<div title="How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox" tags="docs howto">
+<pre># Right-click on this link to an empty TiddlyWiki5 file and select &quot;Save Link&quot; to save it to your hard drive:
+** http://five.tiddlywiki.com/empty
+# Open the file in your browser. If this is the first time you've used a file with this name and location you will see a confirmation dialogue from TiddlyFox
+# Make some changes to it. For example:
+** Create new tiddlers by clicking the `New` button in the left sidebar
+** Edit existing tiddlers by clicking the `Edit` button at their upper right
+# Save your changes by clicking the `Save` button in the left sidebar
+
+With TiddlyFox, your changes are directly applied to the original file that you opened in your browser.
 </pre>
 </div>
 <div type="image/jpeg" title="Motovun Jack.jpg" source="http://www.flickr.com/photos/jermy/6292279493/in/photostream" tags="picture">
@@ -3525,9 +3567,9 @@ Command.prototype.execute = function() {
 							});
 							delete fields.fields;
 						}
-						// Remove any server.revision field
-						if(fields["server.revision"]) {
-							delete fields["server.revision"];
+						// Remove any revision field
+						if(fields["revision"]) {
+							delete fields["revision"];
 						}
 console.log("PUT tiddler",title,fields)
 //						self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
@@ -3540,10 +3582,16 @@ console.log("PUT tiddler",title,fields)
 				});
 				break;
 			case "DELETE":
-console.log("DELETE tiddler",requestPath.substr(1))
-//				self.commander.wiki.deleteTiddler(decodeURIComponent(requestPath.substr(1)));
-				response.writeHead(204, "OK");
-				response.end();
+				var prefix = "/tiddlers/";
+				if(requestPath.indexOf(prefix) === 0) {
+console.log("DELETE tiddler",requestPath.substr(prefix.length))
+//					self.commander.wiki.deleteTiddler(decodeURIComponent(requestPath.substr(prefix.length)));
+					response.writeHead(204, "OK");
+					response.end();
+				} else {
+					response.writeHead(404);
+					response.end();
+				}
 				break;
 			case "GET":
 				if(requestPath === "/") {
@@ -3554,8 +3602,7 @@ console.log("DELETE tiddler",requestPath.substr(1))
 					response.writeHead(200, {"Content-Type": "application/json"});
 					text = JSON.stringify({
 						username: "ANONYMOUS",
-						tiddlywiki_version: $tw.version,
-						version: "1.4.7"
+						tiddlywiki_version: $tw.version
 					});
 					response.end(text,"utf8");
 				} else if(requestPath === "/tiddlers.json") {
@@ -3568,8 +3615,7 @@ console.log("DELETE tiddler",requestPath.substr(1))
 								tiddlerFields[name] = tiddler.getFieldString(name);
 							}
 						});
-						tiddlerFields["server.revision"] = $tw.wiki.getChangeCount(title);
-						tiddlerFields["created"] = "201203091234";
+						tiddlerFields["revision"] = $tw.wiki.getChangeCount(title);
 						tiddlers.push(tiddlerFields);
 					});
 					text = JSON.stringify(tiddlers);
@@ -11348,7 +11394,6 @@ exports.getChangeCount = function(title) {
 };
 
 exports.deleteTiddler = function(title) {
-console.log("Deleting",title)
 	delete this.tiddlers[title];
 	this.clearCache(title);
 	this.enqueueTiddlerEvent(title,true);
