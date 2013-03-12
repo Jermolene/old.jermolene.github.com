@@ -315,6 +315,24 @@ Renders as:</p><hr>
 In HTML:</p><pre>
 &lt;hr&gt;
 </pre><h1 class=''>
+Macros</h1><p>
+Macros are snippets of text that can be inserted with a concise shortcut. A macro is defined like this:</p><pre>
+\define mysamplemacro(name:&quot;Bugs Bunny&quot;,address:&quot;Rabbit Hole Hill&quot;)
+Hi, I'm $name$ and I live in $address$
+\end</pre><p>
+The first line of the definition specifies the macro name and any parameters. Parameters are named and can optionally have default values that are used if the parameter isn't specified at the time of calling. The body of the macro definition follows, terminated with <code>
+\end</code>. The macro can include parameters using the <code>
+$name$</code> construction.</p><p>
+Macro definitions must be placed at the top of a tiddler. Macros are available to the tiddler that defines them, plus any tiddlers that it transcludes.</p><p>
+Macros are used like this:</p><pre>
+&lt;&lt;mysamplemacro&gt;&gt;
+&lt;&lt;mysamplemacro &quot;Donald Duck&quot;&gt;&gt;
+&lt;&lt;mysamplemacro &quot;Mickey Mouse&quot; &quot;Mouse House&quot;&gt;&gt;</pre><p>
+Resulting in:</p><pre>
+Hi I'm Bugs Bunny and I live in Rabbit Hole Hill
+Hi I'm Donald Duck and I live in Rabbit Hole Hill
+Hi I'm Mickey Mouse and I live in Mouse House
+</pre><h1 class=''>
 HTML in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
 WikiText</a></h1><p>
 HTML tags and comments can be used directly in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>

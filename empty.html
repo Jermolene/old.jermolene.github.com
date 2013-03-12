@@ -1774,7 +1774,7 @@ Command.prototype.execute = function() {
 					data += chunk.toString();
 				});
 				request.on("end",function() {
-					var prefix = "/tiddlers/";
+					var prefix = "/recipes/default/tiddlers/";
 					if(requestPath.indexOf(prefix) === 0) {
 						var title = decodeURIComponent(requestPath.substr(prefix.length)),
 							fields = JSON.parse(data);
@@ -1795,7 +1795,10 @@ Command.prototype.execute = function() {
 						}
 console.log("PUT tiddler",title,fields)
 //						self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
-						response.writeHead(204, "OK");
+						var changeCount = self.commander.wiki.getChangeCount(title).toString();
+						response.writeHead(204, "OK",{
+							Etag: "\"default/" + title + "/" + changeCount + ":\""
+						});
 						response.end();
 					} else {
 						response.writeHead(404);
@@ -1804,10 +1807,11 @@ console.log("PUT tiddler",title,fields)
 				});
 				break;
 			case "DELETE":
-				var prefix = "/tiddlers/";
+				var prefix = "/bags/default/tiddlers/";
 				if(requestPath.indexOf(prefix) === 0) {
-console.log("DELETE tiddler",requestPath.substr(prefix.length))
-//					self.commander.wiki.deleteTiddler(decodeURIComponent(requestPath.substr(prefix.length)));
+					var title = decodeURIComponent(requestPath.substr(prefix.length));
+console.log("DELETE tiddler",title)
+//					self.commander.wiki.deleteTiddler(decodeURIComponent(title));
 					response.writeHead(204, "OK");
 					response.end();
 				} else {
@@ -1824,10 +1828,13 @@ console.log("DELETE tiddler",requestPath.substr(prefix.length))
 					response.writeHead(200, {"Content-Type": "application/json"});
 					text = JSON.stringify({
 						username: "ANONYMOUS",
+						space: {
+							recipe: "default"
+						},
 						tiddlywiki_version: $tw.version
 					});
 					response.end(text,"utf8");
-				} else if(requestPath === "/tiddlers.json") {
+				} else if(requestPath === "/recipes/default/tiddlers.json") {
 					response.writeHead(200, {"Content-Type": "application/json"});
 					var tiddlers = [];
 					$tw.wiki.forEachTiddler("title",function(title,tiddler) {
@@ -9081,6 +9088,77 @@ VersionWidget.prototype.generate = function() {
 };
 
 exports.version = VersionWidget;
+
+})();
+});
+</script><script data-tiddler-title="$:/core/modules/widget/video.js" data-tiddler-type="application/javascript" data-tiddler-module-type="widget" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/widget/video.js","widget",function(module,exports,require) {/*\
+title: $:/core/modules/widget/video.js
+type: application/javascript
+module-type: widget
+
+Implements the video widget.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+var VideoWidget = function(renderer) {
+	// Save state
+	this.renderer = renderer;
+	// Generate child nodes
+	this.generate();
+};
+
+VideoWidget.prototype.generate = function() {
+	// Get attributes
+	this.src = this.renderer.getAttribute("src");
+	this.type = this.renderer.getAttribute("type","vimeo");
+	this.width = parseInt(this.renderer.getAttribute("width","640"),10);
+	this.height = parseInt(this.renderer.getAttribute("height","360"),10);
+	// Return the appropriate element
+	switch(this.type) {
+		case "vimeo":
+			this.tag = "iframe";
+			this.attributes = {
+				src: "http://player.vimeo.com/video/" + this.src + "?autoplay=0",
+				width: this.width,
+				height: this.height,
+				frameborder: 0
+			};
+			break;
+		case "youtube":
+			this.tag = "iframe";
+			this.attributes = {
+				src: "http://www.youtube.com/embed/" + this.src,
+				width: this.width,
+				height: this.height,
+				frameborder: 0
+			};
+			break;
+		case "archiveorg":
+			this.tag = "iframe";
+			this.attributes = {
+				src: "http://www.archive.org/embed/" + this.src,
+				width: this.width,
+				height: this.height,
+				frameborder: 0
+			};
+			break;
+		default:
+			this.tag = "div";
+			this.attributes = {};
+			this.children = this.renderer.renderTree.createRenderers(this.renderer.renderContext,[{
+				type: "text",
+				text: "Unknown video type"
+			}]);
+			break;
+	}
+};
+
+exports.video = VideoWidget;
 
 })();
 });

@@ -1310,7 +1310,9 @@ For example:
 </pre>
 </div>
 <div title="ServerCommand" tags="docs command">
-<pre>The server is very simple. At the root, it serves a rendering of a specified tiddler. Away from the root, it serves individual tiddlers encoded in JSON, and supports the basic HTTP operations for `GET`, `PUT` and `DELETE`.
+<pre>The server built in to TiddlyWiki5 is very simple. Although compatible with TiddlyWeb it doesn't support many of the features needed for robust Internet-facing usage - in particular, TiddlyWiki5 is an old-school wiki in the sense that it offers no authentication.
+
+At the root, it serves a rendering of a specified tiddler. Away from the root, it serves individual tiddlers encoded in JSON, and supports the basic HTTP operations for `GET`, `PUT` and `DELETE`.
 
 ```
 --server &lt;port&gt; &lt;roottiddler&gt; &lt;rendertype&gt; &lt;servetype&gt;
@@ -1702,6 +1704,37 @@ You can include a horizontal rule with three or more dashes on their own on a li
 &lt;&lt;wikitext-example src:&quot;
 ---
 &quot;&gt;&gt;
+
+! Macros
+
+Macros are snippets of text that can be inserted with a concise shortcut. A macro is defined like this:
+
+```
+\define mysamplemacro(name:&quot;Bugs Bunny&quot;,address:&quot;Rabbit Hole Hill&quot;)
+Hi, I'm $name$ and I live in $address$
+\end
+```
+
+The first line of the definition specifies the macro name and any parameters. Parameters are named and can optionally have default values that are used if the parameter isn't specified at the time of calling. The body of the macro definition follows, terminated with `\end`. The macro can include parameters using the `$name$` construction.
+
+Macro definitions must be placed at the top of a tiddler. Macros are available to the tiddler that defines them, plus any tiddlers that it transcludes.
+
+Macros are used like this:
+
+```
+&lt;&lt;mysamplemacro&gt;&gt;
+&lt;&lt;mysamplemacro &quot;Donald Duck&quot;&gt;&gt;
+&lt;&lt;mysamplemacro &quot;Mickey Mouse&quot; &quot;Mouse House&quot;&gt;&gt;
+```
+
+Resulting in:
+
+```
+Hi I'm Bugs Bunny and I live in Rabbit Hole Hill
+Hi I'm Donald Duck and I live in Rabbit Hole Hill
+Hi I'm Mickey Mouse and I live in Mouse House
+
+```
 
 ! HTML in WikiText
 
@@ -2206,6 +2239,17 @@ The downside of writing the first version of TiddlyWiki in this way was that it 
 ## Otherwise, open the link to open the page in a new browser tab, and then bookmark that page
 
 To re-open your file, simply open the bookmark.
+</pre>
+</div>
+<div title="How to use TiddlyWiki5 as a standalone HTML file with encryption" tags="docs howto">
+<pre>[[TiddlyWiki5 Standalone Edition]] allows content to be encrypted using the [[Stanford JavaScript Crypto Library]].
+
+1. Scroll to the bottom of the page where you should see the words &quot;This wiki is not encrypted&quot; and a button labelled &quot;Set password&quot;
+2. Click &quot;Set password&quot;
+3. Type a password and click the &quot;Set&quot; button (or use the enter key)
+4. The control panel should now say &quot;This wiki is encrypted&quot; with buttons for changing and clearing the password
+5. Save the wiki using the &quot;Save&quot; button in the left sidebar
+6. Optionally, open the saved file in a text editor and verify that your data is encrypted
 </pre>
 </div>
 <div title="How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox" tags="docs howto">
@@ -3560,7 +3604,7 @@ Command.prototype.execute = function() {
 					data += chunk.toString();
 				});
 				request.on("end",function() {
-					var prefix = "/tiddlers/";
+					var prefix = "/recipes/default/tiddlers/";
 					if(requestPath.indexOf(prefix) === 0) {
 						var title = decodeURIComponent(requestPath.substr(prefix.length)),
 							fields = JSON.parse(data);
@@ -3581,7 +3625,10 @@ Command.prototype.execute = function() {
 						}
 console.log("PUT tiddler",title,fields)
 //						self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
-						response.writeHead(204, "OK");
+						var changeCount = self.commander.wiki.getChangeCount(title).toString();
+						response.writeHead(204, "OK",{
+							Etag: "\"default/" + title + "/" + changeCount + ":\""
+						});
 						response.end();
 					} else {
 						response.writeHead(404);
@@ -3590,10 +3637,11 @@ console.log("PUT tiddler",title,fields)
 				});
 				break;
 			case "DELETE":
-				var prefix = "/tiddlers/";
+				var prefix = "/bags/default/tiddlers/";
 				if(requestPath.indexOf(prefix) === 0) {
-console.log("DELETE tiddler",requestPath.substr(prefix.length))
-//					self.commander.wiki.deleteTiddler(decodeURIComponent(requestPath.substr(prefix.length)));
+					var title = decodeURIComponent(requestPath.substr(prefix.length));
+console.log("DELETE tiddler",title)
+//					self.commander.wiki.deleteTiddler(decodeURIComponent(title));
 					response.writeHead(204, "OK");
 					response.end();
 				} else {
@@ -3610,10 +3658,13 @@ console.log("DELETE tiddler",requestPath.substr(prefix.length))
 					response.writeHead(200, {"Content-Type": "application/json"});
 					text = JSON.stringify({
 						username: "ANONYMOUS",
+						space: {
+							recipe: "default"
+						},
 						tiddlywiki_version: $tw.version
 					});
 					response.end(text,"utf8");
-				} else if(requestPath === "/tiddlers.json") {
+				} else if(requestPath === "/recipes/default/tiddlers.json") {
 					response.writeHead(200, {"Content-Type": "application/json"});
 					var tiddlers = [];
 					$tw.wiki.forEachTiddler("title",function(title,tiddler) {
@@ -10867,6 +10918,77 @@ VersionWidget.prototype.generate = function() {
 };
 
 exports.version = VersionWidget;
+
+})();
+});
+</script><script data-tiddler-title="$:/core/modules/widget/video.js" data-tiddler-type="application/javascript" data-tiddler-module-type="widget" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/widget/video.js","widget",function(module,exports,require) {/*\
+title: $:/core/modules/widget/video.js
+type: application/javascript
+module-type: widget
+
+Implements the video widget.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+var VideoWidget = function(renderer) {
+	// Save state
+	this.renderer = renderer;
+	// Generate child nodes
+	this.generate();
+};
+
+VideoWidget.prototype.generate = function() {
+	// Get attributes
+	this.src = this.renderer.getAttribute("src");
+	this.type = this.renderer.getAttribute("type","vimeo");
+	this.width = parseInt(this.renderer.getAttribute("width","640"),10);
+	this.height = parseInt(this.renderer.getAttribute("height","360"),10);
+	// Return the appropriate element
+	switch(this.type) {
+		case "vimeo":
+			this.tag = "iframe";
+			this.attributes = {
+				src: "http://player.vimeo.com/video/" + this.src + "?autoplay=0",
+				width: this.width,
+				height: this.height,
+				frameborder: 0
+			};
+			break;
+		case "youtube":
+			this.tag = "iframe";
+			this.attributes = {
+				src: "http://www.youtube.com/embed/" + this.src,
+				width: this.width,
+				height: this.height,
+				frameborder: 0
+			};
+			break;
+		case "archiveorg":
+			this.tag = "iframe";
+			this.attributes = {
+				src: "http://www.archive.org/embed/" + this.src,
+				width: this.width,
+				height: this.height,
+				frameborder: 0
+			};
+			break;
+		default:
+			this.tag = "div";
+			this.attributes = {};
+			this.children = this.renderer.renderTree.createRenderers(this.renderer.renderContext,[{
+				type: "text",
+				text: "Unknown video type"
+			}]);
+			break;
+	}
+};
+
+exports.video = VideoWidget;
 
 })();
 });
