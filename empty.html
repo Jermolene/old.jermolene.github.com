@@ -88,8 +88,8 @@ Password prompt
 
 </div>
 </noscript>
-<!----------- Miscellaneous shadow tiddlers ----------->
-<div id="shadowArea" style="display:none;">
+<!----------- Miscellaneous system tiddlers ----------->
+<div id="systemArea" style="display:none;">
 <div title="$:/core/copyright.txt" type="text/plain">
 <pre>TiddlyWiki created by Jeremy Ruston, (jeremy [at] jermolene [dot] com)
 
@@ -963,7 +963,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </pre>
 </div>
 <div title="$:/core/templates/static.template.css">
-<pre>{{{ [is[shadow]type[text/css]] ||$:/core/templates/plain-text-tiddler}}}
+<pre>{{{ [is[system]type[text/css]] ||$:/core/templates/plain-text-tiddler}}}
 {{$:/core/styles/base}}
 </pre>
 </div>
@@ -978,7 +978,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
 &lt;title&gt;{{$:/core/wiki/title}}&lt;/title&gt;
 &lt;div id=&quot;styleArea&quot;&gt;
-{{{ [is[shadow]type[text/css]] ||$:/core/templates/css-tiddler}}}
+{{{ [is[system]type[text/css]] ||$:/core/templates/css-tiddler}}}
 &lt;/div&gt;
 &lt;style type=&quot;text/css&quot;&gt;
 {{$:/core/styles/base}}
@@ -1013,7 +1013,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </div>
 <div title="$:/templates/StaticContent" type="text/vnd.tiddlywiki">
 <pre>&lt;!-- For Google, and people without JavaScript--&gt;
-&lt;$list filter=&quot;[!is[shadow]sort[title]]&quot; &gt;
+&lt;$list filter=&quot;[!is[system]sort[title]]&quot; &gt;
 &lt;$view field=&quot;title&quot; format=&quot;text&quot;&gt;&lt;/$view&gt;
 &lt;/$list&gt;
 </pre>
@@ -1021,13 +1021,13 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 <div title="$:/core/templates/store.area.template.html">
 <pre>&lt;$reveal type=&quot;nomatch&quot; state=&quot;$:/isEncrypted&quot; text=&quot;yes&quot;&gt;
 `&lt;div id=&quot;storeArea&quot; style=&quot;display:none;&quot;&gt;`
-{{{ [!is[shadow]] ||$:/core/templates/html-div-tiddler}}}
+{{{ [!is[system]] ||$:/core/templates/html-div-tiddler}}}
 `&lt;/div&gt;`
 &lt;/$reveal&gt;
 &lt;$reveal type=&quot;match&quot; state=&quot;$:/isEncrypted&quot; text=&quot;yes&quot;&gt;
 `&lt;!------------- Encrypted tiddlers ---------&gt;`
 `&lt;pre id=&quot;encryptedStoreArea&quot; type=&quot;text/plain&quot; style=&quot;display:none;&quot;&gt;`
-&lt;$encrypt filter=&quot;[!is[shadow]]&quot;/&gt;
+&lt;$encrypt filter=&quot;[!is[system]]&quot;/&gt;
 `&lt;/pre&gt;`
 &lt;/$reveal&gt;</pre>
 </div>
@@ -1064,7 +1064,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;body&gt;
 &lt;!----------- Static styles -----------&gt;
 &lt;div id=&quot;styleArea&quot;&gt;
-{{{ [is[shadow]type[text/css]] ||$:/core/templates/css-tiddler}}}
+{{{ [is[system]type[text/css]] ||$:/core/templates/css-tiddler}}}
 &lt;/div&gt;
 &lt;!----------- Static content for Google and browsers without JavaScript -----------&gt;
 &lt;noscript&gt;
@@ -1072,16 +1072,16 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 {{$:/templates/NewStaticContent||$:/core/templates/html-tiddler}}
 &lt;/div&gt;
 &lt;/noscript&gt;
-&lt;!----------- Miscellaneous shadow tiddlers -----------&gt;
-&lt;div id=&quot;shadowArea&quot; style=&quot;display:none;&quot;&gt;
-{{{ [is[shadow]] -[type[text/css]] -[type[application/javascript]has[module-type]] -[type[application/javascript]library[yes]] -[[$:/core/boot.js]] -[[$:/core/bootprefix.js]] ||$:/core/templates/html-div-tiddler}}}
+&lt;!----------- Miscellaneous system tiddlers -----------&gt;
+&lt;div id=&quot;systemArea&quot; style=&quot;display:none;&quot;&gt;
+{{{ [is[system]] -[type[text/css]] -[type[application/javascript]has[module-type]] -[type[application/javascript]library[yes]] -[[$:/core/boot.js]] -[[$:/core/bootprefix.js]] ||$:/core/templates/html-div-tiddler}}}
 &lt;/div&gt;
 &lt;!----------- Ordinary tiddlers -----------&gt;
 {{$:/core/templates/store.area.template.html}}
 &lt;!----------- Library modules -----------&gt;
 &lt;div id=&quot;libraryModules&quot; style=&quot;display:none;&quot;&gt;
 {{$:/core/lib/jquery.min.js||$:/core/templates/javascript-tiddler}}
-{{{ [is[shadow]type[application/javascript]library[yes]] -[[$:/core/lib/jquery.min.js]] ||$:/core/templates/javascript-tiddler}}}
+{{{ [is[system]type[application/javascript]library[yes]] -[[$:/core/lib/jquery.min.js]] ||$:/core/templates/javascript-tiddler}}}
 &lt;/div&gt;
 &lt;!----------- Boot kernel prologue -----------&gt;
 &lt;div id=&quot;bootKernelPrefix&quot; style=&quot;display:none;&quot;&gt;
@@ -1089,7 +1089,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;/div&gt;
 &lt;!----------- Plugin modules -----------&gt;
 &lt;div id=&quot;modules&quot; style=&quot;display:none;&quot;&gt;
-{{{ [is[shadow]type[application/javascript]has[module-type]] ||$:/core/templates/module-tiddler}}}
+{{{ [is[system]type[application/javascript]has[module-type]] ||$:/core/templates/module-tiddler}}}
 &lt;/div&gt;
 &lt;!----------- Boot kernel -----------&gt;
 &lt;div id=&quot;bootKernel&quot; style=&quot;display:none;&quot;&gt;
@@ -1484,9 +1484,9 @@ Command.prototype.subcommands.tiddlers = function() {
 	return null; // No error
 };
 
-Command.prototype.subcommands.shadows = function() {
-	var tiddlers = this.commander.wiki.getShadowTitles();
-	this.output.write("Wiki contains these shadow tiddlers:\n");
+Command.prototype.subcommands.system = function() {
+	var tiddlers = this.commander.wiki.getSystemTitles();
+	this.output.write("Wiki contains these system tiddlers:\n");
 	for(var t=0; t<tiddlers.length; t++) {
 		this.output.write(tiddlers[t] + "\n");
 	}
@@ -2198,8 +2198,8 @@ exports.operators = {
 						return "$tw.utils.pushTop(subResults,currTiddlerTitle);";
 					}
 					break;
-				case "shadow":
-					return "for(title in source) {if(" + op + "this.getTiddler(title).isShadow()) {$tw.utils.pushTop(subResults,title);}}";
+				case "system":
+					return "for(title in source) {if(" + op + "this.getTiddler(title).isSystem()) {$tw.utils.pushTop(subResults,title);}}";
 				default:
 					throw "Unknown operand for 'is' filter operator";
 			}
@@ -2214,8 +2214,8 @@ exports.operators = {
 						return "r = subResults.indexOf(currTiddlerTitle);\nif(r !== -1) {subResults = [currTiddlerTitle];} else {subResults = [];}";
 					}
 					break;
-				case "shadow":
-					return "for(r=subResults.length-1; r>=0; r--) {if(" + op + "this.getTiddler(subResults[r]).isShadow()) {subResults.splice(r,1);}}";
+				case "system":
+					return "for(r=subResults.length-1; r>=0; r--) {if(" + op + "this.getTiddler(subResults[r]).isSystem()) {subResults.splice(r,1);}}";
 				default:
 					throw "Unknown operand for 'is' filter operator";
 			}
@@ -5732,11 +5732,11 @@ exports.hasTag = function(tag) {
 	return this.fields.tags && this.fields.tags.indexOf(tag) !== -1;
 };
 
-exports.isShadow = function() {
-	if(!$tw.utils.hop(this,"shadowFlag")) {
-		this.shadowFlag = this.fields.title.indexOf("$:/") === 0;
+exports.isSystem = function() {
+	if(!$tw.utils.hop(this,"systemFlag")) {
+		this.systemFlag = this.fields.title.indexOf("$:/") === 0;
 	}
-	return this.shadowFlag;
+	return this.systemFlag;
 };
 
 exports.isTemporary = function() {
@@ -7938,11 +7938,11 @@ var ListWidget = function(renderer) {
 These types are shorthands for particular filters
 */
 var typeMappings = {
-	all: "[!is[shadow]sort[title]]",
-	recent: "[!is[shadow]sort[modified]]",
+	all: "[!is[system]sort[title]]",
+	recent: "[!is[system]sort[modified]]",
 	missing: "[is[missing]sort[title]]",
 	orphans: "[is[orphan]sort[title]]",
-	shadows: "[is[shadow]sort[title]]"
+	system: "[is[system]sort[title]]"
 };
 
 ListWidget.prototype.generate = function() {
@@ -7980,7 +7980,7 @@ ListWidget.prototype.getTiddlerList = function() {
 		filter = this.renderer.getAttribute("filter");
 	}
 	if(!filter) {
-		filter = "[!is[shadow]]";
+		filter = "[!is[system]]";
 	}
 	this.list = this.renderer.renderTree.wiki.filterTiddlers(filter,this.renderer.getContextTiddlerTitle());
 };
@@ -9717,13 +9717,13 @@ exports.addTiddler = function(tiddler) {
 };
 
 /*
-Return a sorted array of tiddler titles, optionally filtered by a tag 
+Return a sorted array of non-system tiddler titles, optionally filtered by a tag 
 */
 exports.getTiddlers = function(sortField,excludeTag) {
 	sortField = sortField || "title";
 	var tiddlers = [], t, titles = [];
 	for(t in this.tiddlers) {
-		if($tw.utils.hop(this.tiddlers,t) && !this.tiddlers[t].isShadow()) {
+		if($tw.utils.hop(this.tiddlers,t) && !this.tiddlers[t].isSystem() && (!excludeTag || !this.tiddlers[t].hasTag(excludeTag))) {
 			tiddlers.push(this.tiddlers[t]);
 		}
 	}
@@ -9741,9 +9741,7 @@ exports.getTiddlers = function(sortField,excludeTag) {
 		}
 	});
 	for(t=0; t<tiddlers.length; t++) {
-		if(!excludeTag || !tiddlers[t].hasTag(excludeTag)) {
-			titles.push(tiddlers[t].fields.title);
-		}
+		titles.push(tiddlers[t].fields.title);
 	}
 	return titles;
 };
@@ -9805,10 +9803,10 @@ exports.getOrphanTitles = function() {
 	return []; // Todo
 };
 
-exports.getShadowTitles = function() {
+exports.getSystemTitles = function() {
 	var titles = [];
 	for(var title in this.tiddlers) {
-		if(this.tiddlers[title].isShadow()) {
+		if(this.tiddlers[title].isSystem()) {
 			titles.push(title);
 		}
 	}
@@ -10241,7 +10239,7 @@ $tw.config = $tw.config || {};
 $tw.config.pluginsPath = "../plugins/";
 $tw.config.wikiInfo = $tw.config.wikiInfo || "./tiddlywiki.info";
 $tw.config.wikiPluginsSubDir = $tw.config.wikiPluginsSubDir || "./plugins";
-$tw.config.wikiShadowsSubDir = $tw.config.wikiShadowsSubDir || "./wiki";
+$tw.config.wikiSystemSubDir = $tw.config.wikiSystemSubDir || "./wiki";
 $tw.config.wikiTiddlersSubDir = $tw.config.wikiTiddlersSubDir || "./tiddlers";
 
 $tw.config.jsModuleHeaderRegExpString = "^\\/\\*\\\\\\n((?:^[^\\n]*\\n)+?)(^\\\\\\*\\/$\\n?)";
@@ -11064,7 +11062,7 @@ $tw.loadTiddlers = function() {
 		"bootKernel",
 		"styleArea",
 		"storeArea",
-		"shadowArea"
+		"systemArea"
 	];
 	for(var t=0; t<containerIds.length; t++) {
 		$tw.wiki.addTiddlers($tw.wiki.deserializeTiddlers("(DOM)",document.getElementById(containerIds[t])));
@@ -11233,7 +11231,7 @@ $tw.loadTiddlers = function() {
 	// On the server, we load tiddlers from specified folders
 	var folders = [
 		$tw.boot.bootPath,
-		path.resolve($tw.boot.wikiPath,$tw.config.wikiShadowsSubDir),
+		path.resolve($tw.boot.wikiPath,$tw.config.wikiSystemSubDir),
 		path.resolve($tw.boot.wikiPath,$tw.config.wikiTiddlersSubDir)
 	];
 	for(var t=0; t<folders.length; t++) {
