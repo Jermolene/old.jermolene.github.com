@@ -1763,7 +1763,8 @@ Command.prototype.execute = function() {
 		port = this.params[0] || "8080",
 		rootTiddler = this.params[1] || "$:/core/templates/tiddlywiki5.template.html",
 		renderType = this.params[2] || "text/plain",
-		serveType = this.params[3] || "text/html";
+		serveType = this.params[3] || "text/html",
+		prefix;
 	http.createServer(function(request, response) {
 		var requestPath = url.parse(request.url).pathname,
 			text;
@@ -1774,7 +1775,7 @@ Command.prototype.execute = function() {
 					data += chunk.toString();
 				});
 				request.on("end",function() {
-					var prefix = "/recipes/default/tiddlers/";
+					prefix = "/recipes/default/tiddlers/";
 					if(requestPath.indexOf(prefix) === 0) {
 						var title = decodeURIComponent(requestPath.substr(prefix.length)),
 							fields = JSON.parse(data);
@@ -1794,7 +1795,7 @@ Command.prototype.execute = function() {
 							delete fields["revision"];
 						}
 console.log("PUT tiddler",title,fields)
-//						self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
+						self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
 						var changeCount = self.commander.wiki.getChangeCount(title).toString();
 						response.writeHead(204, "OK",{
 							Etag: "\"default/" + title + "/" + changeCount + ":\""
@@ -1807,11 +1808,11 @@ console.log("PUT tiddler",title,fields)
 				});
 				break;
 			case "DELETE":
-				var prefix = "/bags/default/tiddlers/";
+				prefix = "/bags/default/tiddlers/";
 				if(requestPath.indexOf(prefix) === 0) {
 					var title = decodeURIComponent(requestPath.substr(prefix.length));
 console.log("DELETE tiddler",title)
-//					self.commander.wiki.deleteTiddler(decodeURIComponent(title));
+					self.commander.wiki.deleteTiddler(decodeURIComponent(title));
 					response.writeHead(204, "OK");
 					response.end();
 				} else {
@@ -1850,9 +1851,39 @@ console.log("DELETE tiddler",title)
 					text = JSON.stringify(tiddlers);
 					response.end(text,"utf8");
 				} else {
-					response.writeHead(404);
-					response.end();
+					prefix = "/recipes/default/tiddlers/";
+					if(requestPath.indexOf(prefix) === 0) {
+						var title = decodeURIComponent(requestPath.substr(prefix.length)),
+							tiddler = $tw.wiki.getTiddler(title),
+							tiddlerFields = {},
+							knownFields = [
+								"bag", "created", "creator", "modified", "modifier", "permissions", "recipe", "revision", "tags", "text", "title", "type", "uri"
+							];
+						if(tiddler) {
+							$tw.utils.each(tiddler.fields,function(field,name) {
+								var value = tiddler.getFieldString(name)
+								if(knownFields.indexOf(name) !== -1) {
+									tiddlerFields[name] = value;
+								} else {
+									tiddlerFields.fields = tiddlerFields.fields || {};
+									tiddlerFields.fields[name] = value;
+								}
+							});
+							response.writeHead(200, {"Content-Type": "application/json"});
+							response.end(JSON.stringify(tiddlerFields),"utf8");
+						} else {
+							response.writeHead(404);
+							response.end();
+						}
+					} else {
+						response.writeHead(404);
+						response.end();
+					}
 				}
+				break;
+			case "POST":
+				response.writeHead(404);
+				response.end();
 				break;
 			}
 	}).listen(port);
@@ -5595,9 +5626,10 @@ exports.startup = function() {
 	$tw.modules.applyMethods("tiddlermethod",$tw.Tiddler.prototype);
 	$tw.modules.applyMethods("wikimethod",$tw.Wiki.prototype);
 	$tw.modules.applyMethods("tiddlerdeserializer",$tw.Wiki.tiddlerDeserializerModules);
-	// Set up the wiki store
+	// Set up the parsers
 	$tw.wiki.initParsers();
-	$tw.wiki.initSyncers();
+	// Set up the syncer object
+	$tw.syncer = new $tw.Syncer({wiki: $tw.wiki});
 	// Set up the command modules
 	$tw.Commander.initCommands();
 	// Get the default tiddlers
@@ -5631,13 +5663,6 @@ exports.startup = function() {
 		document.addEventListener("tw-modal",function(event) {
 			$tw.modal.display(event.param);
 		},false);
-		// Install the syncer message mechanism
-		document.addEventListener("tw-login",function(event) {
-			$tw.wiki.invokeSyncers("handleLoginEvent",event);
-		},false);
-		document.addEventListener("tw-logout",function(event) {
-			$tw.wiki.invokeSyncers("handleLogoutEvent",event);
-		},false);
 		// Install the scroller
 		$tw.pageScroller = new $tw.utils.PageScroller();
 		document.addEventListener("tw-scroll",$tw.pageScroller,false);
@@ -5649,6 +5674,15 @@ exports.startup = function() {
 				downloadType: "text/plain"
 			});
 		},false);
+		// Install syncers
+		$tw.syncers = {};
+		$tw.modules.forEachModuleOfType("syncer",function(title,module) {
+			if(module.name && module.syncer) {
+				$tw.syncers[module.name] = new module.syncer({
+					wiki: $tw.wiki
+				});
+			}
+		});
 		// Install the crypto event handlers
 		document.addEventListener("tw-set-password",function(event) {
 			$tw.passwordPrompt.createPrompt({
@@ -5692,7 +5726,7 @@ exports.startup = function() {
 		var container = document.createElement("div");
 		document.body.insertBefore(container,document.body.firstChild);
 		renderTree.renderInDom(container);
-		$tw.wiki.addEventListener("",function(changes) {
+		$tw.wiki.addEventListener("change",function(changes) {
 			renderTree.refreshInDom(changes);
 		});
 	} else {
@@ -5711,6 +5745,466 @@ exports.startup = function() {
 	}
 
 };
+
+})();
+});
+</script><script data-tiddler-title="$:/core/modules/syncer.js" data-tiddler-type="application/javascript" data-tiddler-module-type="global" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/syncer.js","global",function(module,exports,require) {/*\
+title: $:/core/modules/syncer.js
+type: application/javascript
+module-type: global
+
+The syncer transfers content to and from data sources using syncadaptor modules.
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+/*
+Instantiate the syncer with the following options:
+wiki: wiki to be synced
+*/
+function Syncer(options) {
+	var self = this;
+	this.wiki = options.wiki;
+	// Find a working syncadaptor
+	this.syncadaptor = undefined;
+	$tw.modules.forEachModuleOfType("syncadaptor",function(title,module) {
+		if(!self.syncadaptor && module.adaptorClass) {
+			self.syncadaptor = new module.adaptorClass(self);
+		}
+	});
+	// Only do anything if we've got a syncadaptor
+	if(this.syncadaptor) {
+		this.init();
+	}
+}
+
+/*
+Error handling
+*/
+Syncer.prototype.showError = function(error) {
+	alert("Syncer error: " + error);
+	$tw.utils.log("Syncer error: " + error);
+};
+
+/*
+Message logging
+*/
+Syncer.prototype.log = function(/* arguments */) {
+	var args = Array.prototype.slice.call(arguments,0);
+	args[0] = "Syncer: " + args[0];
+	$tw.utils.log.apply(null,args);
+};
+
+/*
+Constants
+*/
+Syncer.prototype.titleIsLoggedIn = "$:/status/IsLoggedIn";
+Syncer.prototype.titleUserName = "$:/status/UserName";
+Syncer.prototype.taskTimerInterval = 1 * 1000; // Interval for sync timer
+Syncer.prototype.throttleInterval = 1 * 1000; // Defer saving tiddlers if they've changed in the last 1s...
+Syncer.prototype.fallbackInterval = 10 * 1000; // Unless the task is older than 10s
+Syncer.prototype.pollTimerInterval = 60 * 1000; // Interval for polling for changes from the adaptor
+
+/*
+Initialise the syncer
+*/
+Syncer.prototype.init = function() {
+	var self = this;
+	// Hashmap by title of {revision:,changeCount:,adaptorInfo:}
+	this.tiddlerInfo = {};
+	// Record information for known tiddlers
+	this.wiki.forEachTiddler(function(title,tiddler) {
+		if(tiddler.fields["revision"]) {
+			self.tiddlerInfo[title] = {
+				revision: tiddler.fields["revision"],
+				adaptorInfo: self.syncadaptor.getTiddlerInfo(tiddler),
+				changeCount: self.wiki.getChangeCount(title)
+			}
+		}
+	});
+	// Tasks are {type: "load"/"save"/"delete", title:, queueTime:, lastModificationTime:}
+	this.taskQueue = {}; // Hashmap of tasks to be performed
+	this.taskInProgress = {}; // Hash of tasks in progress
+	this.taskTimerId = null; // Timer for task dispatch
+	this.pollTimerId = null; // Timer for polling server
+	// Mark us as not logged in
+	this.wiki.addTiddler({title: this.titleIsLoggedIn,text: "no"});
+	// Listen out for changes to tiddlers
+	this.wiki.addEventListener("change",function(changes) {
+		self.syncToServer(changes);
+	});
+	// Listen out for lazyLoad events
+	this.wiki.addEventListener("lazyLoad",function(title) {
+		self.handleLazyLoadEvent(title);
+	});
+	// Listen our for login/logout/refresh events
+	document.addEventListener("tw-login",function(event) {
+		self.handleLoginEvent(event);
+	},false);
+	document.addEventListener("tw-logout",function(event) {
+		self.handleLogoutEvent(event);
+	},false);
+	document.addEventListener("tw-server-refresh",function(event) {
+		self.handleRefreshEvent(event);
+	},false);
+	// Get the login status
+	this.getStatus(function (err,isLoggedIn) {
+		if(isLoggedIn) {
+			// Do a sync from the server
+			self.syncFromServer();
+		}
+	});
+};
+
+/*
+Save an incoming tiddler in the store, and updates the associated tiddlerInfo
+*/
+Syncer.prototype.storeTiddler = function(tiddlerFields) {
+	// Save the tiddler
+	var tiddler = new $tw.Tiddler(this.wiki.getTiddler(tiddlerFields.title),tiddlerFields);
+	this.wiki.addTiddler(tiddler);
+	// Save the tiddler revision and changeCount details
+	this.tiddlerInfo[tiddlerFields.title] = {
+		revision: tiddlerFields.revision,
+		adaptorInfo: this.syncadaptor.getTiddlerInfo(tiddler),
+		changeCount: this.wiki.getChangeCount(tiddlerFields.title)
+	};
+};
+
+Syncer.prototype.getStatus = function(callback) {
+	var self = this;
+	this.syncadaptor.getStatus(function(err,isLoggedIn,userName) {
+		if(err) {
+			self.showError(err);
+			return;
+		}
+		// Set the various status tiddlers
+		self.wiki.addTiddler({title: self.titleIsLoggedIn,text: isLoggedIn ? "yes" : "no"});
+		if(isLoggedIn) {
+			self.wiki.addTiddler({title: self.titleUserName,text: userName});
+		} else {
+			self.wiki.deleteTiddler(self.titleUserName);
+		}
+		// Invoke the callback
+		if(callback) {
+			callback(err,isLoggedIn,userName);
+		}
+	});
+};
+
+/*
+Synchronise from the server by reading the skinny tiddler list and queuing up loads for any tiddlers that we don't already have up to date
+*/
+Syncer.prototype.syncFromServer = function() {
+	this.log("Retrieving skinny tiddler list");
+	var self = this;
+	if(this.pollTimerId) {
+		clearTimeout(this.pollTimerId);
+		this.pollTimerId = null;
+	}
+	this.syncadaptor.getSkinnyTiddlers(function(err,tiddlers) {
+		// Trigger another sync
+		self.pollTimerId = window.setTimeout(function() {
+			self.pollTimerId = null;
+			self.syncFromServer.call(self);
+		},self.pollTimerInterval);
+		// Check for errors
+		if(err) {
+			self.log("Error retrieving skinny tiddler list:",err);
+			return;
+		}
+		// Process each incoming tiddler
+		for(var t=0; t<tiddlers.length; t++) {
+			// Get the incoming tiddler fields, and the existing tiddler
+			var tiddlerFields = tiddlers[t],
+				incomingRevision = tiddlerFields.revision.toString(),
+				tiddler = self.wiki.getTiddler(tiddlerFields.title),
+				tiddlerInfo = self.tiddlerInfo[tiddlerFields.title],
+				currRevision = tiddlerInfo ? tiddlerInfo.revision : null;
+			// Ignore the incoming tiddler if it's the same as the revision we've already got
+			if(currRevision !== incomingRevision) {
+				// Do a full load if we've already got a fat version of the tiddler
+				if(tiddler && tiddler.fields.text !== undefined) {
+					// Do a full load of this tiddler
+					self.enqueueSyncTask({
+						type: "load",
+						title: tiddlerFields.title
+					});
+				} else {
+					// Load the skinny version of the tiddler
+					self.storeTiddler(tiddlerFields);
+				}
+			}
+		}
+	});
+};
+
+/*
+Synchronise a set of changes to the server
+*/
+Syncer.prototype.syncToServer = function(changes) {
+	var self = this,
+		now = new Date();
+	$tw.utils.each(changes,function(change,title,object) {
+		// Queue a task to sync this tiddler
+		self.enqueueSyncTask({
+			type: change.deleted ? "delete" : "save",
+			title: title
+		});
+	});
+};
+
+/*
+Lazily load a skinny tiddler if we can
+*/
+Syncer.prototype.handleLazyLoadEvent = function(title) {
+	// Queue up a sync task to load this tiddler
+	this.enqueueSyncTask({
+		type: "load",
+		title: title
+	});
+};
+
+/*
+Dispay a password prompt and allow the user to login
+*/
+Syncer.prototype.handleLoginEvent = function() {
+	var self = this;
+	this.getStatus(function(err,isLoggedIn,userName) {
+		if(!isLoggedIn) {
+			$tw.passwordPrompt.createPrompt({
+				serviceName: "Login to TiddlySpace",
+				callback: function(data) {
+					self.login(data.username,data.password,function(err,isLoggedIn) {
+						self.syncFromServer();
+					});
+					return true; // Get rid of the password prompt
+				}
+			});
+		}
+	});
+};
+
+/*
+Attempt to login to TiddlyWeb.
+	username: username
+	password: password
+	callback: invoked with arguments (err,isLoggedIn)
+*/
+Syncer.prototype.login = function(username,password,callback) {
+	this.log("Attempting to login as",username);
+	var self = this;
+	this.syncadaptor.login(username,password,function(err) {
+		if(err) {
+			return callback(err);
+		}
+		self.getStatus(function(err,isLoggedIn,userName) {
+			if(callback) {
+				callback(null,isLoggedIn);
+			}
+		});
+	});
+};
+
+/*
+Attempt to log out of TiddlyWeb
+*/
+Syncer.prototype.handleLogoutEvent = function() {
+	this.log("Attempting to logout");
+	var self = this;
+	this.syncadaptor.logout(function(err) {
+		if(err) {
+			self.showError(err);
+		} else {
+			self.getStatus();
+		}
+	});
+};
+
+/*
+Immediately refresh from the server
+*/
+Syncer.prototype.handleRefreshEvent = function() {
+	this.syncFromServer();
+};
+
+/*
+Queue up a sync task. If there is already a pending task for the tiddler, just update the last modification time
+*/
+Syncer.prototype.enqueueSyncTask = function(task) {
+	var self = this,
+		now = new Date();
+	// Set the timestamps on this task
+	task.queueTime = now;
+	task.lastModificationTime = now;
+	// Fill in some tiddlerInfo if the tiddler is one we haven't seen before
+	if(!$tw.utils.hop(this.tiddlerInfo,task.title)) {
+		this.tiddlerInfo[task.title] = {
+			revision: "0",
+			adaptorInfo: {},
+			changeCount: -1
+		}
+	}
+	// Bail if this is a save and the tiddler is already at the changeCount that the server has
+	if(task.type === "save" && this.wiki.getChangeCount(task.title) <= this.tiddlerInfo[task.title].changeCount) {
+		return;
+	}
+	// Check if this tiddler is already in the queue
+	if($tw.utils.hop(this.taskQueue,task.title)) {
+		this.log("Re-queueing up sync task with type:",task.type,"title:",task.title);
+		var existingTask = this.taskQueue[task.title];
+		// If so, just update the last modification time
+		existingTask.lastModificationTime = task.lastModificationTime;
+		// If the new task is a save then we upgrade the existing task to a save. Thus a pending load is turned into a save if the tiddler changes locally in the meantime. But a pending save is not modified to become a load
+		if(task.type === "save" || task.type === "delete") {
+			existingTask.type = task.type;
+		}
+	} else {
+		this.log("Queuing up sync task with type:",task.type,"title:",task.title);
+		// If it is not in the queue, insert it
+		this.taskQueue[task.title] = task;
+	}
+	// Process the queue
+	$tw.utils.nextTick(function() {self.processTaskQueue.call(self);});
+};
+
+/*
+Return the number of tasks in progress
+*/
+Syncer.prototype.numTasksInProgress = function() {
+	return $tw.utils.count(this.taskInProgress);
+};
+
+/*
+Return the number of tasks in the queue
+*/
+Syncer.prototype.numTasksInQueue = function() {
+	return $tw.utils.count(this.taskQueue);
+};
+
+/*
+Trigger a timeout if one isn't already outstanding
+*/
+Syncer.prototype.triggerTimeout = function() {
+	var self = this;
+	if(!this.taskTimerId) {
+		this.taskTimerId = window.setTimeout(function() {
+			self.taskTimerId = null;
+			self.processTaskQueue.call(self);
+		},self.taskTimerInterval);
+	}
+};
+
+/*
+Process the task queue, performing the next task if appropriate
+*/
+Syncer.prototype.processTaskQueue = function() {
+	var self = this;
+	// Only process a task if we're not already performing a task. If we are already performing a task then we'll dispatch the next one when it completes
+	if(this.numTasksInProgress() === 0) {
+		// Choose the next task to perform
+		var task = this.chooseNextTask();
+		// Perform the task if we had one
+		if(task) {
+			// Remove the task from the queue and add it to the in progress list
+			delete this.taskQueue[task.title];
+			this.taskInProgress[task.title] = task;
+			// Dispatch the task
+			this.dispatchTask(task,function(err) {
+				// Mark that this task is no longer in progress
+				delete self.taskInProgress[task.title];
+				// Process the next task
+				self.processTaskQueue.call(self);
+			});
+		} else {
+			// Make sure we've set a time if there wasn't a task to perform, but we've still got tasks in the queue
+			if(this.numTasksInQueue() > 0) {
+				this.triggerTimeout();
+			}
+		}
+	}
+};
+
+/*
+Choose the next applicable task
+*/
+Syncer.prototype.chooseNextTask = function() {
+	var self = this,
+		candidateTask = null,
+		now = new Date();
+	// Select the best candidate task
+	$tw.utils.each(this.taskQueue,function(task,title) {
+		// Exclude the task if there's one of the same name in progress
+		if($tw.utils.hop(self.taskInProgress,title)) {
+			return;
+		}
+		// Exclude the task if it is a save and the tiddler has been modified recently, but not hit the fallback time
+		if(task.type === "save" && (now - task.lastModificationTime) < self.throttleInterval &&
+			(now - task.queueTime) < self.fallbackInterval) {
+			return;	
+		}
+		// Exclude the task if it is newer than the current best candidate
+		if(candidateTask && candidateTask.queueTime < task.queueTime) {
+			return;
+		}
+		// Now this is our best candidate
+		candidateTask = task;
+	});
+	return candidateTask;
+};
+
+/*
+Dispatch a task and invoke the callback
+*/
+Syncer.prototype.dispatchTask = function(task,callback) {
+	var self = this;
+	if(task.type === "save") {
+		var changeCount = this.wiki.getChangeCount(task.title),
+			tiddler = this.wiki.getTiddler(task.title);
+		this.log("Dispatching 'save' task:",task.title);
+		this.syncadaptor.saveTiddler(tiddler,function(err,adaptorInfo,revision) {
+			if(err) {
+				return callback(err);
+			}
+			// Adjust the info stored about this tiddler
+			self.tiddlerInfo[task.title] = {
+				changeCount: changeCount,
+				adaptorInfo: adaptorInfo,
+				revision: revision
+			};
+			// Invoke the callback
+			callback(null);
+		});
+	} else if(task.type === "load") {
+		// Load the tiddler
+		this.log("Dispatching 'load' task:",task.title);
+		this.syncadaptor.loadTiddler(task.title,function(err,tiddlerFields) {
+			if(err) {
+				return callback(err);
+			}
+			// Store the tiddler
+			self.storeTiddler(tiddlerFields);
+			// Invoke the callback
+			callback(null);
+		});
+	} else if(task.type === "delete") {
+		// Delete the tiddler
+		this.log("Dispatching 'delete' task:",task.title);
+		this.syncadaptor.deleteTiddler(task.title,function(err) {
+			if(err) {
+				return callback(err);
+			}
+			// Invoke the callback
+			callback(null);
+		});
+	}
+};
+
+exports.Syncer = Syncer;
 
 })();
 });
@@ -6110,6 +6604,72 @@ exports.dispatchCustomEvent = function(target,name,members) {
 
 })();
 });
+</script><script data-tiddler-title="$:/core/modules/utils/dom/http.js" data-tiddler-type="application/javascript" data-tiddler-module-type="utils" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/utils/dom/http.js","utils",function(module,exports,require) {/*\
+title: $:/core/modules/utils/dom/http.js
+type: application/javascript
+module-type: utils
+
+Browser HTTP support
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+/*
+A quick and dirty HTTP function; to be refactored later. Options are:
+	url: URL to retrieve
+	type: GET, PUT, POST etc
+	callback: function invoked with (err,data)
+*/
+exports.httpRequest = function(options) {
+	var type = options.type || "GET",
+		headers = options.headers || {accept: "application/json"},
+		request = new XMLHttpRequest(),
+		data = "",
+		f,results;
+	// Massage the data hashmap into a string
+	if(options.data) {
+		if(typeof options.data === "string") { // Already a string
+			data = options.data;
+		} else { // A hashmap of strings
+			results = [];
+			$tw.utils.each(options.data,function(dataItem,dataItemTitle) {
+				results.push(dataItemTitle + "=" + encodeURIComponent(dataItem));
+			});
+			data = results.join("&");
+		}
+	}
+	// Set up the state change handler
+	request.onreadystatechange = function() {
+		if(this.readyState === 4) {
+			if(this.status === 200 || this.status === 204) {
+				// Success!
+				options.callback(null,this.responseText,this);
+				return;
+			}
+		// Something went wrong
+		options.callback(new Error("XMLHttpRequest error: " + this.status));
+		}
+	};
+	// Make the request
+	request.open(type,options.url,true);
+	if(headers) {
+		$tw.utils.each(headers,function(header,headerTitle,object) {
+			request.setRequestHeader(headerTitle,header);
+		});
+	}
+	if(data && !$tw.utils.hop(headers,"Content-type")) {
+		request.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=UTF-8");
+	}
+	request.send(data);
+	return request;
+};
+
+})();
+});
 </script><script data-tiddler-title="$:/core/modules/utils/dom/modal.js" data-tiddler-type="application/javascript" data-tiddler-module-type="utils" type="text/javascript" data-module="yes">$tw.modules.define("$:/core/modules/utils/dom/modal.js","utils",function(module,exports,require) {/*\
 title: $:/core/modules/utils/dom/modal.js
 type: application/javascript
@@ -6181,7 +6741,7 @@ Modal.prototype.display = function(title,options) {
 		headerRenderTree = new $tw.WikiRenderTree(headerParser,{wiki: $tw.wiki});
 	headerRenderTree.execute({tiddlerTitle: title});
 	headerRenderTree.renderInDom(headerTitle);
-	this.wiki.addEventListener("",function(changes) {
+	this.wiki.addEventListener("change",function(changes) {
 		headerRenderTree.refreshInDom(changes);
 	});
 	// Render the body of the message
@@ -6189,7 +6749,7 @@ Modal.prototype.display = function(title,options) {
 		bodyRenderTree = new $tw.WikiRenderTree(bodyParser,{wiki: $tw.wiki});
 	bodyRenderTree.execute({tiddlerTitle: title});
 	bodyRenderTree.renderInDom(modalBody);
-	this.wiki.addEventListener("",function(changes) {
+	this.wiki.addEventListener("change",function(changes) {
 		bodyRenderTree.refreshInDom(changes);
 	});
 	// Setup the link if present
@@ -6217,7 +6777,7 @@ Modal.prototype.display = function(title,options) {
 		footerRenderTree = new $tw.WikiRenderTree(footerParser,{wiki: $tw.wiki});
 	footerRenderTree.execute({tiddlerTitle: title});
 	footerRenderTree.renderInDom(modalFooterButtons);
-	this.wiki.addEventListener("",function(changes) {
+	this.wiki.addEventListener("change",function(changes) {
 		footerRenderTree.refreshInDom(changes);
 	});
 	// Add the close event handler
@@ -9553,7 +10113,7 @@ Extension methods for the $tw.Wiki object
 
 Adds the following properties to the wiki object:
 
-* `eventListeners` is an array of {filter: <string>, listener: fn}
+* `eventListeners` is a hashmap by type of arrays of listener functions
 * `changedTiddlers` is a hashmap describing changes to named tiddlers since wiki change events were
 last dispatched. Each entry is a hashmap containing two fields:
 	modified: true/false
@@ -9631,19 +10191,29 @@ exports.deleteTextReference = function(textRef,currTiddlerTitle) {
 	}
 };
 
-exports.addEventListener = function(filter,listener) {
-	this.eventListeners = this.eventListeners || [];
-	this.eventListeners.push({
-		filter: filter,
-		listener: listener
-	});	
+exports.addEventListener = function(type,listener) {
+	this.eventListeners = this.eventListeners || {};
+	this.eventListeners[type] = this.eventListeners[type]  || [];
+	this.eventListeners[type].push(listener);	
 };
 
-exports.removeEventListener = function(filter,listener) {
-	for(var c=this.eventListeners.length-1; c>=0; c--) {
-		var l = this.eventListeners[c];
-		if(l.filter === filter && l.listener === listener) {
-			this.eventListeners.splice(c,1);
+exports.removeEventListener = function(type,listener) {
+	var listeners = this.eventListeners[type];
+	if(listeners) {
+		var p = listeners.indexOf(listener);
+		if(p !== -1) {
+			listeners.splice(p,1);
+		}
+	}
+};
+
+exports.dispatchEvent = function(type /*, args */) {
+	var args = Array.prototype.slice.call(arguments,1),
+		listeners = this.eventListeners[type];
+	if(listeners) {
+		for(var p=0; p<listeners.length; p++) {
+			var listener = listeners[p];
+			listener.apply(listener,args);
 		}
 	}
 };
@@ -9670,15 +10240,12 @@ exports.enqueueTiddlerEvent = function(title,isDeleted) {
 	// Trigger events
 	this.eventListeners = this.eventListeners || [];
 	if(!this.eventsTriggered) {
-		var me = this;
+		var self = this;
 		$tw.utils.nextTick(function() {
-			var changes = me.changedTiddlers;
-			me.changedTiddlers = {};
-			me.eventsTriggered = false;
-			for(var e=0; e<me.eventListeners.length; e++) {
-				var listener = me.eventListeners[e];
-				listener.listener(changes);
-			}
+			var changes = self.changedTiddlers;
+			self.changedTiddlers = {};
+			self.eventsTriggered = false;
+			self.dispatchEvent("change",changes);
 		});
 		this.eventsTriggered = true;
 	}
@@ -10060,7 +10627,7 @@ Options available:
 */
 exports.search = function(text,options) {
 	options = options || {};
-	var me = this,t;
+	var self = this,t;
 	// Convert the search string into a regexp for each term
 	var terms, searchTermsRegExps,
 		flags = options.caseSensitive ? "" : "i";
@@ -10081,7 +10648,7 @@ exports.search = function(text,options) {
 	}
 	// Function to check a given tiddler for the search term
 	var searchTiddler = function(title) {
-		var tiddler = me.getTiddler(title);
+		var tiddler = self.getTiddler(title);
 		if(!tiddler) {
 			return !!options.invert;
 		}
@@ -10127,34 +10694,6 @@ exports.search = function(text,options) {
 };
 
 /*
-Initialise syncers
-*/
-exports.initSyncers = function() {
-	this.syncers = {};
-	var self = this;
-	$tw.modules.forEachModuleOfType("syncer",function(title,module) {
-		if(module.name && module.syncer) {
-			self.syncers[module.name] = new module.syncer({
-				wiki: self
-			});
-		}
-	});
-};
-
-/*
-Invoke all the active syncers
-*/
-exports.invokeSyncers = function(method /* ,args */) {
-	var args = Array.prototype.slice.call(arguments,1);
-	for(var name in this.syncers) {
-		var syncer = this.syncers[name];
-		if(syncer[method]) {
-			syncer[method].apply(syncer,args);
-		}
-	}
-};
-
-/*
 Trigger a load for a tiddler if it is skinny. Returns the text, or undefined if the tiddler is missing, null if the tiddler is being lazily loaded.
 */
 exports.getTiddlerText = function(title,defaultText) {
@@ -10167,8 +10706,8 @@ exports.getTiddlerText = function(title,defaultText) {
 		// Just return the text if we've got it
 		return tiddler.fields.text;
 	} else {
-		// Ask all the syncers to load the tiddler if they can
-		this.invokeSyncers("lazyLoad",title,tiddler);
+		// Tell any listeners about the need to lazily load this tiddler
+		this.dispatchEvent("lazyLoad",title);
 		// Indicate that the text is being loaded
 		return null;
 	}
