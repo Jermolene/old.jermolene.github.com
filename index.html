@@ -408,7 +408,7 @@ a.tw-tiddlylink-missing {
 
 .config-area {
 	max-width: 50em;
-	padding: 1em;
+	padding: 1em 3em 3em 3em;
 	border: 1px solid #aaa;
 	background: #ddd;
 	&lt;&lt;box-shadow &quot;inset 1px 1px 4px rgba(0,0,0,0.8)&quot;&gt;&gt;
@@ -2103,6 +2103,10 @@ To try out TiddlyWiki5 in the Sky for TiddlyWeb:
 node tiddlywiki.js --verbose --load mywiki.html --savetiddler ReadMe ./readme.html
 ```
 
+In order to use TiddlyWiki5 on the command line you must first install node.js:
+
+http://nodejs.org/
+
 !!Usage
 
 Running `tiddlywiki.js` from the command line boots the TiddlyWiki kernel, loads the core plugins and establishes an empty wiki store. It then sequentially processes the command line arguments from left to right. The arguments are separated with spaces.
@@ -2123,7 +2127,7 @@ For trying TiddlyWiki5 out under node.js, several batch files are provided:
 
 This batch file builds several variants of TiddlyWiki5 for deployment on tiddlywiki.com.
 
-By default, files are output to a folder called `jermolene.github.com` in the same directory as the main TiddlyWiki5 directory. For example:
+By default, files are output to a folder called `jermolene.github.com` in the same directory as the main TiddlyWiki5 directory. You will need to create the directory before running the batch file. For example:
 
 ```
 * /TiddlyWork/ - Directory for working with TiddlyWiki5
