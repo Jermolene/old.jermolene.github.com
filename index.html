@@ -2100,8 +2100,42 @@ node tiddlywiki.js [&lt;wikipath&gt;] [--&lt;command&gt; [&lt;arg&gt;[,&lt;arg&g
 
 For trying TiddlyWiki5 out under node.js, several batch files are provided:
 
-* `bld.sh` builds the new TiddlyWiki 5 HTML file
-* `2bld.sh` builds TiddlyWiki 2.6.5 from its original source
+!!! `bld.sh` builds tw5.com
+
+This batch file builds several variants of TiddlyWiki5 for deployment on tiddlywiki.com.
+
+By default, files are output to a folder called `jermolene.github.com` in the same directory as the main TiddlyWiki5 directory. For example:
+
+```
+* /TiddlyWork/ - Directory for working with TiddlyWiki5
+* /TiddlyWork/TiddlyWiki5/ - Directory containing the TiddlyWiki5 repo from GitHub
+* /TiddlyWork/jermolene.github.com/ - Directory for output files
+```
+
+You can override the build output directory by defining the environment variable `TW5_BUILD_OUTPUT`. The easiest way to do this is to create a personal batch file to invoke TiddlyWik5i that first sets the environment variable and then invokes `bld.sh`.
+
+The files output by `bld.sh` are:
+
+* `readme.md` main readme file, output to the TiddlyWiki5 directory
+* `index.html` TiddlyWiki5 standalone HTML file with content from the `tw5.com` edition
+* `empty.html` TiddlyWiki5 standalone HTML file with no content
+* `encrypted.html` TiddlyWiki5 standalone HTML file encrypted with the password `password`
+* `static.html` static HTML version of the DefaultTiddlers of the `tw5.com` edition
+* `static/*.html` and `static/static.css` static HTML versions of individual tiddlers
+
+!!! `serve.sh` serves tw5.com
+
+This batch file starts TiddlyWiki5 running as an HTTP server with the content from the `clientserver` edition. By default, the script serves on port 8080.
+
+To experiment with this configuration, run the script and then visit `http://0.0.0.0:8080` in a browser. Currently changes do get synced to the server but the server doesn't yet save the changes back to the file system. Thus the best way to experiment with this edition is by visiting it in two different browsers, exploring how the changes made in one browser propogate to the other.
+
+!!! `wbld.sh` builds TiddlyWiki5 for TiddlyWeb
+
+This batch file builds and deploys the code for [[TiddlyWiki5 in the Sky for TiddlyWeb]]. If you want to experiment with your own builds of TiddlyWiki5 for TiddlyWeb you could use this batch file as a base.
+
+!!! `2bld.sh` builds TiddlyWiki 2.6.5
+
+This batch file builds TiddlyWiki 2.6.5 from the original source and then uses the `opendiff` program to display the differences between them.
 
 !!Commands
 
@@ -2490,7 +2524,7 @@ Returns an object storing any additional information required by the adaptor.
 Retrieves status information from the server.
 
 |!Parameter |!Description |
-|callback |Callback function invoked with parameters `err,isLoggedIn,userName` |
+|callback |Callback function invoked with parameters `err,isLoggedIn,username` |
 
 !! `login(username,password,callback)`
 
@@ -3667,151 +3701,224 @@ Serve tiddlers over http
 /*global $tw: false */
 "use strict";
 
+if(!$tw.browser) {
+	var util = require("util"),
+		fs = require("fs"),
+		url = require("url"),
+		path = require("path"),
+		http = require("http");	
+}
+
 exports.info = {
 	name: "server",
 	synchronous: true
 };
 
-var Command = function(params,commander,callback) {
-	this.params = params;
-	this.commander = commander;
-	this.callback = callback;
+/*
+A simple HTTP server with regexp-based routes
+*/
+function SimpleServer(options) {
+	this.routes = options.routes || [];
+	this.wiki = options.wiki;
+	this.variables = options.variables || {};
+}
+
+SimpleServer.prototype.set = function(obj) {
+	var self = this;
+	$tw.utils.each(obj,function(value,name) {
+		self.variables[name] = value;
+	});
 };
 
-Command.prototype.execute = function() {
-	var self = this,
-		util = require("util"),
-		fs = require("fs"),
-		url = require("url"),
-		path = require("path"),
-		http = require("http"),
-		port = this.params[0] || "8080",
-		rootTiddler = this.params[1] || "$:/core/templates/tiddlywiki5.template.html",
-		renderType = this.params[2] || "text/plain",
-		serveType = this.params[3] || "text/html",
-		prefix;
+SimpleServer.prototype.get = function(name) {
+	return this.variables[name];
+};
+
+SimpleServer.prototype.addRoute = function(route) {
+	this.routes.push(route);
+};
+
+SimpleServer.prototype.listen = function(port) {
+	var self = this;
 	http.createServer(function(request, response) {
-		var requestPath = url.parse(request.url).pathname,
-			text;
+		// Compose the state object
+		var state = {};
+		state.wiki = self.wiki;
+		state.server = self;
+		state.urlInfo = url.parse(request.url);
+		// Find the route that matches this path
+		var route;
+		for(var t=0; t<self.routes.length; t++) {
+			var potentialRoute = self.routes[t],
+				pathRegExp = potentialRoute.path,
+				match = potentialRoute.path.exec(state.urlInfo.pathname);
+			if(request.method === potentialRoute.method && match) {
+				state.params = [];
+				for(var p=1; p<match.length; p++) {
+					state.params.push(match[p]);
+				}
+				route = potentialRoute;
+				break;
+			}
+		}
+		// Return a 404 if we didn't find a route
+		if(!route) {
+			response.writeHead(404);
+			response.end();
+			return;
+		}
+		// Dispatch the appropriate method
 		switch(request.method) {
+			case "GET": // Intentional fall-through
+			case "DELETE":
+				route.handler(request,response,state);
+				break;
 			case "PUT":
 				var data = "";
 				request.on("data",function(chunk) {
 					data += chunk.toString();
 				});
 				request.on("end",function() {
-					prefix = "/recipes/default/tiddlers/";
-					if(requestPath.indexOf(prefix) === 0) {
-						var title = decodeURIComponent(requestPath.substr(prefix.length)),
-							fields = JSON.parse(data);
-						// Use the title from the PUT URL if we don't have one
-						if(!fields.title) {
-							fields.title = title;
-						}
-						// Pull up any subfields in the `fields` object
-						if(fields.fields) {
-							$tw.utils.each(fields.fields,function(field,name) {
-								fields[name] = field;
-							});
-							delete fields.fields;
-						}
-						// Remove any revision field
-						if(fields["revision"]) {
-							delete fields["revision"];
-						}
-console.log("PUT tiddler",title,fields)
-						self.commander.wiki.addTiddler(new $tw.Tiddler(JSON.parse(data),{title: title}));
-						var changeCount = self.commander.wiki.getChangeCount(title).toString();
-						response.writeHead(204, "OK",{
-							Etag: "\"default/" + title + "/" + changeCount + ":\""
-						});
-						response.end();
-					} else {
-						response.writeHead(404);
-						response.end();
-					}
+					state.data = data;
+					route.handler(request,response,state);
 				});
 				break;
-			case "DELETE":
-				prefix = "/bags/default/tiddlers/";
-				if(requestPath.indexOf(prefix) === 0) {
-					var title = decodeURIComponent(requestPath.substr(prefix.length));
+		}
+	}).listen(port);
+};
+
+var Command = function(params,commander,callback) {
+	this.params = params;
+	this.commander = commander;
+	this.callback = callback;
+	// Set up server
+	this.server = new SimpleServer({
+		wiki: this.commander.wiki
+	});
+	// Add route handlers
+	this.server.addRoute({
+		method: "PUT",
+		path: /^\/recipes\/default\/tiddlers\/(.+)$/,
+		handler: function(request,response,state) {
+			var title = decodeURIComponent(state.params[0]),
+				fields = JSON.parse(state.data);
+			// Pull up any subfields in the `fields` object
+			if(fields.fields) {
+				$tw.utils.each(fields.fields,function(field,name) {
+					fields[name] = field;
+				});
+				delete fields.fields;
+			}
+			// Remove any revision field
+			if(fields["revision"]) {
+				delete fields["revision"];
+			}
+console.log("PUT tiddler",title,fields)
+			state.wiki.addTiddler(new $tw.Tiddler(fields,{title: title}));
+			var changeCount = state.wiki.getChangeCount(title).toString();
+			response.writeHead(204, "OK",{
+				Etag: "\"default/" + title + "/" + changeCount + ":\""
+			});
+			response.end();
+		}
+	});
+	this.server.addRoute({
+		method: "DELETE",
+		path: /^\/bags\/default\/tiddlers\/(.+)$/,
+		handler: function(request,response,state) {
+			var title = decodeURIComponent(state.params[0]);
 console.log("DELETE tiddler",title)
-					self.commander.wiki.deleteTiddler(decodeURIComponent(title));
-					response.writeHead(204, "OK");
-					response.end();
-				} else {
-					response.writeHead(404);
-					response.end();
-				}
-				break;
-			case "GET":
-				if(requestPath === "/") {
-					response.writeHead(200, {"Content-Type": serveType});
-					text = self.commander.wiki.renderTiddler(renderType,rootTiddler);
-					response.end(text,"utf8");
-				} else if(requestPath === "/status") {
-					response.writeHead(200, {"Content-Type": "application/json"});
-					text = JSON.stringify({
-						username: "ANONYMOUS",
-						space: {
-							recipe: "default"
-						},
-						tiddlywiki_version: $tw.version
-					});
-					response.end(text,"utf8");
-				} else if(requestPath === "/recipes/default/tiddlers.json") {
-					response.writeHead(200, {"Content-Type": "application/json"});
-					var tiddlers = [];
-					$tw.wiki.forEachTiddler("title",function(title,tiddler) {
-						var tiddlerFields = {};
-						$tw.utils.each(tiddler.fields,function(field,name) {
-							if(name !== "text") {
-								tiddlerFields[name] = tiddler.getFieldString(name);
-							}
-						});
-						tiddlerFields["revision"] = $tw.wiki.getChangeCount(title);
-						tiddlers.push(tiddlerFields);
-					});
-					text = JSON.stringify(tiddlers);
-					response.end(text,"utf8");
-				} else {
-					prefix = "/recipes/default/tiddlers/";
-					if(requestPath.indexOf(prefix) === 0) {
-						var title = decodeURIComponent(requestPath.substr(prefix.length)),
-							tiddler = $tw.wiki.getTiddler(title),
-							tiddlerFields = {},
-							knownFields = [
-								"bag", "created", "creator", "modified", "modifier", "permissions", "recipe", "revision", "tags", "text", "title", "type", "uri"
-							];
-						if(tiddler) {
-							$tw.utils.each(tiddler.fields,function(field,name) {
-								var value = tiddler.getFieldString(name)
-								if(knownFields.indexOf(name) !== -1) {
-									tiddlerFields[name] = value;
-								} else {
-									tiddlerFields.fields = tiddlerFields.fields || {};
-									tiddlerFields.fields[name] = value;
-								}
-							});
-							response.writeHead(200, {"Content-Type": "application/json"});
-							response.end(JSON.stringify(tiddlerFields),"utf8");
-						} else {
-							response.writeHead(404);
-							response.end();
-						}
-					} else {
-						response.writeHead(404);
-						response.end();
+			state.wiki.deleteTiddler(title);
+			response.writeHead(204, "OK");
+			response.end();
+		}
+	});
+	this.server.addRoute({
+		method: "GET",
+		path: /^\/$/,
+		handler: function(request,response,state) {
+			response.writeHead(200, {"Content-Type": state.server.get("serveType")});
+			var text = state.wiki.renderTiddler(state.server.get("renderType"),state.server.get("rootTiddler"));
+			response.end(text,"utf8");
+		}
+	});
+	this.server.addRoute({
+		method: "GET",
+		path: /^\/status$/,
+		handler: function(request,response,state) {
+			response.writeHead(200, {"Content-Type": "application/json"});
+			var text = JSON.stringify({
+				username: "ANONYMOUS",
+				space: {
+					recipe: "default"
+				},
+				tiddlywiki_version: $tw.version
+			});
+			response.end(text,"utf8");
+		}
+	});
+	this.server.addRoute({
+		method: "GET",
+		path: /^\/recipes\/default\/tiddlers.json$/,
+		handler: function(request,response,state) {
+			response.writeHead(200, {"Content-Type": "application/json"});
+			var tiddlers = [];
+			state.wiki.forEachTiddler("title",function(title,tiddler) {
+				var tiddlerFields = {};
+				$tw.utils.each(tiddler.fields,function(field,name) {
+					if(name !== "text") {
+						tiddlerFields[name] = tiddler.getFieldString(name);
 					}
-				}
-				break;
-			case "POST":
+				});
+				tiddlerFields["revision"] = state.wiki.getChangeCount(title);
+				tiddlers.push(tiddlerFields);
+			});
+			var text = JSON.stringify(tiddlers);
+			response.end(text,"utf8");
+		}
+	});
+	this.server.addRoute({
+		method: "GET",
+		path: /^\/recipes\/default\/tiddlers\/(.+)$/,
+		handler: function(request,response,state) {
+			var title = decodeURIComponent(state.params[0]),
+				tiddler = state.wiki.getTiddler(title),
+				tiddlerFields = {},
+				knownFields = [
+					"bag", "created", "creator", "modified", "modifier", "permissions", "recipe", "revision", "tags", "text", "title", "type", "uri"
+				];
+			if(tiddler) {
+				$tw.utils.each(tiddler.fields,function(field,name) {
+					var value = tiddler.getFieldString(name)
+					if(knownFields.indexOf(name) !== -1) {
+						tiddlerFields[name] = value;
+					} else {
+						tiddlerFields.fields = tiddlerFields.fields || {};
+						tiddlerFields.fields[name] = value;
+					}
+				});
+				tiddlerFields["revision"] = state.wiki.getChangeCount(title);
+				response.writeHead(200, {"Content-Type": "application/json"});
+				response.end(JSON.stringify(tiddlerFields),"utf8");
+			} else {
 				response.writeHead(404);
 				response.end();
-				break;
 			}
-	}).listen(port);
+		}
+	});
+};
+
+Command.prototype.execute = function() {
+	var port = this.params[0] || "8080",
+		rootTiddler = this.params[1] || "$:/core/templates/tiddlywiki5.template.html",
+		renderType = this.params[2] || "text/plain",
+		serveType = this.params[3] || "text/html";
+	this.server.set({
+		rootTiddler: rootTiddler,
+		renderType: renderType,
+		serveType: serveType
+	});
+	this.server.listen(port);
 	if(this.commander.verbose) {
 		console.log("Serving on port " + port);
 	}
@@ -7460,24 +7567,24 @@ var UploadSaver = function(wiki) {
 UploadSaver.prototype.save = function(text) {
 	// Get the various parameters we need
 	var backupDir = ".",
-		userName = this.wiki.getTextReference("$:/UploadName"),
+		username = this.wiki.getTextReference("$:/UploadName"),
 		password = $tw.utils.getPassword("upload"),
 		uploadDir = ".",
 		url = this.wiki.getTextReference("$:/UploadURL");
 	// Bail out if we don't have the bits we need
-	if(!userName || userName.toString().trim() === "" || !password || password.toString().trim() === "") {
+	if(!username || username.toString().trim() === "" || !password || password.toString().trim() === "") {
 		return false;
 	}
 	// Construct the url if not provided
 	if(!url) {
-		url = "http://" + userName + ".tiddlyspot.com/store.cgi";
+		url = "http://" + username + ".tiddlyspot.com/store.cgi";
 	}
 	// Assemble the header
 	var boundary = "---------------------------" + "AaB03x";	
 	var uploadFormName = "UploadPlugin";
 	var head = [];
 	head.push("--" + boundary + "\r\nContent-disposition: form-data; name=\"UploadPlugin\"\r\n");
-	head.push("backupDir=" + backupDir + ";user=" + userName + ";password=" + password + ";uploaddir=" + uploadDir + ";;"); 
+	head.push("backupDir=" + backupDir + ";user=" + username + ";password=" + password + ";uploaddir=" + uploadDir + ";;"); 
 	head.push("\r\n" + "--" + boundary);
 	head.push("Content-disposition: form-data; name=\"userfile\"; filename=\"index.html\"");
 	head.push("Content-Type: text/html;charset=UTF-8");
@@ -7488,7 +7595,7 @@ UploadSaver.prototype.save = function(text) {
 		data = head.join("\r\n") + text + tail;
 	// Do the HTTP post
 	var http = new XMLHttpRequest();
-	http.open("POST",url,true,userName,password);
+	http.open("POST",url,true,username,password);
 	http.setRequestHeader("Content-Type","multipart/form-data; ;charset=UTF-8; boundary=" + boundary);
 	http.onreadystatechange = function() {
 		if(http.readyState == 4 && http.status == 200) {
@@ -7599,15 +7706,6 @@ exports.startup = function() {
 				downloadType: "text/plain"
 			});
 		},false);
-		// Install syncers
-		$tw.syncers = {};
-		$tw.modules.forEachModuleOfType("syncer",function(title,module) {
-			if(module.name && module.syncer) {
-				$tw.syncers[module.name] = new module.syncer({
-					wiki: $tw.wiki
-				});
-			}
-		});
 		// Install the crypto event handlers
 		document.addEventListener("tw-set-password",function(event) {
 			$tw.passwordPrompt.createPrompt({
@@ -7802,7 +7900,7 @@ Syncer.prototype.storeTiddler = function(tiddlerFields) {
 
 Syncer.prototype.getStatus = function(callback) {
 	var self = this;
-	this.syncadaptor.getStatus(function(err,isLoggedIn,userName) {
+	this.syncadaptor.getStatus(function(err,isLoggedIn,username) {
 		if(err) {
 			self.showError(err);
 			return;
@@ -7810,13 +7908,13 @@ Syncer.prototype.getStatus = function(callback) {
 		// Set the various status tiddlers
 		self.wiki.addTiddler({title: self.titleIsLoggedIn,text: isLoggedIn ? "yes" : "no"});
 		if(isLoggedIn) {
-			self.wiki.addTiddler({title: self.titleUserName,text: userName});
+			self.wiki.addTiddler({title: self.titleUserName,text: username});
 		} else {
 			self.wiki.deleteTiddler(self.titleUserName);
 		}
 		// Invoke the callback
 		if(callback) {
-			callback(err,isLoggedIn,userName);
+			callback(err,isLoggedIn,username);
 		}
 	});
 };
@@ -7846,7 +7944,7 @@ Syncer.prototype.syncFromServer = function() {
 		for(var t=0; t<tiddlers.length; t++) {
 			// Get the incoming tiddler fields, and the existing tiddler
 			var tiddlerFields = tiddlers[t],
-				incomingRevision = tiddlerFields.revision.toString(),
+				incomingRevision = tiddlerFields.revision,
 				tiddler = self.wiki.getTiddler(tiddlerFields.title),
 				tiddlerInfo = self.tiddlerInfo[tiddlerFields.title],
 				currRevision = tiddlerInfo ? tiddlerInfo.revision : null;
@@ -7899,7 +7997,7 @@ Dispay a password prompt and allow the user to login
 */
 Syncer.prototype.handleLoginEvent = function() {
 	var self = this;
-	this.getStatus(function(err,isLoggedIn,userName) {
+	this.getStatus(function(err,isLoggedIn,username) {
 		if(!isLoggedIn) {
 			$tw.passwordPrompt.createPrompt({
 				serviceName: "Login to TiddlySpace",
@@ -7927,7 +8025,7 @@ Syncer.prototype.login = function(username,password,callback) {
 		if(err) {
 			return callback(err);
 		}
-		self.getStatus(function(err,isLoggedIn,userName) {
+		self.getStatus(function(err,isLoggedIn,username) {
 			if(callback) {
 				callback(null,isLoggedIn);
 			}
@@ -7969,7 +8067,7 @@ Syncer.prototype.enqueueSyncTask = function(task) {
 	// Fill in some tiddlerInfo if the tiddler is one we haven't seen before
 	if(!$tw.utils.hop(this.tiddlerInfo,task.title)) {
 		this.tiddlerInfo[task.title] = {
-			revision: "0",
+			revision: null,
 			adaptorInfo: {},
 			changeCount: -1
 		}
