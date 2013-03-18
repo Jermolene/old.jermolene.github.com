@@ -406,6 +406,21 @@ a.tw-tiddlylink-missing {
 	&lt;&lt;box-shadow &quot;inset 0 1px 0 #fff&quot;&gt;&gt;;
 }
 
+.config-area {
+	max-width: 50em;
+	padding: 1em;
+	border: 1px solid #aaa;
+	background: #ddd;
+	&lt;&lt;box-shadow &quot;inset 1px 1px 4px rgba(0,0,0,0.8)&quot;&gt;&gt;
+	&lt;&lt;border-radius 3px&gt;&gt;
+}
+
+.config-area h1 {
+	font-size: 1.2em;
+	text-align: center;
+	color: #888;
+}
+
 .tw-edit-texteditor input, .tw-edit-texteditor textarea {
 	width: 100%;
 }
@@ -927,7 +942,11 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 &lt;$list filter=&quot;[list[$:/StoryList]]&quot; history=&quot;$:/HistoryList&quot; template=&quot;$:/templates/ViewTemplate&quot; editTemplate=&quot;$:/templates/EditTemplate&quot; listview=&quot;classic&quot; itemClass=&quot;tw-tiddler-frame&quot;/&gt;
 
 &lt;!-- Config area --&gt;
+&lt;div class=&quot;config-area&quot;&gt;
+! Temporary Control Panel
+
 {{$:/snippets/encryptionstatus}}
+&lt;/div&gt;
 
 &lt;!-- End of story river --&gt;
 &lt;/section&gt;
@@ -11177,7 +11196,7 @@ NavigatorWidget.prototype.handleNewTiddlerEvent = function(event) {
 	});
 	this.renderer.renderTree.wiki.addTiddler(tiddler);
 	// Create the draft tiddler
-	var draftTitle = "New Tiddler at " + (new Date()),
+	var draftTitle = this.generateDraftTitle(title),
 		draftTiddler = new $tw.Tiddler({
 			text: "Type the text for the new tiddler",
 			title: draftTitle,
@@ -13058,6 +13077,7 @@ $tw.utils.PasswordPrompt.prototype.createPrompt = function(options) {
 	html.push("<input type='password' name='password' class='input-small' placeholder='Password'>",
 			"<button type='submit' class='btn'>" + submitText + "</button>");
 	form.className = "form-inline";
+	form.setAttribute("autocomplete","off");
 	form.innerHTML = html.join("\n");
 	this.promptWrapper.appendChild(form);
 	window.setTimeout(function() {
