@@ -241,6 +241,10 @@ a.tw-tiddlylink {
 	color: {{$:/core/styles/colourmappings##linkforeground}};
 }
 
+.sidebar-header a.tw-tiddlylink {
+	color: #69699B;
+}
+
 a.tw-tiddlylink:hover {
 	text-decoration: underline;
 }
@@ -1032,8 +1036,8 @@ Type tags separated with spaces, `[[`using double square brackets`]]` if necessa
 </pre>
 </div>
 <div title="$:/templates/TagTemplate">
-<pre>&lt;$button popup=&quot;tagpopup&quot; qualifyTiddlerTitles=&quot;yes&quot; class=&quot;btn-invisible&quot;&gt;&lt;$setstyle name=&quot;background-color&quot; value={{!!color}} class=&quot;tw-tag-label&quot;&gt;&lt;$view field=&quot;title&quot; format=&quot;text&quot; /&gt;&lt;/$setstyle&gt;&lt;/$button&gt;
-&lt;$reveal state=&quot;tagpopup&quot; type=&quot;popup&quot; position=&quot;below&quot; qualifyTiddlerTitles=&quot;yes&quot; &gt;&lt;div class=&quot;tw-drop-down&quot;&gt;
+<pre>&lt;$button popup=&quot;$:/state/tagpopup&quot; qualifyTiddlerTitles=&quot;yes&quot; class=&quot;btn-invisible&quot;&gt;&lt;$setstyle name=&quot;background-color&quot; value={{!!color}} class=&quot;tw-tag-label&quot;&gt;&lt;$view field=&quot;title&quot; format=&quot;text&quot; /&gt;&lt;/$setstyle&gt;&lt;/$button&gt;
+&lt;$reveal state=&quot;$:/state/tagpopup&quot; type=&quot;popup&quot; position=&quot;below&quot; qualifyTiddlerTitles=&quot;yes&quot; &gt;&lt;div class=&quot;tw-drop-down&quot;&gt;
 &lt;$view field=&quot;title&quot; format=&quot;link&quot; /&gt;
 ----
 &lt;$list filter=&quot;[is[current]tagging[]sort[title]]&quot;&gt;
@@ -1059,16 +1063,14 @@ Fields...
 &lt;/div&gt;</pre>
 </div>
 <div title="$:/templates/ViewTemplate" modifier="JeremyRuston">
-<pre>&lt;span class=&quot;tw-tiddler-controls&quot;&gt;
-&lt;$button popup=&quot;tiddlerDropdown&quot; qualifyTiddlerTitles=&quot;yes&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/info-button.svg}}&lt;/$button&gt;
+<pre>&lt;span class=&quot;tw-tiddler-controls&quot;&gt;&lt;$button popup=&quot;tiddlerDropdown&quot; qualifyTiddlerTitles=&quot;yes&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/info-button.svg}}&lt;/$button&gt;
 &lt;$button message=&quot;tw-edit-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/edit-button.svg}}&lt;/$button&gt;
 &lt;$button message=&quot;tw-close-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/close-button.svg}}&lt;/$button&gt;
+&lt;$reveal type=&quot;popup&quot; state=&quot;tiddlerDropdown&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;&lt;div class=&quot;tw-drop-down&quot;&gt;&lt;$transclude template=&quot;$:/templates/TiddlerDropdown&quot;&gt;&lt;/$transclude&gt;&lt;/div&gt;
+&lt;/$reveal&gt;
+
 &lt;/span&gt;
 &lt;span class=&quot;title&quot;&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/span&gt;
-
-&lt;$reveal type=&quot;popup&quot; state=&quot;tiddlerDropdown&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;
-&lt;div class=&quot;tw-drop-down&quot;&gt;&lt;$transclude template=&quot;$:/templates/TiddlerDropdown&quot;&gt;&lt;/$transclude&gt;&lt;/div&gt;
-&lt;/$reveal&gt;
 
 &lt;div class=&quot;small&quot;&gt;&lt;$view field=&quot;modifier&quot; format=&quot;link&quot;/&gt; &lt;$view field=&quot;modified&quot; format=&quot;relativedate&quot;/&gt;&lt;/div&gt;
 

@@ -462,6 +462,8 @@ html {
 	font-style: normal;
 	font-weight: normal;
 	color: #5959C0;
+}.sidebar-header a.tw-tiddlylink {
+	color: #69699B;
 }a.tw-tiddlylink:hover {
 	text-decoration: underline;
 }a.tw-tiddlylink-resolves {
