@@ -454,6 +454,12 @@ a.tw-tiddlylink-missing {
 
 .tw-edit-texteditor input, .tw-edit-texteditor textarea {
 	width: 100%;
+	padding: 0.2em 0.2em 0.2em 0.2em;
+	background-color: #f8f8f8;
+	border: 1px solid #888;
+	-webkit-appearance: none;
+	margin: 0.25em 0 0.25em 0;
+	&lt;&lt;box-shadow &quot;inset 0 1px 8px rgba(0, 0, 0, 0.15)&quot;&gt;&gt;
 }
 
 canvas.tw-edit-bitmapeditor  {
@@ -966,6 +972,13 @@ Type tags separated with spaces, `[[`using double square brackets`]]` if necessa
 
 </pre>
 </div>
+<div title="$:/templates/SearchPreviewTemplate">
+<pre>&lt;div class=&quot;title&quot;&gt;
+&lt;&lt;view title text&gt;&gt;
+&lt;/div&gt;
+&lt;&lt;view text wikified&gt;&gt;
+</pre>
+</div>
 <div title="$:/templates/SearchResultTemplate">
 <pre>{{tw-search-result{
 &lt;li&gt;
@@ -981,7 +994,7 @@ Type tags separated with spaces, `[[`using double square brackets`]]` if necessa
 
 &lt;div class=&quot;tw-tiddler-frame&quot; style=&quot;color: black; width: 400px;&quot;&gt;
 
-&lt;&lt;tiddler template:SearchPreviewTemplate&gt;&gt;
+&lt;&lt;tiddler template:$:/templates/SearchPreviewTemplate&gt;&gt;
 
 &lt;/div&gt;
 
@@ -1299,13 +1312,6 @@ Docs</pre>
 </div>
 <!----------- Ordinary tiddlers ----------->
 <div id="storeArea" style="display:none;">
-<div title="SearchPreviewTemplate">
-<pre>&lt;div class=&quot;title&quot;&gt;
-&lt;&lt;view title text&gt;&gt;
-&lt;/div&gt;
-&lt;&lt;view text wikified&gt;&gt;
-</pre>
-</div>
 <div title="MainMenu">
 <pre>! TiddlyWiki
 
