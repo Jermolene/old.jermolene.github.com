@@ -522,6 +522,7 @@ html {
 	margin-left: 20%;
 	padding: 2em;
 }.tw-tiddler-frame {
+	position: relative;
 	padding: 3em;
 	margin-bottom: 2em;
 	background-color: #fff;
@@ -625,7 +626,7 @@ html {
 ;
 }.tw-tab-set {
 }.tw-tab-buttons {
-	font-size: 0.7em;
+	font-size: 0.85em;
 	line-height: 100%;
 	margin-bottom: -1px;
 }.tw-tab-buttons button {
@@ -643,25 +644,11 @@ html {
 }.tw-tab-contents {
 	border-top: 1px solid #aaa;
 	padding: 1em;
-}.config-area {
-	max-width: 50em;
-	padding: 1em 3em 3em 3em;
-	border: 1px solid #aaa;
-	background: #ddd;
-	
-  -webkit-box-shadow: inset 1px 1px 4px rgba(0,0,0,0.8);
-     -moz-box-shadow: inset 1px 1px 4px rgba(0,0,0,0.8);
-          box-shadow: inset 1px 1px 4px rgba(0,0,0,0.8);
-
-	
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
-
-}.config-area h1 {
-	font-size: 1.2em;
-	text-align: center;
-	color: #888;
+}.tw-drop-down .tw-tab-buttons button {
+	background-color: #ececec;
+}.tw-drop-down .tw-tab-buttons button.tw-tab-selected {
+	background-color: #fff;
+	border-bottom: 1px solid #fff;
 }.tw-edit-texteditor input, .tw-edit-texteditor textarea {
 	width: 100%;
 }canvas.tw-edit-bitmapeditor  {
