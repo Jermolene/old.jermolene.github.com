@@ -459,6 +459,10 @@ a.tw-tiddlylink-missing {
 	padding: 1em;
 }
 
+.tw-search-results {
+	padding: 1em;
+}
+
 .tw-drop-down .tw-tab-buttons button {
 	background-color: #ececec;
 }
@@ -480,6 +484,10 @@ a.tw-tiddlylink-missing {
 	-webkit-appearance: none;
 	margin: 0.25em 0 0.25em 0;
 	&lt;&lt;box-shadow &quot;inset 0 1px 8px rgba(0, 0, 0, 0.15)&quot;&gt;&gt;
+}
+
+.sidebar-header .tw-edit-texteditor input, .tw-edit-texteditor textarea {
+	width: 90%;
 }
 
 canvas.tw-edit-bitmapeditor  {
@@ -973,7 +981,7 @@ Type tags separated with spaces, `[[`using double square brackets`]]` if necessa
 &lt;!-- The sidebar header --&gt;
 &lt;header class=&quot;sidebar-header&quot;&gt;
 
-{{SiteTitle}}.title &lt;br&gt;&lt;small&gt;{{SiteSubtitle}}&lt;/small&gt;&lt;br&gt;
+{{SiteTitle}}.title &lt;br&gt;&lt;small&gt;{{SiteSubtitle}}&lt;/small&gt;&lt;br&gt;&lt;br&gt;
 
 {{$:/templates/SideBar}}
 
@@ -992,38 +1000,29 @@ Type tags separated with spaces, `[[`using double square brackets`]]` if necessa
 
 </pre>
 </div>
-<div title="$:/templates/SearchPreviewTemplate">
-<pre>&lt;div class=&quot;title&quot;&gt;
-&lt;&lt;view title text&gt;&gt;
-&lt;/div&gt;
-&lt;&lt;view text wikified&gt;&gt;
-</pre>
-</div>
-<div title="$:/templates/SearchResultTemplate">
-<pre>{{tw-search-result{
-&lt;li&gt;
-
-&lt;&lt;link throughField:title hover:&quot;$:/temp/SearchPreviewDropDownLocation&quot; qualifyHoverTitle:yes&gt;&lt;
-&lt;&lt;view title text&gt;&gt;
-&gt;&gt;
-
-&lt;/li&gt;
-}}}
-
-&lt;&lt;reveal state:&quot;$:/temp/SearchPreviewDropDownLocation&quot; type:popup position:right qualifyTiddlerTitles:yes&gt;&lt;
-
-&lt;div class=&quot;tw-tiddler-frame&quot; style=&quot;color: black; width: 400px;&quot;&gt;
-
-&lt;&lt;tiddler template:$:/templates/SearchPreviewTemplate&gt;&gt;
-
-&lt;/div&gt;
-
-&gt;&gt;
-
-</pre>
-</div>
 <div title="$:/templates/SideBar">
 <pre>&lt;!-- The implementation of tabs here is currently a bit unreadable --&gt;
+
+&lt;form class=&quot;form-search&quot;&gt;
+
+@@.search-query
+&lt;$edit tiddler=&quot;$:/temp/search&quot; type=&quot;search&quot; requireFocus=&quot;yes&quot;/&gt;
+@@
+
+&lt;$reveal state=&quot;$:/temp/search&quot; type=&quot;nomatch&quot; text=&quot;&quot;&gt;
+
+&lt;div class=&quot;tw-search-results&quot;&gt;
+
+&lt;$list filter=&quot;[!is[system]searchVia[$:/temp/search]sort[title]limit[50]]&quot; emptyMessage=&quot;//No results//&quot;/&gt;
+
+&lt;/div&gt;
+
+&lt;/$reveal&gt;
+
+&lt;/form&gt;
+
+&lt;$reveal state=&quot;$:/temp/search&quot; type=&quot;match&quot; text=&quot;&quot;&gt;
+
 &lt;div class=&quot;tw-tab-set&quot;&gt;
 &lt;div class=&quot;tw-tab-buttons&quot;&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/sideBarTabSet&quot; setTo=&quot;openTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;Open&lt;/$button&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/sideBarTabSet&quot; setTo=&quot;allTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;All&lt;/$button&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/sideBarTabSet&quot; setTo=&quot;toolsTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;Tools&lt;/$button&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/sideBarTabSet&quot; setTo=&quot;moreTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;More&lt;/$button&gt;&lt;/div&gt;
 &lt;div class=&quot;tw-tab-contents&quot;&gt;
@@ -1042,6 +1041,7 @@ Type tags separated with spaces, `[[`using double square brackets`]]` if necessa
 &lt;/$reveal&gt;
 &lt;/div&gt;
 
+&lt;/$reveal&gt;
 </pre>
 </div>
 <div title="$:/templates/StaticContent" type="text/vnd.tiddlywiki">

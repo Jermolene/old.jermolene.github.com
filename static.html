@@ -745,6 +745,10 @@ a.tw-tiddlylink-missing {
 	padding: 1em;
 }
 
+.tw-search-results {
+	padding: 1em;
+}
+
 .tw-drop-down .tw-tab-buttons button {
 	background-color: #ececec;
 }
@@ -770,6 +774,10 @@ a.tw-tiddlylink-missing {
      -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
           box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
 
+}
+
+.sidebar-header .tw-edit-texteditor input, .tw-edit-texteditor textarea {
+	width: 90%;
 }
 
 canvas.tw-edit-bitmapeditor  {
@@ -800,9 +808,18 @@ TiddlyWiki5</a></span> <br>
 <small>
 <span class='tw-transclude'>
 a non-linear personal web notebook</span></small><br>
+<br>
 
 <span class='tw-transclude'>
 
+
+<form class='form-search'>
+<div class='tw-edit-texteditor'>
+<input type='search' value=''>
+</div><div class='tw-reveal' style='display:none;'>
+</div></form>
+
+<div class='tw-reveal' style='display:block;'>
 <div class='tw-tab-set'>
 <p>
 <div class='tw-tab-buttons'>
@@ -818,8 +835,7 @@ More</button></div>
 </div></div>
 <div class='tw-reveal' style='display:none;'>
 </div>
-</p></div>
-
+</p></div></div>
 </span></p></header><section class='story-river'>
 <div class='tw-list-frame'>
 <div class='tw-list-element tw-tiddler-frame'>
