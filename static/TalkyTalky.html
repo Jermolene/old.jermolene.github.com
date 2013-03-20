@@ -88,9 +88,16 @@ GitHub</a> Pages</li></ul></li></ol><h1 class=''>
 API</h1><ol>
 <li>
 Open dev tools console</li><li>
-Show api</li><li>
-Adding a tiddler</li><li>
-Get links from a tiddler</li></ol><h1 class=''>
+Show api<ul>
+<li>
+<code>
+$tw.wiki.deleteTiddler(&quot;HelloThere&quot;)</code></li><li>
+<code>
+$tw.wiki.addTiddler({title: &quot;HelloThere&quot;, text: &quot;This is a new Tiddler, linking to a TiddlerThatDoesntCurrentlyExist&quot;})</code></li><li>
+<code>
+$tw.wiki.getTiddlerLinks(&quot;HelloThere&quot;)</code></li><li>
+<code>
+$tw.wiki.filterTiddlers(&quot;[tag[docs]sort[modified]]&quot;)</code></li></ul></li></ol><h1 class=''>
 Using the standalone edition</h1><ol>
 <li>
 Open <a class='tw-tiddlylink tw-tiddlylink-external' href='http://five.tiddlywiki.com/empty.html'>
@@ -101,16 +108,24 @@ Show transclusion and templates</li><li>
 Click Save, click <code>
 accept</code></li><li>
 Open file in text editor, see content within it</li><li>
+Note that saving technique works in virtually all browsers</li></ol><h1 class=''>
+Using the encrypted edition</h1><ol>
+<li>
 Set password</li><li>
 Click Save again, click <code>
 accept</code></li><li>
-Open file in text editor, verify content is encrypted</li><li>
+Open file in text editor, verify content is encrypted</li></ol><h1 class=''>
+Using <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyFox.html'>
+TiddlyFox</a></h1><ol>
+<li>
 Open saved file in Firefox, show <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyFox.html'>
 TiddlyFox</a> dialogue</li><li>
 Enter password to decrypt</li><li>
 Start adding tasks</li><li>
 Save using <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyFox.html'>
-TiddlyFox</a>, refresh to show changes</li><li>
+TiddlyFox</a>, refresh to show changes</li></ol><h1 class=''>
+Task management demo</h1><ol>
+<li>
 Import and demo <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TaskManagementDemo.html'>
 TaskManagementDemo</a></li><li>
 Demo task management</li><li>
@@ -129,8 +144,8 @@ http://five.tiddlywiki.com/static.html</a></li><li>
 Click links to show individual tiddlers</li></ol><h1 class=''>
 Server integration</h1><ol>
 <li>
-Open <a class='tw-tiddlylink tw-tiddlylink-external' href='http://http://tw5test.tiddlyspace.com/tw5'>
-http://http://tw5test.tiddlyspace.com/tw5</a></li><li>
+Open <a class='tw-tiddlylink tw-tiddlylink-external' href='http://tw5test.tiddlyspace.com/tw5'>
+http://tw5test.tiddlyspace.com/tw5</a></li><li>
 Open network console</li><li>
 Show lazy loading</li><li>
 Start <code>
