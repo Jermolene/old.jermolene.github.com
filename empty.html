@@ -1142,7 +1142,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </pre>
 </div>
 <div title="$:/core/templates/static.template.html" type="text/vnd.tiddlywiki-html">
-<pre>\define tw-wikilink-template() static/$uri_encoded$.html
+<pre>\define tw-wikilink-template() static/$uri_doubleencoded$.html
 \rules only filteredtranscludeinline transcludeinline
 &lt;!doctype html&gt;
 &lt;head&gt;
@@ -1165,7 +1165,7 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 </pre>
 </div>
 <div title="$:/core/templates/static.tiddler.html">
-<pre>\define tw-wikilink-template() $uri_encoded$.html
+<pre>\define tw-wikilink-template() $uri_doubleencoded$.html
 `&lt;!doctype html&gt;
 &lt;head&gt;
 &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=utf-8&quot; /&gt;
@@ -8764,6 +8764,7 @@ LinkWidget.prototype.generate = function() {
 			var wikiLinkTemplateMacro = this.renderer.findMacroDefinition("tw-wikilink-template"),
 				wikiLinkTemplate = wikiLinkTemplateMacro ? wikiLinkTemplateMacro.text.trim() : "$uri_encoded$",
 				wikiLinkText = wikiLinkTemplate.replace("$uri_encoded$",encodeURIComponent(this.to));
+				wikiLinkText = wikiLinkText.replace("$uri_doubleencoded$",encodeURIComponent(encodeURIComponent(this.to)));
 			this.attributes.href = wikiLinkText;
 		}
 	} else {
