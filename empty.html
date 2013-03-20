@@ -317,6 +317,11 @@ a.tw-tiddlylink-missing {
 	margin: 0;
 }
 
+@media print {
+.sidebar-header {
+	display: none;
+}}
+
 .tw-menu-list-item {
 	white-space: nowrap;
 }
@@ -325,6 +330,11 @@ a.tw-tiddlylink-missing {
 	margin-left: {{$:/core/styles/metrics##sidebarwidth}};
 	padding: 2em;
 }
+
+@media print {
+.story-river {
+	margin-left: 1em;
+}}
 
 .tw-tiddler-frame {
 	position: relative;
@@ -505,6 +515,7 @@ embed {
 	width: 100%;
 	height: 20em;
 }
+
 </pre>
 </div>
 <div title="$:/core/styles/colourmappings" type="application/x-tiddler-dictionary">

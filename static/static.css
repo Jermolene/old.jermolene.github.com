@@ -526,12 +526,18 @@ html {
 	-webkit-overflow-scrolling: touch;
 	padding: 4em 0em 2em 2em;
 	margin: 0;
-}.tw-menu-list-item {
+}@media print {
+.sidebar-header {
+	display: none;
+}}.tw-menu-list-item {
 	white-space: nowrap;
 }.story-river {
 	margin-left: 20%;
 	padding: 2em;
-}.tw-tiddler-frame {
+}@media print {
+.story-river {
+	margin-left: 1em;
+}}.tw-tiddler-frame {
 	position: relative;
 	padding: 3em;
 	margin-bottom: 2em;
