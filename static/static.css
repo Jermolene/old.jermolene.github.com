@@ -526,6 +526,7 @@ html {
 	-webkit-overflow-scrolling: touch;
 	padding: 4em 0em 2em 2em;
 	margin: 0;
+	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
 }@media print {
 .sidebar-header {
 	display: none;
@@ -681,7 +682,7 @@ html {
      -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
           box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
 
-}.sidebar-header .tw-edit-texteditor input, .tw-edit-texteditor textarea {
+}.sidebar-header .tw-edit-texteditor input, .sidebar-header .tw-edit-texteditor textarea {
 	width: 90%;
 }canvas.tw-edit-bitmapeditor  {
 	cursor: crosshair;
