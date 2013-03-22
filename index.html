@@ -1723,6 +1723,30 @@ If the tiddler `HelloThere` is visible then you'll see it instantly change to re
 $tw.wiki.addTiddler({title: &quot;IntentionallyMissingTiddler&quot;, text: &quot;This tiddler now exists&quot;});
 ```
 
+This example deletes a tiddler:
+
+```
+$tw.wiki.deleteTiddler(&quot;HelloThere&quot;)
+```
+
+This example retrieves all the outgoing links from a tiddler:
+
+```
+$tw.wiki.getTiddlerLinks(&quot;HelloThere&quot;)
+```
+
+This example retrieves all the incoming links to a tiddler:
+
+```
+$tw.wiki.getTiddlerLinks(&quot;HelloThere&quot;)
+```
+
+This example retrieves the titles of all the tiddlers matching a TiddlerFilter expression:
+
+```
+$tw.wiki.filterTiddlers(&quot;[tag[docs]sort[modified]]&quot;)`
+```
+
 If you're interested in understanding more about the internal operation of TiddlyWiki, it is recommended that you review the DeveloperDocs and read the code -- start with the boot kernel [[$:/core/boot.js]].
 </pre>
 </div>
