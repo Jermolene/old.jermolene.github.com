@@ -1128,10 +1128,10 @@ table {
 &lt;/div&gt;</pre>
 </div>
 <div title="$:/templates/ViewTemplate" modifier="JeremyRuston">
-<pre>&lt;span class=&quot;tw-tiddler-controls&quot;&gt;&lt;$button popup=&quot;tiddlerDropdown&quot; qualifyTiddlerTitles=&quot;yes&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/info-button.svg}}&lt;/$button&gt;
+<pre>&lt;span class=&quot;tw-tiddler-controls&quot;&gt;&lt;$button popup=&quot;$:/state/tiddlerDropdown&quot; qualifyTiddlerTitles=&quot;yes&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/info-button.svg}}&lt;/$button&gt;
 &lt;$button message=&quot;tw-edit-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/edit-button.svg}}&lt;/$button&gt;
 &lt;$button message=&quot;tw-close-tiddler&quot; class=&quot;btn-invisible&quot;&gt;{{$:/core/images/close-button.svg}}&lt;/$button&gt;
-&lt;$reveal type=&quot;popup&quot; state=&quot;tiddlerDropdown&quot; position=&quot;belowleft&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;&lt;div class=&quot;tw-drop-down&quot;&gt;&lt;$transclude template=&quot;$:/templates/TiddlerDropdown&quot;&gt;&lt;/$transclude&gt;&lt;/div&gt;
+&lt;$reveal type=&quot;popup&quot; state=&quot;$:/state/tiddlerDropdown&quot; position=&quot;belowleft&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;&lt;div class=&quot;tw-drop-down&quot;&gt;&lt;$transclude template=&quot;$:/templates/TiddlerDropdown&quot;&gt;&lt;/$transclude&gt;&lt;/div&gt;
 &lt;/$reveal&gt;
 
 &lt;/span&gt;
@@ -1256,9 +1256,17 @@ This template is used for saving JavaScript tiddlers as a script tag with data a
 
 This template is used for saving tiddlers in TiddlyWeb *.tid format
 
---&gt;&lt;$fields exclude='text' template='$name$: $value$
+--&gt;&lt;$fields exclude='text bag' template='$name$: $value$
 '&gt;&lt;/$fields&gt;`
 `&lt;$view field=&quot;text&quot; format=&quot;text&quot; /&gt;</pre>
+</div>
+<div title="$:/core/templates/tiddler-metadata">
+<pre>&lt;!--
+
+This template is used for saving tiddler metadata *.meta files
+
+--&gt;&lt;$fields exclude='text bag' template='$name$: $value$
+'&gt;&lt;/$fields&gt;</pre>
 </div>
 <div title="$:/core/templates/tiddlywiki5.template.html">
 <pre>\rules only filteredtranscludeinline transcludeinline
@@ -1343,20 +1351,6 @@ This wiki is not encrypted.
 <div title="$:/core/wiki/title" type="text/vnd.tiddlywiki">
 <pre>{{SiteTitle}} --- {{SiteSubtitle}}</pre>
 </div>
-<div title="$:/CecilyHistoryList">
-<pre></pre>
-</div>
-<div title="$:/CecilyStoryList">
-<pre></pre>
-</div>
-<div title="$:/DefaultTiddlers">
-<pre>HelloThere
-[[TiddlyWiki5 Editions]]
-Demos
-Improvements
-Docs
-</pre>
-</div>
 <div title="$:/plugins/tiddlywiki/fullscreen" type="application/json" plugin="yes">
 <pre>{
     &quot;title&quot;: &quot;$:/plugins/tiddlywiki/fullscreen&quot;,
@@ -1373,6 +1367,20 @@ Docs
         }
     }
 }</pre>
+</div>
+<div title="$:/CecilyHistoryList">
+<pre></pre>
+</div>
+<div title="$:/CecilyStoryList">
+<pre></pre>
+</div>
+<div title="$:/DefaultTiddlers">
+<pre>HelloThere
+[[TiddlyWiki5 Editions]]
+Demos
+Improvements
+Docs
+</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -4148,7 +4156,6 @@ var Command = function(params,commander,callback) {
 			if(fields["revision"]) {
 				delete fields["revision"];
 			}
-console.log("PUT tiddler",title)
 			state.wiki.addTiddler(new $tw.Tiddler(fields,{title: title}));
 			var changeCount = state.wiki.getChangeCount(title).toString();
 			response.writeHead(204, "OK",{
@@ -4162,7 +4169,6 @@ console.log("PUT tiddler",title)
 		path: /^\/bags\/default\/tiddlers\/(.+)$/,
 		handler: function(request,response,state) {
 			var title = decodeURIComponent(state.params[0]);
-console.log("DELETE tiddler",title)
 			state.wiki.deleteTiddler(title);
 			response.writeHead(204, "OK");
 			response.end();
@@ -14445,13 +14451,45 @@ $tw.loadPluginFolder = function(filepath,excludeRegExp) {
 	} : null;
 };
 
-$tw.loadTiddlers = function() {
-	// Load the core tiddlers
-	$tw.utils.each($tw.loadTiddlersFromPath($tw.boot.bootPath),function(tiddlerFile) {
-		$tw.wiki.addTiddlers(tiddlerFile.tiddlers);
-	});
+/*
+path: path of wiki directory
+parentPaths: array of parent paths that we mustn't recurse into
+*/
+$tw.loadWikiTiddlers = function(wikiPath,parentPaths) {
+	parentPaths = parentPaths || [];
+	var wikiInfoPath = path.resolve(wikiPath,$tw.config.wikiInfo),
+		wikiInfo = {},
+		pluginFields;
+	// Load the wiki info file
+	if(fs.existsSync(wikiInfoPath)) {
+		wikiInfo = JSON.parse(fs.readFileSync(wikiInfoPath,"utf8"));
+		// Load any parent wikis
+		if(wikiInfo.includeWikis) {
+			parentPaths = parentPaths.slice(0);
+			parentPaths.push(wikiPath);
+			$tw.utils.each(wikiInfo.includeWikis,function(includedWikiPath) {
+				var resolvedIncludedWikiPath = path.resolve(wikiPath,includedWikiPath);
+				if(parentPaths.indexOf(resolvedIncludedWikiPath) === -1) {
+					$tw.loadWikiTiddlers(resolvedIncludedWikiPath,parentPaths);
+				} else {
+					console.log("Cannot recursively include wiki",resolvedIncludedWikiPath);
+				}
+			});
+		}
+		// Load any plugins listed in the wiki info file
+		if(wikiInfo.plugins) {
+			var pluginBasePath = path.resolve($tw.boot.bootPath,$tw.config.pluginsPath);
+			for(var t=0; t<wikiInfo.plugins.length; t++) {
+				pluginFields = $tw.loadPluginFolder(path.resolve(pluginBasePath,"./" + wikiInfo.plugins[t]));
+				if(pluginFields) {
+					$tw.wiki.addTiddler(pluginFields);
+				}
+			}
+		}
+	}
 	// Load the wiki files, registering them as writable
-	$tw.utils.each($tw.loadTiddlersFromPath($tw.boot.wikiTiddlersPath),function(tiddlerFile) {
+	var resolvedWikiPath = path.resolve(wikiPath,$tw.config.wikiTiddlersSubDir);
+	$tw.utils.each($tw.loadTiddlersFromPath(resolvedWikiPath),function(tiddlerFile) {
 		$tw.wiki.addTiddlers(tiddlerFile.tiddlers);
 		if(tiddlerFile.filepath) {
 			$tw.utils.each(tiddlerFile.tiddlers,function(tiddler) {
@@ -14463,21 +14501,8 @@ $tw.loadTiddlers = function() {
 			});
 		}
 	});
-	// Load any plugins listed in the wiki info file
-	var wikiInfoPath = path.resolve($tw.boot.wikiPath,$tw.config.wikiInfo),
-		pluginFields;
-	if(fs.existsSync(wikiInfoPath)) {
-		var wikiInfo = JSON.parse(fs.readFileSync(wikiInfoPath,"utf8")),
-			pluginBasePath = path.resolve($tw.boot.bootPath,$tw.config.pluginsPath);
-		for(var t=0; t<wikiInfo.plugins.length; t++) {
-			pluginFields = $tw.loadPluginFolder(path.resolve(pluginBasePath,"./" + wikiInfo.plugins[t]));
-			if(pluginFields) {
-				$tw.wiki.addTiddler(pluginFields);
-			}
-		}
-	}
 	// Load any plugins within the wiki folder
-	var wikiPluginsPath = path.resolve($tw.boot.wikiPath,$tw.config.wikiPluginsSubDir);
+	var wikiPluginsPath = path.resolve(wikiPath,$tw.config.wikiPluginsSubDir);
 	if(fs.existsSync(wikiPluginsPath)) {
 		var pluginFolders = fs.readdirSync(wikiPluginsPath);
 		for(t=0; t<pluginFolders.length; t++) {
@@ -14487,6 +14512,16 @@ $tw.loadTiddlers = function() {
 			}
 		}
 	}
+	return wikiInfo;
+};
+
+$tw.loadTiddlers = function() {
+	// Load the core tiddlers
+	$tw.utils.each($tw.loadTiddlersFromPath($tw.boot.bootPath),function(tiddlerFile) {
+		$tw.wiki.addTiddlers(tiddlerFile.tiddlers);
+	});
+	// Load the tiddlers from the wiki directory
+	$tw.boot.wikiInfo = $tw.loadWikiTiddlers($tw.boot.wikiPath);
 };
 
 // End of if(!$tw.browser)	
