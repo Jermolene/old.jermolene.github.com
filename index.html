@@ -1137,16 +1137,16 @@ table {
 </pre>
 </div>
 <div title="$:/templates/TiddlerDropdown">
-<pre>&lt;div class=&quot;tw-tab-set&quot;&gt;&lt;div class=&quot;tw-tab-buttons&quot;&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/moreSideBarTabSet&quot; setTo=&quot;refTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;References&lt;/$button&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/moreSideBarTabSet&quot; setTo=&quot;taggingTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;Tagging&lt;/$button&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/moreSideBarTabSet&quot; setTo=&quot;fieldsTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;Fields&lt;/$button&gt;&lt;/div&gt;
+<pre>&lt;div class=&quot;tw-tab-set&quot;&gt;&lt;div class=&quot;tw-tab-buttons&quot;&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/tiddlerDropDownTabSet&quot; setTo=&quot;refTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;References&lt;/$button&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/tiddlerDropDownTabSet&quot; setTo=&quot;taggingTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;Tagging&lt;/$button&gt;&lt;$button type=&quot;set&quot; set=&quot;$:/state/tiddlerDropDownTabSet&quot; setTo=&quot;fieldsTab&quot; qualifyTiddlerTitles=&quot;yes&quot; selectedClass=&quot;tw-tab-selected&quot;&gt;Fields&lt;/$button&gt;&lt;/div&gt;
 &lt;div class=&quot;tw-tab-contents&quot;&gt;
-&lt;$reveal type=&quot;match&quot; state=&quot;$:/state/moreSideBarTabSet&quot; text=&quot;refTab&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;
+&lt;$reveal type=&quot;match&quot; state=&quot;$:/state/tiddlerDropDownTabSet&quot; text=&quot;refTab&quot; default=&quot;refTab&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;
 &lt;$list filter=&quot;[is[current]backlinks[]sort[title]]&quot; emptyMessage=&quot;No tiddlers link to this one&quot;&gt;
 &lt;/$list&gt;
 &lt;/$reveal&gt;
-&lt;$reveal type=&quot;match&quot; state=&quot;$:/state/moreSideBarTabSet&quot; text=&quot;taggingTab&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;
+&lt;$reveal type=&quot;match&quot; state=&quot;$:/state/tiddlerDropDownTabSet&quot; text=&quot;taggingTab&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;
 &lt;$list filter=&quot;[is[current]tagging[]sort[title]]&quot; itemClass=&quot;tw-menu-list-item&quot; emptyMessage=&quot;No tiddlers are tagged with this one&quot;/&gt;
 &lt;/$reveal&gt;
-&lt;$reveal type=&quot;match&quot; state=&quot;$:/state/moreSideBarTabSet&quot; text=&quot;fieldsTab&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;
+&lt;$reveal type=&quot;match&quot; state=&quot;$:/state/tiddlerDropDownTabSet&quot; text=&quot;fieldsTab&quot; qualifyTiddlerTitles=&quot;yes&quot;&gt;
 &lt;$fieldgrid /&gt;
 &lt;/$reveal&gt;
 &lt;/div&gt;
@@ -11884,13 +11884,12 @@ RevealWidget.prototype.generate = function() {
 Read the state tiddler
 */
 RevealWidget.prototype.readState = function() {
-	// Start with the default value for being open or closed
-	if(this["default"]) {
-		this.isOpen = this["default"] === "open";
-	}
 	// Read the information from the state tiddler
 	if(this.stateTitle) {
-		var state = this.renderer.renderTree.wiki.getTextReference(this.stateTitle);
+		var state = this.renderer.renderTree.wiki.getTextReference(this.stateTitle,this["default"],this.renderer.getContextTiddlerTitle());
+if(this["default"]) {
+	console.log(this.stateTitle,this["default"],state)
+}
 		switch(this.type) {
 			case "popup":
 				this.readPopupState(state);
@@ -12830,7 +12829,7 @@ exports.getTextReference = function(textRef,defaultText,currTiddlerTitle) {
 	} else if(tr.index) {
 		return this.extractTiddlerDataItem(title,tr.index,defaultText);
 	} else {
-		return this.getTiddlerText(title);
+		return this.getTiddlerText(title,defaultText);
 	}
 };
 
