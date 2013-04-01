@@ -429,7 +429,9 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-html {
+* {
+	box-sizing: border-box;
+}html {
 	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }body {
 	font-size: 14px;
@@ -544,9 +546,12 @@ html {
 	overflow-y: auto;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
-	padding: 4em 0em 2em 2em;
+	padding: 5em 0em 2em 2em;
 	margin: 0;
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+}.sidebar-header p {
+	margin-top: 0;
+	margin-bottom: 0;
 }@media print {
 .sidebar-header {
 	display: none;
@@ -554,7 +559,7 @@ html {
 	white-space: nowrap;
 }.story-river {
 	margin-left: 20%;
-	padding: 2em;
+	padding: 2em 2em 2em 0;
 }@media print {
 .story-river {
 	margin-left: 1em;
@@ -696,8 +701,9 @@ html {
 	padding: 0 0.5em 0 0.5em;
 }.tw-edit-texteditor input, .tw-edit-texteditor textarea {
 	width: 100%;
-	padding: 0.2em 0.2em 0.2em 0.2em;
+	padding: 3px 3px 3px 3px;
 	border: 1px solid #888;
+	line-height: 1.3em;
 	-webkit-appearance: none;
 	margin: 0.25em 0 0.25em 0;
 }.tw-edit-texteditor input {
@@ -708,7 +714,7 @@ html {
           box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
 
 }.sidebar-header .tw-edit-texteditor input, .sidebar-header .tw-edit-texteditor textarea {
-	width: 90%;
+	width: 80%;
 }canvas.tw-edit-bitmapeditor  {
 	cursor: crosshair;
 	-moz-user-select: none;
@@ -719,4 +725,11 @@ html {
 }embed {
 	width: 100%;
 	height: 20em;
+}.tw-dragover .tw-drag-target {
+	display: block;
+	background: red;
+	position: absolute;
+}.tw-drag-target {
+	display: none;
+	position: absolute;
 }

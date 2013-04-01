@@ -442,6 +442,10 @@ table {
 }
 
 
+* {
+	box-sizing: border-box;
+}
+
 html {
 	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
@@ -593,9 +597,14 @@ a.tw-tiddlylink-missing {
 	overflow-y: auto;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
-	padding: 4em 0em 2em 2em;
+	padding: 5em 0em 2em 2em;
 	margin: 0;
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+}
+
+.sidebar-header p {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 @media print {
@@ -609,7 +618,7 @@ a.tw-tiddlylink-missing {
 
 .story-river {
 	margin-left: 20%;
-	padding: 2em;
+	padding: 2em 2em 2em 0;
 }
 
 @media print {
@@ -805,8 +814,9 @@ a.tw-tiddlylink-missing {
 
 .tw-edit-texteditor input, .tw-edit-texteditor textarea {
 	width: 100%;
-	padding: 0.2em 0.2em 0.2em 0.2em;
+	padding: 3px 3px 3px 3px;
 	border: 1px solid #888;
+	line-height: 1.3em;
 	-webkit-appearance: none;
 	margin: 0.25em 0 0.25em 0;
 }
@@ -821,7 +831,7 @@ a.tw-tiddlylink-missing {
 }
 
 .sidebar-header .tw-edit-texteditor input, .sidebar-header .tw-edit-texteditor textarea {
-	width: 90%;
+	width: 80%;
 }
 
 canvas.tw-edit-bitmapeditor  {
@@ -840,12 +850,28 @@ embed {
 	height: 20em;
 }
 
+.tw-dragover .tw-drag-target {
+	display: block;
+	background: red;
+	position: absolute;
+}
+
+.tw-drag-target {
+	display: none;
+	position: absolute;
+}
 
 </style>
 </head>
 <body>
 <div class='tw-navigator'>
-<header class='sidebar-header'>
+<div class='tw-import'>
+<input style='display: none;' type='file'>
+<div>
+<div class='tw-drag-target'>
+<p>
+Drop files here to import them as tiddlers
+</p></div><header class='sidebar-header'>
 <p>
 <span class='tw-transclude title'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
@@ -855,7 +881,7 @@ TiddlyWiki5</a></span> <br>
 a non-linear personal web notebook</span></small><br>
 <br>
 
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 
 
 <span class='tw-inline-style  search-query
@@ -888,18 +914,19 @@ More</button></div>
 </span></p></header><section class='story-river'>
 <div class='tw-list-frame'>
 <div class='tw-list-element tw-tiddler-frame'>
-<span class='tw-transclude'>
+<div class='tw-transclude'>
+<p>
 <span class='tw-tiddler-controls'>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22294%20150%2058%2058%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20342.76236%20158.98764%20C%20331.77887%20148.0041%20313.97113%20148.0041%20302.98764%20158.98764%20C%20292.0041%20169.97113%20292.0041%20187.77887%20302.98764%20198.76236%20C%20313.97113%20209.7459%20331.77887%20209.7459%20342.76236%20198.76236%20C%20353.7459%20187.77887%20353.7459%20169.97113%20342.76236%20158.98764%20M%20326.5425%20157.5%20L%20326.5425%20157.5%20C%20327.72545%20157.5%20328.72201%20157.91022%20329.5337%20158.73088%20C%20330.34465%20159.55157%20330.75%20160.54402%20330.75%20161.7075%20C%20330.75%20162.87172%20330.33979%20163.86316%20329.51911%20164.68385%20C%20328.69842%20165.5045%20327.70674%20165.91501%20326.5425%20165.91501%20C%20325.39801%20165.91501%20324.4153%20165.5045%20323.5946%20164.68385%20C%20322.77393%20163.86316%20322.36372%20162.87172%20322.36372%20161.7075%20C%20322.36372%20160.54402%20322.76906%20159.55157%20323.58%20158.73088%20C%20324.39171%20157.91022%20325.3793%20157.5%20326.5425%20157.5%20Z%20M%20327.80211%20190.47259%20C%20324.91945%20195.49132%20321.85778%20198%20318.61462%20198%20C%20317.37452%20198%20316.38691%20197.65158%20315.65186%20196.9555%20C%20314.9176%20196.25866%20314.54943%20195.37617%20314.54943%20194.30782%20C%20314.54943%20193.60202%20314.71223%20192.70572%20315.03629%20191.61813%20L%20319.0151%20177.93651%20C%20319.39685%20176.61922%20319.58735%20175.62754%20319.58735%20174.95991%20C%20319.58735%20174.53996%20319.40582%20174.16692%20319.04356%20173.84286%20C%20318.68052%20173.51905%20318.18469%20173.35701%20317.55527%20173.35701%20C%20317.26861%20173.35701%20316.92506%20173.36677%20316.5246%20173.38548%20L%20316.89661%20172.2407%20L%20326.59967%20170.66627%20L%20328.31744%20170.66627%20L%20322.44986%20191.01638%20C%20322.12503%20192.18064%20321.963%20192.94337%20321.963%20193.30666%20C%20321.963%20193.51588%20322.04862%20193.71121%20322.2204%20193.89273%20C%20322.39218%20194.07425%20322.5737%20194.16554%20322.7642%20194.16477%20C%20323.08903%20194.16554%20323.4131%20194.02221%20323.73792%20193.73559%20C%20324.59605%20193.02976%20325.6267%20191.75142%20326.82838%20189.90008%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22244%20193%2020%2022%22%20width%3D%2220pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Ctitle%3EBody%3C%2Ftitle%3E%3Cpath%20d%3D%22M%20257.33334%20196.80951%20L%20245.90476%20207.2857%20L%20244%20212.0476%20L%20248.7619%20210.14284%20L%20260.19048%20199.66665%20Z%20M%20259.2381%20194.90475%20L%20258.28566%20195.85716%20L%20261.14284%20198.71428%20L%20262.09522%20197.76187%20Z%20M%20261.14286%20193%20L%20260.19042%20193.95241%20L%20263.04762%20196.80953%20L%20264%20195.85714%20Z%20M%20244%20213.72882%20C%20244%20213.72882%20247.4281%20215.43353%20250.8572%20213.7288%20C%20254.28599%20212.02405%20261.14284%20214.86531%20261.14284%20214.86531%20L%20261.14284%20213.72884%20C%20261.14284%20213.72884%20254.28577%20210.88755%20250.8572%20212.5923%20C%20247.42858%20214.29712%20244%20212.59228%20244%20212.59228%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22222%20150%2056%2056%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20249.56668%20185.88827%20L%20267.06757%20203.38916%20C%20269.26427%20205.58586%20272.82582%20205.58586%20275.02252%20203.38916%20L%20275.02252%20203.38916%20C%20277.21922%20201.19246%20277.21922%20197.63091%20275.02252%20195.43421%20L%20257.52163%20177.93332%20L%20275.38916%20160.06579%20C%20277.58586%20157.86909%20277.58586%20154.30754%20275.38916%20152.11084%20C%20273.19246%20149.91414%20269.63091%20149.91414%20267.43421%20152.11084%20L%20249.56668%20169.97837%20L%20232.06579%20152.47748%20L%20232.06579%20152.47748%20C%20232.06579%20152.47748%20232.06579%20152.47748%20232.06579%20152.47748%20C%20229.86909%20150.28078%20226.30754%20150.28078%20224.11084%20152.47748%20L%20224.11084%20152.47748%20C%20221.91414%20154.674175%20221.91414%20158.23573%20224.11084%20160.43243%20L%20241.61173%20177.93332%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20C%20224.47748%20195.06757%20224.47748%20195.06757%20224.47748%20195.06757%20C%20222.28078%20197.26427%20222.28078%20200.82583%20224.47748%20203.02252%20L%20224.47748%20203.02252%20C%20226.67418%20205.21922%20230.23573%20205.21922%20232.43243%20203.02252%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
@@ -908,14 +935,12 @@ More</button></div>
 </span>
 <span class='title'>
 <span>
-HelloThere</span></span>
-
+HelloThere</span></span></p><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/JeremyRuston.html'>
 JeremyRuston</a></span> <span class='tw-view-date'>
-12 August 2012</span></div>
-
+12 August 2012</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -934,9 +959,7 @@ introduction</span></span></button>
 greetings</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span></span></div>
-
-<div class='body'>
+</span></span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
@@ -964,20 +987,20 @@ the TiddlyWikiDev Google Group</a></li><li>
 Follow <a class='tw-tiddlylink tw-tiddlylink-external' href='http://twitter.com/#!/TiddlyWiki'>
 @TiddlyWiki on Twitter</a> for the latest news</li><li>
 Learn how to <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/HelpingTiddlyWiki.html'>
-help the TiddlyWiki project and community</a></li></ul></div></div></div>
-</span></div><div class='tw-list-element tw-tiddler-frame'>
-<span class='tw-transclude'>
+help the TiddlyWiki project and community</a></li></ul></div></div></div></div></div><div class='tw-list-element tw-tiddler-frame'>
+<div class='tw-transclude'>
+<p>
 <span class='tw-tiddler-controls'>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22294%20150%2058%2058%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20342.76236%20158.98764%20C%20331.77887%20148.0041%20313.97113%20148.0041%20302.98764%20158.98764%20C%20292.0041%20169.97113%20292.0041%20187.77887%20302.98764%20198.76236%20C%20313.97113%20209.7459%20331.77887%20209.7459%20342.76236%20198.76236%20C%20353.7459%20187.77887%20353.7459%20169.97113%20342.76236%20158.98764%20M%20326.5425%20157.5%20L%20326.5425%20157.5%20C%20327.72545%20157.5%20328.72201%20157.91022%20329.5337%20158.73088%20C%20330.34465%20159.55157%20330.75%20160.54402%20330.75%20161.7075%20C%20330.75%20162.87172%20330.33979%20163.86316%20329.51911%20164.68385%20C%20328.69842%20165.5045%20327.70674%20165.91501%20326.5425%20165.91501%20C%20325.39801%20165.91501%20324.4153%20165.5045%20323.5946%20164.68385%20C%20322.77393%20163.86316%20322.36372%20162.87172%20322.36372%20161.7075%20C%20322.36372%20160.54402%20322.76906%20159.55157%20323.58%20158.73088%20C%20324.39171%20157.91022%20325.3793%20157.5%20326.5425%20157.5%20Z%20M%20327.80211%20190.47259%20C%20324.91945%20195.49132%20321.85778%20198%20318.61462%20198%20C%20317.37452%20198%20316.38691%20197.65158%20315.65186%20196.9555%20C%20314.9176%20196.25866%20314.54943%20195.37617%20314.54943%20194.30782%20C%20314.54943%20193.60202%20314.71223%20192.70572%20315.03629%20191.61813%20L%20319.0151%20177.93651%20C%20319.39685%20176.61922%20319.58735%20175.62754%20319.58735%20174.95991%20C%20319.58735%20174.53996%20319.40582%20174.16692%20319.04356%20173.84286%20C%20318.68052%20173.51905%20318.18469%20173.35701%20317.55527%20173.35701%20C%20317.26861%20173.35701%20316.92506%20173.36677%20316.5246%20173.38548%20L%20316.89661%20172.2407%20L%20326.59967%20170.66627%20L%20328.31744%20170.66627%20L%20322.44986%20191.01638%20C%20322.12503%20192.18064%20321.963%20192.94337%20321.963%20193.30666%20C%20321.963%20193.51588%20322.04862%20193.71121%20322.2204%20193.89273%20C%20322.39218%20194.07425%20322.5737%20194.16554%20322.7642%20194.16477%20C%20323.08903%20194.16554%20323.4131%20194.02221%20323.73792%20193.73559%20C%20324.59605%20193.02976%20325.6267%20191.75142%20326.82838%20189.90008%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22244%20193%2020%2022%22%20width%3D%2220pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Ctitle%3EBody%3C%2Ftitle%3E%3Cpath%20d%3D%22M%20257.33334%20196.80951%20L%20245.90476%20207.2857%20L%20244%20212.0476%20L%20248.7619%20210.14284%20L%20260.19048%20199.66665%20Z%20M%20259.2381%20194.90475%20L%20258.28566%20195.85716%20L%20261.14284%20198.71428%20L%20262.09522%20197.76187%20Z%20M%20261.14286%20193%20L%20260.19042%20193.95241%20L%20263.04762%20196.80953%20L%20264%20195.85714%20Z%20M%20244%20213.72882%20C%20244%20213.72882%20247.4281%20215.43353%20250.8572%20213.7288%20C%20254.28599%20212.02405%20261.14284%20214.86531%20261.14284%20214.86531%20L%20261.14284%20213.72884%20C%20261.14284%20213.72884%20254.28577%20210.88755%20250.8572%20212.5923%20C%20247.42858%20214.29712%20244%20212.59228%20244%20212.59228%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22222%20150%2056%2056%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20249.56668%20185.88827%20L%20267.06757%20203.38916%20C%20269.26427%20205.58586%20272.82582%20205.58586%20275.02252%20203.38916%20L%20275.02252%20203.38916%20C%20277.21922%20201.19246%20277.21922%20197.63091%20275.02252%20195.43421%20L%20257.52163%20177.93332%20L%20275.38916%20160.06579%20C%20277.58586%20157.86909%20277.58586%20154.30754%20275.38916%20152.11084%20C%20273.19246%20149.91414%20269.63091%20149.91414%20267.43421%20152.11084%20L%20249.56668%20169.97837%20L%20232.06579%20152.47748%20L%20232.06579%20152.47748%20C%20232.06579%20152.47748%20232.06579%20152.47748%20232.06579%20152.47748%20C%20229.86909%20150.28078%20226.30754%20150.28078%20224.11084%20152.47748%20L%20224.11084%20152.47748%20C%20221.91414%20154.674175%20221.91414%20158.23573%20224.11084%20160.43243%20L%20241.61173%20177.93332%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20C%20224.47748%20195.06757%20224.47748%20195.06757%20224.47748%20195.06757%20C%20222.28078%20197.26427%20222.28078%20200.82583%20224.47748%20203.02252%20L%20224.47748%20203.02252%20C%20226.67418%20205.21922%20230.23573%20205.21922%20232.43243%20203.02252%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
@@ -986,14 +1009,12 @@ help the TiddlyWiki project and community</a></li></ul></div></div></div>
 </span>
 <span class='title'>
 <span>
-TiddlyWiki5 Editions</span></span>
-
+TiddlyWiki5 Editions</span></span></p><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
 </a></span> <span class='tw-view-date'>
-</span></div>
-
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -1004,9 +1025,7 @@ TiddlyWiki5 Editions</span></span>
 introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span></span></div>
-
-<div class='body'>
+</span></span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
@@ -1029,20 +1048,20 @@ Building classic TiddlyWiki with TiddlyWiki5</a></li></ul></li><li>
 TiddlyWiki5 in the Sky for TiddlyWeb</a> (and <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/TiddlySpace.html'>
 TiddlySpace</a>)</li><li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/TiddlyWiki5%2520in%2520the%2520Sky%2520for%2520Dropbox.html'>
-TiddlyWiki5 in the Sky for Dropbox</a></li></ul></div></div></div>
-</span></div><div class='tw-list-element tw-tiddler-frame'>
-<span class='tw-transclude'>
+TiddlyWiki5 in the Sky for Dropbox</a></li></ul></div></div></div></div></div><div class='tw-list-element tw-tiddler-frame'>
+<div class='tw-transclude'>
+<p>
 <span class='tw-tiddler-controls'>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22294%20150%2058%2058%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20342.76236%20158.98764%20C%20331.77887%20148.0041%20313.97113%20148.0041%20302.98764%20158.98764%20C%20292.0041%20169.97113%20292.0041%20187.77887%20302.98764%20198.76236%20C%20313.97113%20209.7459%20331.77887%20209.7459%20342.76236%20198.76236%20C%20353.7459%20187.77887%20353.7459%20169.97113%20342.76236%20158.98764%20M%20326.5425%20157.5%20L%20326.5425%20157.5%20C%20327.72545%20157.5%20328.72201%20157.91022%20329.5337%20158.73088%20C%20330.34465%20159.55157%20330.75%20160.54402%20330.75%20161.7075%20C%20330.75%20162.87172%20330.33979%20163.86316%20329.51911%20164.68385%20C%20328.69842%20165.5045%20327.70674%20165.91501%20326.5425%20165.91501%20C%20325.39801%20165.91501%20324.4153%20165.5045%20323.5946%20164.68385%20C%20322.77393%20163.86316%20322.36372%20162.87172%20322.36372%20161.7075%20C%20322.36372%20160.54402%20322.76906%20159.55157%20323.58%20158.73088%20C%20324.39171%20157.91022%20325.3793%20157.5%20326.5425%20157.5%20Z%20M%20327.80211%20190.47259%20C%20324.91945%20195.49132%20321.85778%20198%20318.61462%20198%20C%20317.37452%20198%20316.38691%20197.65158%20315.65186%20196.9555%20C%20314.9176%20196.25866%20314.54943%20195.37617%20314.54943%20194.30782%20C%20314.54943%20193.60202%20314.71223%20192.70572%20315.03629%20191.61813%20L%20319.0151%20177.93651%20C%20319.39685%20176.61922%20319.58735%20175.62754%20319.58735%20174.95991%20C%20319.58735%20174.53996%20319.40582%20174.16692%20319.04356%20173.84286%20C%20318.68052%20173.51905%20318.18469%20173.35701%20317.55527%20173.35701%20C%20317.26861%20173.35701%20316.92506%20173.36677%20316.5246%20173.38548%20L%20316.89661%20172.2407%20L%20326.59967%20170.66627%20L%20328.31744%20170.66627%20L%20322.44986%20191.01638%20C%20322.12503%20192.18064%20321.963%20192.94337%20321.963%20193.30666%20C%20321.963%20193.51588%20322.04862%20193.71121%20322.2204%20193.89273%20C%20322.39218%20194.07425%20322.5737%20194.16554%20322.7642%20194.16477%20C%20323.08903%20194.16554%20323.4131%20194.02221%20323.73792%20193.73559%20C%20324.59605%20193.02976%20325.6267%20191.75142%20326.82838%20189.90008%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22244%20193%2020%2022%22%20width%3D%2220pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Ctitle%3EBody%3C%2Ftitle%3E%3Cpath%20d%3D%22M%20257.33334%20196.80951%20L%20245.90476%20207.2857%20L%20244%20212.0476%20L%20248.7619%20210.14284%20L%20260.19048%20199.66665%20Z%20M%20259.2381%20194.90475%20L%20258.28566%20195.85716%20L%20261.14284%20198.71428%20L%20262.09522%20197.76187%20Z%20M%20261.14286%20193%20L%20260.19042%20193.95241%20L%20263.04762%20196.80953%20L%20264%20195.85714%20Z%20M%20244%20213.72882%20C%20244%20213.72882%20247.4281%20215.43353%20250.8572%20213.7288%20C%20254.28599%20212.02405%20261.14284%20214.86531%20261.14284%20214.86531%20L%20261.14284%20213.72884%20C%20261.14284%20213.72884%20254.28577%20210.88755%20250.8572%20212.5923%20C%20247.42858%20214.29712%20244%20212.59228%20244%20212.59228%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22222%20150%2056%2056%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20249.56668%20185.88827%20L%20267.06757%20203.38916%20C%20269.26427%20205.58586%20272.82582%20205.58586%20275.02252%20203.38916%20L%20275.02252%20203.38916%20C%20277.21922%20201.19246%20277.21922%20197.63091%20275.02252%20195.43421%20L%20257.52163%20177.93332%20L%20275.38916%20160.06579%20C%20277.58586%20157.86909%20277.58586%20154.30754%20275.38916%20152.11084%20C%20273.19246%20149.91414%20269.63091%20149.91414%20267.43421%20152.11084%20L%20249.56668%20169.97837%20L%20232.06579%20152.47748%20L%20232.06579%20152.47748%20C%20232.06579%20152.47748%20232.06579%20152.47748%20232.06579%20152.47748%20C%20229.86909%20150.28078%20226.30754%20150.28078%20224.11084%20152.47748%20L%20224.11084%20152.47748%20C%20221.91414%20154.674175%20221.91414%20158.23573%20224.11084%20160.43243%20L%20241.61173%20177.93332%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20C%20224.47748%20195.06757%20224.47748%20195.06757%20224.47748%20195.06757%20C%20222.28078%20197.26427%20222.28078%20200.82583%20224.47748%20203.02252%20L%20224.47748%20203.02252%20C%20226.67418%20205.21922%20230.23573%20205.21922%20232.43243%20203.02252%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
@@ -1051,14 +1070,12 @@ TiddlyWiki5 in the Sky for Dropbox</a></li></ul></div></div></div>
 </span>
 <span class='title'>
 <span>
-Demos</span></span>
-
+Demos</span></span></p><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
 </a></span> <span class='tw-view-date'>
-</span></div>
-
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -1069,9 +1086,7 @@ Demos</span></span>
 introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span></span></div>
-
-<div class='body'>
+</span></span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
@@ -1094,31 +1109,31 @@ TaskManagementExample</a></li></ul><p>
 Learn more about using <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
 TiddlyWiki5</a>:</p><div class='tw-list-frame'>
 <div class='tw-list-element'>
-<span class='tw-transclude'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/How%2520to%2520use%2520TiddlyWiki5%2520as%2520a%2520standalone%2520HTML%2520file.html'>
-How to use TiddlyWiki5 as a standalone HTML file</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+How to use TiddlyWiki5 as a standalone HTML file</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/How%2520to%2520use%2520TiddlyWiki5%2520as%2520a%2520standalone%2520HTML%2520file%2520with%2520encryption.html'>
-How to use TiddlyWiki5 as a standalone HTML file with encryption</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+How to use TiddlyWiki5 as a standalone HTML file with encryption</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/How%2520to%2520use%2520TiddlyWiki5%2520as%2520a%2520standalone%2520HTML%2520file%2520with%2520TiddlyFox.html'>
-How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox</a></span></span></div></div></div></div></div>
-</span></div><div class='tw-list-element tw-tiddler-frame'>
-<span class='tw-transclude'>
+How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox</a></span></div></div></div></div></div></div></div></div><div class='tw-list-element tw-tiddler-frame'>
+<div class='tw-transclude'>
+<p>
 <span class='tw-tiddler-controls'>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22294%20150%2058%2058%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20342.76236%20158.98764%20C%20331.77887%20148.0041%20313.97113%20148.0041%20302.98764%20158.98764%20C%20292.0041%20169.97113%20292.0041%20187.77887%20302.98764%20198.76236%20C%20313.97113%20209.7459%20331.77887%20209.7459%20342.76236%20198.76236%20C%20353.7459%20187.77887%20353.7459%20169.97113%20342.76236%20158.98764%20M%20326.5425%20157.5%20L%20326.5425%20157.5%20C%20327.72545%20157.5%20328.72201%20157.91022%20329.5337%20158.73088%20C%20330.34465%20159.55157%20330.75%20160.54402%20330.75%20161.7075%20C%20330.75%20162.87172%20330.33979%20163.86316%20329.51911%20164.68385%20C%20328.69842%20165.5045%20327.70674%20165.91501%20326.5425%20165.91501%20C%20325.39801%20165.91501%20324.4153%20165.5045%20323.5946%20164.68385%20C%20322.77393%20163.86316%20322.36372%20162.87172%20322.36372%20161.7075%20C%20322.36372%20160.54402%20322.76906%20159.55157%20323.58%20158.73088%20C%20324.39171%20157.91022%20325.3793%20157.5%20326.5425%20157.5%20Z%20M%20327.80211%20190.47259%20C%20324.91945%20195.49132%20321.85778%20198%20318.61462%20198%20C%20317.37452%20198%20316.38691%20197.65158%20315.65186%20196.9555%20C%20314.9176%20196.25866%20314.54943%20195.37617%20314.54943%20194.30782%20C%20314.54943%20193.60202%20314.71223%20192.70572%20315.03629%20191.61813%20L%20319.0151%20177.93651%20C%20319.39685%20176.61922%20319.58735%20175.62754%20319.58735%20174.95991%20C%20319.58735%20174.53996%20319.40582%20174.16692%20319.04356%20173.84286%20C%20318.68052%20173.51905%20318.18469%20173.35701%20317.55527%20173.35701%20C%20317.26861%20173.35701%20316.92506%20173.36677%20316.5246%20173.38548%20L%20316.89661%20172.2407%20L%20326.59967%20170.66627%20L%20328.31744%20170.66627%20L%20322.44986%20191.01638%20C%20322.12503%20192.18064%20321.963%20192.94337%20321.963%20193.30666%20C%20321.963%20193.51588%20322.04862%20193.71121%20322.2204%20193.89273%20C%20322.39218%20194.07425%20322.5737%20194.16554%20322.7642%20194.16477%20C%20323.08903%20194.16554%20323.4131%20194.02221%20323.73792%20193.73559%20C%20324.59605%20193.02976%20325.6267%20191.75142%20326.82838%20189.90008%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22244%20193%2020%2022%22%20width%3D%2220pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Ctitle%3EBody%3C%2Ftitle%3E%3Cpath%20d%3D%22M%20257.33334%20196.80951%20L%20245.90476%20207.2857%20L%20244%20212.0476%20L%20248.7619%20210.14284%20L%20260.19048%20199.66665%20Z%20M%20259.2381%20194.90475%20L%20258.28566%20195.85716%20L%20261.14284%20198.71428%20L%20262.09522%20197.76187%20Z%20M%20261.14286%20193%20L%20260.19042%20193.95241%20L%20263.04762%20196.80953%20L%20264%20195.85714%20Z%20M%20244%20213.72882%20C%20244%20213.72882%20247.4281%20215.43353%20250.8572%20213.7288%20C%20254.28599%20212.02405%20261.14284%20214.86531%20261.14284%20214.86531%20L%20261.14284%20213.72884%20C%20261.14284%20213.72884%20254.28577%20210.88755%20250.8572%20212.5923%20C%20247.42858%20214.29712%20244%20212.59228%20244%20212.59228%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22222%20150%2056%2056%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20249.56668%20185.88827%20L%20267.06757%20203.38916%20C%20269.26427%20205.58586%20272.82582%20205.58586%20275.02252%20203.38916%20L%20275.02252%20203.38916%20C%20277.21922%20201.19246%20277.21922%20197.63091%20275.02252%20195.43421%20L%20257.52163%20177.93332%20L%20275.38916%20160.06579%20C%20277.58586%20157.86909%20277.58586%20154.30754%20275.38916%20152.11084%20C%20273.19246%20149.91414%20269.63091%20149.91414%20267.43421%20152.11084%20L%20249.56668%20169.97837%20L%20232.06579%20152.47748%20L%20232.06579%20152.47748%20C%20232.06579%20152.47748%20232.06579%20152.47748%20232.06579%20152.47748%20C%20229.86909%20150.28078%20226.30754%20150.28078%20224.11084%20152.47748%20L%20224.11084%20152.47748%20C%20221.91414%20154.674175%20221.91414%20158.23573%20224.11084%20160.43243%20L%20241.61173%20177.93332%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20C%20224.47748%20195.06757%20224.47748%20195.06757%20224.47748%20195.06757%20C%20222.28078%20197.26427%20222.28078%20200.82583%20224.47748%20203.02252%20L%20224.47748%20203.02252%20C%20226.67418%20205.21922%20230.23573%20205.21922%20232.43243%20203.02252%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
@@ -1127,14 +1142,12 @@ How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox</a></span></span
 </span>
 <span class='title'>
 <span>
-Improvements</span></span>
-
+Improvements</span></span></p><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/JeremyRuston.html'>
 JeremyRuston</a></span> <span class='tw-view-date'>
-</span></div>
-
+1 April 2013</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -1153,9 +1166,7 @@ docs</span></span></button>
 introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span></span></div>
-
-<div class='body'>
+</span></span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
@@ -1178,26 +1189,28 @@ Tiddlers containing images are now supported just like <a class='tw-tiddlylink t
 WikiText</a> tiddlers, including integrated editing of bitmap and SVG images</li><li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
 TiddlyWiki5</a> can directly build both itself and previous (2.x.x) versions of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki.html'>
-TiddlyWiki</a> from their constituent separate files, without needing external tools</li></ul><p>
+TiddlyWiki</a> from their constituent separate files, without needing external tools</li><li>
+Easily <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/ImportTiddlers.html'>
+import</a> content via drag and drop, copy and paste, or browsing for local files </li></ul><p>
 The internal changes mean that <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
 TiddlyWiki5</a> is not compatible with previous versions, using different plugins, themes and so on. The changes to the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/WikiText.html'>
 WikiText</a> have been carefully developed to try to maximise backwards compatibility but content prepared for previous versions of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki.html'>
 TiddlyWiki</a> will need massaging to work properly in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
 TiddlyWiki5</a>.
-</p></div></div></div>
-</span></div><div class='tw-list-element tw-tiddler-frame'>
-<span class='tw-transclude'>
+</p></div></div></div></div></div><div class='tw-list-element tw-tiddler-frame'>
+<div class='tw-transclude'>
+<p>
 <span class='tw-tiddler-controls'>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22294%20150%2058%2058%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20342.76236%20158.98764%20C%20331.77887%20148.0041%20313.97113%20148.0041%20302.98764%20158.98764%20C%20292.0041%20169.97113%20292.0041%20187.77887%20302.98764%20198.76236%20C%20313.97113%20209.7459%20331.77887%20209.7459%20342.76236%20198.76236%20C%20353.7459%20187.77887%20353.7459%20169.97113%20342.76236%20158.98764%20M%20326.5425%20157.5%20L%20326.5425%20157.5%20C%20327.72545%20157.5%20328.72201%20157.91022%20329.5337%20158.73088%20C%20330.34465%20159.55157%20330.75%20160.54402%20330.75%20161.7075%20C%20330.75%20162.87172%20330.33979%20163.86316%20329.51911%20164.68385%20C%20328.69842%20165.5045%20327.70674%20165.91501%20326.5425%20165.91501%20C%20325.39801%20165.91501%20324.4153%20165.5045%20323.5946%20164.68385%20C%20322.77393%20163.86316%20322.36372%20162.87172%20322.36372%20161.7075%20C%20322.36372%20160.54402%20322.76906%20159.55157%20323.58%20158.73088%20C%20324.39171%20157.91022%20325.3793%20157.5%20326.5425%20157.5%20Z%20M%20327.80211%20190.47259%20C%20324.91945%20195.49132%20321.85778%20198%20318.61462%20198%20C%20317.37452%20198%20316.38691%20197.65158%20315.65186%20196.9555%20C%20314.9176%20196.25866%20314.54943%20195.37617%20314.54943%20194.30782%20C%20314.54943%20193.60202%20314.71223%20192.70572%20315.03629%20191.61813%20L%20319.0151%20177.93651%20C%20319.39685%20176.61922%20319.58735%20175.62754%20319.58735%20174.95991%20C%20319.58735%20174.53996%20319.40582%20174.16692%20319.04356%20173.84286%20C%20318.68052%20173.51905%20318.18469%20173.35701%20317.55527%20173.35701%20C%20317.26861%20173.35701%20316.92506%20173.36677%20316.5246%20173.38548%20L%20316.89661%20172.2407%20L%20326.59967%20170.66627%20L%20328.31744%20170.66627%20L%20322.44986%20191.01638%20C%20322.12503%20192.18064%20321.963%20192.94337%20321.963%20193.30666%20C%20321.963%20193.51588%20322.04862%20193.71121%20322.2204%20193.89273%20C%20322.39218%20194.07425%20322.5737%20194.16554%20322.7642%20194.16477%20C%20323.08903%20194.16554%20323.4131%20194.02221%20323.73792%20193.73559%20C%20324.59605%20193.02976%20325.6267%20191.75142%20326.82838%20189.90008%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22244%20193%2020%2022%22%20width%3D%2220pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Ctitle%3EBody%3C%2Ftitle%3E%3Cpath%20d%3D%22M%20257.33334%20196.80951%20L%20245.90476%20207.2857%20L%20244%20212.0476%20L%20248.7619%20210.14284%20L%20260.19048%20199.66665%20Z%20M%20259.2381%20194.90475%20L%20258.28566%20195.85716%20L%20261.14284%20198.71428%20L%20262.09522%20197.76187%20Z%20M%20261.14286%20193%20L%20260.19042%20193.95241%20L%20263.04762%20196.80953%20L%20264%20195.85714%20Z%20M%20244%20213.72882%20C%20244%20213.72882%20247.4281%20215.43353%20250.8572%20213.7288%20C%20254.28599%20212.02405%20261.14284%20214.86531%20261.14284%20214.86531%20L%20261.14284%20213.72884%20C%20261.14284%20213.72884%20254.28577%20210.88755%20250.8572%20212.5923%20C%20247.42858%20214.29712%20244%20212.59228%20244%20212.59228%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <button class='tw-button btn-invisible'>
-<span class='tw-transclude'>
+<span class='tw-transclude tw-tiddler-missing'>
 <img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axl%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20version%3D%221.1%22%20viewBox%3D%22222%20150%2056%2056%22%20width%3D%2222pt%22%20height%3D%2222pt%22%3E%3Cg%20stroke%3D%22none%22%20stroke-opacity%3D%221%22%20stroke-dasharray%3D%22none%22%20fill%3D%22none%22%20fill-opacity%3D%221%22%3E%3Cg%3E%3Cpath%20d%3D%22M%20249.56668%20185.88827%20L%20267.06757%20203.38916%20C%20269.26427%20205.58586%20272.82582%20205.58586%20275.02252%20203.38916%20L%20275.02252%20203.38916%20C%20277.21922%20201.19246%20277.21922%20197.63091%20275.02252%20195.43421%20L%20257.52163%20177.93332%20L%20275.38916%20160.06579%20C%20277.58586%20157.86909%20277.58586%20154.30754%20275.38916%20152.11084%20C%20273.19246%20149.91414%20269.63091%20149.91414%20267.43421%20152.11084%20L%20249.56668%20169.97837%20L%20232.06579%20152.47748%20L%20232.06579%20152.47748%20C%20232.06579%20152.47748%20232.06579%20152.47748%20232.06579%20152.47748%20C%20229.86909%20150.28078%20226.30754%20150.28078%20224.11084%20152.47748%20L%20224.11084%20152.47748%20C%20221.91414%20154.674175%20221.91414%20158.23573%20224.11084%20160.43243%20L%20241.61173%20177.93332%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20L%20224.47748%20195.06757%20C%20224.47748%20195.06757%20224.47748%20195.06757%20224.47748%20195.06757%20C%20222.28078%20197.26427%20222.28078%20200.82583%20224.47748%20203.02252%20L%20224.47748%20203.02252%20C%20226.67418%20205.21922%20230.23573%20205.21922%20232.43243%20203.02252%20Z%22%20fill%3D%22%23ccc%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A'>
 </span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
@@ -1206,14 +1219,12 @@ TiddlyWiki5</a>.
 </span>
 <span class='title'>
 <span>
-Docs</span></span>
-
+Docs</span></span></p><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
 </a></span> <span class='tw-view-date'>
-</span></div>
-
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -1232,9 +1243,7 @@ docs</span></span></button>
 introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span></span></div>
-
-<div class='body'>
+</span></span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
@@ -1245,36 +1254,36 @@ Editions</h1><p>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
 TiddlyWiki5</a> can be used via these editions:</p><div class='tw-list-frame'>
 <div class='tw-list-element'>
-<span class='tw-transclude'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5%2520in%2520the%2520Sky%2520for%2520TiddlyWeb.html'>
-TiddlyWiki5 in the Sky for TiddlyWeb</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+TiddlyWiki5 in the Sky for TiddlyWeb</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5%2520Node%2520Edition.html'>
-TiddlyWiki5 Node Edition</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+TiddlyWiki5 Node Edition</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5%2520Standalone%2520Edition.html'>
-TiddlyWiki5 Standalone Edition</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+TiddlyWiki5 Standalone Edition</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5%2520Static%2520Site%2520Generation.html'>
-TiddlyWiki5 Static Site Generation</a></span></span></div></div><h1 class=''>
+TiddlyWiki5 Static Site Generation</a></span></div></div></div><h1 class=''>
 How to use TiddlyWiki5</h1><div class='tw-list-frame'>
 <div class='tw-list-element'>
-<span class='tw-transclude'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/How%2520to%2520use%2520TiddlyWiki5%2520as%2520a%2520standalone%2520HTML%2520file.html'>
-How to use TiddlyWiki5 as a standalone HTML file</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+How to use TiddlyWiki5 as a standalone HTML file</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/How%2520to%2520use%2520TiddlyWiki5%2520as%2520a%2520standalone%2520HTML%2520file%2520with%2520encryption.html'>
-How to use TiddlyWiki5 as a standalone HTML file with encryption</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+How to use TiddlyWiki5 as a standalone HTML file with encryption</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/How%2520to%2520use%2520TiddlyWiki5%2520as%2520a%2520standalone%2520HTML%2520file%2520with%2520TiddlyFox.html'>
-How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox</a></span></span></div></div><h1 class=''>
+How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox</a></span></div></div></div><h1 class=''>
 Concepts</h1><p>
 The core concepts underlying <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki.html'>
 TiddlyWiki</a> are:</p><ul>
@@ -1310,59 +1319,59 @@ Wiki Text Rules</h1><p>
 These are the individual rules that make up <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/WikiText.html'>
 WikiText</a>:</p><div class='tw-list-frame'>
 <div class='tw-list-element'>
-<span class='tw-transclude'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/StyleBlockWikiText.html'>
-StyleBlockWikiText</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+StyleBlockWikiText</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TypedBlockWikiText.html'>
-TypedBlockWikiText</a></span></span></div></div><h1 class=''>
+TypedBlockWikiText</a></span></div></div></div><h1 class=''>
 Widgets</h1><p>
 Widgets give <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/WikiText.html'>
 WikiText</a> dynamic functionality:</p><div class='tw-list-frame'>
 <div class='tw-list-element'>
-<span class='tw-transclude'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/LinkWidget.html'>
-LinkWidget</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+LinkWidget</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/VideoWidget.html'>
-VideoWidget</a></span></span></div></div><h1 class=''>
+VideoWidget</a></span></div></div></div><h1 class=''>
 Commands</h1><p>
 When run under node.js, <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki.html'>
 TiddlyWiki</a> supports a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5%2520Node%2520Edition.html'>
 command line interface</a> with the following built-in commands:</p><div class='tw-list-frame'>
 <div class='tw-list-element'>
-<span class='tw-transclude'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/DumpCommand.html'>
-DumpCommand</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+DumpCommand</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/LoadCommand.html'>
-LoadCommand</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+LoadCommand</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/SaveTiddlerCommand.html'>
-SaveTiddlerCommand</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+SaveTiddlerCommand</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/SaveTiddlersCommand.html'>
-SaveTiddlersCommand</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+SaveTiddlersCommand</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/ServerCommand.html'>
-ServerCommand</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+ServerCommand</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/VerboseCommand.html'>
-VerboseCommand</a></span></span></div><div class='tw-list-element'>
-<span class='tw-transclude'>
+VerboseCommand</a></span></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/VersionCommand.html'>
-VersionCommand</a></span></span></div></div><h1 class=''>
+VersionCommand</a></span></div></div></div><h1 class=''>
 Miscellaneous</h1><ul>
 <li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/ReportingBugs.html'>
@@ -1375,7 +1384,6 @@ FederatialLimited</a></li><li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/History.html'>
 History</a></li><li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/Acknowledgements.html'>
-Acknowledgements</a></li></ul></div></div></div>
-</span></div></div></section></div>
+Acknowledgements</a></li></ul></div></div></div></div></div></div></section></div></div></div>
 </body>
 </html>
