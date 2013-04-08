@@ -436,7 +436,8 @@ table {
 }body {
 	font-size: 14px;
 	line-height: 20px;
-	background-color: #ececec
+	background-color: #ececec;
+	word-wrap: break-word;
 }code, pre {
 	padding: 0 3px 2px;
 	
@@ -481,6 +482,22 @@ table {
 	font-weight: bold;
 }a.tw-tiddlylink-missing {
 	font-style: italic;
+}.tw-tiddler-dragger {
+	display: inline-block;
+	padding: 8px 20px;
+	font-size: 16.9px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #000;
+	
+  -webkit-border-radius: 20px;
+     -moz-border-radius: 20px;
+          border-radius: 20px;
+
 }.btn-invisible {
 	padding: 0;
 	margin: 0;
@@ -727,11 +744,26 @@ table {
 }embed {
 	width: 100%;
 	height: 20em;
-}.tw-dragover .tw-drag-target {
+}.tw-import {
+	position: relative;
+}.tw-drop-zone-fullscreen.tw-dragover:before {
+	z-index: 10000;
 	display: block;
-	background: red;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,200,0,0.7);
+	text-align: center;
+	content: "Drop here";
+}.tw-drop-zone.tw-dragover:before {
+	z-index: 10000;
+	display: block;
 	position: absolute;
-}.tw-drag-target {
-	display: none;
-	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,200,0,0.7);
+	text-align: center;
+	content: "Drop here";
 }

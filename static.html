@@ -453,7 +453,8 @@ html {
 body {
 	font-size: 14px;
 	line-height: 20px;
-	background-color: #ececec
+	background-color: #ececec;
+	word-wrap: break-word;
 }
 
 code, pre {
@@ -518,6 +519,24 @@ a.tw-tiddlylink-resolves {
 
 a.tw-tiddlylink-missing {
 	font-style: italic;
+}
+
+.tw-tiddler-dragger {
+	display: inline-block;
+	padding: 8px 20px;
+	font-size: 16.9px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #000;
+	
+  -webkit-border-radius: 20px;
+     -moz-border-radius: 20px;
+          border-radius: 20px;
+
 }
 
 .btn-invisible {
@@ -854,28 +873,42 @@ embed {
 	height: 20em;
 }
 
-.tw-dragover .tw-drag-target {
-	display: block;
-	background: red;
-	position: absolute;
+.tw-import {
+	position: relative;
 }
 
-.tw-drag-target {
-	display: none;
+.tw-drop-zone-fullscreen.tw-dragover:before {
+	z-index: 10000;
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,200,0,0.7);
+	text-align: center;
+	content: "Drop here";
+}
+
+.tw-drop-zone.tw-dragover:before {
+	z-index: 10000;
+	display: block;
 	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,200,0,0.7);
+	text-align: center;
+	content: "Drop here";
 }
 
 </style>
 </head>
 <body>
 <div class='tw-navigator'>
-<div class='tw-import'>
+<div class='tw-import tw-drop-zone-fullscreen'>
 <input style='display: none;' type='file'>
 <div>
-<div class='tw-drag-target'>
-<p>
-Drop files here to import them as tiddlers
-</p></div><header class='sidebar-header'>
+<header class='sidebar-header'>
 <p>
 <span class='tw-transclude title'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
