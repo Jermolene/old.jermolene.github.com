@@ -30,12 +30,12 @@
 </span>
 <span class='title'>
 <span>
-RoadMap</span></span></p><p>
+TiddlyWikiFolders</span></span></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston.html'>
-JeremyRuston</a></span> <span class='tw-view-date'>
-18 April 2013</span></div></p><p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
+</a></span> <span class='tw-view-date'>
+16 April 2013</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -46,74 +46,56 @@ JeremyRuston</a></span> <span class='tw-view-date'>
 docs</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span><span class='tw-list-element'>
-<span class='tw-transclude tw-tiddler-missing'>
-<button class='tw-button btn-invisible'>
-<span class='tw-tag-label' style='background-color:'>
-<span>
-planning</span></span></button>
-<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
-</div>
 </span></span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> is currently an alpha release, meaning that it is incomplete and subject to change.</p><h1 class=''>
-Alpha Release</h1><p>
-There has already been a series of alpha releases of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a>. The goal of these releases is to test the new technical architecture and to explore user interface features.</p><p>
-Some of the features and fixes required before the beta is declared include:</p><ul>
+As well as traditional single file wikis, <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5%2520Node%2520Edition.html'>
+under node.js</a> supports wikis that are stored as a folder of individual tiddler files.</p><h1 class=''>
+Wiki folder files and folders</h1><p>
+Wiki folders can contain the following files and folders:</p><ul>
 <li>
-<strike>
-Synchronisation via HTTP in the browser</strike></li><li>
-<strike>
-Synchronisation via direct file access under node.js</strike></li><li>
-<strike>
-Preliminary integration with <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlySpace.html'>
-TiddlySpace</a></strike></li><li>
-<strike>
-Preliminary integration with <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlySpot.html'>
-TiddlySpot</a></strike></li><li>
-<strike>
-Saving changes to a file URI using Firefox</strike></li><li>
-<strike>
-Lazy loading</strike></li><li>
-<strike>
-Better handling of binary tiddlers</strike></li><li>
-Usability improvements to sidebar</li><li>
-A decent <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ReleaseProcess.html'>
-ReleaseProcess</a></li></ul><h1 class=''>
-Beta Release</h1><p>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> will progress to a beta release when it is practical for cautious everyday use.</p><p>
-Some of the additional features under consideration during the beta include:</p><ul>
+<strong>
+\tiddlers</strong> - folder containing tiddler files comprising the wiki</li><li>
+<strong>
+\plugins</strong> - folder containing <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='PluginMechanism.html'>
+plugin folders</a> to be included in the wiki</li><li>
+<strong>
+tiddlywiki.info</strong> - JSON file containing metadata for the wiki. See below</li></ul><p>
+Only the <strong>
+tiddlywiki.info</strong> file is required, the <strong>
+tiddlers</strong> and <strong>
+plugins</strong> folders are optional. Any files and folders not listed above are ignored.</p><h1 class=''>
+Content of <code>
+tiddlywiki.info</code></h1><p>
+The <code>
+tiddlywiki.info</code> file in a wiki folder contains a JSON object comprising the following fields:</p><ul>
 <li>
-Ability to <strike>
-inspect and</strike> edit tiddler fields</li><li>
-Aliases/inheritance</li><li>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
-WikiText</a> <strike>
-table and</strike> block quote support</li><li>
-More user interface widgets, including: ~tabs~, popovers, toolbars, carousel, ~dropdown~,</li><li>
-<strike>
-Checkbox support</strike></li><li>
-<strike>
-Search</strike></li><li>
-Tiddler themes and wiki themes</li><li>
-Text references: slices and sections, JSON references</li><li>
-<strike>
-Timed refreshed relative dates (eg, 'last modified 30 minutes ago')</strike></li><li>
-Encrypted tiddlers and <strike>
-encrypted <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyWikis.html'>
-TiddlyWikis</a></strike></li><li>
-Facebook, Twitter, G+ and <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='LinkedIn.html'>
-LinkedIn</a> macros</li><li>
-Integration with the browser back and forwards buttons</li></ul><h1 class=''>
-1.0 Release</h1><p>
-Hopefully, <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> will reach version 1.0 while we're still early in 2013. This is the point at which it is declared stable enough for general use. It will continue to improve and evolve after 1.0, although constrained to remain backwards compatible so that plugins and content created for version 1.0 will continue to work into the indefinite future.
-</p></div></div></div>
+<strong>
+plugins</strong> - an array of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='CorePlugins.html'>
+CorePlugins</a> to be included in the wiki</li><li>
+<strong>
+doNotSave</strong> - an array of tiddler titles that should not be saved by the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='FileSystemAdaptorPlugin.html'>
+FileSystemAdaptorPlugin</a></li><li>
+<strong>
+includeWikis</strong> - an array of relative paths to external wiki folders to be included in the wiki</li></ul><p>
+For example:</p><pre>
+{
+	&quot;plugins&quot;: [
+		&quot;tiddlywiki/tiddlyweb&quot;,
+		&quot;tiddlywiki/filesystem&quot;
+	],
+	&quot;doNotSave&quot;: [
+		&quot;$:/StoryList&quot;,
+		&quot;$:/HistoryList&quot;,
+		&quot;$:/status/IsLoggedIn&quot;,
+		&quot;$:/status/UserName&quot;
+	],
+	&quot;includeWikis&quot;: [
+		&quot;../tw5.com&quot;
+	]
+}</pre></div></div></div>
 </div>
 </section>
 </body>

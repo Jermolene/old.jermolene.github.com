@@ -1209,6 +1209,20 @@ For end users, the important improvements include:
 The internal changes mean that TiddlyWiki5 is not compatible with previous versions, using different plugins, themes and so on. The changes to the WikiText have been carefully developed to try to maximise backwards compatibility but content prepared for previous versions of TiddlyWiki will need massaging to work properly in TiddlyWiki5.
 </pre>
 </div>
+<div title="ReleaseProcess" tags="dev docs" modified="201304181008">
+<pre>To move from ''alpha'' to ''beta'', TiddlyWiki5 needs a better release and deployment process. At a minimum:
+
+* Each release should be automatically assigned a unique revision number, with a simple manual process to bump the major or minor version number
+* Each release should be available as a zip download on GitHub and tiddlywiki.com
+* A release note for end users should be automatically generated from the commits
+** The process should allow for manual editing of the release note
+* A clear distinction between a new release of the TW5 core plugins and revised content for the tw5.com website
+
+It would also be nice to have:
+
+* Automatic tweets from @TiddlyWiki announcing each release
+</pre>
+</div>
 <div title="TiddlySpot" tags="docs">
 <pre>TiddlySpot is a free hosting service for TiddlyWiki documents from Simon and Daniel Baird. It has been in operation almost as long as TiddlyWiki itself.
 
@@ -1560,6 +1574,48 @@ See TiddlyWikiArchitecture and [[Introduction]].
 </div>
 <div title="TiddlyWiki5" modifier="JeremyRuston" modified="201302051920" tags="docs concepts">
 <pre>TiddlyWiki5 is a reboot of TiddlyWiki for the next 25 years. It is a complete interactive wiki in JavaScript that can be run in the browser or on the server under [[node.js]].
+</pre>
+</div>
+<div modified="201304161845" tags="docs" title="TiddlyWikiFolders">
+<pre>As well as traditional single file wikis, TiddlyWiki5 [[under node.js|TiddlyWiki5 Node Edition]] supports wikis that are stored as a folder of individual tiddler files.
+
+! Wiki folder files and folders
+
+Wiki folders can contain the following files and folders:
+
+* ''\tiddlers'' - folder containing tiddler files comprising the wiki
+* ''\plugins'' - folder containing [[plugin folders|PluginMechanism]] to be included in the wiki
+* ''tiddlywiki.info'' - JSON file containing metadata for the wiki. See below
+
+Only the ''tiddlywiki.info'' file is required, the ''tiddlers'' and ''plugins'' folders are optional. Any files and folders not listed above are ignored.
+
+! Content of `tiddlywiki.info`
+
+The `tiddlywiki.info` file in a wiki folder contains a JSON object comprising the following fields:
+
+* ''plugins'' - an array of CorePlugins to be included in the wiki
+* ''doNotSave'' - an array of tiddler titles that should not be saved by the FileSystemAdaptorPlugin
+* ''includeWikis'' - an array of relative paths to external wiki folders to be included in the wiki
+
+For example:
+
+```
+{
+	&quot;plugins&quot;: [
+		&quot;tiddlywiki/tiddlyweb&quot;,
+		&quot;tiddlywiki/filesystem&quot;
+	],
+	&quot;doNotSave&quot;: [
+		&quot;$:/StoryList&quot;,
+		&quot;$:/HistoryList&quot;,
+		&quot;$:/status/IsLoggedIn&quot;,
+		&quot;$:/status/UserName&quot;
+	],
+	&quot;includeWikis&quot;: [
+		&quot;../tw5.com&quot;
+	]
+}
+```
 </pre>
 </div>
 <div title="Wiki" tags="docs concepts">
@@ -1954,22 +2010,20 @@ These files are a straightforward array of hashmaps of name:value fields. Curren
 TiddlyWiki HTML files contain a collection of tiddlers encoded in `&lt;DIV&gt;` format.
 </pre>
 </div>
-<div title="TiddlyWiki5 Node Edition" modifier="JeremyRuston" tags="docs edition">
-<pre>TiddlyWiki5 can be used on the command line to perform an extensive set of operations based on tiddlers, TiddlerFiles and TiddlyWikiFiles. For example, this loads the tiddlers from a TiddlyWiki HTML file and then saves one of them in HTML:
+<div tags="docs edition" modifier="JeremyRuston" title="TiddlyWiki5 Node Edition" modified="201304161918">
+<pre>TiddlyWiki5 can be used on the command line to perform an extensive set of operations based on tiddlers, TiddlyWikiFolders, TiddlerFiles and TiddlyWikiFiles. For example, the following command loads the tiddlers from a TiddlyWiki HTML file and then saves one of them in HTML:
 
 ```
 node tiddlywiki.js --verbose --load mywiki.html --savetiddler ReadMe ./readme.html
 ```
 
-In order to use TiddlyWiki5 on the command line you must first install node.js:
-
-http://nodejs.org/
+In order to use TiddlyWiki5 on the command line you must first install node.js from http://nodejs.org/
 
 !!Usage
 
 Running `tiddlywiki.js` from the command line boots the TiddlyWiki kernel, loads the core plugins and establishes an empty wiki store. It then sequentially processes the command line arguments from left to right. The arguments are separated with spaces.
 
-The first argument is the optional path to the WikiDirectory to be loaded. If not present, then the current directory is used.
+The first argument is the optional path to the [[TiddlyWikiFolder|TiddlyWikiFolders]] to be loaded. If not present, then the current directory is used.
 
 The commands and their individual arguments follow, each command being identified by the prefix `--`.
 
@@ -2462,7 +2516,7 @@ The built in parser rules use regular expression matching. Such rules can take a
 {{Building classic TiddlyWiki with TiddlyWiki5}}
 </pre>
 </div>
-<div tags="docs planning" modifier="JeremyRuston" title="RoadMap" modified="201304012030">
+<div modified="201304181001" title="RoadMap" modifier="JeremyRuston" tags="docs planning">
 <pre>TiddlyWiki5 is currently an alpha release, meaning that it is incomplete and subject to change.
 
 ! Alpha Release
@@ -2478,6 +2532,8 @@ Some of the features and fixes required before the beta is declared include:
 * ~~Saving changes to a file URI using Firefox~~
 * ~~Lazy loading~~
 * ~~Better handling of binary tiddlers~~
+* Usability improvements to sidebar
+* A decent ReleaseProcess
 
 ! Beta Release
 

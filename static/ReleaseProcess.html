@@ -30,15 +30,23 @@
 </span>
 <span class='title'>
 <span>
-RoadMap</span></span></p><p>
+ReleaseProcess</span></span></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston.html'>
-JeremyRuston</a></span> <span class='tw-view-date'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
+</a></span> <span class='tw-view-date'>
 18 April 2013</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
+<span>
+dev</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
 <span class='tw-transclude'>
 <button class='tw-button btn-invisible'>
 <span class='tw-tag-label' style='background-color:#8080FF'>
@@ -46,74 +54,26 @@ JeremyRuston</a></span> <span class='tw-view-date'>
 docs</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span><span class='tw-list-element'>
-<span class='tw-transclude tw-tiddler-missing'>
-<button class='tw-button btn-invisible'>
-<span class='tw-tag-label' style='background-color:'>
-<span>
-planning</span></span></button>
-<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
-</div>
 </span></span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> is currently an alpha release, meaning that it is incomplete and subject to change.</p><h1 class=''>
-Alpha Release</h1><p>
-There has already been a series of alpha releases of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a>. The goal of these releases is to test the new technical architecture and to explore user interface features.</p><p>
-Some of the features and fixes required before the beta is declared include:</p><ul>
+To move from <strong>
+alpha</strong> to <strong>
+beta</strong>, <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> needs a better release and deployment process. At a minimum:</p><ul>
 <li>
-<strike>
-Synchronisation via HTTP in the browser</strike></li><li>
-<strike>
-Synchronisation via direct file access under node.js</strike></li><li>
-<strike>
-Preliminary integration with <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlySpace.html'>
-TiddlySpace</a></strike></li><li>
-<strike>
-Preliminary integration with <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlySpot.html'>
-TiddlySpot</a></strike></li><li>
-<strike>
-Saving changes to a file URI using Firefox</strike></li><li>
-<strike>
-Lazy loading</strike></li><li>
-<strike>
-Better handling of binary tiddlers</strike></li><li>
-Usability improvements to sidebar</li><li>
-A decent <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ReleaseProcess.html'>
-ReleaseProcess</a></li></ul><h1 class=''>
-Beta Release</h1><p>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> will progress to a beta release when it is practical for cautious everyday use.</p><p>
-Some of the additional features under consideration during the beta include:</p><ul>
+Each release should be automatically assigned a unique revision number, with a simple manual process to bump the major or minor version number</li><li>
+Each release should be available as a zip download on <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='GitHub.html'>
+GitHub</a> and tiddlywiki.com</li><li>
+A release note for end users should be automatically generated from the commits<ul>
 <li>
-Ability to <strike>
-inspect and</strike> edit tiddler fields</li><li>
-Aliases/inheritance</li><li>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
-WikiText</a> <strike>
-table and</strike> block quote support</li><li>
-More user interface widgets, including: ~tabs~, popovers, toolbars, carousel, ~dropdown~,</li><li>
-<strike>
-Checkbox support</strike></li><li>
-<strike>
-Search</strike></li><li>
-Tiddler themes and wiki themes</li><li>
-Text references: slices and sections, JSON references</li><li>
-<strike>
-Timed refreshed relative dates (eg, 'last modified 30 minutes ago')</strike></li><li>
-Encrypted tiddlers and <strike>
-encrypted <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyWikis.html'>
-TiddlyWikis</a></strike></li><li>
-Facebook, Twitter, G+ and <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='LinkedIn.html'>
-LinkedIn</a> macros</li><li>
-Integration with the browser back and forwards buttons</li></ul><h1 class=''>
-1.0 Release</h1><p>
-Hopefully, <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> will reach version 1.0 while we're still early in 2013. This is the point at which it is declared stable enough for general use. It will continue to improve and evolve after 1.0, although constrained to remain backwards compatible so that plugins and content created for version 1.0 will continue to work into the indefinite future.
-</p></div></div></div>
+The process should allow for manual editing of the release note</li></ul></li><li>
+A clear distinction between a new release of the TW5 core plugins and revised content for the tw5.com website</li></ul><p>
+It would also be nice to have:</p><ul>
+<li>
+Automatic tweets from @<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> announcing each release</li></ul></div></div></div>
 </div>
 </section>
 </body>
