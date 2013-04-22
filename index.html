@@ -1262,49 +1262,12 @@ Service URL: &lt;$edit tiddler=&quot;$:/UploadURL&quot; default=&quot;&quot; typ
 * [[TiddlyWiki5 in the Sky for Dropbox]]
 </pre>
 </div>
-<div title="TiddlyWikiArchitecture" modifier="JeremyRuston" tags="docs internals">
+<div title="TiddlyWikiArchitecture" modifier="JeremyRuston" tags="docs internals" modified="201304212156">
 <pre>The heart of TiddlyWiki can be seen as an extensible representation transformation engine for text and images. Given the text of a tiddler and its associated ContentType, the engine can produce a rendering of the tiddler in a new ContentType. Furthermore, it can efficiently selectively update the rendering to track any changes in the tiddler or its dependents.
 
 The primary use of the engine is to convert raw `text/vnd.tiddlywiki` WikiText into a `text/html` or `text/plain` representation for display. The transclusion and templating features of WikiText allow the engine to also be used to generate TiddlyWiki HTML files from raw tiddlers.
 
-You can explore this mechanism by opening the JavaScript console in your browser. Typing this command will replace the text of the tiddler `HelloThere` with new content:
-
-```
-$tw.wiki.addTiddler({title: &quot;HelloThere&quot;, text: &quot;This is some new content&quot;});
-```
-
-If the tiddler `HelloThere` is visible then you'll see it instantly change to reflect the new content. If you create a tiddler that doesn't currently exist (like IntentionallyMissingTiddler) then you'll see any displayed links to it instantly change from italicised to normal:
-
-```
-$tw.wiki.addTiddler({title: &quot;IntentionallyMissingTiddler&quot;, text: &quot;This tiddler now exists&quot;});
-```
-
-This example deletes a tiddler:
-
-```
-$tw.wiki.deleteTiddler(&quot;HelloThere&quot;)
-```
-
-This example retrieves all the outgoing links from a tiddler:
-
-```
-$tw.wiki.getTiddlerLinks(&quot;HelloThere&quot;)
-```
-
-This example retrieves all the incoming links to a tiddler:
-
-```
-$tw.wiki.getTiddlerLinks(&quot;HelloThere&quot;)
-```
-
-This example retrieves the titles of all the tiddlers matching a TiddlerFilter expression:
-
-```
-$tw.wiki.filterTiddlers(&quot;[tag[docs]sort[modified]]&quot;)`
-```
-
-If you're interested in understanding more about the internal operation of TiddlyWiki, it is recommended that you review the DeveloperDocs and read the code -- start with the boot kernel [[$:/core/boot.js]].
-</pre>
+If you're interested in understanding more about the internal operation of TiddlyWiki, it is recommended that you review the DeveloperDocs and read the code -- start with the boot kernel [[$:/core/boot.js]].</pre>
 </div>
 <div title="DumpCommand" tags="docs command">
 <pre>!!! dump tiddlers
@@ -2516,7 +2479,7 @@ The built in parser rules use regular expression matching. Such rules can take a
 {{Building classic TiddlyWiki with TiddlyWiki5}}
 </pre>
 </div>
-<div modified="201304181001" title="RoadMap" modifier="JeremyRuston" tags="docs planning">
+<div tags="docs planning" modifier="JeremyRuston" title="RoadMap" modified="201304212151">
 <pre>TiddlyWiki5 is currently an alpha release, meaning that it is incomplete and subject to change.
 
 ! Alpha Release
@@ -2553,6 +2516,7 @@ Some of the additional features under consideration during the beta include:
 * Encrypted tiddlers and ~~encrypted TiddlyWikis~~
 * Facebook, Twitter, G+ and LinkedIn macros
 * Integration with the browser back and forwards buttons
+* Minification of plugins (JS and CSS)
 
 ! 1.0 Release
 
