@@ -429,8 +429,10 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-* {
+*, input[type="search"] {
 	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }html {
 	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }body {
@@ -474,7 +476,13 @@ table {
 	font-weight: normal;
 	color: #5959C0;
 }.sidebar-header a.tw-tiddlylink {
-	color: #69699B;
+	color: #d00;
+}.sidebar-header a.tw-tiddlylink:hover {
+	color: #f66;
+}.tw-sidebar-lists a.tw-tiddlylink {
+	color: #999;
+}.tw-sidebar-lists a.tw-tiddlylink:hover {
+	color: #444;
 }a.tw-tiddlylink:hover {
 	text-decoration: underline;
 }a.tw-tiddlylink-resolves {
@@ -557,13 +565,12 @@ table {
 }.sidebar-header {
 	position: fixed;
 	top: 0;
-	left: 0;
+	left: 55em;
 	bottom: 0;
-	width: 20%;
 	overflow-y: auto;
 	overflow-x: auto;
 	-webkit-overflow-scrolling: touch;
-	padding: 5em 0em 2em 2em;
+	padding: 6em 0 2em 0;
 	margin: 0;
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
 }.sidebar-header .tw-tab-set p {
@@ -575,8 +582,8 @@ table {
 }}.tw-menu-list-item {
 	white-space: nowrap;
 }.story-river {
-	margin-left: 20%;
-	padding: 2em 2em 2em 0;
+	width: 55em;
+	padding: 3em;
 }@media print {
 .story-river {
 	margin-left: 1em;
@@ -585,7 +592,6 @@ table {
 	padding: 3em;
 	margin-bottom: 2em;
 	background-color: #fff;
-	max-width: 50em;
 	
   -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
      -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
@@ -602,8 +608,10 @@ table {
 }.tw-tiddler-frame .tw-tiddler-controls {
 	float: right;
 }.tw-tiddler-controls .tw-button {
-	margin: 0 0 0 0.5em;
-	vertical-align: middle;
+	margin: 0 0 0 0.33em;
+	vertical-align: baseline;
+}.tw-tiddler-controls .tw-button img {
+	height: 0.75em;
 }.tw-tiddler-help {
 	color: #999;
 	margin-top: 1em;
@@ -718,22 +726,20 @@ table {
 	border-bottom: 1px solid #fff;
 }.tw-drop-down .tw-tab-contents a {
 	padding: 0 0.5em 0 0.5em;
-}.tw-edit-texteditor input, .tw-edit-texteditor textarea {
+}.tw-tiddler-frame .tw-edit-texteditor input, .tw-tiddler-frame .tw-edit-texteditor textarea {
 	width: 100%;
 	padding: 3px 3px 3px 3px;
 	border: 1px solid #888;
 	line-height: 1.3em;
 	-webkit-appearance: none;
 	margin: 0.25em 0 0.25em 0;
-}.tw-edit-texteditor input {
+}.tw-tiddler-frame .tw-edit-texteditor input {
 	background-color: #f8f8f8;
 	
   -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
      -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
           box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
 
-}.sidebar-header .tw-edit-texteditor input, .sidebar-header .tw-edit-texteditor textarea {
-	width: 80%;
 }canvas.tw-edit-bitmapeditor  {
 	cursor: crosshair;
 	-moz-user-select: none;
