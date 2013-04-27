@@ -560,6 +560,14 @@ a.tw-tiddlylink-missing {
 	border: none;
 }
 
+.tw-menu-list-item .btn-mini-close {
+	color: #e0e0e0;
+}
+
+.tw-menu-list-item:hover .btn-mini-close {
+	color: #444;
+}
+
 .tw-tags-wrapper {
 	margin: 0.25em 0 1em 0;
 }
@@ -835,6 +843,18 @@ a.tw-tiddlylink-missing {
 	padding-top: 1em;
 }
 
+.tw-sidebar-tab-divider.tw-tab-divider {
+	border-top: none;
+	height: 1px;
+	
+background-image: linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
+background-image: -o-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
+background-image: -moz-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
+background-image: -webkit-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
+background-image: -ms-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
+
+}
+
 .tw-more-sidebar.tw-tab-set {
 	white-space: nowrap;
 }
@@ -993,7 +1013,7 @@ Open</button><button class='tw-button'>
 All</button><button class='tw-button'>
 Tools</button><button class='tw-button'>
 More</button></div>
-<div class='tw-tab-divider'>
+<div class='tw-tab-divider tw-sidebar-tab-divider'>
 </div>
 <div class='tw-tab-content'>
 <div class='tw-reveal' style='display:none;'>
