@@ -33,7 +33,9 @@ Password prompt
 	line-height: 20px;
 }
 
-/*! normalize.css v2.1.0 | MIT License | git.io/normalize */
+/*
+** Start with the normalize CSS reset, and then belay some of its effects
+*//*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 
 /* ==========================================================================
    HTML5 display definitions
@@ -433,7 +435,9 @@ table {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-}html {
+}/*
+** Basic element styles
+*/html {
 	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }body {
 	font-size: 14px;
@@ -470,7 +474,14 @@ table {
 	padding: 0 0.5em 0 0.5em;
 	border-top: 1px solid #ddd;
 	border-left: 1px solid #ddd;
-}a.tw-tiddlylink {
+}img, canvas, embed {
+	max-width: 100%;
+}embed {
+	width: 100%;
+	height: 20em;
+}/*
+** Links
+*/a.tw-tiddlylink {
 	text-decoration: none;
 	font-style: normal;
 	font-weight: normal;
@@ -490,7 +501,9 @@ table {
 	font-weight: bold;
 }a.tw-tiddlylink-missing {
 	font-style: italic;
-}.tw-tiddler-dragger {
+}/*
+** Drag and drop styles
+*/.tw-tiddler-dragger {
 	display: inline-block;
 	padding: 8px 20px;
 	font-size: 16.9px;
@@ -506,16 +519,42 @@ table {
      -moz-border-radius: 20px;
           border-radius: 20px;
 
-}.btn-invisible {
+}.tw-import {
+	position: relative;
+}.tw-drop-zone-fullscreen.tw-dragover:before {
+	z-index: 10000;
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,200,0,0.7);
+	text-align: center;
+	content: "Drop here";
+}.tw-drop-zone.tw-dragover:before {
+	z-index: 10000;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,200,0,0.7);
+	text-align: center;
+	content: "Drop here";
+}/*
+** Buttons
+*/.btn-invisible {
 	padding: 0;
 	margin: 0;
 	background: none;
 	border: none;
-}.tw-menu-list-item .btn-mini-close {
+}.btn-mini {
 	color: #e0e0e0;
-}.tw-menu-list-item:hover .btn-mini-close {
+}.btn-mini:hover {
 	color: #444;
-}.tw-tags-wrapper {
+}/*
+** Tags and missing tiddlers
+*/.tw-tags-wrapper {
 	margin: 0.25em 0 1em 0;
 }.tw-missing-tiddler-label {
 	font-style: italic;
@@ -565,7 +604,9 @@ table {
      -moz-box-shadow: inset 0px 2em 0 rgba(0,0,0,0.22);
           box-shadow: inset 0px 2em 0 rgba(0,0,0,0.22);
 
-}.edit-header {
+}/*
+** Page layout
+*/.edit-header {
 }.sidebar-header {
 	position: fixed;
 	top: 0;
@@ -584,7 +625,9 @@ table {
 }@media print {
 .sidebar-header {
 	display: none;
-}}.tw-menu-list-item {
+}}.tw-search-results {
+	padding-top: 1em;
+}.tw-menu-list-item {
 	white-space: nowrap;
 }.story-river {
 	width: 55em;
@@ -592,7 +635,9 @@ table {
 }@media print {
 .story-river {
 	margin-left: 1em;
-}}.tw-tiddler-frame {
+}}/*
+** Tiddler styles
+*/.tw-tiddler-frame {
 	position: relative;
 	padding: 2em 3em 3em 3em;
 	margin-bottom: 2em;
@@ -617,12 +662,33 @@ table {
 	vertical-align: baseline;
 }.tw-tiddler-controls .tw-button img {
 	height: 0.75em;
-}.tw-tiddler-help {
+}.tw-tiddler-help { /* Help prompts within tiddler template */
 	color: #999;
 	margin-top: 1em;
 }.tw-tiddler-help a.tw-tiddlylink {
 	color: #888888;
-}.tw-drop-down {
+}.tw-tiddler-frame .tw-edit-texteditor input, .tw-tiddler-frame .tw-edit-texteditor textarea {
+	width: 100%;
+	padding: 3px 3px 3px 3px;
+	border: 1px solid #888;
+	line-height: 1.3em;
+	-webkit-appearance: none;
+	margin: 0.25em 0 0.25em 0;
+}.tw-tiddler-frame .tw-edit-texteditor input {
+	background-color: #f8f8f8;
+	
+  -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+     -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+
+}canvas.tw-edit-bitmapeditor  {
+	cursor: crosshair;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}/*
+** Dropdowns
+*/.tw-drop-down {
 	min-width: 20em;
 	border: 1px solid #bbb;
 	background-color: #fff;
@@ -646,7 +712,16 @@ table {
 	color: #fff;
 	background-color: #5959C0;
 	text-decoration: none;
-}.modal-backdrop {
+}.tw-drop-down .tw-tab-buttons button {
+	background-color: #ececec;
+}.tw-drop-down .tw-tab-buttons button.tw-tab-selected {
+	background-color: #fff;
+	border-bottom: 1px solid #fff;
+}.tw-drop-down .tw-tab-contents a {
+	padding: 0 0.5em 0 0.5em;
+}/*
+** Modals
+*/.modal-backdrop {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -700,7 +775,9 @@ table {
      -moz-box-shadow: inset 0 1px 0 #fff;
           box-shadow: inset 0 1px 0 #fff;
 ;
-}.tw-tab-set {
+}/*
+** Tabs
+*/.tw-tab-set {
 }.tw-tab-buttons {
 	font-size: 0.85em;
 	line-height: 100%;
@@ -768,59 +845,4 @@ background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255
 background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255) 100%);
 
 	border: none;
-}.tw-search-results {
-	padding-top: 1em;
-}.tw-drop-down .tw-tab-buttons button {
-	background-color: #ececec;
-}.tw-drop-down .tw-tab-buttons button.tw-tab-selected {
-	background-color: #fff;
-	border-bottom: 1px solid #fff;
-}.tw-drop-down .tw-tab-contents a {
-	padding: 0 0.5em 0 0.5em;
-}.tw-tiddler-frame .tw-edit-texteditor input, .tw-tiddler-frame .tw-edit-texteditor textarea {
-	width: 100%;
-	padding: 3px 3px 3px 3px;
-	border: 1px solid #888;
-	line-height: 1.3em;
-	-webkit-appearance: none;
-	margin: 0.25em 0 0.25em 0;
-}.tw-tiddler-frame .tw-edit-texteditor input {
-	background-color: #f8f8f8;
-	
-  -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
-     -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
-          box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
-
-}canvas.tw-edit-bitmapeditor  {
-	cursor: crosshair;
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-}img, canvas, embed {
-	max-width: 100%;
-}embed {
-	width: 100%;
-	height: 20em;
-}.tw-import {
-	position: relative;
-}.tw-drop-zone-fullscreen.tw-dragover:before {
-	z-index: 10000;
-	display: block;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: rgba(0,200,0,0.7);
-	text-align: center;
-	content: "Drop here";
-}.tw-drop-zone.tw-dragover:before {
-	z-index: 10000;
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: rgba(0,200,0,0.7);
-	text-align: center;
-	content: "Drop here";
 }
