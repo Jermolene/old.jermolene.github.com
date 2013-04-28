@@ -607,7 +607,6 @@ table {
 }/*
 ** Page layout
 */.sidebar-header {
-	margin: 0;
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
 }.sidebar-header .tw-tab-set p {
 	margin-top: 0.2em;
@@ -632,7 +631,8 @@ table {
 		overflow-y: auto;
 		overflow-x: auto;
 		-webkit-overflow-scrolling: touch;
-		padding: 5em 0 2em 0;
+		margin: 0 0 0 -3em;
+		padding: 5em 0 2em 3em;
 	}.story-river {
 		width: 55em;
 		padding: 3em;
@@ -827,12 +827,13 @@ background-image: -ms-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236
 
 }.tw-more-sidebar.tw-tab-set {
 	white-space: nowrap;
+	margin-left: -3em;
 }.tw-more-sidebar .tw-tab-buttons {
 	display: inline-block;
 	vertical-align: top;
 	text-align: right;
 	padding-top: 0em;
-	padding-left: 1em;
+	padding-left: 0em;
 }.tw-more-sidebar .tw-tab-content {
 	display: inline-block;
 	vertical-align: top;
