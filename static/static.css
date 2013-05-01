@@ -599,8 +599,10 @@ table {
 	height: 0.75em;
 }.tw-search-results {
 	padding-top: 1em;
-}.tw-page-controls .tw-button img {
-	height: 1em;
+}.tw-page-controls {
+	margin-top: 1em;
+}.tw-page-controls img {
+	height: 1.5em;
 }.tw-menu-list-item {
 	white-space: nowrap;
 }@media (max-width: 55em) {
