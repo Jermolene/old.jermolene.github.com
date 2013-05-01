@@ -238,6 +238,12 @@ Password prompt
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;wikimethod&quot;
         },
+        &quot;$:/core/modules/parsers/fontparser.js&quot;: {
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/parsers/fontparser.js\ntype: application/javascript\nmodule-type: parser\n\nThe font parser parses fonts into URI encoded base64\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar FontParser = function(type,text,options) {\n\tthis.tree = [{\n\t\ttype: \&quot;element\&quot;,\n\t\ttag: \&quot;span\&quot;,\n\t\tchildren: [\n\t\t\t{type: \&quot;text\&quot;, text: \&quot;data:\&quot; + type + \&quot;;base64,\&quot; + text}\n\t\t]\n\t}];\n};\n\nexports[\&quot;application/font-woff\&quot;] = FontParser;\n\n})();\n\n&quot;,
+            &quot;title&quot;: &quot;$:/core/modules/parsers/fontparser.js&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;parser&quot;
+        },
         &quot;$:/core/modules/parsers/htmlparser.js&quot;: {
             &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/parsers/htmlparser.js\ntype: application/javascript\nmodule-type: parser\n\nThe HTML parser displays text as raw HTML\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar HtmlParser = function(type,text,options) {\n\tthis.tree = [{\n\t\ttype: \&quot;raw\&quot;,\n\t\thtml: text\n\t}];\n};\n\nexports[\&quot;text/html\&quot;] = HtmlParser;\n\n})();\n\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/parsers/htmlparser.js&quot;,
@@ -930,7 +936,7 @@ Password prompt
     }
 }</pre>
 </div>
-<div title="$:/themes/tiddlywiki/snowwhite" type="application/json" plugin="yes" name="Snow White" thumbnail="$:/themes/tiddlywiki/snowwhite/thumbnail" description="$:/themes/tiddlywiki/snowwhite/description" plugin-type="theme">
+<div title="$:/themes/tiddlywiki/snowwhite" type="application/json" plugin="yes" name="Snow White" description="A plain simple theme that emphasises individual tiddlers" plugin-type="theme">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/snowwhite&quot;,
     &quot;name&quot;: &quot;Snow White&quot;,
@@ -938,8 +944,7 @@ Password prompt
     &quot;version&quot;: &quot;0.0.0&quot;,
     &quot;core-version&quot;: &quot;&gt;=5.0.0&quot;,
     &quot;plugin-type&quot;: &quot;theme&quot;,
-    &quot;description&quot;: &quot;$:/themes/tiddlywiki/snowwhite/description&quot;,
-    &quot;thumbnail&quot;: &quot;$:/themes/tiddlywiki/snowwhite/thumbnail&quot;,
+    &quot;description&quot;: &quot;A plain simple theme that emphasises individual tiddlers&quot;,
     &quot;tiddlers&quot;: {
         &quot;$:/core/styles/base&quot;: {
             &quot;title&quot;: &quot;$:/core/styles/base&quot;,
@@ -955,10 +960,6 @@ Password prompt
             &quot;title&quot;: &quot;$:/core/styles/colours&quot;,
             &quot;type&quot;: &quot;application/x-tiddler-dictionary&quot;,
             &quot;text&quot;: &quot;primary: `#5959C0`\nbackground: `#fff`\npagebackground: `#ececec`\nmedium: `#bbb`&quot;
-        },
-        &quot;$:/themes/tiddlywiki/snowwhite/description&quot;: {
-            &quot;title&quot;: &quot;$:/themes/tiddlywiki/snowwhite/description&quot;,
-            &quot;text&quot;: &quot;A plain simple theme that emphasises individual tiddlers.\n&quot;
         },
         &quot;$:/core/styles/metrics&quot;: {
             &quot;title&quot;: &quot;$:/core/styles/metrics&quot;,
@@ -2429,6 +2430,7 @@ $tw.boot.startup = function() {
 	$tw.utils.registerFileType("image/png","base64",".png");
 	$tw.utils.registerFileType("image/gif","base64",".gif");
 	$tw.utils.registerFileType("image/svg+xml","utf8",".svg");
+	$tw.utils.registerFileType("application/font-woff","base64",".woff");
 	// Create the wiki store for the app
 	$tw.wiki = new $tw.Wiki();
 	// Install built in tiddler fields modules
