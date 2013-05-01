@@ -527,14 +527,6 @@ a.tw-tiddlylink {
 	color: #5959C0;
 }
 
-.sidebar-header a.tw-tiddlylink {
-	color: #d00;
-}
-
-.sidebar-header a.tw-tiddlylink:hover {
-	color: #f66;
-}
-
 .tw-sidebar-lists a.tw-tiddlylink {
 	color: #999;
 }
@@ -681,13 +673,21 @@ a.tw-tiddlylink-missing {
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
 }
 
-.sidebar-header .tw-tab-set p {
+.sidebar-header .tw-sidebar-lists p {
 	margin-top: 0.2em;
 	margin-bottom: 0.2em;
 }
 
+.tw-search a img {
+	height: 0.75em;
+}
+
 .tw-search-results {
 	padding-top: 1em;
+}
+
+.tw-page-controls .tw-button img {
+	height: 1em;
 }
 
 .tw-menu-list-item {
@@ -1053,16 +1053,15 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255
 TiddlyWiki5</a></span> <br>
 <small>
 <span class='tw-transclude'>
-a non-linear personal web notebook</span></small><br>
-<br>
-
-<span class='tw-transclude'>
-
-
+a non-linear personal web notebook</span></small></p><div class='tw-transclude'>
 <div class='tw-sidebar-lists'>
-<div class='tw-edit-texteditor search-query'>
+<div class='tw-linkcatcher'>
+<p>
+<div class='tw-search'>
+<span class='tw-edit-texteditor'>
 <input type='search' value=''>
-</div><div class='tw-reveal' style='display:none;'>
+</span><div class='tw-reveal' style='display:none;'>
+</div></div></p></div><div class='tw-reveal' style='display:none;'>
 </div><div class='tw-reveal' style='display:block;'>
 <div class='tw-tab-set'>
 <p>
@@ -1080,8 +1079,7 @@ More</button></div>
 </div><div class='tw-reveal' style='display:none;'>
 </div><div class='tw-reveal' style='display:none;'>
 </div></div>
-</p></div></div></div>
-</span></p></header><section class='story-river'>
+</p></div></div></div></div></header><section class='story-river'>
 <div class='tw-list-frame'>
 <div class='tw-list-element tw-tiddler-frame'>
 <div class='tw-transclude'>

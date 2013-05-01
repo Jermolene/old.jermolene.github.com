@@ -486,10 +486,6 @@ table {
 	font-style: normal;
 	font-weight: normal;
 	color: #5959C0;
-}.sidebar-header a.tw-tiddlylink {
-	color: #d00;
-}.sidebar-header a.tw-tiddlylink:hover {
-	color: #f66;
 }.tw-sidebar-lists a.tw-tiddlylink {
 	color: #999;
 }.tw-sidebar-lists a.tw-tiddlylink:hover {
@@ -596,11 +592,15 @@ table {
 ** Page layout
 */.sidebar-header {
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
-}.sidebar-header .tw-tab-set p {
+}.sidebar-header .tw-sidebar-lists p {
 	margin-top: 0.2em;
 	margin-bottom: 0.2em;
+}.tw-search a img {
+	height: 0.75em;
 }.tw-search-results {
 	padding-top: 1em;
+}.tw-page-controls .tw-button img {
+	height: 1em;
 }.tw-menu-list-item {
 	white-space: nowrap;
 }@media (max-width: 55em) {

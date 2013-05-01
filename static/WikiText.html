@@ -32,7 +32,7 @@ WikiText</span></span></p><p>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-</span></div></p><p>
+1 May 2013</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -251,44 +251,44 @@ Adding styles and classes</h1><p>
 You can use this construction to cause the wrapped content to be assigned specified CSS classes or styles:</p><pre>
 @@.myStyle
 * List One
-* List Two	
+* List Two
 @@
 </pre><p>
 Renders as:</p><ul class='myStyle'>
 <li>
 List One</li><li>
-List Two	</li></ul><p>
+List Two</li></ul><p>
 In HTML:</p><pre>
 &lt;ul class='myStyle'&gt;
 &lt;li&gt;
 List One&lt;/li&gt;&lt;li&gt;
-List Two	&lt;/li&gt;&lt;/ul&gt;</pre><p>
+List Two&lt;/li&gt;&lt;/ul&gt;</pre><p>
 Similar syntax is used to assign styles. For example:</p><pre>
 @@background-color:red;
 * List One
-* List Two	
+* List Two
 @@
 </pre><p>
 Renders as:</p><ul style='background-color:red;'>
 <li>
 List One</li><li>
-List Two	</li></ul><p>
+List Two</li></ul><p>
 In HTML:</p><pre>
 &lt;ul style='background-color:red;'&gt;
 &lt;li&gt;
 List One&lt;/li&gt;&lt;li&gt;
-List Two	&lt;/li&gt;&lt;/ul&gt;</pre><p>
+List Two&lt;/li&gt;&lt;/ul&gt;</pre><p>
 Multiple styles and classes can be mixed. For example:</p><pre>
-@@.aClass
+@@.tw-tiddler-frame
 @@width:400px;
 Some text
 @@
 </pre><p>
-Renders as:</p><p class='aClass' style='width:400px;'>
+Renders as:</p><p class='tw-tiddler-frame' style='width:400px;'>
 Some text
 </p><p>
 In HTML:</p><pre>
-&lt;p class='aClass' style='width:400px;'&gt;
+&lt;p class='tw-tiddler-frame' style='width:400px;'&gt;
 Some text
 &lt;/p&gt;</pre><p>
 You can also assign a CSS class to an individual member of a list with this notation:</p><pre>
