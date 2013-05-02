@@ -603,6 +603,7 @@ table {
 	margin-top: 1em;
 }.tw-page-controls img {
 	height: 1.5em;
+	padding-right: 0.5em;
 }.tw-menu-list-item {
 	white-space: nowrap;
 }@media (max-width: 55em) {
@@ -639,11 +640,14 @@ table {
 	position: relative;
 	margin-bottom: 2em;
 	background-color: #fff;
-	
+}@media screen {
+	.tw-tiddler-frame {
+		
   -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
      -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
           box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 
+	}
 }@media (max-width: 55em) {
 	.tw-tiddler-frame {
 		padding: 1em 1em 1em 1em;
@@ -667,6 +671,10 @@ table {
 	vertical-align: baseline;
 }.tw-tiddler-controls .tw-button img {
 	height: 0.75em;
+}@media print {
+	.tw-tiddler-controls {
+		display: none;
+	}
 }.tw-tiddler-help { /* Help prompts within tiddler template */
 	color: #999;
 	margin-top: 1em;
