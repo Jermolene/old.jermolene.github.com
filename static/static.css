@@ -473,7 +473,7 @@ table {
 	padding: 0 0.5em 0 0.5em;
 	border-top: 1px solid #ddd;
 	border-left: 1px solid #ddd;
-}img, canvas, embed {
+}.tw-tiddler-frame img, .tw-tiddler-frame canvas, .tw-tiddler-frame embed {
 	max-width: 100%;
 }embed {
 	width: 100%;
@@ -602,6 +602,7 @@ table {
 	margin-top: 1em;
 }.tw-page-controls img {
 	height: 1.5em;
+	min-width: 1px;
 	padding-right: 0.5em;
 }.tw-menu-list-item {
 	white-space: nowrap;
