@@ -246,7 +246,7 @@ Password prompt
             &quot;module-type&quot;: &quot;config&quot;
         },
         &quot;$:/core/modules/deserializers.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/deserializers.js\ntype: application/javascript\nmodule-type: tiddlerdeserializer\n\nFunctions to deserialise tiddlers from a block of text\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nUtility function to parse an old-style tiddler DIV in a *.tid file. It looks like this:\n\n&lt;div title=\&quot;Title\&quot; creator=\&quot;JoeBloggs\&quot; modifier=\&quot;JoeBloggs\&quot; created=\&quot;201102111106\&quot; modified=\&quot;201102111310\&quot; tags=\&quot;myTag [[my long tag]]\&quot;&gt;\n&lt;pre&gt;The text of the tiddler (without the expected HTML encoding).\n&lt;/pre&gt;\n&lt;/div&gt;\n\nNote that the field attributes are HTML encoded, but that the body of the &lt;PRE&gt; tag is not encoded.\n\nWhen these tiddler DIVs are encountered within a TiddlyWiki HTML file then the body is encoded in the usual way.\n*/\nvar parseTiddlerDiv = function(text /* [,fields] */) {\n\t// Slot together the default results\n\tvar result = {};\n\tif(arguments.length &gt; 1) {\n\t\tfor(var f=1; f&lt;arguments.length; f++) {\n\t\t\tvar fields = arguments[f];\n\t\t\tfor(var t in fields) {\n\t\t\t\tresult[t] = fields[t];\t\t\n\t\t\t}\n\t\t}\n\t}\n\t// Parse the DIV body\n\tvar divRegExp = /^\\s*&lt;div\\s+([^&gt;]*)&gt;((?:.|\\n)*)&lt;\\/div&gt;\\s*$/gi,\n\t\tsubDivRegExp = /^\\s*&lt;pre&gt;((?:.|\\n)*)&lt;\\/pre&gt;\\s*$/gi,\n\t\tattrRegExp = /\\s*([^=\\s]+)\\s*=\\s*\&quot;([^\&quot;]*)\&quot;/gi,\n\t\tmatch = divRegExp.exec(text);\n\tif(match) {\n\t\tvar subMatch = subDivRegExp.exec(match[2]); // Body of the &lt;DIV&gt; tag\n\t\tif(subMatch) {\n\t\t\tresult.text = subMatch[1];\n\t\t} else {\n\t\t\tresult.text = match[2]; \n\t\t}\n\t\tvar attrMatch;\n\t\tdo {\n\t\t\tattrMatch = attrRegExp.exec(match[1]);\n\t\t\tif(attrMatch) {\n\t\t\t\tvar name = attrMatch[1];\n\t\t\t\tvar value = attrMatch[2];\n\t\t\t\tresult[name] = value;\n\t\t\t}\n\t\t} while(attrMatch);\n\t\treturn result;\n\t} else {\n\t\treturn undefined;\n\t}\n};\n\nexports[\&quot;application/x-tiddler-html-div\&quot;] = function(text,fields) {\n\treturn [parseTiddlerDiv(text,fields)];\n};\n\nexports[\&quot;application/json\&quot;] = function(text,fields) {\n\tvar tiddlers = JSON.parse(text),\n\t\tresult = [],\n\t\tgetKnownFields = function(tid) {\n\t\t\tvar fields = {};\n\t\t\t\&quot;title text created creator modified modifier type tags\&quot;.split(\&quot; \&quot;).forEach(function(value) {\n\t\t\t\tif(tid[value] !== null) {\n\t\t\t\t\tfields[value] = tid[value];\n\t\t\t\t}\n\t\t\t});\n\t\t\treturn fields;\n\t\t};\n\tfor(var t=0; t&lt;tiddlers.length; t++) {\n\t\tresult.push(getKnownFields(tiddlers[t]));\n\t}\n\treturn result;\n};\n\n/*\nParse an HTML file into tiddlers. There are three possibilities:\n# A TiddlyWiki classic HTML file containing `application/vnd.tiddlywiki2` tiddlers\n# A TiddlyWiki5 HTML file containing `application/vnd.tiddlywiki` tiddlers\n# An ordinary HTML file\n*/\nexports[\&quot;text/html\&quot;] = function(text,fields) {\n\t// Check if we've got a store area\n\tvar storeAreaMarkerRegExp = /&lt;div id=[\&quot;']?storeArea['\&quot;]?( style=[\&quot;']?display:none;[\&quot;']?)?&gt;/gi,\n\t\tmatch = storeAreaMarkerRegExp.exec(text);\n\tif(match) {\n\t\t// If so, it's either a classic TiddlyWiki file or a TW5 file\n\t\treturn deserializeTiddlyWikiFile(text,storeAreaMarkerRegExp.lastIndex,!!match[1],fields);\n\t} else {\n\t\t// It's not a TiddlyWiki so we'll return the entire HTML file as a tiddler\n\t\treturn deserializeHtmlFile(text,fields);\n\t}\n};\n\nfunction deserializeHtmlFile(text,fields) {\n\tvar result = {};\n\t$tw.utils.each(fields,function(value,name) {\n\t\tresult[name] = value;\n\t});\n\tresult.text = text;\n\tresult.type = \&quot;text/html\&quot;;\n\treturn [result];\n}\n\nfunction deserializeTiddlyWikiFile(text,storeAreaEnd,isTiddlyWiki5,fields) {\n\tvar results = [],\n\t\tendOfDivRegExp = /(&lt;\\/div&gt;\\s*)/gi,\n\t\tstartPos = storeAreaEnd,\n\t\tdefaultType = isTiddlyWiki5 ? \&quot;application/vnd.tiddlywiki\&quot;: \&quot;application/vnd.tiddlywiki2\&quot;;\n\tendOfDivRegExp.lastIndex = startPos;\n\tvar match = endOfDivRegExp.exec(text);\n\twhile(match) {\n\t\tvar endPos = endOfDivRegExp.lastIndex,\n\t\t\ttiddlerFields = parseTiddlerDiv(text.substring(startPos,endPos),fields,{type: defaultType});\n\t\tif(!tiddlerFields) {\n\t\t\tbreak;\n\t\t}\n\t\tif(tiddlerFields.text !== null) {\n\t\t\ttiddlerFields.text = $tw.utils.htmlDecode(tiddlerFields.text);\n\t\t\tresults.push(tiddlerFields);\n\t\t}\n\t\tstartPos = endPos;\n\t\tmatch = endOfDivRegExp.exec(text);\n\t}\n\treturn results;\n}\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/deserializers.js\ntype: application/javascript\nmodule-type: tiddlerdeserializer\n\nFunctions to deserialise tiddlers from a block of text\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nUtility function to parse an old-style tiddler DIV in a *.tid file. It looks like this:\n\n&lt;div title=\&quot;Title\&quot; creator=\&quot;JoeBloggs\&quot; modifier=\&quot;JoeBloggs\&quot; created=\&quot;201102111106\&quot; modified=\&quot;201102111310\&quot; tags=\&quot;myTag [[my long tag]]\&quot;&gt;\n&lt;pre&gt;The text of the tiddler (without the expected HTML encoding).\n&lt;/pre&gt;\n&lt;/div&gt;\n\nNote that the field attributes are HTML encoded, but that the body of the &lt;PRE&gt; tag is not encoded.\n\nWhen these tiddler DIVs are encountered within a TiddlyWiki HTML file then the body is encoded in the usual way.\n*/\nvar parseTiddlerDiv = function(text /* [,fields] */) {\n\t// Slot together the default results\n\tvar result = {};\n\tif(arguments.length &gt; 1) {\n\t\tfor(var f=1; f&lt;arguments.length; f++) {\n\t\t\tvar fields = arguments[f];\n\t\t\tfor(var t in fields) {\n\t\t\t\tresult[t] = fields[t];\t\t\n\t\t\t}\n\t\t}\n\t}\n\t// Parse the DIV body\n\tvar divRegExp = /^\\s*&lt;div\\s+([^&gt;]*)&gt;((?:.|\\n)*)&lt;\\/div&gt;\\s*$/gi,\n\t\tsubDivRegExp = /^\\s*&lt;pre&gt;((?:.|\\n)*)&lt;\\/pre&gt;\\s*$/gi,\n\t\tattrRegExp = /\\s*([^=\\s]+)\\s*=\\s*\&quot;([^\&quot;]*)\&quot;/gi,\n\t\tmatch = divRegExp.exec(text);\n\tif(match) {\n\t\tvar subMatch = subDivRegExp.exec(match[2]); // Body of the &lt;DIV&gt; tag\n\t\tif(subMatch) {\n\t\t\tresult.text = subMatch[1];\n\t\t} else {\n\t\t\tresult.text = match[2]; \n\t\t}\n\t\tvar attrMatch;\n\t\tdo {\n\t\t\tattrMatch = attrRegExp.exec(match[1]);\n\t\t\tif(attrMatch) {\n\t\t\t\tvar name = attrMatch[1];\n\t\t\t\tvar value = attrMatch[2];\n\t\t\t\tresult[name] = value;\n\t\t\t}\n\t\t} while(attrMatch);\n\t\treturn result;\n\t} else {\n\t\treturn undefined;\n\t}\n};\n\nexports[\&quot;application/x-tiddler-html-div\&quot;] = function(text,fields) {\n\treturn [parseTiddlerDiv(text,fields)];\n};\n\nexports[\&quot;application/json\&quot;] = function(text,fields) {\n\tvar tiddlers = JSON.parse(text),\n\t\tresult = [],\n\t\tgetKnownFields = function(tid) {\n\t\t\tvar fields = {};\n\t\t\t\&quot;title text created creator modified modifier type tags\&quot;.split(\&quot; \&quot;).forEach(function(value) {\n\t\t\t\tif(tid[value] !== null) {\n\t\t\t\t\tfields[value] = tid[value];\n\t\t\t\t}\n\t\t\t});\n\t\t\treturn fields;\n\t\t};\n\tfor(var t=0; t&lt;tiddlers.length; t++) {\n\t\tresult.push(getKnownFields(tiddlers[t]));\n\t}\n\treturn result;\n};\n\n/*\nParse an HTML file into tiddlers. There are three possibilities:\n# A TiddlyWiki classic HTML file containing `text/vnd.tiddlywiki2` tiddlers\n# A TiddlyWiki5 HTML file containing `text/vnd.tiddlywiki` tiddlers\n# An ordinary HTML file\n*/\nexports[\&quot;text/html\&quot;] = function(text,fields) {\n\t// Check if we've got a store area\n\tvar storeAreaMarkerRegExp = /&lt;div id=[\&quot;']?storeArea['\&quot;]?( style=[\&quot;']?display:none;[\&quot;']?)?&gt;/gi,\n\t\tmatch = storeAreaMarkerRegExp.exec(text);\n\tif(match) {\n\t\t// If so, it's either a classic TiddlyWiki file or a TW5 file\n\t\treturn deserializeTiddlyWikiFile(text,storeAreaMarkerRegExp.lastIndex,!!match[1],fields);\n\t} else {\n\t\t// It's not a TiddlyWiki so we'll return the entire HTML file as a tiddler\n\t\treturn deserializeHtmlFile(text,fields);\n\t}\n};\n\nfunction deserializeHtmlFile(text,fields) {\n\tvar result = {};\n\t$tw.utils.each(fields,function(value,name) {\n\t\tresult[name] = value;\n\t});\n\tresult.text = text;\n\tresult.type = \&quot;text/html\&quot;;\n\treturn [result];\n}\n\nfunction deserializeTiddlyWikiFile(text,storeAreaEnd,isTiddlyWiki5,fields) {\n\tvar results = [],\n\t\tendOfDivRegExp = /(&lt;\\/div&gt;\\s*)/gi,\n\t\tstartPos = storeAreaEnd,\n\t\tdefaultType = isTiddlyWiki5 ? \&quot;text/vnd.tiddlywiki\&quot;: \&quot;text/vnd.tiddlywiki2\&quot;;\n\tendOfDivRegExp.lastIndex = startPos;\n\tvar match = endOfDivRegExp.exec(text);\n\twhile(match) {\n\t\tvar endPos = endOfDivRegExp.lastIndex,\n\t\t\ttiddlerFields = parseTiddlerDiv(text.substring(startPos,endPos),fields,{type: defaultType});\n\t\tif(!tiddlerFields) {\n\t\t\tbreak;\n\t\t}\n\t\tif(tiddlerFields.text !== null) {\n\t\t\ttiddlerFields.text = $tw.utils.htmlDecode(tiddlerFields.text);\n\t\t\tresults.push(tiddlerFields);\n\t\t}\n\t\tstartPos = endPos;\n\t\tmatch = endOfDivRegExp.exec(text);\n\t}\n\treturn results;\n}\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/deserializers.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;tiddlerdeserializer&quot;
@@ -276,7 +276,7 @@ Password prompt
             &quot;module-type&quot;: &quot;parser&quot;
         },
         &quot;$:/core/modules/parsers/textparser.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/parsers/textparser.js\ntype: application/javascript\nmodule-type: parser\n\nThe plain text parser processes blocks of source text into a degenerate parse tree consisting of a single text node\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar TextParser = function(type,text,options) {\n\tthis.tree = [{\n\t\ttype: \&quot;element\&quot;,\n\t\ttag: \&quot;pre\&quot;,\n\t\tchildren: [{\n\t\t\ttype: \&quot;text\&quot;,\n\t\t\ttext: text\n\t\t}]\n\t}];\n};\n\nexports[\&quot;text/plain\&quot;] = TextParser;\nexports[\&quot;application/vnd.tiddlywiki2\&quot;] = TextParser;\nexports[\&quot;application/javascript\&quot;] = TextParser;\nexports[\&quot;application/json\&quot;] = TextParser;\nexports[\&quot;text/css\&quot;] = TextParser;\n\n})();\n\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/parsers/textparser.js\ntype: application/javascript\nmodule-type: parser\n\nThe plain text parser processes blocks of source text into a degenerate parse tree consisting of a single text node\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar TextParser = function(type,text,options) {\n\tthis.tree = [{\n\t\ttype: \&quot;element\&quot;,\n\t\ttag: \&quot;pre\&quot;,\n\t\tchildren: [{\n\t\t\ttype: \&quot;text\&quot;,\n\t\t\ttext: text\n\t\t}]\n\t}];\n};\n\nexports[\&quot;text/plain\&quot;] = TextParser;\nexports[\&quot;text/vnd.tiddlywiki2\&quot;] = TextParser;\nexports[\&quot;application/javascript\&quot;] = TextParser;\nexports[\&quot;application/json\&quot;] = TextParser;\nexports[\&quot;text/css\&quot;] = TextParser;\n\n})();\n\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/parsers/textparser.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;parser&quot;
@@ -929,7 +929,7 @@ Password prompt
         },
         &quot;$:/snippets/themeswitcher&quot;: {
             &quot;title&quot;: &quot;$:/snippets/themeswitcher&quot;,
-            &quot;text&quot;: &quot;Current theme: {{$:/theme}}\n\n&lt;$linkcatcher to=\&quot;$:/theme\&quot;&gt;\n\n&lt;$list filter=\&quot;[plugin-type[theme]]\&quot;&gt;\n\n&lt;$reveal state=\&quot;$:/theme\&quot; type=\&quot;match\&quot; text={{##title}}&gt;&amp;bull;&lt;/$reveal&gt;&lt;$reveal state=\&quot;$:/theme\&quot; type=\&quot;nomatch\&quot; text={{##title}}&gt;&amp;nbsp;&lt;/$reveal&gt; &lt;$link to={{##title}}&gt;\n\n&lt;$view field=\&quot;name\&quot; format=\&quot;text\&quot;/&gt;\n\n&lt;/$link&gt;\n\n&lt;/$list&gt;\n\n&lt;/$linkcatcher&gt;\n&quot;
+            &quot;text&quot;: &quot;Current theme: {{$:/theme}}\n\n&lt;$linkcatcher to=\&quot;$:/theme\&quot;&gt;\n\n&lt;$list filter=\&quot;[plugin-type[theme]sort[title]]\&quot;&gt;\n\n&lt;$reveal state=\&quot;$:/theme\&quot; type=\&quot;match\&quot; text={{##title}}&gt;&amp;bull;&lt;/$reveal&gt;&lt;$reveal state=\&quot;$:/theme\&quot; type=\&quot;nomatch\&quot; text={{##title}}&gt;&amp;nbsp;&lt;/$reveal&gt; &lt;$link to={{##title}}&gt;\n\n&lt;$view field=\&quot;name\&quot; format=\&quot;text\&quot;/&gt;\n\n&lt;/$link&gt;\n\n&lt;/$list&gt;\n\n&lt;/$linkcatcher&gt;\n&quot;
         },
         &quot;$:/core/wiki/title&quot;: {
             &quot;title&quot;: &quot;$:/core/wiki/title&quot;,
@@ -1016,6 +1016,69 @@ Password prompt
             &quot;title&quot;: &quot;$:/themes/tiddlywiki/starlight/styles.tid&quot;,
             &quot;tags&quot;: &quot;[[$:/tags/stylesheet]]&quot;,
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\\define border-radius(radius)\n```\n  -webkit-border-radius: $radius$;\n     -moz-border-radius: $radius$;\n          border-radius: $radius$;\n```\n\\end\n\\define box-shadow(shadow)\n```\n  -webkit-box-shadow: $shadow$;\n     -moz-box-shadow: $shadow$;\n          box-shadow: $shadow$;\n```\n\\end\n\\define background-linear-gradient(gradient)\n```\nbackground-image: linear-gradient($gradient$);\nbackground-image: -o-linear-gradient($gradient$);\nbackground-image: -moz-linear-gradient($gradient$);\nbackground-image: -webkit-linear-gradient($gradient$);\nbackground-image: -ms-linear-gradient($gradient$);\n```\n\\end\n\n/*\nPlaceholder for a more thorough refinement of Snow White\n*/\n\n@font-face {\n  font-family: \&quot;Arvo\&quot;;\n  font-style: normal;\n  font-weight: 400;\n  src: local(\&quot;Arvo\&quot;), url({{$:/themes/tiddlywiki/starlight/arvo.woff}}) format(\&quot;woff\&quot;);\n}\n\nhtml body {\n\tfont-family: \&quot;Arvo\&quot;, \&quot;Times\&quot;;\n}\n&quot;
+        }
+    }
+}</pre>
+</div>
+<div title="$:/themes/giffmex/rocker" type="application/json" plugin="yes" name="Rocker" description="A dark theme" plugin-type="theme">
+<pre>{
+    &quot;title&quot;: &quot;$:/themes/giffmex/rocker&quot;,
+    &quot;name&quot;: &quot;Rocker&quot;,
+    &quot;author&quot;: &quot;DaveGifford&quot;,
+    &quot;version&quot;: &quot;0.0.0&quot;,
+    &quot;core-version&quot;: &quot;&gt;=5.0.0&quot;,
+    &quot;plugin-type&quot;: &quot;theme&quot;,
+    &quot;description&quot;: &quot;A dark theme&quot;,
+    &quot;dependents&quot;: [
+        &quot;$:/themes/tiddlywiki/snowwhite&quot;
+    ],
+    &quot;tiddlers&quot;: {
+        &quot;$:/themes/giffmex/rocker/styles.tid&quot;: {
+            &quot;title&quot;: &quot;$:/themes/giffmex/rocker/styles.tid&quot;,
+            &quot;tags&quot;: &quot;[[$:/tags/stylesheet]]&quot;,
+            &quot;text&quot;: &quot;body { font-size:14px;line-height:20px; background-color:#000000;}\n.tw-page-controls {background-color:#000000; padding:8px;}\n\n.title {color: #cc0000;}\na.tw-tiddlylink {text-decoration: none;font-style: normal;font-weight: bold;color: #cc0000;}\n.tw-sidebar-lists a.tw-tiddlylink {color: #cc0000;}\n.sidebar-header {text-shadow: none;}\n\n.tw-tag-label {\nfont-weight:normal;\n\tpadding: 4px 6px;\n\tcolor: #000000;\n\ttext-shadow: none;\n\tbackground-color: #ffbb99;\n}\n\n.tw-missing-tiddler-label {\n\tfont-style: italic;\n\tfont-weight: normal;\ncolor:#cc0000;\n}\n\n.tw-tab-buttons button {background-color: #000;color:#cc0000;font-weight:bold;border: 1px solid #665544;}\n\n.tw-tab-buttons button.tw-tab-selected {background-color: #000;color:#ff8800;font-weight:bold;border-bottom: 1px solid #000;}\n\n.tw-tab-divider {\n\tborder: 1px solid #654;\n}\n\nh1 {\n    font-size: 1.5em;\n    margin: 0.67em 0;\npadding-top:1em;}\n\n\ntable th {padding:10px;vertical-align:top;} \ntable td {padding:10px;vertical-align:top; background-color:#ffffff;}\ntable th {color: #000;background-color:#eee;font-weight:normal;}\ntable th {border-color:#000;}\ntable td {border-color:#000;}\ntable {border-color:#000;}\n&quot;
+        }
+    }
+}</pre>
+</div>
+<div title="$:/themes/giffmex/blue" type="application/json" plugin="yes" name="Blue" description="A blue theme" plugin-type="theme">
+<pre>{
+    &quot;title&quot;: &quot;$:/themes/giffmex/blue&quot;,
+    &quot;name&quot;: &quot;Blue&quot;,
+    &quot;author&quot;: &quot;DaveGifford&quot;,
+    &quot;version&quot;: &quot;0.0.0&quot;,
+    &quot;core-version&quot;: &quot;&gt;=5.0.0&quot;,
+    &quot;plugin-type&quot;: &quot;theme&quot;,
+    &quot;description&quot;: &quot;A blue theme&quot;,
+    &quot;dependents&quot;: [
+        &quot;$:/themes/tiddlywiki/snowwhite&quot;
+    ],
+    &quot;tiddlers&quot;: {
+        &quot;$:/themes/giffmex/blue/styles.tid&quot;: {
+            &quot;title&quot;: &quot;$:/themes/giffmex/blue/styles.tid&quot;,
+            &quot;tags&quot;: &quot;[[$:/tags/stylesheet]]&quot;,
+            &quot;text&quot;: &quot;body { \nfont-size:14px;\nline-height:20px; \nbackground-color:#ddddff;\n}\n\n.tw-sidebar-lists a.tw-tiddlylink {\ncolor: #5959c0;\n}\n\n.tw-page-controls {background-color:#ddddff;\npadding:8px;}\n\n.title {\n\tcolor: #5959c0;\n}\n\n.tw-tab-buttons button {\n\tbackground-color: #ccccdd;\n}\n\n.tw-tab-buttons button.tw-tab-selected {\n\tbackground-color: #ddddff;\n\tborder-bottom: 1px solid #ddddff;\n}\n\n.tw-tag-label {\nfont-weight:normal;\n\tpadding: 4px 6px;\n\tcolor: #000000;\n\ttext-shadow: none;\n\tbackground-color: #eeeeff;\n}\n\nh1 {\n    font-size: 1.5em;\n    margin: 0.67em 0;\npadding-top:1em;}\n\n\ntable th {padding:10px;vertical-align:top;} \ntable td {padding:10px;vertical-align:top; background-color:#ffffff;}\ntable th {color: #000;background-color:#eee;font-weight:normal;}\ntable th {border-color:#000;}\ntable td {border-color:#000;}\ntable {border-color:#000;}\n&quot;
+        }
+    }
+}</pre>
+</div>
+<div title="$:/themes/giffmex/bianca" type="application/json" plugin="yes" name="Bianca" description="A clean white theme to let you focus" plugin-type="theme">
+<pre>{
+    &quot;title&quot;: &quot;$:/themes/giffmex/bianca&quot;,
+    &quot;name&quot;: &quot;Bianca&quot;,
+    &quot;author&quot;: &quot;DaveGifford&quot;,
+    &quot;version&quot;: &quot;0.0.0&quot;,
+    &quot;core-version&quot;: &quot;&gt;=5.0.0&quot;,
+    &quot;plugin-type&quot;: &quot;theme&quot;,
+    &quot;description&quot;: &quot;A clean white theme to let you focus&quot;,
+    &quot;dependents&quot;: [
+        &quot;$:/themes/tiddlywiki/snowwhite&quot;
+    ],
+    &quot;tiddlers&quot;: {
+        &quot;$:/themes/giffmex/bianca/styles.tid&quot;: {
+            &quot;title&quot;: &quot;$:/themes/giffmex/bianca/styles.tid&quot;,
+            &quot;tags&quot;: &quot;[[$:/tags/stylesheet]]&quot;,
+            &quot;text&quot;: &quot;body { \nfont-size:14px;\nline-height:20px; \nbackground-color:#ffffff;\n}\n\n.tw-page-controls {background-color:#ffffff;\npadding:8px;}\n\n.tw-sidebar-lists a.tw-tiddlylink {\ncolor: #5959c0;\n}\n\nh1 {\n    font-size: 1.5em;\n    margin: 0.67em 0;\npadding-top:1em;}\n\n\ntable th {padding:10px;vertical-align:top;} \ntable td {padding:10px;vertical-align:top; background-color:#ffffff;}\ntable th {color: #000;background-color:#eee;font-weight:normal;}\ntable th {border-color:#000;}\ntable td {border-color:#000;}\ntable {border-color:#000;}\n\n.blueTable td {background-color:#eeeeff;}\n.blueTable th {background-color: #cccccc;}\n\n.tw-tag-label {\nfont-weight:normal;\n\tpadding: 4px 6px;\n\tcolor: #000000;\n\ttext-shadow: none;\n\tbackground-color: #ffeebb;\n}\n\n.title {\n\tcolor: #ff9900;\n}\n\n.tw-tiddler-frame {\nborder-style:solid;border-color:#eee;border-width:1px;\n}\n\n.tw-tab-buttons button {\n\tbackground-color: #eee;\n}\n\n.tw-tab-buttons button.tw-tab-selected {\n\tbackground-color: #ffffff;\n\tborder-bottom: 1px solid #ffffff;\n}\n&quot;
         }
     }
 }</pre>
@@ -2630,7 +2693,7 @@ The built in parser rules use regular expression matching. Such rules can take a
 {{Building classic TiddlyWiki with TiddlyWiki5}}
 </pre>
 </div>
-<div tags="docs planning" modifier="JeremyRuston" title="RoadMap" modified="201305081237">
+<div modified="201305132202" title="RoadMap" modifier="JeremyRuston" tags="docs planning">
 <pre>TiddlyWiki5 is currently an alpha release, meaning that it is incomplete and subject to change.
 
 ! Alpha Release
@@ -2655,6 +2718,9 @@ TiddlyWiki5 will progress to a beta release when it is practical for cautious ev
 
 Some of the additional features under consideration during the beta include:
 
+* Warning when attempting to close window without saving
+* Use browser local storage to preserve changes in case browser crashes before saving/sync
+* Multilanguage support
 * Ability to ~~inspect and~~ edit tiddler fields
 * Seamless editing
 * Aliases/inheritance
@@ -2662,7 +2728,7 @@ Some of the additional features under consideration during the beta include:
 * More user interface widgets, including: ~tabs~, popovers, toolbars, carousel, ~dropdown~,
 * ~~Checkbox support~~
 * ~~Search~~
-* Tiddler themes and wiki themes
+* Tiddler themes and ~~wiki themes~~
 * Text references: slices and sections, JSON references
 * ~~Timed refreshed relative dates (eg, 'last modified 30 minutes ago')~~
 * Encrypted tiddlers and ~~encrypted TiddlyWikis~~
@@ -4505,7 +4571,7 @@ $tw.boot.startup = function() {
 	$tw.utils.registerFileType("text/vnd.tiddlywiki","utf8",".tid");
 	$tw.utils.registerFileType("application/x-tiddler","utf8",".tid");
 	$tw.utils.registerFileType("application/x-tiddler-html-div","utf8",".tiddler");
-	$tw.utils.registerFileType("application/vnd.tiddlywiki2-recipe","utf8",".recipe");
+	$tw.utils.registerFileType("text/vnd.tiddlywiki2-recipe","utf8",".recipe");
 	$tw.utils.registerFileType("text/plain","utf8",".txt");
 	$tw.utils.registerFileType("text/css","utf8",".css");
 	$tw.utils.registerFileType("text/html","utf8",".html");
