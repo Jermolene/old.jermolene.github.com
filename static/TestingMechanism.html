@@ -31,21 +31,68 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+TestingMechanism</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+25 April 2013</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#8080FF'>
 <span>
-</span></span></div></p><div class='body'>
+docs</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
+<span>
+dev</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> incorporates the Jasmine <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='JavaScript.html'>
+JavaScript</a> testing framework (see <a class='tw-tiddlylink tw-tiddlylink-external' href='http://pivotal.github.io/jasmine/'>
+http://pivotal.github.io/jasmine/</a>). It allows the same tests to be run both in the browser and under node.js.</p><h1 class=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> Testing Components</h1><p>
+There are two main elements to the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> testing mechanism:</p><ul>
+<li>
+The plugin <code>
+tiddlywiki/jasmine</code> that wraps Jasmine up into a plugin along with some glue code</li><li>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> edition <code>
+test</code> that contains the core test specifications and includes the Jasmine plugin</li></ul><h1 class=''>
+Running the Tests in node.js</h1><p>
+To run the tests under node.js just load up the <code>
+test</code> wiki:</p><pre>
+node ./tiddlywiki.js \
+	./editions/test \</pre><h1 class=''>
+Running the Tests in the Browser</h1><p>
+To generate a wiki containing the browser tests load up the <code>
+test</code> wiki and save it as an HTML file:</p><pre>
+node ./tiddlywiki.js \
+	./editions/test \
+	--verbose \
+	--savetiddler $:/core/templates/tiddlywiki5.template.html $TW5_BUILD_OUTPUT/test.html text/plain \</pre><p>
+Then, open the <code>
+test.html</code> file in the browser to see the test results. There is a prebuilt version of <code>
+test.html</code> at:</p><p>
+<a class='tw-tiddlylink tw-tiddlylink-external' href='http://five.tiddlywiki.com/test.html'>
+http://five.tiddlywiki.com/test.html</a>
+</p></div></div></div>
 </div>
 </section>
 </body>

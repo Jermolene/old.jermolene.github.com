@@ -31,21 +31,96 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+LinkWidget</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#8080FF'>
 <span>
-</span></span></div></p><div class='body'>
+docs</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
+<span>
+widget</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+The <code>
+link</code> widget generates links to tiddlers and external URIs. Optionally, hovering over a link can trigger the display of another tiddler as a popup.</p><h1 class=''>
+Attributes</h1><ul>
+<li>
+<code>
+to</code> - link target can be a URL </li><li>
+<code>
+hover</code> - the title of a tiddler containing the popup state to set when hovering over the link</li><li>
+<code>
+qualifyHoverTitles</code> - if this attribute is present then the title of the hover state tiddler is qualified as described in the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='PopupMechanism.html'>
+PopupMechanism</a></li></ul><p>
+The <code>
+to</code> attribute is interpreted as an external link if it matches this regular expression:</p><pre>
+/(?:file|http|https|mailto|ftp|irc|news|data):[^\s'&quot;]+(?:\/|\b)/i</pre><h1 class=''>
+Examples</h1><p>
+The <code>
+hover</code> attribute is part of the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='PopupMechanism.html'>
+PopupMechanism</a>.</p><p>
+For example:</p><pre>
+`$:/MyHover` is {{$:/MyHover}}
+
+&lt;$link to=&quot;HelloThere&quot; hover=&quot;$:/MyHover&quot;&gt;Hover me to see ~HelloThere!&lt;/$link&gt;
+&lt;$reveal state=&quot;$:/MyHover&quot; type=&quot;popup&quot;&gt;
+&lt;div class=&quot;tw-drop-down&quot;&gt;
+{{HelloThere}}
+&lt;/div&gt;
+&lt;/$reveal&gt;</pre><p>
+Renders as:</p><p>
+<code>
+$:/MyHover</code> is <span class='tw-transclude tw-tiddler-missing'>
+</span></p><p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='HelloThere.html'>
+Hover me to see HelloThere!</a>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div></p><h1 class=''>
+CSS Classes</h1><ul>
+<li>
+<code>
+tw-tiddlylink</code> - applied to all links</li><li>
+<code>
+tw-tiddlylink-external</code> - applied to external, non-tiddler links</li><li>
+<code>
+tw-tiddlylink-internal</code> - applied to tiddler links</li><li>
+<code>
+tw-tiddlylink-missing</code> - applied to tiddler links where the target tiddler doesn't exist</li><li>
+<code>
+tw-tiddlylink-resolves</code> - applied to tiddler links when the target tiddler does exist</li></ul><h1 class=''>
+Configuration macros</h1><p>
+Configuration macros can be used to modify the behaviour of the link widget.</p><h2 class=''>
+tw-wikilinks</h2><p>
+Links are suppressed if the macro <code>
+tw-wikilinks</code> evaluates to the string <code>
+no</code>. For example:</p><pre>
+\define tw-wikilinks() no</pre><h2 class=''>
+tw-wikilink-template</h2><p>
+Link targets default to the URL encoded title of the tiddler. The <code>
+href</code> can be templated by defining the configuration macro <code>
+tw-wikilink-template</code>, and including within it the token <code>
+$uri_encoded$</code>. For example:</p><pre>
+\define tw-wikilink-template() http://tiddlywiki.com/#$uri_encoded$</pre></div></div></div>
 </div>
 </section>
 </body>

@@ -31,21 +31,60 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+WikiRuleModules</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span>
 </span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiRuleModules.html'>
+WikiRuleModules</a> cover the module types 'wikirunrule', 'wikiblockrule' and <code>
+wikipragmarule</code>. Modules of these types encapsulate the logic of individual parsing rules used by the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='WikiParser.html'>
+WikiParser</a> engine. For example, there is a <code>
+wikirunrule</code> module that identifies references to HTML entities by matching the pattern <code>
+&amp;&lt;chars&gt;;</code>.</p><p>
+Pragma rules are applied at the start of a block of text, and cover definitions and declarations that affect the parsing of the rest of the text. Block rules are only applied at the beginning of a block of wikitext, while run rules can appear anywhere. The only current example of a pragma rule is for macro definitions.</p><p>
+Examples of block rules:</p><ul>
+<li>
+Headings</li><li>
+Tables</li><li>
+Lists</li></ul><p>
+Examples of run rules:</p><ul>
+<li>
+Entities</li><li>
+HTML tags</li><li>
+Wiki links</li></ul><p>
+Parser rule modules extend the <code>
+$tw.WikiParserRule</code> class. This is done by instantiating the class and then copying the exports of the rule module onto the instance. In this way, the parser rule can override the base behaviour of the <code>
+$tw.WikiParserRule</code> class. In particular, the base class incorporates logic for using regular expressions to match parse rules but this logic could be overridden by a parse rule that wanted to, say, use <code>
+indexOf()</code> instead of regular expressions.</p><p>
+The standard methods and properties of parser rules are as follows:</p><ul>
+<li>
+<code>
+name</code>: a string containing the name of this parse rule</li><li>
+<code>
+init(parser)</code>: initialisation function called immediately after the constructor with a pointer back to the parser containing this rule</li><li>
+<code>
+findNextMatch(pos)</code>: returns the position of the next match after the specified position</li><li>
+<code>
+parse()</code>: parses the most recent match, returning an array of the generated parse tree nodes. Pragma rules don't return parse tree nodes but instead modify the parser object directly (for example, to add local macro definitions)</li></ul><p>
+The built in parser rules use regular expression matching. Such rules can take advantage of the implementation of <code>
+findNextMatch()</code> in the base <code>
+$tw.WikiRule</code> class by ensuring that their <code>
+init()</code> method creates a <code>
+matchRegExp</code> property containing the regular expression to match. The <code>
+match</code> property contains the details of the match for use in the <code>
+parse()</code> method.
+</p></div></div></div>
 </div>
 </section>
 </body>

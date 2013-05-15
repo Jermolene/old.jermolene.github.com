@@ -31,21 +31,206 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+TiddlerFilters</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#8080FF'>
 <span>
-</span></span></div></p><div class='body'>
+docs</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#FFA3A3'>
+<span>
+concepts</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+Filters are used in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> to choose tiddlers by specifying simple match criteria.</p><h1 class=''>
+Examples</h1><p>
+The mechanism is easiest to understand by first presenting some example filter strings:</p><table class='table-condensed'>
+<tbody>
+<tr class='evenRow'>
+<th align='left'>
+Filter</th><th align='left'>
+Results</th></tr><tr class='oddRow'>
+<td align='left'>
+<code>
+HelloThere</code></td><td align='left'>
+The single tiddler titled <code>
+HelloThere</code> (if it exists)</td></tr><tr class='evenRow'>
+<td align='left'>
+<code>
+[[A Title With Several Words]]</code></td><td align='left'>
+The single tiddler titled <code>
+A Title With Several Words</code> (if it exists)</td></tr><tr class='oddRow'>
+<td align='left'>
+<code>
+[title[MyTiddler]]</code></td><td align='left'>
+The single tiddler titled <code>
+MyTiddler</code> (if it exists)</td></tr><tr class='evenRow'>
+<td align='left'>
+<code>
+HelloThere Introduction</code></td><td align='left'>
+The tiddlers titled <code>
+HelloThere</code> and <code>
+Introduction</code> (if they exist)</td></tr><tr class='oddRow'>
+<td align='left'>
+<code>
+[tag[important]]</code></td><td align='left'>
+All tiddlers with the tag <code>
+important</code></td></tr><tr class='evenRow'>
+<td align='left'>
+<code>
+[!tag[important]]</code></td><td align='left'>
+All tiddlers not with the tag <code>
+important</code></td></tr><tr class='oddRow'>
+<td align='left'>
+<code>
+[tag[important]sort[title]]</code></td><td align='left'>
+All tiddlers with the tag <code>
+important</code> sorted by title</td></tr><tr class='evenRow'>
+<td align='left'>
+<code>
+[tag[important]!sort[title]]</code></td><td align='left'>
+All tiddlers with the tag <code>
+important</code> reverse sorted by title</td></tr><tr class='oddRow'>
+<td align='left'>
+<code>
+[[one]] [[two]] [[three]] +[tag[tom]]</code></td><td align='left'>
+Any of the tiddlers called <code>
+one</code>, <code>
+two</code> or <code>
+three</code> that exist and are tagged with <code>
+tom</code></td></tr><tr class='evenRow'>
+<td align='left'>
+<code>
+[[one]] [[two]] [[three]] [tag[tom]]</code></td><td align='left'>
+Any of the tiddlers called <code>
+one</code>, <code>
+two</code> or <code>
+three</code> that exist, along with all of the source tiddlers that are tagged with <code>
+tom</code></td></tr><tr class='oddRow'>
+<td align='left'>
+<code>
+[tag[tom]] [tag[harry]] -[[one][two][three]]</code></td><td align='left'>
+All tiddlers tagged either <code>
+tom</code> or <code>
+harry</code>, but excluding <code>
+one</code>, <code>
+two</code> and <code>
+three</code></td></tr><tr class='evenRow'>
+<td align='left'>
+<code>
+[[MyTiddler]tags[]]</code></td><td align='left'>
+All tiddlers being used as tags on the tiddler <code>
+MyTiddler</code></td></tr><tr class='oddRow'>
+<td align='left'>
+<code>
+[[MyTiddler]tagging[]]</code></td><td align='left'>
+All tiddlers being tagged with <code>
+MyTiddler</code></td></tr><tr class='evenRow'>
+<td align='left'>
+<code>
+[list[MyList]]</code></td><td align='left'>
+All tiddlers listed in <code>
+MyList</code></td></tr></tbody></table><h1 class=''>
+Operators</h1><p>
+A filter string consists of one or more runs of filter operators that each look like <code>
+[operator[operand]]</code>, where <code>
+operator</code> is one of:</p><ul>
+<li>
+<strong>
+title</strong>: selects the tiddler with the title given in the operand</li><li>
+<strong>
+is</strong>: tests whether a tiddler is a member of the system defined set named in the operand (see below)</li><li>
+<strong>
+has</strong>: tests whether a tiddler has the field specified in the operand</li><li>
+<strong>
+sort</strong>: sorts the tiddlers by the field specified in the operand</li><li>
+<strong>
+sort-case-sensitive</strong>: a case sensitive sort of the current tiddlers by the field specified in the operand</li><li>
+<strong>
+prefix</strong>: tests whether a tiddlers title starts with the prefix specified in the operand</li><li>
+<strong>
+limit</strong>: limits the number of subresults to the integer specified in the operand</li><li>
+<strong>
+tag</strong>: tests whether a given tag is (<code>
+[tag[mytag]]</code>) or is not (<code>
+[!tag[mytag]]</code>) present on the tiddler</li><li>
+<strong>
+{field}</strong>: tests whether a tiddler field has a specified value (<code>
+[modifier[Jeremy]]</code>) or not (<code>
+[!modifier[Jeremy]]</code>)</li><li>
+<strong>
+tags</strong>: selects the tags on the currently selected tiddlers</li><li>
+<strong>
+tagging</strong>: selects the tiddlers tagged with the currently selected tiddlers</li><li>
+<strong>
+links</strong>: selects the outgoing links on the currently selected tiddlers</li><li>
+<strong>
+backlinks</strong>: selects the tiddlers that link to the currently selected tiddlers</li><li>
+<strong>
+list</strong>: selects the tiddlers listed in a specified tiddler (newline delimited)</li></ul><p>
+An operator can be negated with by preceding it with <code>
+!</code>, for example <code>
+[!tag[Tommy]]</code> selects the tiddlers that are not tagged with <code>
+Tommy</code>.</p><p>
+The operator defaults to <code>
+title</code> if omitted, so <code>
+[[HelloThere]]</code> is equivalent to <code>
+[title[HelloThere]]</code>. If there are no spaces in the title, then the double square brackets can also be omitted: <code>
+HelloThere</code>.</p><p>
+The operands available with the <code>
+is</code> operator are:</p><ul>
+<li>
+<strong>
+system</strong>: selects all system tiddlers</li><li>
+<strong>
+current</strong>: selects the current <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ContextTiddler.html'>
+ContextTiddler</a></li><li>
+<strong>
+missing</strong>: selects all missing tiddlers</li><li>
+<strong>
+orphan</strong>: selects all orphan tiddlers</li></ul><h1 class=''>
+Runs</h1><p>
+Operators are combined into runs that function as logically ANDed expressions by bashing them together and merging the square brackets:</p><pre>
+[tag[one]] [tag[two]] ---&gt; [tag[one]tag[two]]</pre><p>
+Runs can be preceded with <code>
+-</code> to negate their action, removing the selected tiddlers from the results. For example, <code>
+[tag[Tommy]] -HelloThere -[[Another One]]</code> selects all tiddlers tagged with <code>
+Tommy</code> except those titled <code>
+HelloThere</code> or <code>
+Another One</code>.</p><p>
+Runs can be preceded with <code>
++</code> in order to make them apply to all of the accumulated results, rather than the original source. For example, <code>
+[tag[Jeremy]] [tag[Tommy]] +[sort[title]]</code> selects the tiddlers tagged <code>
+Tommy</code> or <code>
+Jeremy</code>, and sorts them by the <code>
+title</code> field.</p><h1 class=''>
+Processing model</h1><p>
+Filters are processed with the following elements:</p><ul>
+<li>
+a sequence of runs of filter operations</li><li>
+the incoming source tiddlers, typically all the tiddlers available in the wiki</li><li>
+the overall result stack</li><li>
+the subresult stack of the tiddlers selected by the current run</li></ul></div></div></div>
 </div>
 </section>
 </body>

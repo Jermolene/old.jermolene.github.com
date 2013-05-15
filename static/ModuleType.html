@@ -31,21 +31,91 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+ModuleType</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#8080FF'>
 <span>
-</span></span></div></p><div class='body'>
+docs</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#FFA3A3'>
+<span>
+concepts</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+The <code>
+module-type</code> field of a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Modules.html'>
+JavaScript module</a> is a string that identifies the type of the module. <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> uses the following types:</p><ul>
+<li>
+<code>
+command</code> - individual commands for the <code>
+$tw.Commander</code> class </li><li>
+<code>
+config</code> - values to be merged over the <code>
+$tw.config</code> global</li><li>
+<code>
+editor</code> - interactive editors for different types of content</li><li>
+<code>
+global</code> - members of the <code>
+$tw</code> global</li><li>
+<code>
+library</code> - external global <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='JavaScript.html'>
+JavaScript</a> library, such as Esprima or jQuery</li><li>
+<code>
+macro</code> - macro definitions</li><li>
+<code>
+module</code> - generic type for modules <code>
+require</code>d by other modules</li><li>
+<code>
+parser</code> - parsers for different types of content</li><li>
+<code>
+saver</code> - functions for saving <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> content on different platforms</li><li>
+<code>
+startup</code> - functions to be called by the kernel after booting</li><li>
+<code>
+storyview</code> - visualisations for the <code>
+story</code> macro</li><li>
+<code>
+tiddlerdeserializer</code> - methods to extract tiddlers from text representations or the DOM</li><li>
+<code>
+tiddlerfield</code> - defines the characteristics of tiddler fields of a particular name</li><li>
+<code>
+tiddlermethod</code> - additional methods for the <code>
+$tw.Tiddler</code> class</li><li>
+<code>
+tiddlerserializer</code> - methods to serialise tiddlers to text representations</li><li>
+<code>
+treenode</code> - classes of parser tree nodes</li><li>
+<code>
+treeutils</code> - static utility methods for parser tree nodes </li><li>
+<code>
+utils</code> - general purpose utility functions residing in <code>
+$tw.utils</code></li><li>
+<code>
+wikimethod</code> - additional methods for the <code>
+$tw.Wiki</code> class</li><li>
+<code>
+wikitextrule</code> - individual rules for the wikitext parser</li></ul></div></div></div>
 </div>
 </section>
 </body>

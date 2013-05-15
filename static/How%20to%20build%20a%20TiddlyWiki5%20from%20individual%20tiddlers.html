@@ -31,21 +31,59 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+How to build a TiddlyWiki5 from individual tiddlers</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#8080FF'>
 <span>
-</span></span></div></p><div class='body'>
+docs</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
+<span>
+howto</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<ol>
+<li>
+Create an empty <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyWikiDirectory.html'>
+TiddlyWikiDirectory</a><ol>
+<li>
+Create a new folder in a convenient place (for example <code>
+~/MyWiki</code>)</li><li>
+Create a file called <code>
+tiddlywiki.info</code> containing just a pair of braces: <code>
+{}</code></li><li>
+Create a subfolder called <code>
+tiddlers</code><ul>
+<li>
+Alternatively, just copy the <code>
+editions/empty</code> folder from the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> repo</li></ul></li></ol></li><li>
+Create individual tiddler files in the <code>
+~/MyWiki/tiddlers</code> directory</li><li>
+Execute the following command from the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> root directory to build a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> file from the tiddlers:<ol>
+<li>
+<code>
+node ./tiddlywiki.js ~/MyWiki --savetiddler $:/core/templates/tiddlywiki5.template.html index.html text/plain</code></li></ol></li></ol></div></div></div>
 </div>
 </section>
 </body>

@@ -31,21 +31,83 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+TiddlerFiles</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
-</a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston.html'>
+JeremyRuston</a></span> <span class='tw-view-date'>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
 <span>
-</span></span></div></p><div class='body'>
+internals</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+Tiddlers can be stored in text files in several different formats. Files containing single tiddlers can also have an auxiliary <code>
+.meta</code> file formatted as a sequence of name:value pairs:</p><pre>
+title: TheTitle
+modifier: someone</pre><h2 class=''>
+TiddlyWeb-style .tid files</h2><p>
+These files consist of a sequence of lines containing name:value pairs, a blank line and then the text of the tiddler. For example:</p><pre>
+title: MyTiddler
+modifier: Jeremy
+
+This is the text of my tiddler.</pre><p>
+<em>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='ContentType.html'>
+ContentType</a> <code>
+application/x-tiddler</code> is used internally for these files</em></p><h2 class=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> <code>
+&lt;DIV&gt;</code> .tiddler files</h2><p>
+Modern <code>
+*.tiddler</code> files look like this:</p><pre>
+&lt;div title=&quot;AnotherExampleStyleSheet&quot; modifier=&quot;blaine&quot; created=&quot;201102111106&quot; modified=&quot;201102111310&quot; tags=&quot;examples&quot; creator=&quot;psd&quot;&gt;
+&lt;pre&gt;Note that there is an embedded &lt;pre&gt; tag, and line feeds are not escaped.
+	
+And, weirdly, there is no HTML encoding of the body.&lt;/pre&gt;
+&lt;/div&gt;</pre><p>
+These <code>
+*.tiddler</code> files are therefore not quite the same as the tiddlers found inside a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> HTML file, where the body is HTML encoded in the expected way.</p><p>
+Older <code>
+*.tiddler</code> files more closely matched the store format used by <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> at the time:</p><pre>
+&lt;div tiddler=&quot;AnotherExampleStyleSheet&quot; modifier=&quot;JeremyRuston&quot; modified=&quot;200508181432&quot; created=&quot;200508181432&quot; tags=&quot;examples&quot;&gt;This is an old-school .tiddler file, without an embedded &amp;lt;pre&amp;gt; tag.\nNote how the body is &amp;quot;HTML encoded&amp;quot; and new lines are escaped to \\n&lt;/div&gt;</pre><p>
+<em>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='ContentType.html'>
+ContentType</a> <code>
+application/x-tiddler-html-div</code> is used internally for these files</em></p><h2 class=''>
+TiddlyWeb-style JSON files</h2><p>
+These files are a straightforward array of hashmaps of name:value fields. Currently only these known fields are processed: <code>
+title</code>, <code>
+text</code>, <code>
+created</code>, <code>
+creator</code>, <code>
+modified</code>, <code>
+modifier</code>, <code>
+type</code> and <code>
+tags</code>.</p><p>
+<em>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='ContentType.html'>
+ContentType</a> <code>
+application/json</code> is used internally for these files</em></p><h2 class=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> HTML files</h2><p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> HTML files contain a collection of tiddlers encoded in <code>
+&lt;DIV&gt;</code> format.
+</p></div></div></div>
 </div>
 </section>
 </body>

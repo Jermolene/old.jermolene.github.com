@@ -31,21 +31,64 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+StyleBlockWikiText</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#8080FF'>
 <span>
-</span></span></div></p><div class='body'>
+docs</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
+<span>
+wikitextrule</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+This syntax enables you to assign arbitrary styles and classes to generated elements. For example:</p><pre>
+@@color:#f00;
+@@text-decoration:underline;
+@@.myClass
+This is in red!
+@@</pre><p>
+Generates the results:</p><p class='myClass' style='color:#f00;text-decoration:underline;'>
+This is in red!
+</p><p>
+The HTML looks like this:</p><pre>
+&lt;p class=&quot;myClass&quot; style=&quot;color:rgb(255, 0, 0); text-decoration:underline;&quot;&gt;This is in red!&lt;/p&gt;</pre><p>
+Note that classes and styles can be mixed subject to the rule that styles must precede classes. For example</p><pre>
+@@.myFirstClass.mySecondClass
+@@width:100px;.myThirdClass
+This is a paragraph
+@@</pre><p>
+Note that the style block doesn't generate any HTML elements itself, but instead causes the styles to be applied to all of the elements contained within the style block. This means that you can assign styles to elements generated from <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
+WikiText</a>. For example, here is a list with some additional styles applied:</p><pre>
+@@background-color:#00f;
+* First item
+* Second item
+* Third item
+@@</pre><p>
+The generated HTML is:</p><pre>
+&lt;ul style=&quot;background-color: #00f;&quot;&gt;
+&lt;li&gt;First item&lt;/li&gt;
+&lt;li&gt;Second item&lt;/li&gt;
+&lt;li&gt;Third item&lt;/li&gt;&lt;/ul&gt;</pre></div></div></div>
 </div>
 </section>
 </body>

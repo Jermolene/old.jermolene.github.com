@@ -31,21 +31,80 @@
 </span></button>
 
 </span><span>
-</span></span></p><p>
+TypedBlockWikiText</span></span></p><p>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div></p><p>
 <div class='small'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href=''>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-15 May 2013</span></div></p><p>
+</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:#8080FF'>
 <span>
-</span></span></div></p><div class='body'>
+docs</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
+<span>
+wikitextrule</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span></span></div></p><div class='body'>
 <div>
-<div class='tw-transclude tw-tiddler-missing'>
-</div></div></div>
+<div class='tw-transclude'>
+<p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
+WikiText</a> can include blocks of text that are rendered with an explicit <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='ContentType.html'>
+ContentType</a> like this:</p><pre>
+$$$application/javascript
+//This is some JavaScript
+var thing = 2 + &quot;one&quot;;
+$$$</pre><p>
+This renders as:</p><pre>
+//This is some JavaScript
+var thing = 2 + &quot;one&quot;;</pre><p>
+It is also possible to abbreviate the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='ContentType.html'>
+ContentType</a> to a file extension. For example:</p><pre>
+$$$.svg
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;150&quot; height=&quot;100&quot;&gt;
+  &lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;red&quot; /&gt;
+&lt;/svg&gt;
+$$$</pre><p>
+This renders as:</p><img src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22100%22%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20fill%3D%22red%22%20%2F%3E%0A%3C%2Fsvg%3E'>
+<p>
+And, finally, a JSON example:</p><pre>
+$$$.json
+{&quot;teapot&quot;: &quot;brown&quot;,&quot;inside&quot;:[&quot;milk&quot;,&quot;sugar&quot;,23]}
+$$$</pre><p>
+Which renders as:</p><pre>
+{&quot;teapot&quot;: &quot;brown&quot;,&quot;inside&quot;:[&quot;milk&quot;,&quot;sugar&quot;,23]}</pre><p>
+Unknown types render as plain text:</p><pre>
+$$$text/unknown
+Some plain text, which will not be //formatted//.
+$$$</pre><p>
+Which renders as:</p><pre>
+Some plain text, which will not be //formatted//.</pre><p>
+A render type can also be specified, causing a particular text rendering to be displayed. For example:</p><pre>
+$$$text/vnd.tiddlywiki&gt;text/html
+This is ''some'' wikitext
+$$$
+
+$$$text/vnd.tiddlywiki&gt;text/plain
+This is ''some'' wikitext
+$$$</pre><p>
+Renders as:</p><pre>
+&lt;p&gt;
+This is &lt;strong&gt;
+some&lt;/strong&gt; wikitext&lt;/p&gt;</pre><pre>
+This is some wikitext</pre></div></div></div>
 </div>
 </section>
 </body>
