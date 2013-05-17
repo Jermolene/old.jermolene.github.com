@@ -78,7 +78,8 @@ CamelCase</a> rules, just typing the title will automatically create a link</li>
 To link to an external website, type the full URL of the site: <code>
 http://five.tiddlywiki.com/</code></li></ul><p>
 You can suppress a link from being recognised by preceding it with <code>
-~</code>. For example:</p><pre>
+~</code>. For example:</p><div data-macro-name='wikitext-example'>
+<pre>
 * ~HelloThere is not a link
 * ~http://google.com/ is not a link</pre><p>
 Renders as:</p><ul>
@@ -89,7 +90,7 @@ In HTML:</p><pre>
 &lt;ul&gt;
 &lt;li&gt;
 HelloThere is not a link&lt;/li&gt;&lt;li&gt;
-http://google.com/ is not a link&lt;/li&gt;&lt;/ul&gt;</pre><h1 class=''>
+http://google.com/ is not a link&lt;/li&gt;&lt;/ul&gt;</pre></div><h1 class=''>
 Paragraphs</h1><p>
 To mark the end of a paragraph in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
 TiddlyWiki</a> you need to type <code>
@@ -97,7 +98,8 @@ enter</code> twice to create a double line break:</p><pre>
 This is the first paragraph.
 
 And this is the second paragraph.</pre><p>
-Single line breaks are ignored within paragraphs. For example:</p><pre>
+Single line breaks are ignored within paragraphs. For example:</p><div data-macro-name='wikitext-example'>
+<pre>
 This is a
 paragraph made
 up of
@@ -112,12 +114,12 @@ In HTML:</p><pre>
 This is a
 paragraph made
 up of
-short lines&lt;/p&gt;</pre><h1 class=''>
+short lines&lt;/p&gt;</pre></div><h1 class=''>
 Formatting</h1><p>
 Available character formatting includes:</p><ul>
 <li>
 <code>
-&#96;backticks&#96;</code> for <code>
+`backticks`</code> for <code>
 code</code></li><li>
 <code>
 ''bold''</code> for <strong>
@@ -138,11 +140,11 @@ subscripted</sub> text</li><li>
 ~~strikethrough~~</code> for <strike>
 strikethrough</strike> text</li></ul><p>
 You can also use triple backticks <code>
-&#96;&#96;&#96;</code> to mark code blocks:</p><pre>
+```</code> to mark code blocks:</p><pre>
 <p>
-&#96;&#96;&#96;
+```
 This will be monospaced
-&#96;&#96;&#96;
+```
 </p></pre><p>
 Renders as:</p><pre>
 This will be monospaced</pre><h1 class=''>
@@ -175,7 +177,8 @@ Renders as:</p><div class='tw-transclude'>
 </div><h1 class=''>
 Lists</h1><p>
 You can create unordered lists with <code>
-*</code> characters:</p><pre>
+*</code> characters:</p><div data-macro-name='wikitext-example'>
+<pre>
 * First list item
 * Second list item
 ** A subitem
@@ -195,7 +198,7 @@ First list item&lt;/li&gt;&lt;li&gt;
 Second list item&lt;ul&gt;
 &lt;li&gt;
 A subitem&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;
-Third list item&lt;/li&gt;&lt;/ul&gt;</pre><p>
+Third list item&lt;/li&gt;&lt;/ul&gt;</pre></div><p>
 Ordered lists use <code>
 #</code> instead of <code>
 *</code>:</p><ol>
@@ -203,7 +206,8 @@ Ordered lists use <code>
 First item</li><li>
 Second item</li><li>
 Third item</li></ol><p>
-You can also mix ordered and unordered list items:</p><pre>
+You can also mix ordered and unordered list items:</p><div data-macro-name='wikitext-example'>
+<pre>
 * To do today
 *# Eat
 * To get someone else to do
@@ -233,8 +237,9 @@ To get someone else to do&lt;ol&gt;
 This&lt;/li&gt;&lt;li&gt;
 That&lt;ol&gt;
 &lt;li&gt;
-And the other&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;/ul&gt;</pre><p>
-You can also create HTML definition lists:</p><pre>
+And the other&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/li&gt;&lt;/ul&gt;</pre></div><p>
+You can also create HTML definition lists:</p><div data-macro-name='wikitext-example'>
+<pre>
 ; Term being defined
 : Definition of that term
 ; Another term
@@ -252,9 +257,10 @@ In HTML:</p><pre>
 Term being defined&lt;/dt&gt;&lt;dd&gt;
 Definition of that term&lt;/dd&gt;&lt;dt&gt;
 Another term&lt;/dt&gt;&lt;dd&gt;
-Another definition&lt;/dd&gt;&lt;/dl&gt;</pre><h1 class=''>
+Another definition&lt;/dd&gt;&lt;/dl&gt;</pre></div><h1 class=''>
 Adding styles and classes</h1><p>
-You can use this construction to cause the wrapped content to be assigned specified CSS classes or styles:</p><pre>
+You can use this construction to cause the wrapped content to be assigned specified CSS classes or styles:</p><div data-macro-name='wikitext-example'>
+<pre>
 @@.myStyle
 * List One
 * List Two
@@ -268,8 +274,9 @@ In HTML:</p><pre>
 &lt;ul class='myStyle'&gt;
 &lt;li&gt;
 List One&lt;/li&gt;&lt;li&gt;
-List Two&lt;/li&gt;&lt;/ul&gt;</pre><p>
-Similar syntax is used to assign styles. For example:</p><pre>
+List Two&lt;/li&gt;&lt;/ul&gt;</pre></div><p>
+Similar syntax is used to assign styles. For example:</p><div data-macro-name='wikitext-example'>
+<pre>
 @@background-color:red;
 * List One
 * List Two
@@ -283,8 +290,9 @@ In HTML:</p><pre>
 &lt;ul style='background-color:red;'&gt;
 &lt;li&gt;
 List One&lt;/li&gt;&lt;li&gt;
-List Two&lt;/li&gt;&lt;/ul&gt;</pre><p>
-Multiple styles and classes can be mixed. For example:</p><pre>
+List Two&lt;/li&gt;&lt;/ul&gt;</pre></div><p>
+Multiple styles and classes can be mixed. For example:</p><div data-macro-name='wikitext-example'>
+<pre>
 @@.tw-tiddler-frame
 @@width:400px;
 Some text
@@ -296,8 +304,9 @@ Some text
 In HTML:</p><pre>
 &lt;p class='tw-tiddler-frame' style='width:400px;'&gt;
 Some text
-&lt;/p&gt;</pre><p>
-You can also assign a CSS class to an individual member of a list with this notation:</p><pre>
+&lt;/p&gt;</pre></div><p>
+You can also assign a CSS class to an individual member of a list with this notation:</p><div data-macro-name='wikitext-example'>
+<pre>
 * List One
 *.MyClass List Two
 * List Three
@@ -312,12 +321,13 @@ In HTML:</p><pre>
 &lt;li&gt;
 List One&lt;/li&gt;&lt;li class='MyClass'&gt;
 List Two&lt;/li&gt;&lt;li&gt;
-List Three&lt;/li&gt;&lt;/ul&gt;</pre><h1 class=''>
+List Three&lt;/li&gt;&lt;/ul&gt;</pre></div><h1 class=''>
 Typographic Features</h1><p>
 You can create an n-dash with a double hyphen <code>
 --</code> and an m-dash with a triple hyphen <code>
----</code>. For example &ndash; this is an example &mdash; and so is this</p><p>
-You can include a horizontal rule with three or more dashes on their own on a line:</p><pre>
+---</code>. For example – this is an example — and so is this</p><p>
+You can include a horizontal rule with three or more dashes on their own on a line:</p><div data-macro-name='wikitext-example'>
+<pre>
 
 ---
 </pre><p>
@@ -325,7 +335,7 @@ Renders as:</p><hr>
 <p>
 In HTML:</p><pre>
 &lt;hr&gt;
-</pre><h1 class=''>
+</pre></div><h1 class=''>
 Macros</h1><p>
 Macros are snippets of text that can be inserted with a concise shortcut. A macro is defined like this:</p><pre>
 \define mysamplemacro(name:&quot;Bugs Bunny&quot;,address:&quot;Rabbit Hole Hill&quot;)

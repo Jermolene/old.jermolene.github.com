@@ -600,6 +600,8 @@ table {
 	padding-top: 1em;
 }.tw-page-controls {
 	margin-top: 1em;
+}.tw-page-controls a.tw-tiddlylink:hover {
+	text-decoration: none;
 }.tw-page-controls svg {
 	height: 1.5em;
 	min-width: 1px;
@@ -843,28 +845,28 @@ table {
 }.tw-tab-buttons button {
 	color: #666;
 	background-color: #ccc;
-	border-left: 1px solid #aaa;
-	border-top: 1px solid #aaa;
-	border-right: 1px solid #aaa;
-	border-bottom: 1px solid #aaa;
+	border-left: 1px solid #bbb;
+	border-top: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
 	margin-left: 0.25em;
 	margin-right: 0.25em;
 }.tw-tab-buttons button.tw-tab-selected {
 	background-color: #ececec;
 	border-bottom: 1px solid #ececec;
 }.tw-tab-divider {
-	border-top: 1px solid #aaa;
+	border-top: 1px solid #bbb;
 }.tw-tab-content {
 	padding-top: 1em;
 }.tw-sidebar-tab-divider.tw-tab-divider {
 	border-top: none;
 	height: 1px;
 	
-background-image: linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
-background-image: -o-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
-background-image: -moz-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
-background-image: -webkit-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
-background-image: -ms-linear-gradient(left, rgb(160,160,160) 0%, rgb(236,236,236) 250px);
+background-image: linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,236) 250px);
+background-image: -o-linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,236) 250px);
+background-image: -moz-linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,236) 250px);
+background-image: -webkit-linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,236) 250px);
+background-image: -ms-linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,236) 250px);
 
 }.tw-more-sidebar.tw-tab-set {
 	white-space: nowrap;
