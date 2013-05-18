@@ -496,6 +496,10 @@ table {
 	font-weight: bold;
 }a.tw-tiddlylink-missing {
 	font-style: italic;
+}a.tw-tiddlylink-external:before {
+	display: inline-block;
+	content: "\29C9";
+	padding-right: 0.2em;
 }/*
 ** Drag and drop styles
 */.tw-tiddler-dragger {
