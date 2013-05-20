@@ -547,12 +547,6 @@ a.tw-tiddlylink-missing {
 	font-style: italic;
 }
 
-a.tw-tiddlylink-external:before {
-	display: inline-block;
-	content: "\29C9";
-	padding-right: 0.2em;
-}
-
 /*
 ** Drag and drop styles
 */
@@ -774,6 +768,18 @@ a.tw-tiddlylink-external:before {
 	background-color: #fff;
 }
 
+.tw-tiddler-info {
+	padding: 1em 3em 1em 3em;
+	background-color: #f8f8f8;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	
+  -webkit-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+     -moz-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+          box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+
+}
+
 @media screen {
 	.tw-tiddler-frame {
 		
@@ -788,11 +794,19 @@ a.tw-tiddlylink-external:before {
 	.tw-tiddler-frame {
 		padding: 1em 1em 1em 1em;
 	}
+
+	.tw-tiddler-info {
+		margin: 0 -1em 0 -1em;
+	}
 }
 
 @media (min-width: 55em) {
 	.tw-tiddler-frame {
 		padding: 2em 3em 3em 3em;
+	}
+
+	.tw-tiddler-info {
+		margin: 0 -3em 0 -3em;
 	}
 }
 
@@ -829,19 +843,6 @@ a.tw-tiddlylink-external:before {
 
 .tw-tiddler-controls .tw-button svg:hover {
 	fill: #888;
-}
-
-.tw-tiddler-info {
-	margin: 0 -3em 0 -3em;
-	padding: 1em 3em 1em 3em;
-	background-color: #f8f8f8;
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
-	
-  -webkit-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
-     -moz-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
-          box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
-
 }
 
 @media print {
@@ -1214,9 +1215,8 @@ More</button></div>
 </span></button>
 
 </span><span>
-HelloThere</span></span></p><p>
-<div class='tw-reveal' style='display:none;'>
-</div></p><p>
+HelloThere</span></span></p><div class='tw-reveal' style='display:none;'>
+</div><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/JeremyRuston.html'>
@@ -1291,9 +1291,8 @@ help the TiddlyWiki project and community</a></li></ul></div></div></div></div><
 </span></button>
 
 </span><span>
-TiddlyWiki5 Editions</span></span></p><p>
-<div class='tw-reveal' style='display:none;'>
-</div></p><p>
+TiddlyWiki5 Editions</span></span></p><div class='tw-reveal' style='display:none;'>
+</div><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
@@ -1361,9 +1360,8 @@ TiddlyWiki5 in the Sky for Dropbox</a></li></ul></div></div></div></div></div><d
 </span></button>
 
 </span><span>
-Demos</span></span></p><p>
-<div class='tw-reveal' style='display:none;'>
-</div></p><p>
+Demos</span></span></p><div class='tw-reveal' style='display:none;'>
+</div><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
@@ -1448,9 +1446,8 @@ How to use TiddlyWiki5 as a standalone HTML file with TWEdit</a></span></div></d
 </span></button>
 
 </span><span>
-Improvements</span></span></p><p>
-<div class='tw-reveal' style='display:none;'>
-</div></p><p>
+Improvements</span></span></p><div class='tw-reveal' style='display:none;'>
+</div><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/JeremyRuston.html'>
@@ -1528,9 +1525,8 @@ TiddlyWiki5</a>.
 </span></button>
 
 </span><span>
-Docs</span></span></p><p>
-<div class='tw-reveal' style='display:none;'>
-</div></p><p>
+Docs</span></span></p><div class='tw-reveal' style='display:none;'>
+</div><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
