@@ -712,6 +712,8 @@ table {
 
 }.tw-tiddler-controls .tw-button svg:hover {
 	fill: #888;
+}.tw-tiddler-controls .tw-image-new-button {
+	fill: #8f8;
 }@media print {
 	.tw-tiddler-controls {
 		display: none;
