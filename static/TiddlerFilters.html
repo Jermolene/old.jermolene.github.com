@@ -37,7 +37,7 @@ TiddlerFilters</span></span></p><div class='tw-reveal tw-tiddler-info' style='di
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-</span></div></p><p>
+31 May 2013</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element'>
@@ -208,6 +208,12 @@ ContextTiddler</a></li><li>
 missing</strong>: selects all missing tiddlers</li><li>
 <strong>
 orphan</strong>: selects all orphan tiddlers</li></ul><h1 class=''>
+Indirect Operands</h1><p>
+If a filter operator is written with curly brackets around the operand then it is taken to be a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlerTextReference.html'>
+TiddlerTextReference</a> to the actual value. For example:</p><p>
+<strong>
+[search{$:/temp/search}]</strong>: selects all tiddlers containing the string contained in the tiddler titled <strong>
+$:/temp/search</strong>.</p><h1 class=''>
 Runs</h1><p>
 Operators are combined into runs that function as logically ANDed expressions by bashing them together and merging the square brackets:</p><pre>
 [tag[one]] [tag[two]] ---&gt; [tag[one]tag[two]]</pre><p>
