@@ -702,7 +702,7 @@ table {
 }.tw-tiddler-controls .tw-button {
 	margin: 0 0 0 0.33em;
 	vertical-align: baseline;
-}.tw-tiddler-controls .tw-button svg {
+}.tw-tiddler-controls svg {
 	height: 0.75em;
 	fill: #ccc;
 	
@@ -710,10 +710,8 @@ table {
      -moz-transition: fill 150ms ease-in-out;
           transition: fill 150ms ease-in-out;
 
-}.tw-tiddler-controls .tw-button svg:hover {
+}.tw-tiddler-controls svg:hover {
 	fill: #888;
-}.tw-tiddler-controls .tw-image-new-button {
-	fill: #8f8;
 }@media print {
 	.tw-tiddler-controls {
 		display: none;
