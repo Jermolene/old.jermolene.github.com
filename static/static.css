@@ -35,7 +35,9 @@ Password prompt
 
 /*
 ** Start with the normalize CSS reset, and then belay some of its effects
-*//*! normalize.css v2.1.0 | MIT License | git.io/normalize */
+*/
+
+/*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 
 /* ==========================================================================
    HTML5 display definitions
@@ -431,34 +433,50 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+
 *, input[type="search"] {
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-}/*
+}
+
+/*
 ** Basic element styles
-*/html {
+*/
+
+html {
 	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-}body {
+}
+
+body {
 	font-size: 14px;
 	line-height: 20px;
 	background-color: #ececec;
 	word-wrap: break-word;
-}h1, h2, h3, h4, h5, h6 {
+}
+
+h1, h2, h3, h4, h5, h6 {
 	line-height: 1em;
-}code, pre {
+}
+
+code, pre {
 	padding: 0 3px 2px;
 	
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
           border-radius: 3px;
 
-}code {
+}
+
+code {
 	padding: 1px 2px;
 	color: #d14;
 	background-color: #f7f7f9;
 	border: 1px solid #e1e1e8;
-}pre {
+}
+
+pre {
 	display: block;
 	padding: 1em;
 	margin: 0 0 1em;
@@ -468,39 +486,65 @@ table {
 	white-space: pre-wrap;
 	background-color: #f5f5f5;
 	border: 1px solid #ccc;
-}table {
+}
+
+table {
 	border: 1px solid #ddd;
 	width: 100%;
-}table th, table td {
+}
+
+table th, table td {
 	padding: 0 0.5em 0 0.5em;
 	border-top: 1px solid #ddd;
 	border-left: 1px solid #ddd;
-}.tw-tiddler-frame img, .tw-tiddler-frame svg, .tw-tiddler-frame canvas, .tw-tiddler-frame embed {
+}
+
+.tw-tiddler-frame img, .tw-tiddler-frame svg, .tw-tiddler-frame canvas, .tw-tiddler-frame embed {
 	max-width: 100%;
-}embed {
+}
+
+embed {
 	width: 100%;
 	height: 20em;
-}/*
+}
+
+/*
 ** Links
-*/a.tw-tiddlylink {
+*/
+
+a.tw-tiddlylink {
 	text-decoration: none;
 	font-style: normal;
 	font-weight: normal;
 	color: #5959C0;
-}.tw-sidebar-lists a.tw-tiddlylink {
+}
+
+.tw-sidebar-lists a.tw-tiddlylink {
 	color: #999;
-}.tw-sidebar-lists a.tw-tiddlylink:hover {
+}
+
+.tw-sidebar-lists a.tw-tiddlylink:hover {
 	color: #444;
-}a.tw-tiddlylink:hover {
+}
+
+a.tw-tiddlylink:hover {
 	text-decoration: underline;
-}a.tw-tiddlylink-resolves {
+}
+
+a.tw-tiddlylink-resolves {
 	font-style: normal;
 	font-weight: bold;
-}a.tw-tiddlylink-missing {
+}
+
+a.tw-tiddlylink-missing {
 	font-style: italic;
-}/*
+}
+
+/*
 ** Drag and drop styles
-*/.tw-tiddler-dragger {
+*/
+
+.tw-tiddler-dragger {
 	display: inline-block;
 	padding: 8px 20px;
 	font-size: 16.9px;
@@ -516,9 +560,13 @@ table {
      -moz-border-radius: 20px;
           border-radius: 20px;
 
-}.tw-import {
+}
+
+.tw-import {
 	position: relative;
-}.tw-drop-zone-fullscreen.tw-dragover:before {
+}
+
+.tw-drop-zone-fullscreen.tw-dragover:before {
 	z-index: 10000;
 	display: block;
 	position: fixed;
@@ -528,7 +576,9 @@ table {
 	background: rgba(0,200,0,0.7);
 	text-align: center;
 	content: "Drop here";
-}.tw-drop-zone.tw-dragover:before {
+}
+
+.tw-drop-zone.tw-dragover:before {
 	z-index: 10000;
 	display: block;
 	position: absolute;
@@ -538,22 +588,36 @@ table {
 	background: rgba(0,200,0,0.7);
 	text-align: center;
 	content: "Drop here";
-}/*
+}
+
+/*
 ** Buttons
-*/.btn-invisible {
+*/
+
+.btn-invisible {
 	padding: 0;
 	margin: 0;
 	background: none;
 	border: none;
-}.btn-mini {
+}
+
+.btn-mini {
 	color: #e0e0e0;
-}.btn-mini:hover {
+}
+
+.btn-mini:hover {
 	color: #444;
-}/*
+}
+
+/*
 ** Tags and missing tiddlers
-*/.tw-tags-wrapper {
+*/
+
+.tw-tags-wrapper {
 	margin: 0.25em 0 1em 0;
-}.tw-missing-tiddler-label {
+}
+
+.tw-missing-tiddler-label {
 	font-style: italic;
 	font-weight: normal;
 	display: inline-block;
@@ -573,7 +637,9 @@ table {
      -moz-box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5);
           box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5);
 
-}.tw-tag-label {
+}
+
+.tw-tag-label {
 	display: inline-block;
 	padding: 2px 6px;
 	font-size: 11.844px;
@@ -589,23 +655,39 @@ table {
      -moz-border-radius: 5px;
           border-radius: 5px;
 
-}/*
+}
+
+/*
 ** Page layout
-*/.sidebar-header {
+*/
+
+.sidebar-header {
 	color: #acacac;
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
-}.sidebar-header .tw-sidebar-lists p {
+}
+
+.sidebar-header .tw-sidebar-lists p {
 	margin-top: 0.2em;
 	margin-bottom: 0.2em;
-}.tw-search a svg {
+}
+
+.tw-search a svg {
 	height: 0.75em;
-}.tw-search-results {
+}
+
+.tw-search-results {
 	padding-top: 1em;
-}.tw-page-controls {
+}
+
+.tw-page-controls {
 	margin-top: 1em;
-}.tw-page-controls a.tw-tiddlylink:hover {
+}
+
+.tw-page-controls a.tw-tiddlylink:hover {
 	text-decoration: none;
-}.tw-page-controls svg {
+}
+
+.tw-page-controls svg {
 	height: 1.5em;
 	min-width: 1px;
 	padding-right: 0.5em;
@@ -620,19 +702,36 @@ table {
      -moz-transition: fill 150ms ease-in-out;
           transition: fill 150ms ease-in-out;
 
-}.tw-page-controls svg:hover {
+}
+
+.tw-page-controls svg:hover {
 	fill: #000;
-}.tw-menu-list-item {
+	
+  -webkit-filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.9));
+     -moz-filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.9));
+          filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.9));
+
+}
+
+.tw-menu-list-item {
 	white-space: nowrap;
-}.tw-menu-list-subitem {
+}
+
+.tw-menu-list-subitem {
 	padding-left: 0.5em;
-}@media (max-width: 55em) {
+}
+
+@media (max-width: 55em) {
 	.sidebar-header {
 		padding: 1em;
-	}.story-river {
+	}
+
+	.story-river {
 		padding: 0;
 	}
-}@media (min-width: 55em) {
+}
+
+@media (min-width: 55em) {
 	.sidebar-header {
 		position: fixed;
 		top: 0;
@@ -644,23 +743,35 @@ table {
 		-webkit-overflow-scrolling: touch;
 		margin: 0 0 0 -3em;
 		padding: 5em 0 2em 3em;
-	}.story-river {
+	}
+
+	.story-river {
 		width: 55em;
 		padding: 3em;
 	}
-}@media print {
+}
+
+@media print {
 	.sidebar-header {
 		display: none;
-	}.story-river {
+	}
+
+	.story-river {
 		margin-left: 1em;
 	}
-}/*
+}
+
+/*
 ** Tiddler styles
-*/.tw-tiddler-frame {
+*/
+
+.tw-tiddler-frame {
 	position: relative;
 	margin-bottom: 2em;
 	background-color: #fff;
-}.tw-tiddler-info {
+}
+
+.tw-tiddler-info {
 	overflow: hidden;
 	padding: 1em 3em 1em 3em;
 	background-color: #f8f8f8;
@@ -671,7 +782,9 @@ table {
      -moz-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
           box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
 
-}@media screen {
+}
+
+@media screen {
 	.tw-tiddler-frame {
 		
   -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
@@ -679,32 +792,50 @@ table {
           box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 
 	}
-}@media (max-width: 55em) {
+}
+
+@media (max-width: 55em) {
 	.tw-tiddler-frame {
 		padding: 1em 1em 1em 1em;
-	}.tw-tiddler-info {
+	}
+
+	.tw-tiddler-info {
 		margin: 0 -1em 0 -1em;
 	}
-}@media (min-width: 55em) {
+}
+
+@media (min-width: 55em) {
 	.tw-tiddler-frame {
 		padding: 2em 3em 3em 3em;
-	}.tw-tiddler-info {
+	}
+
+	.tw-tiddler-info {
 		margin: 0 -3em 0 -3em;
 	}
-}.title {
+}
+
+.title {
 	font-weight: bold;
 	font-size: 33px;
 	line-height: 40px;
 	color: #182955;
-}.tw-tiddler-missing .title {
+}
+
+.tw-tiddler-missing .title {
   font-style: italic;
   font-weight: normal;
-}.tw-tiddler-frame .tw-tiddler-controls {
+}
+
+.tw-tiddler-frame .tw-tiddler-controls {
 	float: right;
-}.tw-tiddler-controls .tw-button {
+}
+
+.tw-tiddler-controls .tw-button {
 	margin: 0 0 0 0.33em;
 	vertical-align: baseline;
-}.tw-tiddler-controls svg {
+}
+
+.tw-tiddler-controls svg {
 	height: 0.75em;
 	fill: #ccc;
 	
@@ -712,51 +843,77 @@ table {
      -moz-transition: fill 150ms ease-in-out;
           transition: fill 150ms ease-in-out;
 
-}.tw-tiddler-controls svg:hover {
+}
+
+.tw-tiddler-controls svg:hover {
 	fill: #888;
-}@media print {
+}
+
+@media print {
 	.tw-tiddler-controls {
 		display: none;
 	}
-}.tw-tiddler-help { /* Help prompts within tiddler template */
+}
+
+.tw-tiddler-help { /* Help prompts within tiddler template */
 	color: #999;
 	margin-top: 1em;
-}.tw-tiddler-help a.tw-tiddlylink {
+}
+
+.tw-tiddler-help a.tw-tiddlylink {
 	color: #888888;
-}.tw-tiddler-frame .tw-edit-texteditor input, .tw-tiddler-frame .tw-edit-texteditor textarea {
+}
+
+.tw-tiddler-frame .tw-edit-texteditor input, .tw-tiddler-frame .tw-edit-texteditor textarea {
 	width: 100%;
 	padding: 3px 3px 3px 3px;
 	border: 1px solid #ccc;
 	line-height: 1.3em;
 	-webkit-appearance: none;
 	margin: 0.25em 0 0.25em 0;
-}.tw-tiddler-frame .tw-edit-texteditor input {
+}
+
+.tw-tiddler-frame .tw-edit-texteditor input {
 	background-color: #f8f8f8;
 	
   -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
      -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
           box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
 
-}canvas.tw-edit-bitmapeditor  {
+}
+
+canvas.tw-edit-bitmapeditor  {
 	cursor: crosshair;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
-}/*
+}
+
+/*
 ** Tiddler edit mode
-*/.tw-tiddler-preview {
+*/
+
+.tw-tiddler-preview {
 	overflow: auto;
-}.tw-tiddler-preview-preview {
+}
+
+.tw-tiddler-preview-preview {
 	float: right;
 	width: 48%;
 	border: 1px solid #ccc;
 	margin: 4px 3px 3px 3px;
 	padding: 3px 3px 3px 3px;
-}.tw-tiddler-preview-edit {
+}
+
+.tw-tiddler-preview-edit {
 	width: 48%;
-}/*
+}
+
+/*
 ** Dropdowns
-*/.tw-drop-down {
+*/
+
+.tw-drop-down {
 	min-width: 20em;
 	border: 1px solid #bbb;
 	background-color: #fff;
@@ -773,23 +930,37 @@ table {
 	padding: 0.5em 0em 0.5em 0em;
 	margin: 0.25em 0 0 0;
 	white-space: nowrap;
-}.tw-drop-down a {
+}
+
+.tw-drop-down a {
 	display: block;
 	padding: 0em 1em 0em 1em;
-}.tw-drop-down a:hover {
+}
+
+.tw-drop-down a:hover {
 	color: #fff;
 	background-color: #5959C0;
 	text-decoration: none;
-}.tw-drop-down .tw-tab-buttons button {
+}
+
+.tw-drop-down .tw-tab-buttons button {
 	background-color: #ececec;
-}.tw-drop-down .tw-tab-buttons button.tw-tab-selected {
+}
+
+.tw-drop-down .tw-tab-buttons button.tw-tab-selected {
 	background-color: #fff;
 	border-bottom: 1px solid #fff;
-}.tw-drop-down .tw-tab-contents a {
+}
+
+.tw-drop-down .tw-tab-contents a {
 	padding: 0 0.5em 0 0.5em;
-}/*
+}
+
+/*
 ** Modals
-*/.modal-backdrop {
+*/
+
+.modal-backdrop {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -797,7 +968,9 @@ table {
 	left: 0;
 	z-index: 1000;
 	background-color: #000;
-}.modal {
+}
+
+.modal {
 	position: fixed;
 	top: 50%;
 	left: 50%;
@@ -817,17 +990,25 @@ table {
      -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
           box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 
-}.modal-header {
+}
+
+.modal-header {
 	padding: 9px 15px;
 	border-bottom: 1px solid #eee;
-}.modal-header h3 {
+}
+
+.modal-header h3 {
 	margin: 0;
 	line-height: 30px;
-}.modal-body {
+}
+
+.modal-body {
 	overflow-y: auto;
 	max-height: 400px;
 	padding: 15px;
-}.modal-footer {
+}
+
+.modal-footer {
 	padding: 14px 15px 15px;
 	margin-bottom: 0;
 	text-align: right;
@@ -843,9 +1024,13 @@ table {
      -moz-box-shadow: inset 0 1px 0 #fff;
           box-shadow: inset 0 1px 0 #fff;
 ;
-}/*
+}
+
+/*
 ** Notifications
-*/.tw-notification {
+*/
+
+.tw-notification {
 	position: fixed;
 	top: 1em;
 	right: 1em;
@@ -866,15 +1051,23 @@ table {
           box-shadow: 0 3px 7px rgba(0,0,0,0.3);
 
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
-}/*
+}
+
+/*
 ** Tabs
-*/.tw-tab-set {
-}.tw-tab-buttons {
+*/
+
+.tw-tab-set {
+}
+
+.tw-tab-buttons {
 	font-size: 0.85em;
 	line-height: 100%;
 	padding-top: 1em;
 	margin-bottom: -1px;
-}.tw-tab-buttons button {
+}
+
+.tw-tab-buttons button {
 	color: #666;
 	background-color: #ccc;
 	border-left: 1px solid #bbb;
@@ -883,14 +1076,22 @@ table {
 	border-bottom: 1px solid #bbb;
 	margin-left: 0.25em;
 	margin-right: 0.25em;
-}.tw-tab-buttons button.tw-tab-selected {
+}
+
+.tw-tab-buttons button.tw-tab-selected {
 	background-color: #ececec;
 	border-bottom: 1px solid #ececec;
-}.tw-tab-divider {
+}
+
+.tw-tab-divider {
 	border-top: 1px solid #bbb;
-}.tw-tab-content {
+}
+
+.tw-tab-content {
 	padding-top: 1em;
-}.tw-sidebar-tab-divider.tw-tab-divider {
+}
+
+.tw-sidebar-tab-divider.tw-tab-divider {
 	border-top: none;
 	height: 1px;
 	
@@ -900,24 +1101,34 @@ background-image: -moz-linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,23
 background-image: -webkit-linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,236) 250px);
 background-image: -ms-linear-gradient(left, rgb(176,176,176) 0%, rgb(236,236,236) 250px);
 
-}.tw-more-sidebar.tw-tab-set {
+}
+
+.tw-more-sidebar.tw-tab-set {
 	white-space: nowrap;
-}@media (min-width: 55em) {
+}
+
+@media (min-width: 55em) {
 	.tw-more-sidebar.tw-tab-set {
 		margin-left: -1em;
 	}
-}.tw-more-sidebar .tw-tab-buttons {
+}
+
+.tw-more-sidebar .tw-tab-buttons {
 	display: inline-block;
 	vertical-align: top;
 	text-align: right;
 	padding-top: 0em;
 	padding-left: 0em;
-}.tw-more-sidebar .tw-tab-content {
+}
+
+.tw-more-sidebar .tw-tab-content {
 	display: inline-block;
 	vertical-align: top;
 	padding-top: 0em;
 	padding-left: 1em;
-}.tw-more-sidebar .tw-tab-buttons button {
+}
+
+.tw-more-sidebar .tw-tab-buttons button {
 	background-color: #ececec;
 	
 background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
@@ -930,7 +1141,9 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224
 	border-left: none;
 	border-bottom: none;
 	border-right: 1px solid #ccc;
-}.tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {
+}
+
+.tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {
 	background-color: #fff;
 	
 background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255) 100%);
@@ -941,3 +1154,20 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255
 
 	border: none;
 }
+
+/*
+** Alerts
+*/
+
+.tw-alert {
+	
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+
+	margin: 0.5em 0.5em 0.5em 0.5em;
+	padding: 1em 1em 1em 1em;
+	border: 3px solid #DBB727;
+	background-color: rgb(250, 210, 50);
+}
+

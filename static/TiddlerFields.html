@@ -37,29 +37,81 @@ http://five.tiddlywiki.com/</a></div>
 </span></button>
 
 </span><span>
-SampleNotification</span></span></p><div class='tw-reveal tw-tiddler-info' style='display:none;'>
+TiddlerFields</span></span></p><div class='tw-reveal tw-tiddler-info' style='display:none;'>
 </div><p>
 <div class='small'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-8 May 2013</span></div></p><p>
+1 June 2013</span></div></p><p>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
-<span class='tw-list-element'>
-<span class='tw-transclude tw-tiddler-missing'>
-<button class='tw-button btn-invisible'>
-<span class='tw-tag-label' style='background-color:'>
 <span>
-demo</span></span></button>
-<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
-</div>
-</span></span></span></div></p><div class='body'>
+</span></span></div></p><div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
-<span class='tw-transclude tw-tiddler-missing'>
-</span> This is a notification!</p></div></div></div>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFields.html'>
+TiddlerFields</a> are name:value pairs that make up a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Tiddlers.html'>
+tiddler</a>. The standard fields are:</p><ul>
+<li>
+<code>
+title</code> - The unique title of the tiddler</li><li>
+<code>
+modified</code> - The date of the last modification to the tiddler</li><li>
+<code>
+modifier</code> - The name of the last person to modify the tiddler</li><li>
+<code>
+created</code> - The date the tiddler was created</li><li>
+<code>
+creator</code> - The name of the person who created the tiddler</li><li>
+<code>
+tags</code> - A list of tags applied to the tiddler</li><li>
+<code>
+type</code> - The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='ContentType.html'>
+ContentType</a> that should used to interpret the content of the tiddler</li></ul><p>
+Other fields used by the core are:</p><ul>
+<li>
+<code>
+color</code> - The colour associated with a tiddler (expressed as a valid CSS value like <code>
+#fea</code> or <code>
+rgb(100,100,100)</code>)</li><li>
+<code>
+description</code> - The description of a plugin</li><li>
+<code>
+draft.of</code> - For draft tiddlers, contains the title of the tiddler of which this is a draft</li><li>
+<code>
+draft.title</code> - For draft tiddlers, contains the proposed new title of the tiddler</li><li>
+<code>
+footer</code> - The footer for a modal dialogue (interpreted as <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
+WikiText</a>)</li><li>
+<code>
+library</code> - Set to <code>
+yes</code> if the tiddler should be loaded in the browser as a <code>
+&lt;script&gt;</code> tag</li><li>
+<code>
+name</code> - Human-readable name of a plugin</li><li>
+<code>
+plugin</code> - Set to <code>
+yes</code> if the tiddler is a plugin</li><li>
+<code>
+plugin-priority</code> - An integer giving the priority for loading plugin tiddlers</li><li>
+<code>
+plugin-type</code> - The type of a plugin (currently can be <code>
+plugin</code> or <code>
+theme</code>)</li><li>
+<code>
+source</code> - The original URL associated with a tiddler</li><li>
+<code>
+subtitle</code> - The subtitle for a modal dialogue (interpreted as <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
+WikiText</a>)</li></ul><p>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyWebAdaptor.html'>
+TiddlyWebAdaptor</a> uses a few more fields:</p><ul>
+<li>
+<code>
+bag</code> - The name of the bag from which a tiddler came</li><li>
+<code>
+revision</code> - The revision of the tiddler held at the server</li></ul></div></div></div>
 </div>
 </section>
 </body>
