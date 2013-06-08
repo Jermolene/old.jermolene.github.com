@@ -463,6 +463,7 @@ html {
 body {
 	font-size: 14px;
 	line-height: 20px;
+	color: #333;
 	background-color: #ececec;
 	word-wrap: break-word;
 }
@@ -934,6 +935,14 @@ canvas.tw-edit-bitmapeditor  {
 	width: 48%;
 }
 
+.tw-fieldlist > div:nth-child(odd) {
+	background-color: #f0f4f0;
+}
+
+.tw-fieldlist > div:nth-child(even) {
+	background-color: #e0e8e0;
+}
+
 .tw-edit-field-name {
 	display: inline-block;
 	width: 15%;
@@ -942,12 +951,18 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-edit-field-value {
 	display: inline-block;
-	width: 70%;
+	width: 75%;
 }
 
 .tw-edit-field-remove {
 	display: inline-block;
-	width: 10%;
+	width: 5%;
+}
+
+.tw-edit-field-remove svg {
+	height: 1em;
+	fill: #888;
+	vertical-align: middle;
 }
 
 .tw-edit-field-add-name {
