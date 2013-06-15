@@ -531,7 +531,7 @@ test-wikitext.js</span>
             &quot;module-type&quot;: &quot;wikirule&quot;
         },
         &quot;$:/core/modules/parsers/wikiparser/rules/html.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/parsers/wikiparser/rules/html.js\ntype: application/javascript\nmodule-type: wikirule\n\nWiki rule for HTML elements and widgets. For example:\n\n{{{\n&lt;aside&gt;\nThis is an HTML5 aside element\n&lt;/aside&gt;\n\n&lt;$slider target=\&quot;MyTiddler\&quot;&gt;\nThis is a widget invocation\n&lt;/$slider&gt;\n\n}}}\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports.name = \&quot;html\&quot;;\nexports.types = {inline: true, block: true};\n\nexports.init = function(parser) {\n\tthis.parser = parser;\n\t// Regexp to match\n\tif(this.is.block) {\n\t\tthis.matchRegExp = /&lt;([A-Za-z\\$]+)(\\s*[^&gt;]*?)(\\/)?&gt;(\\r?\\n)/mg;\n\t} else {\n\t\tthis.matchRegExp = /&lt;([A-Za-z\\$]+)(\\s*[^&gt;]*?)(?:(\\/&gt;)|(?:&gt;(\\r?\\n)?))/mg;\n\t}\n};\n\n/*\nParse the most recent match\n*/\nexports.parse = function() {\n\t// Get all the details of the match in case this parser is called recursively\n\tvar tagName = this.match[1],\n\t\tattributeString = this.match[2],\n\t\tisSelfClosing = !!this.match[3],\n\t\thasLineBreak = !!this.match[4];\n\t// Move past the tag name and parameters\n\tthis.parser.pos = this.matchRegExp.lastIndex;\n\tvar reAttr = /\\s*([A-Za-z\\-_]+)(?:\\s*=\\s*(?:(\&quot;[^\&quot;]*\&quot;)|('[^']*')|(\\{\\{[^\\}]*\\}\\})|([^\&quot;'\\s]+)))?/mg;\n\t// Process the attributes\n\tvar attrMatch = reAttr.exec(attributeString),\n\t\tattributes = {};\n\twhile(attrMatch) {\n\t\tvar name = attrMatch[1],\n\t\t\tvalue;\n\t\tif(attrMatch[2]) { // Double quoted\n\t\t\tvalue = {type: \&quot;string\&quot;, value: attrMatch[2].substring(1,attrMatch[2].length-1)};\n\t\t} else if(attrMatch[3]) { // Single quoted\n\t\t\tvalue = {type: \&quot;string\&quot;, value: attrMatch[3].substring(1,attrMatch[3].length-1)};\n\t\t} else if(attrMatch[4]) { // Double curly brace quoted\n\t\t\tvalue = {type: \&quot;indirect\&quot;, textReference: attrMatch[4].substr(2,attrMatch[4].length-4)};\n\t\t} else if(attrMatch[5]) { // Unquoted\n\t\t\tvalue = {type: \&quot;string\&quot;, value: attrMatch[5]};\n\t\t} else { // Valueless\n\t\t\tvalue = {type: \&quot;string\&quot;, value: \&quot;true\&quot;}; // TODO: We should have a way of indicating we want an attribute without a value\n\t\t}\n\t\tattributes[name] = value;\n\t\tattrMatch = reAttr.exec(attributeString);\n\t}\n\t// Process the end tag\n\tif(!isSelfClosing &amp;&amp; $tw.config.htmlVoidElements.indexOf(tagName) === -1) {\n\t\tvar reEndString = \&quot;&lt;/\&quot; + $tw.utils.escapeRegExp(tagName) + \&quot;&gt;\&quot;,\n\t\t\treEnd = new RegExp(\&quot;(\&quot; + reEndString + \&quot;)\&quot;,\&quot;mg\&quot;),\n\t\t\tcontent;\n\t\tif(hasLineBreak) {\n\t\t\tcontent = this.parser.parseBlocks(reEndString);\n\t\t} else {\n\t\t\tcontent = this.parser.parseInlineRun(reEnd);\n\t\t}\n\t\treEnd.lastIndex = this.parser.pos;\n\t\tvar endMatch = reEnd.exec(this.parser.source);\n\t\tif(endMatch &amp;&amp; endMatch.index === this.parser.pos) {\n\t\t\tthis.parser.pos = endMatch.index + endMatch[0].length;\n\t\t}\n\t} else {\n\t\tcontent = [];\n\t}\n\tvar element = {\n\t\ttype: \&quot;element\&quot;,\n\t\ttag: tagName,\n\t\tisBlock: this.is.block || hasLineBreak,\n\t\tattributes: attributes,\n\t\tchildren: content\n\t};\n\treturn [element];\n};\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/parsers/wikiparser/rules/html.js\ntype: application/javascript\nmodule-type: wikirule\n\nWiki rule for HTML elements and widgets. For example:\n\n{{{\n&lt;aside&gt;\nThis is an HTML5 aside element\n&lt;/aside&gt;\n\n&lt;$slider target=\&quot;MyTiddler\&quot;&gt;\nThis is a widget invocation\n&lt;/$slider&gt;\n\n}}}\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nexports.name = \&quot;html\&quot;;\nexports.types = {inline: true, block: true};\n\nexports.init = function(parser) {\n\tthis.parser = parser;\n};\n\nexports.findNextMatch = function(startPos) {\n\t// Find the next tag\n\tthis.nextTag = this.findNextTag(this.parser.source,startPos,{\n\t\trequireLineBreak: this.is.block\n\t});\n\treturn this.nextTag ? this.nextTag.start : undefined;\n};\n\n/*\nParse the most recent match\n*/\nexports.parse = function() {\n\t// Retrieve the most recent match so that recursive calls don't overwrite it\n\tvar tag = this.nextTag;\n\tthis.nextTag = null;\n\t// Advance the parser position to past the tag\n\tthis.parser.pos = tag.end;\n\t// Check for a following linebreak\n\tvar hasLineBreak = !tag.isSelfClosing &amp;&amp; !!this.parseTokenRegExp(this.parser.source,this.parser.pos,/(\\r?\\n)/g);\n\t// Set whether we're in block mode\n\ttag.isBlock = this.is.block || hasLineBreak;\n\t// Parse the body if we need to\n\tif(!tag.isSelfClosing &amp;&amp; $tw.config.htmlVoidElements.indexOf(tag.tag) === -1) {\n\t\t\tvar reEndString = \&quot;&lt;/\&quot; + $tw.utils.escapeRegExp(tag.tag) + \&quot;&gt;\&quot;,\n\t\t\t\treEnd = new RegExp(\&quot;(\&quot; + reEndString + \&quot;)\&quot;,\&quot;mg\&quot;);\n\t\tif(hasLineBreak) {\n\t\t\ttag.children = this.parser.parseBlocks(reEndString);\n\t\t} else {\n\t\t\ttag.children = this.parser.parseInlineRun(reEnd);\n\t\t}\n\t\treEnd.lastIndex = this.parser.pos;\n\t\tvar endMatch = reEnd.exec(this.parser.source);\n\t\tif(endMatch &amp;&amp; endMatch.index === this.parser.pos) {\n\t\t\tthis.parser.pos = endMatch.index + endMatch[0].length;\n\t\t}\n\t}\n\t// Return the tag\n\treturn [tag];\n};\n\n/*\nLook for a whitespace token. Returns null if not found, otherwise returns {type: \&quot;whitespace\&quot;, start:, end:,}\n*/\nexports.parseWhiteSpace = function(source,pos) {\n\tvar node = {\n\t\ttype: \&quot;whitespace\&quot;,\n\t\tstart: pos\n\t};\n\tvar re = /(\\s)+/g;\n\tre.lastIndex = pos;\n\tvar match = re.exec(source);\n\tif(match &amp;&amp; match.index === pos) {\n\t\tnode.end = pos + match[0].length;\n\t\treturn node;\n\t}\n\treturn null;\n};\n\n/*\nConvenience wrapper for parseWhiteSpace\n*/\nexports.skipWhiteSpace = function(source,pos) {\n\tvar whitespace = this.parseWhiteSpace(source,pos);\n\tif(whitespace) {\n\t\treturn whitespace.end;\n\t}\n\treturn pos;\n};\n\n/*\nLook for a given string token. Returns null if not found, otherwise returns {type: \&quot;token\&quot;, value:, start:, end:,}\n*/\nexports.parseTokenString = function(source,pos,token) {\n\tvar match = source.indexOf(token,pos) === pos;\n\tif(match) {\n\t\treturn {\n\t\t\ttype: \&quot;token\&quot;,\n\t\t\tvalue: token,\n\t\t\tstart: pos,\n\t\t\tend: pos + token.length\n\t\t};\n\t}\n\treturn null;\n};\n\n/*\nLook for a token matching a regex. Returns null if not found, otherwise returns {type: \&quot;regexp\&quot;, match:, start:, end:,}\n*/\nexports.parseTokenRegExp = function(source,pos,reToken) {\n\tvar node = {\n\t\ttype: \&quot;regexp\&quot;,\n\t\tstart: pos\n\t};\n\treToken.lastIndex = pos;\n\tnode.match = reToken.exec(source);\n\tif(node.match &amp;&amp; node.match.index === pos) {\n\t\tnode.end = pos + node.match[0].length;\n\t\treturn node;\n\t} else {\n\t\treturn null;\n\t}\n};\n\n/*\nLook for a string literal. Returns null if not found, otherwise returns {type: \&quot;string\&quot;, value:, start:, end:,}\n*/\nexports.parseStringLiteral = function(source,pos) {\n\tvar node = {\n\t\ttype: \&quot;string\&quot;,\n\t\tstart: pos\n\t};\n\tvar reString = /(?:\&quot;([^\&quot;]*)\&quot;)|(?:'([^']*)')/g;\n\treString.lastIndex = pos;\n\tvar match = reString.exec(source);\n\tif(match &amp;&amp; match.index === pos) {\n\t\tnode.value = match[1] === undefined ? match[2] : match[1];\n\t\tnode.end = pos + match[0].length;\n\t\treturn node;\n\t} else {\n\t\treturn null;\n\t}\n};\n\n/*\nLook for a macro invocation parameter. Returns null if not found, or {type: \&quot;macro-parameter\&quot;, name:, value:, start:, end:}\n*/\nexports.parseMacroParameter = function(source,pos) {\n\tvar node = {\n\t\ttype: \&quot;macro-parameter\&quot;,\n\t\tstart: pos\n\t}\n\t// Define our regexp\n\tvar reMacroParameter = /(?:([A-Za-z0-9\\-_]+)\\s*:)?(?:\\s*(?:\&quot;([^\&quot;]*)\&quot;|'([^']*)'|\\[\\[([^\\]]*)\\]\\]|([^\\s&gt;\&quot;'=]+)))/g;\n\t// Skip whitespace\n\tpos = this.skipWhiteSpace(source,pos);\n\t// Look for the parameter\n\tvar token = this.parseTokenRegExp(source,pos,reMacroParameter);\n\tif(!token) {\n\t\treturn null;\n\t}\n\tpos = token.end;\n\t// Get the parameter details\n\tnode.value = token.match[2] !== undefined ? token.match[2] : (\n\t\t\t\t\ttoken.match[3] !== undefined ? token.match[3] : (\n\t\t\t\t\t\ttoken.match[4] !== undefined ? token.match[4] : (\n\t\t\t\t\t\t\ttoken.match[5] !== undefined ? token.match[5] : (\n\t\t\t\t\t\t\t\t\&quot;\&quot;\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t)\n\t\t\t\t\t)\n\t\t\t\t);\n\tif(token.match[1]) {\n\t\tnode.name = token.match[1];\n\t}\n\t// Update the end position\n\tnode.end = pos;\n\treturn node;\n};\n\n/*\nLook for a macro invocation. Returns null if not found, or {type: \&quot;macro-invocation\&quot;, name:, parameters:, start:, end:}\n*/\nexports.parseMacroInvocation = function(source,pos) {\n\tvar node = {\n\t\ttype: \&quot;macro-invocation\&quot;,\n\t\tstart: pos,\n\t\tparameters: []\n\t}\n\t// Define our regexps\n\tvar reMacroName = /([^\\s&gt;\&quot;'=]+)/g;\n\t// Skip whitespace\n\tpos = this.skipWhiteSpace(source,pos);\n\t// Look for a double less than sign\n\tvar token = this.parseTokenString(source,pos,\&quot;&lt;&lt;\&quot;);\n\tif(!token) {\n\t\treturn null;\n\t}\n\tpos = token.end;\n\t// Get the macro name\n\tvar name = this.parseTokenRegExp(source,pos,reMacroName);\n\tif(!name) {\n\t\treturn null;\n\t}\n\tnode.name = name.match[1];\n\tpos = name.end;\n\t// Process parameters\n\tvar parameter = this.parseMacroParameter(source,pos);\n\twhile(parameter) {\n\t\tnode.parameters.push(parameter);\n\t\tpos = parameter.end;\n\t\t// Get the next parameter\n\t\tparameter = this.parseMacroParameter(source,pos);\n\t}\n\t// Skip whitespace\n\tpos = this.skipWhiteSpace(source,pos);\n\t// Look for a double greater than sign\n\ttoken = this.parseTokenString(source,pos,\&quot;&gt;&gt;\&quot;);\n\tif(!token) {\n\t\treturn null;\n\t}\n\tpos = token.end;\n\t// Update the end position\n\tnode.end = pos;\n\treturn node;\n};\n\n/*\nLook for an HTML attribute definition. Returns null if not found, otherwise returns {type: \&quot;attribute\&quot;, name:, valueType: \&quot;string|indirect|macro\&quot;, value:, start:, end:,}\n*/\nexports.parseAttribute = function(source,pos) {\n\tvar node = {\n\t\tstart: pos\n\t};\n\t// Define our regexps\n\tvar reAttributeName = /([^\\/\\s&gt;\&quot;'=]+)/g,\n\t\treUnquotedAttribute = /([^\\/\\s&lt;&gt;\&quot;'=]+)/g,\n\t\treIndirectValue = /\\{\\{([^\\}]+)\\}\\}/g;\n\t// Skip whitespace\n\tpos = this.skipWhiteSpace(source,pos);\n\t// Get the attribute name\n\tvar name = this.parseTokenRegExp(source,pos,reAttributeName);\n\tif(!name) {\n\t\treturn null;\n\t}\n\tnode.name = name.match[1];\n\tpos = name.end;\n\t// Skip whitespace\n\tpos = this.skipWhiteSpace(source,pos);\n\t// Look for an equals sign\n\tvar token = this.parseTokenString(source,pos,\&quot;=\&quot;);\n\tif(token) {\n\t\tpos = token.end;\n\t\t// Skip whitespace\n\t\tpos = this.skipWhiteSpace(source,pos);\n\t\t// Look for a string literal\n\t\tvar stringLiteral = this.parseStringLiteral(source,pos);\n\t\tif(stringLiteral) {\n\t\t\tpos = stringLiteral.end;\n\t\t\tnode.type = \&quot;string\&quot;;\n\t\t\tnode.value = stringLiteral.value;\n\t\t} else {\n\t\t\t// Look for an indirect value\n\t\t\tvar indirectValue = this.parseTokenRegExp(source,pos,reIndirectValue);\n\t\t\tif(indirectValue) {\n\t\t\t\tpos = indirectValue.end;\n\t\t\t\tnode.type = \&quot;indirect\&quot;;\n\t\t\t\tnode.textReference = indirectValue.match[1];\n\t\t\t} else {\n\t\t\t\t// Look for a unquoted value\n\t\t\t\tvar unquotedValue = this.parseTokenRegExp(source,pos,reUnquotedAttribute);\n\t\t\t\tif(unquotedValue) {\n\t\t\t\t\tpos = unquotedValue.end;\n\t\t\t\t\tnode.type = \&quot;string\&quot;;\n\t\t\t\t\tnode.value = unquotedValue.match[1];\n\t\t\t\t} else {\n\t\t\t\t\t// Look for a macro invocation value\n\t\t\t\t\tvar macroInvocation = this.parseMacroInvocation(source,pos);\n\t\t\t\t\tif(macroInvocation) {\n\t\t\t\t\t\tpos = macroInvocation.end;\n\t\t\t\t\t\tnode.type = \&quot;macro\&quot;;\n\t\t\t\t\t\tnode.value = macroInvocation;\n\t\t\t\t\t} else {\n\t\t\t\t\t\tnode.type = \&quot;string\&quot;;\n\t\t\t\t\t\tnode.value = \&quot;true\&quot;;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t} else {\n\t\tnode.type = \&quot;string\&quot;;\n\t\tnode.value = \&quot;true\&quot;;\n\t}\n\t// Update the end position\n\tnode.end = pos;\n\treturn node;\n};\n\n/*\nLook for an HTML tag. Returns null if not found, otherwise returns {type: \&quot;tag\&quot;, name:, attributes: [], isSelfClosing:, start:, end:,}\n*/\nexports.parseTag = function(source,pos,options) {\n\toptions = options || {};\n\tvar token,\n\t\tnode = {\n\t\t\ttype: \&quot;element\&quot;,\n\t\t\tstart: pos,\n\t\t\tattributes: {}\n\t\t};\n\t// Define our regexps\n\tvar reTagName = /([a-zA-Z\\-\\$]+)/g;\n\t// Skip whitespace\n\tpos = this.skipWhiteSpace(source,pos);\n\t// Look for a less than sign\n\ttoken = this.parseTokenString(source,pos,\&quot;&lt;\&quot;);\n\tif(!token) {\n\t\treturn null;\n\t}\n\tpos = token.end;\n\t// Get the tag name\n\ttoken = this.parseTokenRegExp(source,pos,reTagName);\n\tif(!token) {\n\t\treturn null;\n\t}\n\tnode.tag = token.match[1];\n\tpos = token.end;\n\t// Process attributes\n\tvar attribute = this.parseAttribute(source,pos);\n\twhile(attribute) {\n\t\tnode.attributes[attribute.name] = attribute;\n\t\tpos = attribute.end;\n\t\t// Get the next attribute\n\t\tattribute = this.parseAttribute(source,pos);\n\t}\n\t// Skip whitespace\n\tpos = this.skipWhiteSpace(source,pos);\n\t// Look for a closing slash\n\ttoken = this.parseTokenString(source,pos,\&quot;/\&quot;);\n\tif(token) {\n\t\tpos = token.end;\n\t\tnode.isSelfClosing = true;\n\t}\n\t// Look for a greater than sign\n\ttoken = this.parseTokenString(source,pos,\&quot;&gt;\&quot;);\n\tif(!token) {\n\t\treturn null;\n\t}\n\tpos = token.end;\n\t// Check for a required line break\n\tif(options.requireLineBreak) {\n\t\ttoken = this.parseTokenRegExp(source,pos,/(\\r?\\n)/g);\n\t\tif(!token) {\n\t\t\treturn null;\n\t\t}\n\t}\n\t// Update the end position\n\tnode.end = pos;\n\treturn node;\n};\n\nexports.findNextTag = function(source,pos,options) {\n\t// A regexp for finding candidate HTML tags\n\tvar reLookahead = /&lt;([a-zA-Z\\-\\$]+)/g;\n\t// Find the next candidate\n\treLookahead.lastIndex = pos;\n\tvar match = reLookahead.exec(source);\n\twhile(match) {\n\t\t// Try to parse the candidate as a tag\n\t\tvar tag = this.parseTag(source,match.index,options);\n\t\t// Return success\n\t\tif(tag) {\n\t\t\treturn tag;\n\t\t}\n\t\t// Look for the next match\n\t\treLookahead.lastIndex = match.index + 1;\n\t\tmatch = reLookahead.exec(source);\n\t}\n\t// Failed\n\treturn null;\n};\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/parsers/wikiparser/rules/html.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;wikirule&quot;
@@ -1496,7 +1496,7 @@ title: test-html-parser.js
 type: application/javascript
 tags: [[$:/tags/test-spec]]
 
-Tests the parse rule for HTML elements
+Tests for the internal components of the HTML tag parser
 
 \*/
 (function(){
@@ -1504,6 +1504,195 @@ Tests the parse rule for HTML elements
 /*jslint node: true, browser: true */
 /*global $tw: false */
 &quot;use strict&quot;;
+
+function FakeParser() {
+
+}
+
+$tw.utils.extend(FakeParser.prototype,require(&quot;$:/core/modules/parsers/wikiparser/rules/html.js&quot;));
+
+describe(&quot;HTML tag new parser tests&quot;, function() {
+
+	var parser = new FakeParser();
+
+	it(&quot;should parse whitespace&quot;, function() {
+		expect(parser.parseWhiteSpace(&quot;p  &quot;,0)).toEqual(
+			null
+		);
+		expect(parser.parseWhiteSpace(&quot;p  &quot;,1)).toEqual(
+			{ type : 'whitespace', start : 1, end : 3 }
+		);
+	});
+
+	it(&quot;should parse string tokens&quot;, function() {
+		expect(parser.parseTokenString(&quot;p=  &quot;,0,&quot;=&quot;)).toEqual(
+			null
+		);
+		expect(parser.parseTokenString(&quot;p=  &quot;,1,&quot;=&quot;)).toEqual(
+			{ type : 'token', value : '=', start : 1, end : 2 }
+		);
+	});
+
+	it(&quot;should parse regexp tokens&quot;, function() {
+		expect(parser.parseTokenRegExp(&quot;p='  &quot;,0,/(=(?:'|&quot;))/)).toEqual(
+			null
+		);
+		expect(parser.parseTokenRegExp(&quot;p='  &quot;,1,/(=(?:'|&quot;))/g).match[0]).toEqual(
+			'=\''
+		);
+		expect(parser.parseTokenRegExp(&quot;p=blah  &quot;,2,/([^\s&gt;]+)/g).match[0]).toEqual(
+			'blah'
+		);
+	});
+
+	it(&quot;should parse string literals&quot;, function() {
+		expect(parser.parseStringLiteral(&quot;p='blah'  &quot;,0)).toEqual(
+			null
+		);
+		expect(parser.parseStringLiteral(&quot;p='blah'  &quot;,2)).toEqual(
+			{ type : 'string', start : 2, value : 'blah', end : 8 }
+		);
+		expect(parser.parseStringLiteral(&quot;p=''  &quot;,2)).toEqual(
+			{ type : 'string', start : 2, value : '', end : 4 }
+		);
+		expect(parser.parseStringLiteral(&quot;p=\&quot;blah'  &quot;,2)).toEqual(
+			null
+		);
+		expect(parser.parseStringLiteral(&quot;p=\&quot;\&quot;  &quot;,2)).toEqual(
+			{ type : 'string', start : 2, value : '', end : 4 }
+		);
+	});
+
+	it(&quot;should parse macro parameters&quot;, function() {
+		expect(parser.parseMacroParameter(&quot;me&quot;,0)).toEqual(
+			{ type : 'macro-parameter', start : 0, value : 'me', end : 2 }
+		);
+		expect(parser.parseMacroParameter(&quot;me:one&quot;,0)).toEqual(
+			{ type : 'macro-parameter', start : 0, value : 'one', name : 'me', end : 6 }
+		);
+		expect(parser.parseMacroParameter(&quot;me:'one two three'&quot;,0)).toEqual(
+			{ type : 'macro-parameter', start : 0, value : 'one two three', name : 'me', end : 18 }
+		);
+		expect(parser.parseMacroParameter(&quot;'one two three'&quot;,0)).toEqual(
+			{ type : 'macro-parameter', start : 0, value : 'one two three', end : 15 }
+		);
+		expect(parser.parseMacroParameter(&quot;me:[[one two three]]&quot;,0)).toEqual(
+			{ type : 'macro-parameter', start : 0, value : 'one two three', name : 'me', end : 20 }
+		);
+		expect(parser.parseMacroParameter(&quot;[[one two three]]&quot;,0)).toEqual(
+			{ type : 'macro-parameter', start : 0, value : 'one two three', end : 17 }
+		);
+		expect(parser.parseMacroParameter(&quot;myparam&gt;&quot;,0)).toEqual(
+			{ type : 'macro-parameter', start : 0, value : 'myparam', end : 7 }
+		);
+	});
+
+	it(&quot;should parse macro invocations&quot;, function() {
+		expect(parser.parseMacroInvocation(&quot;&lt;&lt;mymacro&quot;,0)).toEqual(
+			null
+		);
+		expect(parser.parseMacroInvocation(&quot;&lt;&lt;mymacro&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'macro-invocation', start : 0, parameters : [  ], name : 'mymacro', end : 11 }
+		);
+		expect(parser.parseMacroInvocation(&quot;&lt;&lt;mymacro one two three&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'macro-invocation', start : 0, parameters : [ { type : 'macro-parameter', start : 9, value : 'one', end : 13 }, { type : 'macro-parameter', start : 13, value : 'two', end : 17 }, { type : 'macro-parameter', start : 17, value : 'three', end : 23 } ], name : 'mymacro', end : 25 }
+		);
+		expect(parser.parseMacroInvocation(&quot;&lt;&lt;mymacro p:one q:two three&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'macro-invocation', start : 0, parameters : [ { type : 'macro-parameter', start : 9, value : 'one', name : 'p', end : 15 }, { type : 'macro-parameter', start : 15, value : 'two', name : 'q', end : 21 }, { type : 'macro-parameter', start : 21, value : 'three', end : 27 } ], name : 'mymacro', end : 29 }
+		);
+		expect(parser.parseMacroInvocation(&quot;&lt;&lt;mymacro 'one two three'&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'macro-invocation', start : 0, parameters : [ { type : 'macro-parameter', start : 9, value : 'one two three', end : 25 } ], name : 'mymacro', end : 27 } 
+		);
+		expect(parser.parseMacroInvocation(&quot;&lt;&lt;mymacro r:'one two three'&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'macro-invocation', start : 0, parameters : [ { type : 'macro-parameter', start : 9, value : 'one two three', name : 'r', end : 27 } ], name : 'mymacro', end : 29 } 
+		);
+		expect(parser.parseMacroInvocation(&quot;&lt;&lt;myMacro one:two three:'four and five'&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'macro-invocation', start : 0, parameters : [ { type : 'macro-parameter', start : 9, value : 'two', name : 'one', end : 17 }, { type : 'macro-parameter', start : 17, value : 'four and five', name : 'three', end : 39 } ], name : 'myMacro', end : 41 } 
+		);
+	});
+
+	it(&quot;should parse HTML attributes&quot;, function() {
+		expect(parser.parseAttribute(&quot;p='blah'  &quot;,1)).toEqual(
+			null
+		);
+		expect(parser.parseAttribute(&quot;p='blah'  &quot;,0)).toEqual(
+			{ type : 'string', start : 0, name : 'p', value : 'blah', end : 8 }
+		);
+		expect(parser.parseAttribute(&quot;p=\&quot;blah\&quot;  &quot;,0)).toEqual(
+			{ type : 'string', start : 0, name : 'p', value : 'blah', end : 8 }
+		);
+		expect(parser.parseAttribute(&quot;p=blah  &quot;,0)).toEqual(
+			{ type : 'string', start : 0, name : 'p', value : 'blah', end : 6 }
+		);
+		expect(parser.parseAttribute(&quot;p =blah  &quot;,0)).toEqual(
+			{ type : 'string', start : 0, name : 'p', value : 'blah', end : 7 }
+		);
+		expect(parser.parseAttribute(&quot;p= blah  &quot;,0)).toEqual(
+			{ type : 'string', start : 0, name : 'p', value : 'blah', end : 7 }
+		);
+		expect(parser.parseAttribute(&quot;p = blah  &quot;,0)).toEqual(
+			{ type : 'string', start : 0, name : 'p', value : 'blah', end : 8 }
+		);
+		expect(parser.parseAttribute(&quot;p = &gt;blah  &quot;,0)).toEqual(
+			{ type : 'string', value : 'true', start : 0, name : 'p', end : 4 }
+		);
+		expect(parser.parseAttribute(&quot; attrib1&gt;&quot;,0)).toEqual(
+			{ type : 'string', value : 'true', start : 0, name : 'attrib1', end : 8 }
+		);
+	});
+
+	it(&quot;should parse HTML tags&quot;, function() {
+		expect(parser.parseTag(&quot;&lt;mytag&gt;&quot;,1)).toEqual(
+			null
+		);
+		expect(parser.parseTag(&quot;&lt;/mytag&gt;&quot;,0)).toEqual(
+			null
+		);
+		expect(parser.parseTag(&quot;&lt;mytag&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : [  ], tag : 'mytag', end : 7 }
+		);
+		expect(parser.parseTag(&quot;&lt;mytag attrib1&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : { attrib1 : { type : 'string', value : 'true', start : 6, name : 'attrib1', end : 14 } }, tag : 'mytag', end : 15 }
+		);
+		expect(parser.parseTag(&quot;&lt;mytag attrib1/&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : { attrib1 : { type : 'string', value : 'true', start : 6, name : 'attrib1', end : 14 } }, tag : 'mytag', isSelfClosing : true, end : 16 }
+		);
+		expect(parser.parseTag(&quot;&lt;$view field=\&quot;title\&quot; format=\&quot;link\&quot;/&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : { field : { start : 6, name : 'field', type : 'string', value : 'title', end : 20 }, format : { start : 20, name : 'format', type : 'string', value : 'link', end : 34 } }, tag : '$view', isSelfClosing : true, end : 36 }
+		);
+		expect(parser.parseTag(&quot;&lt;mytag attrib1='something'&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : { attrib1 : { type : 'string', start : 6, name : 'attrib1', value : 'something', end : 26 } }, tag : 'mytag', end : 27 }
+		);
+		expect(parser.parseTag(&quot;&lt;$mytag attrib1='something' attrib2=else thing&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : { attrib1 : { type : 'string', start : 7, name : 'attrib1', value : 'something', end : 27 }, attrib2 : { type : 'string', start : 27, name : 'attrib2', value : 'else', end : 40 }, thing : { type : 'string', start : 40, name : 'thing', value : 'true', end : 46 } }, tag : '$mytag', end : 47 }
+		);
+		expect(parser.parseTag(&quot;&lt; $mytag attrib1='something' attrib2=else thing&gt;&quot;,0)).toEqual(
+			null
+		);
+		expect(parser.parseTag(&quot;&lt;$mytag attrib3=&lt;&lt;myMacro one:two three:'four and five'&gt;&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : { attrib3 : { type : 'macro', start : 7, name : 'attrib3', value : { type : 'macro-invocation', start : 16, parameters : [ { type : 'macro-parameter', start : 25, value : 'two', name : 'one', end : 33 }, { type : 'macro-parameter', start : 33, value : 'four and five', name : 'three', end : 55 } ], name : 'myMacro', end : 57 }, end : 57 } }, tag : '$mytag', end : 58 }
+		);
+		expect(parser.parseTag(&quot;&lt;$mytag attrib1='something' attrib2=else thing attrib3=&lt;&lt;myMacro one:two three:'four and five'&gt;&gt;&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 0, attributes : { attrib1 : { type : 'string', start : 7, name : 'attrib1', value : 'something', end : 27 }, attrib2 : { type : 'string', start : 27, name : 'attrib2', value : 'else', end : 40 }, thing : { type : 'string', start : 40, name : 'thing', value : 'true', end : 47 }, attrib3 : { type : 'macro', start : 47, name : 'attrib3', value : { type : 'macro-invocation', start : 55, parameters : [ { type : 'macro-parameter', start : 64, value : 'two', name : 'one', end : 72 }, { type : 'macro-parameter', start : 72, value : 'four and five', name : 'three', end : 94 } ], name : 'myMacro', end : 96 }, end : 96 } }, tag : '$mytag', end : 97 }
+		);
+	});
+
+	it(&quot;should find and parse HTML tags&quot;, function() {
+		expect(parser.findNextTag(&quot;&lt;something &lt;mytag&gt;&quot;,1)).toEqual(
+			{ type : 'element', start : 11, attributes : {  }, tag : 'mytag', end : 18 }
+		);
+		expect(parser.findNextTag(&quot;something else &lt;/mytag&gt;&quot;,0)).toEqual(
+			null
+		);
+		expect(parser.findNextTag(&quot;&lt;&lt;some other stuff&gt;&gt; &lt;mytag&gt;&quot;,0)).toEqual(
+			{ type : 'element', start : 1, attributes : { other : { type : 'string', value : 'true', start : 6, name : 'other', end : 13 }, stuff : { type : 'string', value : 'true', start : 13, name : 'stuff', end : 18 } }, tag : 'some', end : 19 }
+		);
+		expect(parser.findNextTag(&quot;&lt;&lt;some other stuff&gt;&gt; &lt;mytag&gt;&quot;,2)).toEqual(
+			{ type : 'element', start : 21, attributes : {  }, tag : 'mytag', end : 28 }
+		);
+	});
+
+});
 
 describe(&quot;HTML tag parser tests&quot;, function() {
 
@@ -1518,7 +1707,7 @@ describe(&quot;HTML tag parser tests&quot;, function() {
 	it(&quot;should parse unclosed tags&quot;, function() {
 		expect(parse(&quot;&lt;br&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'br', isBlock : false, attributes : {  }, children : [  ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'br', isBlock : false, attributes : {  }, start : 0, end : 4 } ] } ]
 
 		);
 		expect(parse(&quot;&lt;/br&gt;&quot;)).toEqual(
@@ -1528,42 +1717,57 @@ describe(&quot;HTML tag parser tests&quot;, function() {
 		);
 		expect(parse(&quot;&lt;div&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : {  }, children : [  ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : {  }, children : [  ], start : 0, end : 5 } ] } ]
 
 		);
 		expect(parse(&quot;&lt;div/&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : {  }, children : [  ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isSelfClosing : true, isBlock : false, attributes : {  }, start : 0, end : 6 } ] } ]
 
 		);
 		expect(parse(&quot;&lt;div&gt;&lt;/div&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : {  }, children : [  ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : {  }, children : [ ], start : 0, end : 5 } ] } ]
 
 		);
 		expect(parse(&quot;&lt;div&gt;some text&lt;/div&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : {  }, children : [ { type : 'text', text : 'some text' } ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : {  }, children : [ { type : 'text', text : 'some text' } ], start : 0, end : 5 } ] } ]
 
 		);
 		expect(parse(&quot;&lt;div attribute&gt;some text&lt;/div&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'string', value : 'true' } }, children : [ { type : 'text', text : 'some text' } ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'string', value : 'true', start : 4, end : 14, name: 'attribute' } }, children : [ { type : 'text', text : 'some text' } ], start : 0, end : 15 } ] } ]
 
 		);
 		expect(parse(&quot;&lt;div attribute='value'&gt;some text&lt;/div&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'string', value : 'value' } }, children : [ { type : 'text', text : 'some text' } ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'string', name: 'attribute', value : 'value', start: 4, end: 22 } }, children : [ { type : 'text', text : 'some text' } ], start: 0, end: 23 } ] } ]
 
 		);
 		expect(parse(&quot;&lt;div attribute={{TiddlerTitle}}&gt;some text&lt;/div&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'indirect', textReference : 'TiddlerTitle' } }, children : [ { type : 'text', text : 'some text' } ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'indirect', name: 'attribute', textReference : 'TiddlerTitle', start : 4, end : 31 } }, children : [ { type : 'text', text : 'some text' } ], start : 0, end : 32 } ] } ]
+
+		);
+		expect(parse(&quot;&lt;$reveal state='$:/temp/search' type='nomatch' text=''&gt;&quot;)).toEqual(
+
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', start : 0, attributes : { state : { start : 8, name : 'state', type : 'string', value : '$:/temp/search', end : 31 }, type : { start : 31, name : 'type', type : 'string', value : 'nomatch', end : 46 }, text : { start : 46, name : 'text', type : 'string', value : '', end : 54 } }, tag : '$reveal', end : 55, children : [  ], isBlock : false } ] } ]
 
 		);
 		expect(parse(&quot;&lt;div attribute={{TiddlerTitle!!field}}&gt;some text&lt;/div&gt;&quot;)).toEqual(
 
-			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'indirect', textReference : 'TiddlerTitle!!field' } }, children : [ { type : 'text', text : 'some text' } ] } ] } ]
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', tag : 'div', isBlock : false, attributes : { attribute : { type : 'indirect', name : 'attribute', textReference : 'TiddlerTitle!!field', start : 4, end : 38 } }, children : [ { type : 'text', text : 'some text' } ], start : 0, end : 39 } ] } ]
+
+		);
+		expect(parse(&quot;&lt;div attribute={{TiddlerTitle!!field}}&gt;\nsome text&lt;/div&gt;&quot;)).toEqual(
+
+			[ { type : 'element', start : 0, attributes : { attribute : { start : 4, name : 'attribute', type : 'indirect', textReference : 'TiddlerTitle!!field', end : 38 } }, tag : 'div', end : 39, isBlock : true, children : [ { type : 'element', tag : 'p', children : [ { type : 'text', text : 'some text' } ] } ] } ]
+
+		);
+		expect(parse(&quot;&lt;div&gt;&lt;div attribute={{TiddlerTitle!!field}}&gt;\nsome text&lt;/div&gt;&lt;/div&gt;&quot;)).toEqual(
+
+			[ { type : 'element', tag : 'p', children : [ { type : 'element', start : 0, attributes : {  }, tag : 'div', end : 5, isBlock : false, children : [ { type : 'element', start : 5, attributes : { attribute : { start : 9, name : 'attribute', type : 'indirect', textReference : 'TiddlerTitle!!field', end : 43 } }, tag : 'div', end : 44, isBlock : true, children : [ { type : 'element', tag : 'p', children : [ { type : 'text', text : 'some text' } ] } ] } ] } ] } ]
 
 		);
 	});
