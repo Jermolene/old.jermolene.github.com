@@ -373,7 +373,15 @@ WikiText</a>. For example:</p><pre>
 &lt;article class=&quot;hello&quot;&gt;
 This is my nice and simple block of text. HelloThere
 &lt;!-- This comment will not appear in the wikified output --&gt;
-&lt;/article&gt;</pre><h1 class=''>
+&lt;/article&gt;</pre><p>
+Attributes in HTML tags can be specified as a transclusion or a macro invocation. For example, here the value of the <code>
+href</code> attribute will be set to the value of the tiddler <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='MyLinkDestination.html'>
+MyLinkDestination</a>:</p><pre>
+&lt;a href={{MyLinkDestination}}&gt;link&lt;/a&gt;</pre><p>
+Here an attribute is specified as a macro invocation:</p><pre>
+&lt;a href=&lt;&lt;MyMacro &quot;Brian&quot;&gt;&gt;&gt;link&lt;/a&gt;</pre><ul>
+<li>
+As a macro invocation </li></ul><h1 class=''>
 Widgets</h1><p>
 Widgets provide rich functionality within <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
 WikiText</a>. For example, the <code>
