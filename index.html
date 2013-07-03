@@ -1612,7 +1612,7 @@ WikiText</span>
         },
         &quot;$:/core/ui/TagTemplate&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/TagTemplate&quot;,
-            &quot;text&quot;: &quot;&lt;$button popup=\&quot;$:/state/tagpopup\&quot; qualifyTiddlerTitles=\&quot;yes\&quot; class=\&quot;btn-invisible\&quot;&gt;&lt;$setstyle name=\&quot;background-color\&quot; value={{!!color}} class=\&quot;tw-tag-label\&quot;&gt;&lt;$view field=\&quot;title\&quot; format=\&quot;text\&quot; /&gt;&lt;/$setstyle&gt;&lt;/$button&gt;\n&lt;$reveal state=\&quot;$:/state/tagpopup\&quot; type=\&quot;popup\&quot; position=\&quot;below\&quot; qualifyTiddlerTitles=\&quot;yes\&quot; &gt;&lt;div class=\&quot;tw-drop-down\&quot;&gt;\n&lt;$view field=\&quot;title\&quot; format=\&quot;link\&quot; /&gt;\n----\n&lt;$list filter=\&quot;[is[current]tagging[]sort[title]]\&quot;&gt;\n&lt;$view field=\&quot;title\&quot; format=\&quot;link\&quot; /&gt;\n&lt;/$list&gt;\n&lt;/div&gt;&lt;/$reveal&gt;\n&quot;
+            &quot;text&quot;: &quot;&lt;$button popup=\&quot;$:/state/tagpopup\&quot; qualifyTiddlerTitles=\&quot;yes\&quot; class=\&quot;btn-invisible\&quot;&gt;&lt;$setstyle name=\&quot;background-color\&quot; value={{!!color}} class=\&quot;tw-tag-label\&quot;&gt;&lt;$transclude tiddler={{!!icon}}/&gt;&lt;$view field=\&quot;title\&quot; format=\&quot;text\&quot; /&gt;&lt;/$setstyle&gt;&lt;/$button&gt;\n&lt;$reveal state=\&quot;$:/state/tagpopup\&quot; type=\&quot;popup\&quot; position=\&quot;below\&quot; qualifyTiddlerTitles=\&quot;yes\&quot; &gt;&lt;div class=\&quot;tw-drop-down\&quot;&gt;\n&lt;$view field=\&quot;title\&quot; format=\&quot;link\&quot; /&gt;\n----\n&lt;$list filter=\&quot;[is[current]tagging[]sort[title]]\&quot;&gt;\n&lt;$view field=\&quot;title\&quot; format=\&quot;link\&quot; /&gt;\n&lt;/$list&gt;\n&lt;/div&gt;&lt;/$reveal&gt;\n&quot;
         },
         &quot;$:/core/ui/TagsEditor&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/TagsEditor&quot;,
@@ -1786,6 +1786,27 @@ WikiText</span>
             &quot;title&quot;: &quot;$:/themes/tiddlywiki/stickytitles/styles.tid&quot;,
             &quot;tags&quot;: &quot;[[$:/tags/stylesheet]]&quot;,
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n.tw-tiddler-title {\n  position: -webkit-sticky;\n  position: -moz-sticky;\n  position: -o-sticky;\n  position: -ms-sticky;\n  position: sticky;\n  top: 0px;\n  background: #fff;\n}\n&quot;
+        }
+    }
+}</pre>
+</div>
+<div description="Experimental theme with a centred text column" name="Centralised" plugin="yes" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json">
+<pre>{
+    &quot;title&quot;: &quot;$:/themes/tiddlywiki/centralised&quot;,
+    &quot;name&quot;: &quot;Centralised&quot;,
+    &quot;author&quot;: &quot;JeremyRuston&quot;,
+    &quot;version&quot;: &quot;0.0.0&quot;,
+    &quot;core-version&quot;: &quot;&gt;=5.0.0&quot;,
+    &quot;plugin-type&quot;: &quot;theme&quot;,
+    &quot;description&quot;: &quot;Experimental theme with a centred text column&quot;,
+    &quot;dependents&quot;: [
+        &quot;$:/themes/tiddlywiki/snowwhite&quot;
+    ],
+    &quot;tiddlers&quot;: {
+        &quot;$:/themes/tiddlywiki/centralised/styles.tid&quot;: {
+            &quot;title&quot;: &quot;$:/themes/tiddlywiki/centralised/styles.tid&quot;,
+            &quot;tags&quot;: &quot;[[$:/tags/stylesheet]]&quot;,
+            &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n@media (min-width: 55em) {\n\n\t.tw-page-container {\n\t\ttext-align: center;\n\t}\n\n\t.story-river {\n\t\twidth: 55em;\n\t\tpadding: 3em;\n\t\tmargin: 0 auto;\n\t\ttext-align: left;\n\t}\n\n\t.sidebar-header {\n\t\ttext-align: left;\n\t\tleft: 50%;\n\t\tright: 0;\n\t\tpadding-left: 29.5em;\n\t}\n}\n&quot;
         }
     }
 }</pre>
@@ -3834,7 +3855,7 @@ a reusable non-linear personal web notebook
 <div color="#cf7d89" modified="201306131058" title="internals">
 <pre></pre>
 </div>
-<div color="plum" modified="201306041707" title="introduction">
+<div color="plum" icon="$:/core/images/done-button" modified="201306041707" title="introduction">
 <pre></pre>
 </div>
 <div color="#8d9ac3" modified="201306131058" title="task">
