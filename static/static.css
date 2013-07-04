@@ -740,6 +740,14 @@ a.tw-tiddlylink-missing {
 	white-space: nowrap;
 }
 
+.tw-open-tiddler-list {
+	
+  -webkit-transform-origin: 0% 0%;
+     -moz-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+
+}
+
 .tw-menu-list-subitem {
 	padding-left: 0.5em;
 }
