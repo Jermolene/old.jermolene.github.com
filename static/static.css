@@ -780,7 +780,7 @@ a.tw-tiddlylink-external {
 @media (min-width: 55em) {
 	.sidebar-header {
 		position: fixed;
-		top: 0;
+		top: 0em;
 		left: 55em;
 		bottom: 0;
 		right: 0;
@@ -792,6 +792,9 @@ a.tw-tiddlylink-external {
 	}
 
 	.story-river {
+		position: absolute;
+		left: 0em;
+		top: 0em;
 		width: 55em;
 		padding: 3em;
 	}
