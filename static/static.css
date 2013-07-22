@@ -1352,3 +1352,11 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255
 	background-color: rgb(250, 210, 50);
 }
 
+/*
+** Grids
+*/
+
+.tw-grid-frame td {
+	width: 1em;
+	height: 1em;
+}

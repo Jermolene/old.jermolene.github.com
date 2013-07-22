@@ -41,16 +41,16 @@ http://five.tiddlywiki.com/</a></div>
 
 </span><span class='tw-transclude tw-tiddler-missing'>
 </span> <span>
-RoadMap</span></span></div>
+GridWidget</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
 </div></div>
 
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston.html'>
-JeremyRuston</a></span> <span class='tw-view-date'>
-21 July 2013</span></div>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
+</a></span> <span class='tw-view-date'>
+</span></div>
 
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
@@ -69,7 +69,7 @@ docs</span></span></button>
 <span class='tw-tag-label' style='background-color:'>
 <span class='tw-transclude tw-tiddler-missing'>
 </span> <span>
-planning</span></span></button>
+widget</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></div>
@@ -78,43 +78,62 @@ planning</span></span></button>
 <div>
 <div class='tw-transclude'>
 <p>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> is under rapid development at the moment, moving through a series of stages from alpha, via beta into a stable release.</p><h1 class=''>
-Alpha Release</h1><p>
-The one significant piece of work required before <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> can move out of alpha into beta is to upgrade the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ReleaseProcess.html'>
-ReleaseProcess</a> so that end users can more easily keep track of the new features.</p><h1 class=''>
-Beta Release</h1><p>
-During the beta <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> will be practical for cautious everyday use but as we perfect the product there will occasionally be situations where we have to make changes that are not backwards compatible. These occasions will be clearly marked in the release notes.</p><p>
-The following additional features are under consideration for implementation during the beta:</p><ul>
-<li>
-Warning when attempting to close window without saving</li><li>
-Use browser local storage to preserve changes in case browser crashes before saving/sync</li><li>
-Multilanguage support</li><li>
-Aliases</li><li>
-Search and replace</li><li>
-Tiddler renaming</li><li>
-Link tooltips</li><li>
-Keyboard shortcuts</li><li>
-Proper use of ARIA roles</li><li>
-Simpler upgrading to new core versions</li><li>
-Import wizard allowing individual tiddlers to be selected for import</li><li>
-Switching to more <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='MarkDown-like.html'>
-MarkDown-like</a> syntax for basic formatting such as headings and lists</li><li>
-<code>
-[img[url]]</code> for remote image embedding, and <code>
-[ext[url]]</code> for explicit external links</li><li>
-Further <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='WikiText.html'>
-WikiText</a> features including block quotes</li><li>
-Facebook, Twitter, G+ and <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='LinkedIn.html'>
-LinkedIn</a> widgets</li><li>
-Integration with the browser back and forwards buttons</li><li>
-Minification of plugins (JS and CSS)</li></ul><h1 class=''>
-5.0 Release</h1><p>
-Hopefully, <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> will leave beta and become a full release while we're still in 2013. This is the point at which it is declared stable enough for general use. It will continue to improve and evolve after this point, although constrained to remain backwards compatible so that plugins and content created for version 5.0 will continue to work into the indefinite future.
-</p></div></div></div></div></p>
+The grid widget assembles tiddlers into a tabular grid based on their titles. For example:</p><pre>
+&lt;$grid prefix=&quot;GridDemo&quot; rows=3 cols=3/&gt;</pre><p>
+In this case, the following tiddlers will be rendered:</p><table>
+<tbody>
+<tr class='evenRow'>
+<td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_A_1.html'>
+GridDemo_A_1</a></td><td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_A_2.html'>
+GridDemo_A_2</a></td><td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_A_3.html'>
+GridDemo_A_3</a></td></tr><tr class='oddRow'>
+<td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_B_1.html'>
+GridDemo_B_1</a></td><td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_B_2.html'>
+GridDemo_B_2</a></td><td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_B_3.html'>
+GridDemo_B_3</a></td></tr><tr class='evenRow'>
+<td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_C_1.html'>
+GridDemo_C_1</a></td><td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_C_2.html'>
+GridDemo_C_2</a></td><td align='left'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='GridDemo_C_3.html'>
+GridDemo_C_3</a></td></tr></tbody></table><p>
+The result is:</p><div class='tw-grid-frame'>
+<table>
+<tbody>
+<tr>
+<td>
+<span class='tw-transclude'>
+The A1 of cells</span></td><td>
+<span class='tw-transclude'>
+Vitamin B1</span></td><td>
+<span class='tw-transclude'>
+C1 eat one</span></td></tr><tr>
+<td>
+<span class='tw-transclude'>
+The A2 is a road from London through Kent</span></td><td>
+<span class='tw-transclude'>
+This is cell B2, which is also transcluding A2: <span class='tw-transclude'>
+The A2 is a road from London through Kent</span>.</span></td><td>
+<span class='tw-transclude'>
+Or C2 save one for later</span></td></tr><tr>
+<td>
+<span class='tw-transclude'>
+Take the A3 if you want to go to Basingstoke</span></td><td>
+<span class='tw-transclude'>
+B3 or 4</span></td><td>
+<span class='tw-transclude'>
+This is cell C3, with an image <span class='tw-transclude'>
+<svg class='tw-image-done-button' height='18pt' viewBox='434 150 68 55' width='22pt'>
+<path d='M 438.49266 178.00797 L 439.00744 177.49319 C 441.35054 175.15008 445.14946 175.15004 447.49262 177.49309 L 452.50734 182.50757 C 454.8505 184.85063 458.6494 184.85058 460.99252 182.50748 L 488.50747 154.99255 C 490.85058 152.64944 494.6495 152.6494 496.99266 154.99246 L 497.50722 155.506995 C 499.8504 157.85009 499.8505 161.64908 497.5074 163.99228 C 497.50738 163.99229 497.50736 163.99231 497.50734 163.99233 L 460.9926 200.5077 C 458.64947 202.85087 454.85048 202.8509 452.50732 200.50778 C 452.5073 200.50777 452.5073 200.50777 452.5073 200.50776 L 438.49268 186.49327 C 436.14952 184.15013 436.1495 180.35114 438.49264 178.00799 C 438.49265 178.00798 438.49265 178.00797 438.49266 178.00797 Z'>
+</path></svg>
+</span></span></td></tr></tbody></table></div></div></div></div></div></p>
 </div>
 </section>
 </body>
