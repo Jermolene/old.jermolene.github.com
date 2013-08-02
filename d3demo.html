@@ -109,6 +109,11 @@ Error message and password prompt
 <div class='tw-transclude'>
 <p>
 <span>
+CloudData</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
+<p>
+<span>
 GraphData</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-transclude'>
@@ -1220,7 +1225,7 @@ SiteTitle</span>
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n.tw-barwidget {\n}\n\n.tw-barwidget text {\n  font: 8px sans-serif;\n}\n\n.tw-barwidget .axis path,\n.tw-barwidget .axis line {\n  fill: none;\n  stroke: #000;\n  shape-rendering: crispEdges;\n}\n&quot;
         },
         &quot;$:/plugins/tiddlywiki/d3/cloudwidget.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/tiddlywiki/d3/cloudwidget.js\ntype: application/javascript\nmodule-type: widget\n\nA widget for displaying word clouds. Derived from https://github.com/jasondavies/d3-cloud\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar d3 = require(\&quot;$:/plugins/tiddlywiki/d3/d3.js\&quot;).d3;\n\nif($tw.browser) {\n\t// Frightful hack to give the cloud plugin the global d3 variable it needs\n\twindow.d3 = d3;\n\td3.layout.cloud  = require(\&quot;$:/plugins/tiddlywiki/d3/d3.layout.cloud.js\&quot;).cloud;\n}\n\nvar CloudWidget = function(renderer) {\n\t// Save state\n\tthis.renderer = renderer;\n\t// Generate child nodes\n\tthis.generate();\n};\n\nCloudWidget.prototype.generate = function() {\n\t// Get the parameters\n\tthis.data = this.renderer.getAttribute(\&quot;data\&quot;);\n\tthis.grouped = this.renderer.getAttribute(\&quot;grouped\&quot;,\&quot;no\&quot;);\n\t// Set the return element\n\tthis.tag = \&quot;div\&quot;;\n\tthis.attributes = {\n\t\t\&quot;class\&quot;: \&quot;tw-cloudwidget\&quot;\n\t};\n};\n\nCloudWidget.prototype.postRenderInDom = function() {\n\tthis.updateChart = this.createChart();\n};\n\nCloudWidget.prototype.refreshInDom = function(changedAttributes,changedTiddlers) {\n\t// Reexecute the widget if the data reference attributes have changed\n\tif(changedAttributes.data || changedTiddlers[this.data]) {\n\t\t// Regenerate and rerender the widget and replace the existing DOM node\n\t\tthis.generate();\n\t\tvar oldDomNode = this.renderer.domNode,\n\t\t\tnewDomNode = this.renderer.renderInDom();\n\t\toldDomNode.parentNode.replaceChild(newDomNode,oldDomNode);\n\t} else if(changedAttributes.grouped) {\n\t\t// Update the chart if the grouping setting has changed\n\t\tthis.grouped = this.renderer.getAttribute(\&quot;grouped\&quot;,\&quot;no\&quot;);\n\t\tif(this.updateChart) {\n\t\t\tthis.updateChart();\n\t\t}\n\t}\n};\n\nCloudWidget.prototype.createChart = function() {\n\n\tvar domNode = this.renderer.domNode;\n\n\t  var fill = d3.scale.category20();\n\n  d3.layout.cloud().size([300, 300])\n      .words(\n        \&quot;As Apple patiently iterates its hardware design for the iPhone, we can extrapolate where they are heading And it looks awfully likely that the Platonic ideal of the iPhone is a slab of black glass for us to touch and look at with a disembodied voice to talk to No ports or grilles, just an array of radios printed onto the glass\&quot;.split(\&quot; \&quot;).map(function(d) {\n        return {text: d, size: 10 + Math.random() * 90};\n      }))\n      .padding(5)\n      .rotate(function() { return ~~(Math.random() * 2) * 90; })\n      .font(\&quot;Impact\&quot;)\n      .fontSize(function(d) { return d.size; })\n      .on(\&quot;end\&quot;, draw)\n      .start();\n\n  function draw(words) {\n    d3.select(domNode).append(\&quot;svg\&quot;)\n        .attr(\&quot;width\&quot;, 300)\n        .attr(\&quot;height\&quot;, 300)\n      .append(\&quot;g\&quot;)\n        .attr(\&quot;transform\&quot;, \&quot;translate(150,150)\&quot;)\n      .selectAll(\&quot;text\&quot;)\n        .data(words)\n      .enter().append(\&quot;text\&quot;)\n        .style(\&quot;font-size\&quot;, function(d) { return d.size + \&quot;px\&quot;; })\n        .style(\&quot;font-family\&quot;, \&quot;Impact\&quot;)\n        .style(\&quot;fill\&quot;, function(d, i) { return fill(i); })\n        .attr(\&quot;text-anchor\&quot;, \&quot;middle\&quot;)\n        .attr(\&quot;transform\&quot;, function(d) {\n          return \&quot;translate(\&quot; + [d.x, d.y] + \&quot;)rotate(\&quot; + d.rotate + \&quot;)\&quot;;\n        })\n        .text(function(d) { return d.text; });\n  }\n\n};\n\nexports.d3cloud = CloudWidget;\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/plugins/tiddlywiki/d3/cloudwidget.js\ntype: application/javascript\nmodule-type: widget\n\nA widget for displaying word clouds. Derived from https://github.com/jasondavies/d3-cloud\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar d3 = require(\&quot;$:/plugins/tiddlywiki/d3/d3.js\&quot;).d3;\n\nif($tw.browser) {\n\t// Frightful hack to give the cloud plugin the global d3 variable it needs\n\twindow.d3 = d3;\n\td3.layout.cloud  = require(\&quot;$:/plugins/tiddlywiki/d3/d3.layout.cloud.js\&quot;).cloud;\n}\n\nvar CloudWidget = function(renderer) {\n\t// Save state\n\tthis.renderer = renderer;\n\t// Generate child nodes\n\tthis.generate();\n};\n\nCloudWidget.prototype.generate = function() {\n\t// Get the parameters\n\tthis.data = this.renderer.getAttribute(\&quot;data\&quot;);\n\tthis.spiral = this.renderer.getAttribute(\&quot;spiral\&quot;,\&quot;archimedean\&quot;);\n\t// Set the return element\n\tthis.tag = \&quot;div\&quot;;\n\tthis.attributes = {\n\t\t\&quot;class\&quot;: \&quot;tw-cloudwidget\&quot;\n\t};\n};\n\nCloudWidget.prototype.postRenderInDom = function() {\n\tthis.updateChart = this.createChart();\n};\n\nCloudWidget.prototype.refreshInDom = function(changedAttributes,changedTiddlers) {\n\t// Reexecute the widget if the data reference attributes have changed\n\tif(changedAttributes.data || changedTiddlers[this.data]) {\n\t\t// Regenerate and rerender the widget and replace the existing DOM node\n\t\tthis.generate();\n\t\tvar oldDomNode = this.renderer.domNode,\n\t\t\tnewDomNode = this.renderer.renderInDom();\n\t\toldDomNode.parentNode.replaceChild(newDomNode,oldDomNode);\n\t} else if(changedAttributes.spiral) {\n\t\t// Update the chart if the spiral setting has changed\n\t\tthis.spiral = this.renderer.getAttribute(\&quot;spiral\&quot;,\&quot;archimedean\&quot;);\n\t\tif(this.updateChart) {\n\t\t\tthis.updateChart();\n\t\t}\n\t}\n};\n\nCloudWidget.prototype.createChart = function() {\n\n\tvar self = this;\n\n\tvar domNode = this.renderer.domNode;\n\n\t  var fill = d3.scale.category20();\n\n\n\tvar data = this.renderer.renderTree.wiki.getTiddlerData(this.data);\n\n\tif(!data) {\n\t\t// Use dummy data if none provided\n\t\tdata = \&quot;This word cloud does not have any data in it\&quot;.split(\&quot; \&quot;).map(function(d) {\n        return {text: d, size: 10 + Math.random() * 90};\n      })\n\t}\n\n  var svg = d3.select(domNode).append(\&quot;svg\&quot;)\n        .attr(\&quot;width\&quot;, 600)\n        .attr(\&quot;height\&quot;, 400)\n      .append(\&quot;g\&quot;)\n        .attr(\&quot;transform\&quot;, \&quot;translate(300,200)\&quot;);\n\n  var layout = d3.layout.cloud().size([600, 400])\n      .words(data)\n      .padding(5)\n      .rotate(function() { return ~~(Math.random() * 5) * 30 - 60; })\n      .font(\&quot;Impact\&quot;)\n      .fontSize(function(d) { return d.size*2; })\n      .on(\&quot;end\&quot;, draw)\n      .start();\n\n  function draw(words) {\n    svg.selectAll(\&quot;text\&quot;)\n        .data(words)\n      .enter().append(\&quot;text\&quot;)\n        .style(\&quot;font-size\&quot;, function(d) { return d.size + \&quot;px\&quot;; })\n        .style(\&quot;font-family\&quot;, \&quot;Impact\&quot;)\n        .style(\&quot;fill\&quot;, function(d, i) { return fill(i); })\n        .attr(\&quot;text-anchor\&quot;, \&quot;middle\&quot;)\n        .attr(\&quot;transform\&quot;, function(d) {\n          return \&quot;translate(\&quot; + [d.x, d.y] + \&quot;)rotate(\&quot; + d.rotate + \&quot;)\&quot;;\n        })\n        .text(function(d) { return d.text; });\n  }\n\n  function updateChart() {\n\tlayout.spiral(self.spiral);\n  }\n\n  return updateChart;\n\n};\n\nexports.d3cloud = CloudWidget;\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/plugins/tiddlywiki/d3/cloudwidget.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;widget&quot;
@@ -1285,6 +1290,9 @@ SiteTitle</span>
 <div title="$:/grouped">
 <pre>yes</pre>
 </div>
+<div title="$:/spiral">
+<pre>archimedean</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
@@ -1295,6 +1303,50 @@ SiteTitle</span>
 </div>
 <!----------- Ordinary tiddlers ----------->
 <div id="storeArea" style="display:none;">
+<div title="CloudData" type="application/json">
+<pre>[
+	{&quot;text&quot;: &quot;Tokyo/Yokohama&quot;, &quot;size&quot;: 33.200},
+	{&quot;text&quot;: &quot;New York Metro&quot;, &quot;size&quot;: 17.800},
+	{&quot;text&quot;: &quot;Sao Paulo&quot;, &quot;size&quot;: 17.700},
+	{&quot;text&quot;: &quot;Seoul/Incheon&quot;, &quot;size&quot;: 17.500},
+	{&quot;text&quot;: &quot;Mexico City&quot;, &quot;size&quot;: 17.400},
+	{&quot;text&quot;: &quot;Osaka/Kobe/Kyoto&quot;, &quot;size&quot;: 16.425},
+	{&quot;text&quot;: &quot;Manila&quot;, &quot;size&quot;: 14.750},
+	{&quot;text&quot;: &quot;Mumbai&quot;, &quot;size&quot;: 14.350},
+	{&quot;text&quot;: &quot;Delhi&quot;, &quot;size&quot;: 14.300},
+	{&quot;text&quot;: &quot;Jakarta&quot;, &quot;size&quot;: 14.250},
+	{&quot;text&quot;: &quot;Lagos&quot;, &quot;size&quot;: 13.400},
+	{&quot;text&quot;: &quot;Kolkata&quot;, &quot;size&quot;: 12.700},
+	{&quot;text&quot;: &quot;Cairo&quot;, &quot;size&quot;: 12.200},
+	{&quot;text&quot;: &quot;Los Angeles&quot;, &quot;size&quot;: 11.789},
+	{&quot;text&quot;: &quot;Buenos Aires&quot;, &quot;size&quot;: 11.200},
+	{&quot;text&quot;: &quot;Rio de Janeiro&quot;, &quot;size&quot;: 10.800},
+	{&quot;text&quot;: &quot;Moscow&quot;, &quot;size&quot;: 10.500},
+	{&quot;text&quot;: &quot;Shanghai&quot;, &quot;size&quot;: 10.000},
+	{&quot;text&quot;: &quot;Karachi&quot;, &quot;size&quot;: 9.800},
+	{&quot;text&quot;: &quot;Paris&quot;, &quot;size&quot;: 9.645},
+	{&quot;text&quot;: &quot;Istanbul&quot;, &quot;size&quot;: 9.000},
+	{&quot;text&quot;: &quot;Nagoya&quot;, &quot;size&quot;: 9.000},
+	{&quot;text&quot;: &quot;Beijing&quot;, &quot;size&quot;: 8.614},
+	{&quot;text&quot;: &quot;Chicago&quot;, &quot;size&quot;: 8.308},
+	{&quot;text&quot;: &quot;London&quot;, &quot;size&quot;: 8.278},
+	{&quot;text&quot;: &quot;Shenzhen&quot;, &quot;size&quot;: 8.000},
+	{&quot;text&quot;: &quot;Essen/Dusseldorf&quot;, &quot;size&quot;: 7.350},
+	{&quot;text&quot;: &quot;Tehran&quot;, &quot;size&quot;: 7.250},
+	{&quot;text&quot;: &quot;Bogota&quot;, &quot;size&quot;: 7.000},
+	{&quot;text&quot;: &quot;Lima&quot;, &quot;size&quot;: 7.000},
+	{&quot;text&quot;: &quot;Bangkok&quot;, &quot;size&quot;: 6.500},
+	{&quot;text&quot;: &quot;Johannesburg/East Rand&quot;, &quot;size&quot;: 6.000},
+	{&quot;text&quot;: &quot;Chennai&quot;, &quot;size&quot;: 5.950},
+	{&quot;text&quot;: &quot;Taipei&quot;, &quot;size&quot;: 5.700},
+	{&quot;text&quot;: &quot;Baghdad&quot;, &quot;size&quot;: 5.500},
+	{&quot;text&quot;: &quot;Santiago&quot;, &quot;size&quot;: 5.425},
+	{&quot;text&quot;: &quot;Bangalore&quot;, &quot;size&quot;: 5.400},
+	{&quot;text&quot;: &quot;Hyderabad&quot;, &quot;size&quot;: 5.300},
+	{&quot;text&quot;: &quot;St Petersburg&quot;, &quot;size&quot;: 5.300}
+]
+</pre>
+</div>
 <div title="GraphData" type="application/json">
 <pre>{
 	&quot;layers&quot;: 4,
@@ -1310,7 +1362,10 @@ SiteTitle</span>
 
 ! Word Cloud
 
-&lt;$d3cloud/&gt;
+&lt;$d3cloud data=&quot;CloudData&quot; spiral={{$:/spiral}}/&gt;
+
+
+//[[Raw data|CloudData]]//
 
 ! Bar Chart
 
