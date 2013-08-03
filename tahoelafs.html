@@ -1012,6 +1012,12 @@ test-wikitext.js</span>
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;fieldviewer&quot;
         },
+        &quot;$:/core/modules/widgets/view/viewers/urlencoded.js&quot;: {
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/widgets/view/viewers/urlencoded.js\ntype: application/javascript\nmodule-type: fieldviewer\n\nA viewer for viewing tiddler fields as url encoded text\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar UrlEncodedViewer = function(viewWidget,tiddler,field,value) {\n\tthis.viewWidget = viewWidget;\n\tthis.tiddler = tiddler;\n\tthis.field = field;\n\tthis.value = value;\n};\n\nUrlEncodedViewer.prototype.render = function() {\n\t// Get the value as a string\n\tif(this.field !== \&quot;text\&quot; &amp;&amp; this.tiddler) {\n\t\tthis.value = this.tiddler.getFieldString(this.field);\n\t}\n\tvar value = \&quot;\&quot;;\n\tif(this.value !== undefined &amp;&amp; this.value !== null) {\n\t\tvalue = this.value;\n\t}\n\t// Set the element details\n\tthis.viewWidget.tag = \&quot;span\&quot;;\n\tthis.viewWidget.attributes = {\n\t\t\&quot;class\&quot;: \&quot;tw-view-urlencoded\&quot;\n\t};\n\tthis.viewWidget.children = this.viewWidget.renderer.renderTree.createRenderers(this.viewWidget.renderer,[{\n\t\ttype: \&quot;text\&quot;,\n\t\ttext: encodeURIComponent(value)\n\t}]);\n};\n\nexports.urlencoded = UrlEncodedViewer;\n\n})();\n&quot;,
+            &quot;title&quot;: &quot;$:/core/modules/widgets/view/viewers/urlencoded.js&quot;,
+            &quot;type&quot;: &quot;application/javascript&quot;,
+            &quot;module-type&quot;: &quot;fieldviewer&quot;
+        },
         &quot;$:/core/modules/widgets/view/viewers/wikified.js&quot;: {
             &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/widgets/view/viewers/wikified.js\ntype: application/javascript\nmodule-type: fieldviewer\n\nA viewer for viewing tiddler fields as wikified text\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar WikifiedViewer = function(viewWidget,tiddler,field,value) {\n\tthis.viewWidget = viewWidget;\n\tthis.tiddler = tiddler;\n\tthis.field = field;\n\tthis.value = value;\n};\n\nWikifiedViewer.prototype.render = function() {\n\t// Set the element details\n\tthis.viewWidget.tag = this.viewWidget.renderer.parseTreeNode.isBlock ? \&quot;div\&quot; : \&quot;span\&quot;;\n\tthis.viewWidget.attributes = {};\n\tvar node = {\n\t\t\ttype: \&quot;element\&quot;,\n\t\t\ttag: \&quot;$transclude\&quot;,\n\t\t\tattributes: {\n\t\t\t\t\&quot;class\&quot;: \&quot;tw-view-wikified\&quot;,\n\t\t\t\tfield: {type: \&quot;string\&quot;, value: this.field}\n\t\t\t},\n\t\t\tisBlock: this.viewWidget.renderer.parseTreeNode.isBlock\n\t\t};\n\tif(this.tiddler &amp;&amp; this.tiddler.fields.title) {\n\t\tnode.attributes.target = {type: \&quot;string\&quot;, value: this.tiddler.fields.title}\n\t}\n\tthis.viewWidget.children = this.viewWidget.renderer.renderTree.createRenderers(this.viewWidget.renderer,[node]);\n};\n\nexports.wikified = WikifiedViewer;\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/widgets/view/viewers/wikified.js&quot;,
@@ -1047,6 +1053,10 @@ test-wikitext.js</span>
         &quot;$:/core/templates/plain-text-tiddler&quot;: {
             &quot;title&quot;: &quot;$:/core/templates/plain-text-tiddler&quot;,
             &quot;text&quot;: &quot;&lt;$view field=\&quot;text\&quot; format=\&quot;text\&quot; /&gt;&quot;
+        },
+        &quot;$:/core/templates/split-recipe&quot;: {
+            &quot;title&quot;: &quot;$:/core/templates/split-recipe&quot;,
+            &quot;text&quot;: &quot;&lt;$list filter=\&quot;[!is[system]]\&quot;&gt;\ntiddler: &lt;$view field=\&quot;title\&quot; format=\&quot;urlencoded\&quot;/&gt;.tid\n&lt;/$list&gt;\n&quot;
         },
         &quot;$:/core/templates/static.content&quot;: {
             &quot;title&quot;: &quot;$:/core/templates/static.content&quot;,
