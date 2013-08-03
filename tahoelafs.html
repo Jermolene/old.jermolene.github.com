@@ -383,7 +383,7 @@ test-wikitext.js</span>
             &quot;module-type&quot;: &quot;filteroperator&quot;
         },
         &quot;$:/core/modules/filters/search.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/filters/search.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilter operator for searching for the text in the operand tiddler\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.search = function(source,operator,options) {\n\tvar invert = operator.prefix === \&quot;!\&quot;;\n\treturn options.wiki.search(operator.operand,{\n\t\ttitles: source,\n\t\tinvert: invert,\n\t\texclude: [operator.operand]\n\t});\n};\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/filters/search.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilter operator for searching for the text in the operand tiddler\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.search = function(source,operator,options) {\n\tvar invert = operator.prefix === \&quot;!\&quot;;\n\treturn options.wiki.search(operator.operand,{\n\t\ttitles: source,\n\t\tinvert: invert\n\t});\n};\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/filters/search.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
