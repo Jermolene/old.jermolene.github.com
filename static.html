@@ -580,6 +580,12 @@ a.tw-tiddlylink-external {
 */
 
 .tw-tiddler-dragger {
+	position: relative;
+	z-index: -10000;
+}
+
+.tw-tiddler-dragger-inner {
+	position: absolute;
 	display: inline-block;
 	padding: 8px 20px;
 	font-size: 16.9px;
@@ -595,6 +601,11 @@ a.tw-tiddlylink-external {
      -moz-border-radius: 20px;
           border-radius: 20px;
 
+}
+
+.tw-tiddler-dragger-cover {
+	position: absolute;
+	background-color: #ececec;
 }
 
 .tw-import {
