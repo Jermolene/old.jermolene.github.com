@@ -67,7 +67,67 @@ widget</span></span></button>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
-<p>
+<h1 class=''>
+Introduction</h1><p>
+The list widget displays a sequence of tiddlers that match a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlerFilter.html'>
+TiddlerFilter</a>. It can be used for many purposes:</p><ul>
+<li>
+Displaying custom lists of links, like in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a>'s sidebar</li><li>
+Custom lists, such as &quot;all tiddlers tagged 'task' that are not tagged 'done'&quot;</li><li>
+Listing each of the tags applied to a tiddler</li><li>
+Handling the main story river</li></ul><p>
+The tiddlers can either be displayed by transcluding each in turn through an optional template, or by providing a macro to be rendered for each list element.</p><h1 class=''>
+Content and Attributes</h1><p>
+The content of the <code>
+&lt;$list&gt;</code> widget is the optional template to use for rendering each tiddler in the list.</p><table>
+<tbody>
+<tr class='evenRow'>
+<th align='left'>
+Attribute</th><th align='left'>
+Description</th></tr><tr class='oddRow'>
+<td align='left'>
+type</td><td align='left'>
+Determines the HTML elements generated for the list: <strong>
+plain</strong>, <strong>
+ul</strong> or <strong>
+ol</strong></td></tr><tr class='evenRow'>
+<td align='left'>
+filter</td><td align='left'>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlerFilter.html'>
+TiddlerFilter</a> to display</td></tr><tr class='oddRow'>
+<td align='left'>
+template</td><td align='left'>
+The title of a template tiddler for rendering each tiddler in the list</td></tr><tr class='evenRow'>
+<td align='left'>
+editTemplate</td><td align='left'>
+An alternative template to use for <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='DraftTiddlers.html'>
+DraftTiddlers</a> in edit mode</td></tr><tr class='oddRow'>
+<td align='left'>
+emptyMessage</td><td align='left'>
+Message to be displayed when the list is empty</td></tr><tr class='evenRow'>
+<td align='left'>
+class</td><td>
+Class to be applied to the list frame element</td></tr><tr class='oddRow'>
+<td align='left'>
+itemClass</td><td align='left'>
+Class to be applied to the list member elements</td></tr><tr class='evenRow'>
+<td align='left'>
+macro</td><td align='left'>
+Specifies a macro to use for rendering each tiddler</td></tr><tr class='oddRow'>
+<td align='left'>
+listview</td><td align='left'>
+Optional name of module responsible for animating/processing the list</td></tr><tr class='evenRow'>
+<td align='left'>
+history</td><td align='left'>
+The title of the tiddler containing the navigation history</td></tr></tbody></table><h2 class=''>
+Handling edit mode</h2><h2 class=''>
+<code>
+listview</code> attribute</h2><h2 class=''>
+Handling history and navigation</h2><h1 class=''>
+Examples</h1><h2 class=''>
+Using the list widget with the <code>
+macro</code> attribute</h2><p>
 Example of using the list widget with the macro attribute:</p><pre>
 &lt;$list filter=&quot;[tag[introduction]]&quot; macro=&quot;demoMacro&quot;/&gt;</pre><p>
 Renders as:</p><div class='tw-list-frame'>
