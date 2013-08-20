@@ -199,6 +199,11 @@ done</span>
 <div class='tw-transclude'>
 <p>
 <span>
+DraftMechanism</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-transclude'>
+<p>
+<span>
 edition</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-transclude'>
@@ -2256,7 +2261,7 @@ Deserializers are modules that read tiddlers from different text formats:
 * TiddlyWikiFiles
 </pre>
 </div>
-<div tags="docs introduction" title="Docs">
+<div modified="201308201324" tags="docs introduction" title="Docs">
 <pre>This is the main documentation hub for TiddlyWiki. See also the DeveloperDocs.
 
 ! Editions
@@ -2647,9 +2652,9 @@ ShadowTiddlers can be overridden with an ordinary tiddler of the same name. If t
 </pre>
 </div>
 <div tags="docs concepts" title="SystemTiddlers">
-<pre>TiddlyWiki models everything as [[tiddlers|Tiddlers]], including its internal components and configuration.
+<pre>System tiddlers are any tiddler whose title starts with `$:/`; such tiddlers are automatically hidden from most operations. They don't show up in lists or search results, but linking to one directly works in the usual way.
 
-Thus, even an apparently empty TiddlyWiki actually contains dozens of tiddlers that are necessary to enable it function correctly. To prevent them from confusing casual users, these system tiddlers are hidden from most operations. They don't show up in lists or search results, but linking to one directly works in the usual way.
+TiddlyWiki models everything as [[tiddlers|Tiddlers]], including its internal components and configuration. Thus, even an apparently empty TiddlyWiki actually contains dozens of tiddlers that are necessary to enable it function correctly. Using system tiddlers prevents them from confusing casual users.
 
 The current system tiddlers are:
 
@@ -2661,9 +2666,9 @@ The current system tiddlers are:
 
 TextReferences are made up of several parts, most of which can be optional:
 
-* `&lt;tiddler title&gt;` - the text field of the specified tiddler
-* `&lt;tiddler title&gt;!!&lt;metadata field&gt;` - a tiddler metadata field (eg, `modified`, `modifier`, `type` etc)
-* `!!&lt;metadata field&gt;` - a metadata field of the current tiddler
+* `&lt;tiddler title&gt;` - the text [[field|TiddlerFields]] of the specified tiddler
+* `&lt;tiddler title&gt;!!&lt;metadata field&gt;` - a tiddler metadata [[field|TiddlerFields]] (eg, `modified`, `modifier`, `type` etc)
+* `!!&lt;metadata field&gt;` - a metadata [[field|TiddlerFields]] of the current tiddler
 * `&lt;tiddler title&gt;##&lt;property index&gt;` - extracts a named property from DataTiddlers
 </pre>
 </div>
@@ -2702,7 +2707,7 @@ The TiddlyWebAdaptor uses a few more fields:
 See [[$:/ConfigInfo]] for details of the fields used in this wiki.
 </pre>
 </div>
-<div modified="201305311232" tags="docs concepts" title="TiddlerFilters">
+<div modified="201308201405" tags="docs concepts" title="TiddlerFilters">
 <pre>Filters are used in TiddlyWiki to choose tiddlers by specifying simple match criteria.
 
 ! Examples
@@ -2744,7 +2749,13 @@ A filter string consists of one or more runs of filter operators that each look 
 * ''tagging'': selects the tiddlers tagged with the currently selected tiddlers
 * ''links'': selects the outgoing links on the currently selected tiddlers
 * ''backlinks'': selects the tiddlers that link to the currently selected tiddlers
-* ''list'': selects the tiddlers listed in a specified tiddler (newline delimited)
+* ''list'': selects the tiddlers listed in a specified [[TiddlerList|TiddlerLists]]
+* ''listed'': selects the TiddlerLists that include the current tiddler
+* ''each'': selects one tiddler for each discrete value of the specified field
+* ''eachday'': selects one tiddler for each discrete day in the specified date field
+* ''sameday'': selects all the tiddlers falling into the same day as the provided date in the specified date field
+* ''fields'': returns the names of the fields present on the selected tiddlers
+* ''search'': returns all tiddlers that contain the specified text
 
 An operator can be negated with by preceding it with `!`, for example `[!tag[Tommy]]` selects the tiddlers that are not tagged with `Tommy`.
 
@@ -3578,6 +3589,21 @@ On the server, `core/boot.js` is executed directly. It uses the `node.js` local 
 The boot kernel sets up the `$tw` global variable that is used to store all the state data of the system.
 </pre>
 </div>
+<div modified="201308201324" tags="mechanism docs" title="DraftMechanism">
+<pre>Tiddlers that have a `draft.of` field are treated as pending drafts of the tiddler specified in the field. Draft tiddlers should also have a `draft.title` field that specifies the title that will be given to the tiddler when it is saved.
+
+Several features work in concert to give the desired behaviour for draft tiddlers:
+
+* The ListWidget can optionally render draft tiddlers through a different template
+* The NavigatorWidget incorporates handlers for the following events:
+** `tw-new-tiddler` for creating a new tiddler in draft mode
+** `tw-edit-tiddler` for moving a tiddler into edit mode 
+** `tw-cancel-tiddler` for cancelling a tiddler out of edit mode
+** `tw-save-tiddler` for saving a draft tiddler
+* Draft tiddlers are automatically excluded from search operations
+
+</pre>
+</div>
 <div tags="docs mechanism" title="EncryptionMechanism">
 <pre>TiddlyWiki5 allows the entire content of a TiddlyWiki HTML file to be encrypted with the Stanford JavaScript Crypto Library. Opening an encrypted TiddlyWiki in the browser prompts for a password before decrypting and displaying the content.
 
@@ -3867,7 +3893,7 @@ The built in parser rules use regular expression matching. Such rules can take a
 {{Building classic TiddlyWiki with TiddlyWiki5}}
 </pre>
 </div>
-<div modified="201308141511" modifier="JeremyRuston" tags="docs planning" title="RoadMap">
+<div modified="201308201324" modifier="JeremyRuston" tags="docs planning" title="RoadMap">
 <pre>TiddlyWiki5 is under rapid development at the moment, moving through a series of stages from alpha, via beta into a stable release.
 
 ! Alpha Release
@@ -3900,6 +3926,8 @@ The following additional features are under consideration for implementation dur
 * Built in JavaScript syntax highlighting
 * Syntax highlighter plugin
 * Minification of plugins (JS and CSS)
+* List editor with drag and drop
+* Selective/weighted searching by title, body and fields
 
 ! 5.0 Release
 
@@ -4281,7 +4309,7 @@ Link targets default to the URL encoded title of the tiddler. The `href` can be 
 ```
 </pre>
 </div>
-<div modified="201308131914" tags="widget" title="ListWidget">
+<div modified="201308201324" tags="widget" title="ListWidget">
 <pre>\define demoMacro(title)
 This is the tiddler called [[Blah-$title$]]
 \end
@@ -4298,7 +4326,7 @@ The tiddlers can either be displayed by transcluding each in turn through an opt
 
 ! Content and Attributes
 
-The content of the `&lt;$list&gt;` widget is the optional template to use for rendering each tiddler in the list.
+The content of the `&lt;$list&gt;` widget is the optional template to use for rendering each tiddler in the list (alternatively, the template can be specified as a tiddler title in the ``template`` attribute).
 
 |!Attribute |!Description |
 |type |Determines the HTML elements generated for the list: ''plain'', ''ul'' or ''ol'' |
@@ -4308,21 +4336,30 @@ The content of the `&lt;$list&gt;` widget is the optional template to use for re
 |emptyMessage |Message to be displayed when the list is empty |
 |class |Class to be applied to the list frame element|
 |itemClass |Class to be applied to the list member elements |
-|macro |Specifies a macro to use for rendering each tiddler |
+|macro |Specifies an optional macro to use for rendering each tiddler |
 |listview |Optional name of module responsible for animating/processing the list |
 |history |The title of the tiddler containing the navigation history |
 
 !! Handling edit mode
 
+The `&lt;$list&gt;` widget can optionally render draft tiddlers through a different tiddler than ordinary tiddlers -- see DraftMechanism for a discussion of how this capability is used.
+
 !! `listview` attribute
+
+The `listview` attribute gives the specifies the name of an optional module that can animate changes to the list (including navigation). The core ships with the following listview modules:
+
+* `classic`: renders the list as an ordered sequence of tiddlers
+* `zoomin`: just renders the current tiddler from the list, with a zoom animation for navigating between tiddlers
 
 !! Handling history and navigation
 
+The optional `history` attribute specifies the name of a tiddler that is used to track the current tiddler for navigation purposes. When the history tiddler changes the list view responds by telling the listview to handle navigating to the new tiddler. See the NavigationMechanism for more details.
+
 ! Examples
 
-!! Using the list widget with the `macro` attribute
+!! Using the `macro` attribute
 
-Example of using the list widget with the macro attribute:
+Example of using the `&lt;$list&gt;` widget with the macro attribute:
 
 ```
 &lt;$list filter=&quot;[tag[introduction]]&quot; macro=&quot;demoMacro&quot;/&gt;
@@ -4331,6 +4368,37 @@ Example of using the list widget with the macro attribute:
 Renders as:
 
 &lt;$list filter=&quot;[tag[introduction]]&quot; macro=&quot;demoMacro&quot;/&gt;
+
+!! Creating nested lists
+
+The ''types'' and ''recent'' tabs in the sidebar give two examples of a grouped list created by nesting.
+
+The ''types'' listing is performed with this markup:
+
+```
+&lt;$list filter=&quot;[!is[system]has[type]each[type]sort[type]]&quot;&gt;
+&lt;$view field=&quot;type&quot; default=&quot;untyped&quot;/&gt;
+&lt;$list filter=&quot;[type{!!type}!is[system]sort[title]]&quot;&gt;
+&lt;$view field=&quot;title&quot; format=&quot;link&quot;/&gt;
+&lt;/$list&gt;
+&lt;/$list&gt;
+```
+
+The outer list filter selects each discrete value found in the `type` field. The inner list filter selects all the (non-system) tiddlers with that type.
+
+The ''recent'' listing is performed with this markup:
+
+```
+&lt;$list filter=&quot;[!is[system]has[modified]!sort[modified]limit[100]eachday[modified]]&quot; itemClass=&quot;tw-menu-list-item&quot;&gt;
+&lt;$view field=&quot;modified&quot; format=&quot;date&quot; template=&quot;DDth MMM YYYY&quot;/&gt;
+&lt;$list filter=&quot;[sameday{!!modified}!is[system]!sort[modified]]&quot; itemClass=&quot;tw-menu-list-subitem&quot;&gt;
+&lt;$view field=&quot;title&quot; format=&quot;link&quot;/&gt;
+&lt;/$list&gt;
+&lt;/$list&gt;
+```
+
+Here the outer list filter selects each discrete day found in the `modified` field, while the inner list filter selects all the tiddlers dated the same day in the `modified` field.
+
 </pre>
 </div>
 <div tags="docs widget" title="VideoWidget">
@@ -6013,20 +6081,27 @@ $tw.boot.startup = function() {
 	});
 };
 
-/////////////////////////// Decrypt tiddlers and then startup
+/////////////////////////// Main boot function to decrypt tiddlers and then startup
 
-// Initialise crypto object
-$tw.crypto = new $tw.utils.Crypto();
-// Initialise password prompter
+$tw.boot.boot = function() {
+	// Initialise crypto object
+	$tw.crypto = new $tw.utils.Crypto();
+	// Initialise password prompter
+	if($tw.browser) {
+		$tw.passwordPrompt = new $tw.utils.PasswordPrompt();
+	}
+	// Preload any encrypted tiddlers
+	$tw.boot.decryptEncryptedTiddlers(function() {
+		// Startup
+		$tw.boot.startup();
+	});
+};
+
+/////////////////////////// Autoboot in the browser
+
 if($tw.browser) {
-	$tw.passwordPrompt = new $tw.utils.PasswordPrompt();
+	$tw.boot.boot();
 }
-// Preload any encrypted tiddlers
-$tw.boot.decryptEncryptedTiddlers(function() {
-	// Startup
-	$tw.boot.startup();
-});
-
 
 })();
 </script>

@@ -49,7 +49,7 @@ ListWidget</span></span></div>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-13 August 2013</span></div>
+20 August 2013</span></div>
 
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
@@ -80,7 +80,9 @@ Handling the main story river</li></ul><p>
 The tiddlers can either be displayed by transcluding each in turn through an optional template, or by providing a macro to be rendered for each list element.</p><h1 class=''>
 Content and Attributes</h1><p>
 The content of the <code>
-&lt;$list&gt;</code> widget is the optional template to use for rendering each tiddler in the list.</p><table>
+&lt;$list&gt;</code> widget is the optional template to use for rendering each tiddler in the list (alternatively, the template can be specified as a tiddler title in the <code>
+</code>template<code>
+</code> attribute).</p><table>
 <tbody>
 <tr class='evenRow'>
 <th align='left'>
@@ -114,21 +116,35 @@ itemClass</td><td align='left'>
 Class to be applied to the list member elements</td></tr><tr class='evenRow'>
 <td align='left'>
 macro</td><td align='left'>
-Specifies a macro to use for rendering each tiddler</td></tr><tr class='oddRow'>
+Specifies an optional macro to use for rendering each tiddler</td></tr><tr class='oddRow'>
 <td align='left'>
 listview</td><td align='left'>
 Optional name of module responsible for animating/processing the list</td></tr><tr class='evenRow'>
 <td align='left'>
 history</td><td align='left'>
 The title of the tiddler containing the navigation history</td></tr></tbody></table><h2 class=''>
-Handling edit mode</h2><h2 class=''>
+Handling edit mode</h2><p>
+The <code>
+&lt;$list&gt;</code> widget can optionally render draft tiddlers through a different tiddler than ordinary tiddlers – see <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='DraftMechanism.html'>
+DraftMechanism</a> for a discussion of how this capability is used.</p><h2 class=''>
 <code>
-listview</code> attribute</h2><h2 class=''>
-Handling history and navigation</h2><h1 class=''>
+listview</code> attribute</h2><p>
+The <code>
+listview</code> attribute gives the specifies the name of an optional module that can animate changes to the list (including navigation). The core ships with the following listview modules:</p><ul>
+<li>
+<code>
+classic</code>: renders the list as an ordered sequence of tiddlers</li><li>
+<code>
+zoomin</code>: just renders the current tiddler from the list, with a zoom animation for navigating between tiddlers</li></ul><h2 class=''>
+Handling history and navigation</h2><p>
+The optional <code>
+history</code> attribute specifies the name of a tiddler that is used to track the current tiddler for navigation purposes. When the history tiddler changes the list view responds by telling the listview to handle navigating to the new tiddler. See the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='NavigationMechanism.html'>
+NavigationMechanism</a> for more details.</p><h1 class=''>
 Examples</h1><h2 class=''>
-Using the list widget with the <code>
+Using the <code>
 macro</code> attribute</h2><p>
-Example of using the list widget with the macro attribute:</p><pre>
+Example of using the <code>
+&lt;$list&gt;</code> widget with the macro attribute:</p><pre>
 &lt;$list filter=&quot;[tag[introduction]]&quot; macro=&quot;demoMacro&quot;/&gt;</pre><p>
 Renders as:</p><div class='tw-list-frame'>
 <div class='tw-list-element'>
@@ -155,7 +171,32 @@ This is the tiddler called <a class='tw-tiddlylink tw-tiddlylink-internal tw-tid
 Blah-DeveloperDocs</a></span></div><div class='tw-list-element'>
 <span data-macro-name='demoMacro'>
 This is the tiddler called <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='Blah-Contributing.html'>
-Blah-Contributing</a></span></div></div></div></div></div></div></p>
+Blah-Contributing</a></span></div></div><h2 class=''>
+Creating nested lists</h2><p>
+The <strong>
+types</strong> and <strong>
+recent</strong> tabs in the sidebar give two examples of a grouped list created by nesting.</p><p>
+The <strong>
+types</strong> listing is performed with this markup:</p><pre>
+&lt;$list filter=&quot;[!is[system]has[type]each[type]sort[type]]&quot;&gt;
+&lt;$view field=&quot;type&quot; default=&quot;untyped&quot;/&gt;
+&lt;$list filter=&quot;[type{!!type}!is[system]sort[title]]&quot;&gt;
+&lt;$view field=&quot;title&quot; format=&quot;link&quot;/&gt;
+&lt;/$list&gt;
+&lt;/$list&gt;</pre><p>
+The outer list filter selects each discrete value found in the <code>
+type</code> field. The inner list filter selects all the (non-system) tiddlers with that type.</p><p>
+The <strong>
+recent</strong> listing is performed with this markup:</p><pre>
+&lt;$list filter=&quot;[!is[system]has[modified]!sort[modified]limit[100]eachday[modified]]&quot; itemClass=&quot;tw-menu-list-item&quot;&gt;
+&lt;$view field=&quot;modified&quot; format=&quot;date&quot; template=&quot;DDth MMM YYYY&quot;/&gt;
+&lt;$list filter=&quot;[sameday{!!modified}!is[system]!sort[modified]]&quot; itemClass=&quot;tw-menu-list-subitem&quot;&gt;
+&lt;$view field=&quot;title&quot; format=&quot;link&quot;/&gt;
+&lt;/$list&gt;
+&lt;/$list&gt;</pre><p>
+Here the outer list filter selects each discrete day found in the <code>
+modified</code> field, while the inner list filter selects all the tiddlers dated the same day in the <code>
+modified</code> field.</p></div></div></div></div></p>
 </div>
 </section>
 </body>

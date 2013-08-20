@@ -40,7 +40,7 @@ http://five.tiddlywiki.com/</a></div>
 
 </span><span class='tw-transclude tw-tiddler-missing'>
 </span> <span>
-TextReference</span></span></div>
+DraftMechanism</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
 </div></div>
@@ -49,11 +49,20 @@ TextReference</span></span></div>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
-</span></div>
+20 August 2013</span></div>
 
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element tw-tag-list-item'>
+<span class='tw-transclude tw-tiddler-missing'>
+<button class='tw-button btn-invisible'>
+<span class='tw-tag-label' style='background-color:'>
+<span class='tw-transclude tw-tiddler-missing'>
+</span> <span>
+mechanism</span></span></button>
+<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
+</div>
+</span></span><span class='tw-list-element tw-tag-list-item'>
 <span class='tw-transclude'>
 <button class='tw-button btn-invisible'>
 <span class='tw-tag-label' style='background-color:#8080FF'>
@@ -62,41 +71,31 @@ TextReference</span></span></div>
 docs</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
-</span></span><span class='tw-list-element tw-tag-list-item'>
-<span class='tw-transclude'>
-<button class='tw-button btn-invisible'>
-<span class='tw-tag-label' style='background-color:#FF8383'>
-<span class='tw-transclude tw-tiddler-missing'>
-</span> <span>
-concepts</span></span></button>
-<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
-</div>
 </span></span></span></div>
 
 <div class='body'>
 <div>
 <div class='tw-transclude'>
 <p>
-A <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TextReference.html'>
-TextReference</a> identifies a chunk of text from a tiddler that can be retrieved or modified depending on the context.</p><p>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TextReferences.html'>
-TextReferences</a> are made up of several parts, most of which can be optional:</p><ul>
+Tiddlers that have a <code>
+draft.of</code> field are treated as pending drafts of the tiddler specified in the field. Draft tiddlers should also have a <code>
+draft.title</code> field that specifies the title that will be given to the tiddler when it is saved.</p><p>
+Several features work in concert to give the desired behaviour for draft tiddlers:</p><ul>
+<li>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ListWidget.html'>
+ListWidget</a> can optionally render draft tiddlers through a different template</li><li>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='NavigatorWidget.html'>
+NavigatorWidget</a> incorporates handlers for the following events:<ul>
 <li>
 <code>
-&lt;tiddler title&gt;</code> - the text <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFields.html'>
-field</a> of the specified tiddler</li><li>
+tw-new-tiddler</code> for creating a new tiddler in draft mode</li><li>
 <code>
-&lt;tiddler title&gt;!!&lt;metadata field&gt;</code> - a tiddler metadata <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFields.html'>
-field</a> (eg, <code>
-modified</code>, <code>
-modifier</code>, <code>
-type</code> etc)</li><li>
+tw-edit-tiddler</code> for moving a tiddler into edit mode </li><li>
 <code>
-!!&lt;metadata field&gt;</code> - a metadata <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFields.html'>
-field</a> of the current tiddler</li><li>
+tw-cancel-tiddler</code> for cancelling a tiddler out of edit mode</li><li>
 <code>
-&lt;tiddler title&gt;##&lt;property index&gt;</code> - extracts a named property from <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='DataTiddlers.html'>
-DataTiddlers</a></li></ul></div></div></div></div></p>
+tw-save-tiddler</code> for saving a draft tiddler</li></ul></li><li>
+Draft tiddlers are automatically excluded from search operations</li></ul></div></div></div></div></p>
 </div>
 </section>
 </body>
