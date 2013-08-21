@@ -17,6 +17,9 @@ http://five.tiddlywiki.com/</a></div>
 <div class="tw-tiddler-frame">
 <p>
 <div class='tw-tiddler-view'>
+<span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tiddler-title'>
 <div class='title'>
 <span style='fill:'>
@@ -43,14 +46,15 @@ http://five.tiddlywiki.com/</a></div>
 ServerCommand</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
-</div></div>
-
+</div></div></span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
 </span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element tw-tag-list-item'>
@@ -72,7 +76,8 @@ command</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
@@ -85,11 +90,8 @@ At the root, it serves a rendering of a specified tiddler. Away from the root, i
 GET</code>, <code>
 PUT</code> and <code>
 DELETE</code>.</p><pre>
---server &lt;port&gt; &lt;roottiddler&gt; &lt;rendertype&gt; &lt;servetype&gt;</pre><p>
-For example:</p><pre>
---server 8080 $:/core/tiddlywiki5.template.html text/plain text/html</pre><p>
-The parameters are:</p><pre>
---server &lt;port&gt; &lt;roottiddler&gt; &lt;rendertype&gt; &lt;servetype&gt;</pre><ul>
+--server &lt;port&gt; &lt;roottiddler&gt; &lt;rendertype&gt; &lt;servetype&gt; &lt;username&gt;</pre><p>
+The parameters are:</p><ul>
 <li>
 <strong>
 port</strong> - port number to serve from (defaults to &quot;8080&quot;)</li><li>
@@ -98,7 +100,13 @@ roottiddler</strong> - the tiddler to serve at the root (defaults to &quot;$:/co
 <strong>
 rendertype</strong> - the content type to which the root tiddler should be rendered (defaults to &quot;text/plain&quot;)</li><li>
 <strong>
-servetype</strong> - the content type with which the root tiddler should be served (defaults to &quot;text/html&quot;)</li></ul></div></div></div></div></p>
+servetype</strong> - the content type with which the root tiddler should be served (defaults to &quot;text/html&quot;)</li><li>
+<strong>
+username</strong> - the default username for signing edits</li></ul><p>
+For example:</p><pre>
+--server 8080 $:/core/tiddlywiki5.template.html text/plain text/html MyUserName</pre></div></div></div></span></span></span>
+</div>
+</p>
 </div>
 </section>
 </body>

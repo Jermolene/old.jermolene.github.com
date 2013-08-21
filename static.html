@@ -1186,12 +1186,7 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .modal {
-	position: fixed;
-	top: 50%;
-	left: 50%;
 	z-index: 1100;
-	width: 560px;
-	margin: -250px 0 0 -280px;
 	background-color: #fff;
 	border: 1px solid #999;
 	border: 1px solid rgba(0,0,0,.3);
@@ -1207,6 +1202,34 @@ canvas.tw-edit-bitmapeditor  {
 
 }
 
+@media (max-width: 55em) {
+
+.modal {
+	position: absolute;
+	top: 1em;
+	left: 1em;
+	right: 1em;
+}
+
+.modal-body {
+	overflow-y: auto;
+	max-height: 400px;
+}
+
+}
+
+@media (min-width: 55em) {
+
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 560px;
+	margin: -250px 0 0 -280px;
+}
+
+}
+
 .modal-header {
 	padding: 9px 15px;
 	border-bottom: 1px solid #eee;
@@ -1218,8 +1241,6 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .modal-body {
-	overflow-y: auto;
-	max-height: 400px;
 	padding: 15px;
 }
 
@@ -1473,6 +1494,9 @@ More</button></div>
 <div class='tw-transclude'>
 <p>
 <div class='tw-tiddler-view'>
+<span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tiddler-title'>
 <div class='title'>
 <span style='fill:'>
@@ -1499,14 +1523,15 @@ More</button></div>
 HelloThere</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
-</div></div>
-
+</div></div></span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/JeremyRuston.html'>
 JeremyRuston</a></span> <span class='tw-view-date'>
 5 June 2013</span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element tw-tag-list-item'>
@@ -1519,7 +1544,8 @@ introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
@@ -1548,10 +1574,15 @@ the TiddlyWikiDev Google Group</a></li><li>
 Follow <a class='tw-tiddlylink tw-tiddlylink-external' href='http://twitter.com/#!/TiddlyWiki'>
 @TiddlyWiki on Twitter</a> for the latest news</li><li>
 Learn how to <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/HelpingTiddlyWiki.html'>
-help the TiddlyWiki project and community</a></li></ul></div></div></div></div></p></div></div><div class='tw-list-element tw-tiddler-frame'>
+help the TiddlyWiki project and community</a></li></ul></div></div></div></span></span></span>
+</div>
+</p></div></div><div class='tw-list-element tw-tiddler-frame'>
 <div class='tw-transclude'>
 <p>
 <div class='tw-tiddler-view'>
+<span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tiddler-title'>
 <div class='title'>
 <span style='fill:'>
@@ -1578,14 +1609,15 @@ help the TiddlyWiki project and community</a></li></ul></div></div></div></div><
 TiddlyWiki5 Editions</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
-</div></div>
-
+</div></div></span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
 </a></span> <span class='tw-view-date'>
 14 May 2013</span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element tw-tag-list-item'>
@@ -1598,7 +1630,8 @@ introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
@@ -1628,10 +1661,15 @@ Building classic TiddlyWiki with TiddlyWiki5</a></li></ul></li><li>
 TiddlyWiki5 in the Sky for TiddlyWeb</a> (and <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/TiddlySpace.html'>
 TiddlySpace</a>)</li><li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/TiddlyWiki5%2520in%2520the%2520Sky%2520for%2520Dropbox.html'>
-TiddlyWiki5 in the Sky for Dropbox</a></li></ul></div></div></div></div></p></div></div><div class='tw-list-element tw-tiddler-frame'>
+TiddlyWiki5 in the Sky for Dropbox</a></li></ul></div></div></div></span></span></span>
+</div>
+</p></div></div><div class='tw-list-element tw-tiddler-frame'>
 <div class='tw-transclude'>
 <p>
 <div class='tw-tiddler-view'>
+<span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tiddler-title'>
 <div class='title'>
 <span style='fill:'>
@@ -1658,14 +1696,15 @@ TiddlyWiki5 in the Sky for Dropbox</a></li></ul></div></div></div></div></p></di
 Demos</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
-</div></div>
-
+</div></div></span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
 </a></span> <span class='tw-view-date'>
 2 August 2013</span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element tw-tag-list-item'>
@@ -1678,7 +1717,8 @@ introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
@@ -1727,10 +1767,15 @@ How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox</a></span></div>
 <div class='tw-transclude'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/How%2520to%2520use%2520TiddlyWiki5%2520as%2520a%2520standalone%2520HTML%2520file%2520with%2520TWEdit.html'>
-How to use TiddlyWiki5 as a standalone HTML file with TWEdit</a></span></div></div></div></div></div></div></div></p></div></div><div class='tw-list-element tw-tiddler-frame'>
+How to use TiddlyWiki5 as a standalone HTML file with TWEdit</a></span></div></div></div></div></div></div></span></span></span>
+</div>
+</p></div></div><div class='tw-list-element tw-tiddler-frame'>
 <div class='tw-transclude'>
 <p>
 <div class='tw-tiddler-view'>
+<span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tiddler-title'>
 <div class='title'>
 <span style='fill:'>
@@ -1757,14 +1802,15 @@ How to use TiddlyWiki5 as a standalone HTML file with TWEdit</a></span></div></d
 Improvements</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
-</div></div>
-
+</div></div></span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/JeremyRuston.html'>
 JeremyRuston</a></span> <span class='tw-view-date'>
 1 April 2013</span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element tw-tag-list-item'>
@@ -1786,7 +1832,8 @@ introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
@@ -1818,10 +1865,15 @@ TiddlyWiki5</a> is not compatible with previous versions, using different plugin
 WikiText</a> have been carefully developed to try to maximise backwards compatibility but content prepared for previous versions of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki.html'>
 TiddlyWiki</a> will need massaging to work properly in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
 TiddlyWiki5</a>.
-</p></div></div></div></div></p></div></div><div class='tw-list-element tw-tiddler-frame'>
+</p></div></div></div></span></span></span>
+</div>
+</p></div></div><div class='tw-list-element tw-tiddler-frame'>
 <div class='tw-transclude'>
 <p>
 <div class='tw-tiddler-view'>
+<span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tiddler-title'>
 <div class='title'>
 <span style='fill:'>
@@ -1848,14 +1900,15 @@ TiddlyWiki5</a>.
 Docs</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
-</div></div>
-
+</div></div></span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='static/.html'>
 </a></span> <span class='tw-view-date'>
 20 August 2013</span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span class='tw-list-element tw-tag-list-item'>
@@ -1877,7 +1930,8 @@ introduction</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
@@ -2039,6 +2093,8 @@ FederatialLimited</a></li><li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/History.html'>
 History</a></li><li>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/Acknowledgements.html'>
-Acknowledgements</a></li></ul></div></div></div></div></p></div></div></div></section></div></div></div>
+Acknowledgements</a></li></ul></div></div></div></span></span></span>
+</div>
+</p></div></div></div></section></div></div></div>
 </body>
 </html>

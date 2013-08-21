@@ -17,6 +17,9 @@ http://five.tiddlywiki.com/</a></div>
 <div class="tw-tiddler-frame">
 <p>
 <div class='tw-tiddler-view'>
+<span class='tw-list-frame'>
+<span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tiddler-title'>
 <div class='title'>
 <span style='fill:'>
@@ -43,19 +46,21 @@ http://five.tiddlywiki.com/</a></div>
 LazyLoading</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
-</div></div>
-
+</div></div></span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-subtitle'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='.html'>
 </a></span> <span class='tw-view-date'>
 5 August 2013</span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
 <span class='tw-list-frame'>
 <span>
 </span></span></div>
-
+</span></span><span class='tw-list-element'>
+<span class='tw-transclude'>
 <div class='body'>
 <div>
 <div class='tw-transclude'>
@@ -69,7 +74,9 @@ wiki.getTiddlerText()</code> for a tiddler that it will get loaded.</p><p>
 So, the browser-based search built into <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
 TiddlyWiki5</a> will only search the text of tiddlers that have been fully loaded. The expectation is that when lazy loading is used in a client-server configuration, then it's the server that really needs to handle search operations, because it's only the server that can &quot;see&quot; the text of all tiddlers. So, the plan is to integrate TW's built in search with <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyWeb.html'>
 TiddlyWeb</a>'s search API. The simplest approach is that any local search triggers an asynchronous server side search. The results of the search would be asynchronously loaded such that they would dynamically appear in the local search results.
-</p></div></div></div></div></p>
+</p></div></div></div></span></span></span>
+</div>
+</p>
 </div>
 </section>
 </body>
