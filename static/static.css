@@ -766,6 +766,10 @@ a.tw-tiddlylink-external {
 	white-space: nowrap;
 }
 
+.tw-menu-list-count {
+	font-weight: bold;
+}
+
 .tw-open-tiddler-list {
 	
   -webkit-transform-origin: 0% 0%;
