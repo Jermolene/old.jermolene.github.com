@@ -2258,8 +2258,12 @@ Like other OpenSource projects, TiddlyWiki5 needs a signed ContributorLicenseAgr
 //As of July 2013, TiddlyWiki5 does not yet have the necessary infrastructure to permit CLAs to be signed and retained.//
 </pre>
 </div>
-<div created="201308251537" creator="JeremyRuston" modified="201308251539" modifier="JeremyRuston" tags="introduction dev" title="DeveloperDocs">
+<div created="201308251537" creator="JeremyRuston" modified="201308252143" modifier="JeremyRuston" tags="introduction dev" title="DeveloperDocs">
 <pre>This is the developer documentation hub for TiddlyWiki.
+
+! Overview
+
+TiddlyWikiArchitecture
 
 ! Developer Cookbooks
 
@@ -2271,8 +2275,12 @@ Like other OpenSource projects, TiddlyWiki5 needs a signed ContributorLicenseAgr
 
 &lt;$list filter=&quot;[tag[mechanism]sort[title]]&quot; type=&quot;ul&quot;/&gt;
 
-! Deserializers
+! Module types
+!! SyncAdaptorModules
 
+See SyncAdaptorModules.
+
+!! DeserializerModules
 
 Deserializers are modules that read tiddlers from different text formats:
 
@@ -2346,7 +2354,7 @@ Widgets give WikiText dynamic functionality:
 * [[Acknowledgements]]
 </pre>
 </div>
-<div created="201308221728" creator="JeremyRuston" modified="201308231953" modifier="JeremyRuston" tags="introduction" title="Features">
+<div created="201308221728" creator="JeremyRuston" modified="201308252125" modifier="JeremyRuston" tags="introduction" title="Features">
 <pre>* The ability to save changes on almost any desktop HTML5 compatible-browser
 * [[Bitmap images|Motovun Jack.jpg]] and [[SVG images|Motovun Jack.svg]] are first-class citizens alongside text
 * Concise and expressive WikiText that generates semantic HTML
@@ -2361,6 +2369,7 @@ Widgets give WikiText dynamic functionality:
 ** An elegant [[microkernel architecture|PluginMechanism]], that allows infinite customisation by replacing and augmenting the core modules
 ** TiddlyWiki5 can directly build both itself and previous (2.x.x) versions of TiddlyWiki from their constituent separate files, without needing external tools
 ** Run the TiddlyWiki5 [[test suite|TestingMechanism]] from http://five.tiddlywiki.com/test.html
+* Last but not least, TiddlyWiki is a rare example of a practical [[quine|Quine]]
 
 The deep internal changes mean that TiddlyWiki5 is not compatible with previous versions, using different plugins, themes and so on. Content prepared for previous versions of TiddlyWiki will need massaging to work properly in TiddlyWiki5.
 </pre>
@@ -2422,7 +2431,7 @@ It would also be nice to have:
 <div created="201308221734" creator="JeremyRuston" modified="201308221734" modifier="JeremyRuston" tags="features" title="Scalability">
 <pre>You might expect that TiddlyWiki's architecture as a SinglePageApplication would make it unsuitable for large amounts of data. In fact, TiddlyWiki users regularly work with files that are 20 or 30 megabytes without problems - and successful experiments have been done up into the gigabytes.</pre>
 </div>
-<div tags="" title="TiddlySpot">
+<div created="201308252135" creator="JeremyRuston" modified="201308252135" modifier="JeremyRuston" tags="definitions" title="TiddlySpot">
 <pre>TiddlySpot is a free hosting service for TiddlyWiki documents from Simon and Daniel Baird. It has been in operation almost as long as TiddlyWiki itself.
 
 TiddlyWiki5 isn't yet built in to TiddlySpot but you can use it by following these steps:
@@ -2644,7 +2653,7 @@ The current shadow tiddlers are:
 &lt;$list filter=&quot;[is[shadow]sort[title]]&quot;/&gt;
 </pre>
 </div>
-<div created="201308220806" creator="JeremyRuston" modified="201308220812" modifier="JeremyRuston" tags="" title="SystemTags">
+<div created="201308220806" creator="JeremyRuston" modified="201308252130" modifier="JeremyRuston" tags="concepts" title="SystemTags">
 <pre>System tags are used to give special behaviour to tiddlers:
 
 * [[$:/tags/stylesheet]]: indicates that a tiddler should be applied as a CSS stylesheet
@@ -2678,7 +2687,7 @@ TextReferences are made up of several parts, most of which can be optional:
 * `&lt;tiddler title&gt;##&lt;property index&gt;` - extracts a named property from DataTiddlers
 </pre>
 </div>
-<div modified="201308091623" title="TiddlerFields">
+<div created="201308252133" creator="JeremyRuston" modified="201308252133" modifier="JeremyRuston" tags="concepts" title="TiddlerFields">
 <pre>TiddlerFields are name:value pairs that make up a [[tiddler|Tiddlers]]. The standard fields are:
 
 * `title` - The unique title of the tiddler
@@ -2817,8 +2826,8 @@ External links are shown like this: http://tiddlywiki.com/ or [[like this|http:/
 
 </pre>
 </div>
-<div modified="201306010741" tags="concepts" title="Tiddlers">
-<pre>Tiddlers are the smallest unit of information in TiddlyWiki.
+<div created="201308252135" creator="JeremyRuston" modified="201308252135" modifier="JeremyRuston" tags="concepts" title="Tiddlers">
+<pre>Tiddlers are the smallest unit of information in TiddlyWiki. They can be structured with [[links|TiddlerLinks]] and tags.
 
 Internally, tiddlers are an immutable dictionary of name:value pairs called fields. The only field that is required is the `title` field, but useful tiddlers also have a `text` field, and some or all of the standard fields listed below:
 
@@ -2842,11 +2851,11 @@ TiddlyWiki is designed to fit around your brain, helping you deal with the thing
 People [[love using|Raves]] TiddlyWiki. Because it can be used without any complicated server infrastructure, and because it is [[open source|OpenSource]], it has bought unprecedented freedom to people to keep their precious information under their own control. TiddlyWiki was originally created by JeremyRuston and is now a thriving [[open source|OpenSource]] project with a busy [[Community]] of independent developers.
 </pre>
 </div>
-<div modified="201302051920" modifier="JeremyRuston" tags="concepts" title="TiddlyWiki5">
+<div created="201308252136" creator="JeremyRuston" modified="201308252136" modifier="JeremyRuston" tags="concepts" title="TiddlyWiki5">
 <pre>TiddlyWiki5 is a reboot of TiddlyWiki for the next 25 years. It is a complete interactive wiki in JavaScript that can be run in the browser or on the server under [[node.js]].
 </pre>
 </div>
-<div modified="201304161845" tags="" title="TiddlyWikiFolders">
+<div created="201308252142" creator="JeremyRuston" modified="201308252142" modifier="JeremyRuston" tags="dev" title="TiddlyWikiFolders">
 <pre>As well as traditional single file wikis, TiddlyWiki5 [[under node.js|TiddlyWiki5 Node Edition]] supports wikis that are stored as a folder of individual tiddler files.
 
 ! Wiki folder files and folders
@@ -3305,7 +3314,7 @@ These files are a straightforward array of hashmaps of name:value fields. Curren
 TiddlyWiki HTML files contain a collection of tiddlers encoded in `&lt;DIV&gt;` format.
 </pre>
 </div>
-<div modified="201304291301" modifier="JeremyRuston" tags="edition" title="TiddlyWiki5 Node Edition">
+<div created="201308252145" creator="JeremyRuston" modified="201308252145" modifier="JeremyRuston" tags="edition" title="TiddlyWiki5 Node Edition">
 <pre>TiddlyWiki5 can be used on the command line to perform an extensive set of operations based on tiddlers, TiddlyWikiFolders, TiddlerFiles and TiddlyWikiFiles. For example, the following command loads the tiddlers from a TiddlyWiki HTML file and then saves one of them in HTML:
 
 ```
@@ -3359,6 +3368,12 @@ The files output by `bld.sh` are:
 !!! `serve.sh` serves tw5.com
 
 This batch file starts TiddlyWiki5 running as an HTTP server with the content from the `clientserver` edition. By default, the script serves on port 8080.
+
+```
+./server.sh UserName
+```
+
+The single parameter to the script is the username to use for signing edits.
 
 To experiment with this configuration, run the script and then visit `http://0.0.0.0:8080` in a browser.
 
@@ -3865,8 +3880,8 @@ Delete a tiddler from the server.
 <div title="WidgetModules">
 <pre></pre>
 </div>
-<div title="WikiRuleModules">
-<pre>WikiRuleModules cover the module types 'wikirunrule', 'wikiblockrule' and `wikipragmarule`. Modules of these types encapsulate the logic of individual parsing rules used by the WikiParser engine. For example, there is a `wikirunrule` module that identifies references to HTML entities by matching the pattern `&amp;&lt;chars&gt;;`.
+<div created="201308252147" creator="JeremyRuston" modified="201308252147" modifier="JeremyRuston" tags="dev moduletypes" title="WikiRuleModules">
+<pre>WikiRuleModules cover the module types `wikirunrule`, `wikiblockrule` and `wikipragmarule`. Modules of these types encapsulate the logic of individual parsing rules used by the WikiParser engine. For example, there is a `wikirunrule` module that identifies references to HTML entities by matching the pattern `&amp;&lt;chars&gt;;`.
 
 Pragma rules are applied at the start of a block of text, and cover definitions and declarations that affect the parsing of the rest of the text. Block rules are only applied at the beginning of a block of wikitext, while run rules can appear anywhere. The only current example of a pragma rule is for macro definitions.
 
@@ -3922,7 +3937,7 @@ The built in parser rules use regular expression matching. Such rules can take a
 {{Building classic TiddlyWiki with TiddlyWiki5}}
 </pre>
 </div>
-<div created="201308232038" creator="JeremyRuston" modified="201308232040" modifier="JeremyRuston" tags="planning" title="RoadMap">
+<div created="201308232038" creator="JeremyRuston" modified="201308252127" modifier="JeremyRuston" tags="planning" title="RoadMap">
 <pre>TiddlyWiki5 is under rapid development at the moment, moving through a series of stages from alpha, via beta into a stable release.
 
 ! Alpha Release
@@ -3933,7 +3948,7 @@ The one significant piece of work required before TiddlyWiki5 can move out of al
 
 During the beta TiddlyWiki5 will be practical for cautious everyday use but as we perfect the product there will occasionally be situations where we have to make changes that are not backwards compatible. These occasions will be clearly marked in the release notes.
 
-The following additional features are under consideration for implementation during the beta:
+The following additional features are planned or under consideration for implementation during the beta:
 
 * Warning when attempting to close window without saving
 * Use browser local storage to preserve changes in case browser crashes before saving/sync
@@ -4049,8 +4064,10 @@ You can &lt;$button message=&quot;tw-modal&quot; param=&quot;Demos&quot; class=&
 <pre>//This is a sample task for the TaskManagementExample//
 </pre>
 </div>
-<div title="TaskManagementExample">
-<pre>! Outstanding tasks
+<div created="201308252133" creator="JeremyRuston" modified="201308252133" modifier="JeremyRuston" title="TaskManagementExample">
+<pre>TiddlyWiki5 can be used as a simple task management system without further customisation. The idea is that tasks be tagged `task`, with those that are completed also tagged `done`. In this way it is straightforward to generate task lists.
+
+! Outstanding tasks
 
 &lt;$list filter=&quot;[!has[draft.of]tag[task]!tag[done]sort[created]]&quot;&gt;
 
@@ -4147,14 +4164,14 @@ You can &lt;$button message=&quot;tw-modal&quot; param=&quot;Demos&quot; class=&
 <div created="201308251538" creator="JeremyRuston" modified="201308251538" modifier="JeremyRuston" title="mechanism">
 <pre>These are the internal mechanisms that fit together to make up TiddlyWiki.</pre>
 </div>
-<div color="#8d9ac3" modified="201306131058" title="task">
-<pre></pre>
+<div color="#8d9ac3" created="201308252132" creator="JeremyRuston" modified="201308252132" modifier="JeremyRuston" title="task">
+<pre>Sample tasks for the TaskManagementExample.</pre>
 </div>
 <div created="201308251034" creator="JeremyRuston" modified="201308251034" modifier="JeremyRuston" title="tips">
 <pre>Hints and tips to help you get the most from TiddlyWiki.
 </pre>
 </div>
-<div modified="201305081626" tags="talkytalky" title="TalkyTalky">
+<div created="201308252131" creator="JeremyRuston" modified="201308252131" modifier="JeremyRuston" tags="talkytalky" title="TalkyTalky">
 <pre>@@text-align:center;
 ! http://five.tiddlywiki.com/
 
@@ -4193,7 +4210,7 @@ Store your tiddlers in a single HTML file along with the JS
 # Start adding tasks
 # Save using TiddlyFox, refresh to show changes
 # Drag in the task tiddlers
-# Drag in TaskManagementDemo, show source
+# Drag in TaskManagementExample, show source
 
 !!! node.js Edition
 
@@ -4203,17 +4220,10 @@ Store your tiddlers in separate files in a chain of linked directories.
 # Open http://five.tiddlywiki.com/static.html
 #* Click links to show individual tiddlers
 # Open http://five.tiddlywiki.com/test.html
-# Start `./serve.sh`
+# Start `./serve.sh UserName`
 # Open http://0.0.0.0:8080/
 # Open network console
 # Note same sync code on client and server
-
-!!! Other Editions
-
-* Dropbox et al
-* TiddlySpot
-* TiddlyWeb
-* TiddlyEdit for iOS
 
 !!! Wrap-up
 
