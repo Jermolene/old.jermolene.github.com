@@ -64,16 +64,6 @@ WikiText</span></span></div>
 <span class='tw-tiddler'>
 <span class='tw-transclude'>
 <button class='tw-button btn-invisible'>
-<span class='tw-tag-label' style='background-color:#8080FF'>
-<span class='tw-transclude'>
-</span> <span>
-docs</span></span></button>
-<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
-</div>
-</span></span></span><span class='tw-list-element tw-tag-list-item'>
-<span class='tw-tiddler'>
-<span class='tw-transclude'>
-<button class='tw-button btn-invisible'>
 <span class='tw-tag-label' style='background-color:#FF8383'>
 <span class='tw-transclude'>
 </span> <span>
@@ -190,11 +180,11 @@ TiddlerTemplate</a></li><li>
 {{MyTiddler}width:40;height:50;}.firstClass.secondClass</code> transcludes a single tiddler, adding the specified styles and classes to the transcluded content</li></ul><p>
 A similar syntax can be used to transclude a list of tiddlers matching a specified <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFilters.html'>
 TiddlerFilter</a>:</p><pre>
-{{{ [tag[docs]] }}}
-{{{ [tag[docs]] |tooltip}}}
-{{{ [tag[docs]] ||TemplateTitle}}}
-{{{ [tag[docs]] |tooltip||TemplateTitle}}}
-{{{ [tag[docs]] }}width:40;height:50;}.class.class</pre><h1 class=''>
+{{{ [tag[mechanism]] }}}
+{{{ [tag[mechanism]] |tooltip}}}
+{{{ [tag[mechanism]] ||TemplateTitle}}}
+{{{ [tag[mechanism]] |tooltip||TemplateTitle}}}
+{{{ [tag[mechanism]] }}width:40;height:50;}.class.class</pre><h1 class=''>
 Images</h1><p>
 To display an image stored in a tiddler just transclude that tiddler:</p><pre>
 {{Motovun Jack.jpg}}</pre><p>
