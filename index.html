@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.0-alpha.9" />
+<meta name="tiddlywiki-version" content="5.0.0-alpha.10" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -775,7 +775,7 @@ WikiText</span>
 </noscript>
 <!----------- Miscellaneous system tiddlers ----------->
 <div id="systemArea" style="display:none;">
-<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.0-alpha.9">
+<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.0-alpha.10">
 <pre>{
     &quot;title&quot;: &quot;$:/core&quot;,
     &quot;description&quot;: &quot;TiddlyWiki5 core plugin&quot;,
@@ -1881,7 +1881,7 @@ WikiText</span>
         },
         &quot;$:/core/ui/ToolsPanel&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/ToolsPanel&quot;,
-            &quot;text&quot;: &quot;---\n\n{{$:/snippets/viewswitcher}}\n\n---\n\n{{$:/snippets/themeswitcher}}\n\n---\n\nImport: &lt;$import class=\&quot;tw-drop-zone\&quot;/&gt;\n\n---\n\n{{$:/snippets/encryptionstatus}}\n\n&quot;
+            &quot;text&quot;: &quot;---\n\n{{$:/snippets/viewswitcher}}\n\n---\n\n{{$:/snippets/themeswitcher}}\n\n---\n\nImport: &lt;$import class=\&quot;tw-drop-zone\&quot;/&gt;\n\n---\n\n{{$:/snippets/encryptionstatus}}\n\n---\n\nTiddlyWiki5 version &lt;$version/&gt;\n&quot;
         },
         &quot;$:/core/ui/ViewTemplate/body&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/ViewTemplate/body&quot;,
@@ -1979,10 +1979,10 @@ WikiText</span>
             &quot;text&quot;: &quot;Current view: {{$:/view}}\n\n&lt;$linkcatcher to=\&quot;$:/view\&quot;&gt;\n\n&lt;$list filter=\&quot;classic zoomin\&quot;&gt;\n\n&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;match\&quot; text={{!!title}}&gt;&amp;bull;&lt;/$reveal&gt;&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;nomatch\&quot; text={{!!title}}&gt;&amp;nbsp;&lt;/$reveal&gt; &lt;$view field=\&quot;title\&quot; format=\&quot;link\&quot;/&gt;\n\n&lt;/$list&gt;\n\n&lt;/$linkcatcher&gt;\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.9&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.10&quot;
 }</pre>
 </div>
-<div description="Adds support for HTML5 full screen mode" plugin-type="plugin" title="$:/plugins/tiddlywiki/fullscreen" type="application/json" version="5.0.0-alpha.9">
+<div description="Adds support for HTML5 full screen mode" plugin-type="plugin" title="$:/plugins/tiddlywiki/fullscreen" type="application/json" version="5.0.0-alpha.10">
 <pre>{
     &quot;title&quot;: &quot;$:/plugins/tiddlywiki/fullscreen&quot;,
     &quot;description&quot;: &quot;Adds support for HTML5 full screen mode&quot;,
@@ -1996,10 +1996,10 @@ WikiText</span>
             &quot;module-type&quot;: &quot;browser-startup&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.9&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.10&quot;
 }</pre>
 </div>
-<div description="A plain simple theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.0-alpha.9">
+<div description="A plain simple theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.0-alpha.10">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/snowwhite&quot;,
     &quot;name&quot;: &quot;Snow White&quot;,
@@ -2034,10 +2034,10 @@ WikiText</span>
             &quot;text&quot;: &quot;/*! normalize.css v2.1.0 | MIT License | git.io/normalize */\n\n/* ==========================================================================\n   HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Correct `block` display not defined in IE 8/9.\n */\n\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nnav,\nsection,\nsummary {\n    display: block;\n}\n\n/**\n * Correct `inline-block` display not defined in IE 8/9.\n */\n\naudio,\ncanvas,\nvideo {\n    display: inline-block;\n}\n\n/**\n * Prevent modern browsers from displaying `audio` without controls.\n * Remove excess height in iOS 5 devices.\n */\n\naudio:not([controls]) {\n    display: none;\n    height: 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\n[hidden] {\n    display: none;\n}\n\n/* ==========================================================================\n   Base\n   ========================================================================== */\n\n/**\n * 1. Set default font family to sans-serif.\n * 2. Prevent iOS text size adjust after orientation change, without disabling\n *    user zoom.\n */\n\nhtml {\n    font-family: sans-serif; /* 1 */\n    -webkit-text-size-adjust: 100%; /* 2 */\n    -ms-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove default margin.\n */\n\nbody {\n    margin: 0;\n}\n\n/* ==========================================================================\n   Links\n   ========================================================================== */\n\n/**\n * Address `outline` inconsistency between Chrome and other browsers.\n */\n\na:focus {\n    outline: thin dotted;\n}\n\n/**\n * Improve readability when focused and also mouse hovered in all browsers.\n */\n\na:active,\na:hover {\n    outline: 0;\n}\n\n/* ==========================================================================\n   Typography\n   ========================================================================== */\n\n/**\n * Address variable `h1` font-size and margin within `section` and `article`\n * contexts in Firefox 4+, Safari 5, and Chrome.\n */\n\nh1 {\n    font-size: 2em;\n    margin: 0.67em 0;\n}\n\n/**\n * Address styling not present in IE 8/9, Safari 5, and Chrome.\n */\n\nabbr[title] {\n    border-bottom: 1px dotted;\n}\n\n/**\n * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.\n */\n\nb,\nstrong {\n    font-weight: bold;\n}\n\n/**\n * Address styling not present in Safari 5 and Chrome.\n */\n\ndfn {\n    font-style: italic;\n}\n\n/**\n * Address differences between Firefox and other browsers.\n */\n\nhr {\n    -moz-box-sizing: content-box;\n    box-sizing: content-box;\n    height: 0;\n}\n\n/**\n * Address styling not present in IE 8/9.\n */\n\nmark {\n    background: #ff0;\n    color: #000;\n}\n\n/**\n * Correct font family set oddly in Safari 5 and Chrome.\n */\n\ncode,\nkbd,\npre,\nsamp {\n    font-family: monospace, serif;\n    font-size: 1em;\n}\n\n/**\n * Improve readability of pre-formatted text in all browsers.\n */\n\npre {\n    white-space: pre-wrap;\n}\n\n/**\n * Set consistent quote types.\n */\n\nq {\n    quotes: \&quot;\\201C\&quot; \&quot;\\201D\&quot; \&quot;\\2018\&quot; \&quot;\\2019\&quot;;\n}\n\n/**\n * Address inconsistent and variable font size in all browsers.\n */\n\nsmall {\n    font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` affecting `line-height` in all browsers.\n */\n\nsub,\nsup {\n    font-size: 75%;\n    line-height: 0;\n    position: relative;\n    vertical-align: baseline;\n}\n\nsup {\n    top: -0.5em;\n}\n\nsub {\n    bottom: -0.25em;\n}\n\n/* ==========================================================================\n   Embedded content\n   ========================================================================== */\n\n/**\n * Remove border when inside `a` element in IE 8/9.\n */\n\nimg {\n    border: 0;\n}\n\n/**\n * Correct overflow displayed oddly in IE 9.\n */\n\nsvg:not(:root) {\n    overflow: hidden;\n}\n\n/* ==========================================================================\n   Figures\n   ========================================================================== */\n\n/**\n * Address margin not present in IE 8/9 and Safari 5.\n */\n\nfigure {\n    margin: 0;\n}\n\n/* ==========================================================================\n   Forms\n   ========================================================================== */\n\n/**\n * Define consistent border, margin, and padding.\n */\n\nfieldset {\n    border: 1px solid #c0c0c0;\n    margin: 0 2px;\n    padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct `color` not being inherited in IE 8/9.\n * 2. Remove padding so people aren't caught out if they zero out fieldsets.\n */\n\nlegend {\n    border: 0; /* 1 */\n    padding: 0; /* 2 */\n}\n\n/**\n * 1. Correct font family not being inherited in all browsers.\n * 2. Correct font size not being inherited in all browsers.\n * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.\n */\n\nbutton,\ninput,\nselect,\ntextarea {\n    font-family: inherit; /* 1 */\n    font-size: 100%; /* 2 */\n    margin: 0; /* 3 */\n}\n\n/**\n * Address Firefox 4+ setting `line-height` on `input` using `!important` in\n * the UA stylesheet.\n */\n\nbutton,\ninput {\n    line-height: normal;\n}\n\n/**\n * Address inconsistent `text-transform` inheritance for `button` and `select`.\n * All other form control elements do not inherit `text-transform` values.\n * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.\n * Correct `select` style inheritance in Firefox 4+ and Opera.\n */\n\nbutton,\nselect {\n    text-transform: none;\n}\n\n/**\n * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`\n *    and `video` controls.\n * 2. Correct inability to style clickable `input` types in iOS.\n * 3. Improve usability and consistency of cursor style between image-type\n *    `input` and others.\n */\n\nbutton,\nhtml input[type=\&quot;button\&quot;], /* 1 */\ninput[type=\&quot;reset\&quot;],\ninput[type=\&quot;submit\&quot;] {\n    -webkit-appearance: button; /* 2 */\n    cursor: pointer; /* 3 */\n}\n\n/**\n * Re-set default cursor for disabled elements.\n */\n\nbutton[disabled],\nhtml input[disabled] {\n    cursor: default;\n}\n\n/**\n * 1. Address box sizing set to `content-box` in IE 8/9.\n * 2. Remove excess padding in IE 8/9.\n */\n\ninput[type=\&quot;checkbox\&quot;],\ninput[type=\&quot;radio\&quot;] {\n    box-sizing: border-box; /* 1 */\n    padding: 0; /* 2 */\n}\n\n/**\n * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.\n * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome\n *    (include `-moz` to future-proof).\n */\n\ninput[type=\&quot;search\&quot;] {\n    -webkit-appearance: textfield; /* 1 */\n    -moz-box-sizing: content-box;\n    -webkit-box-sizing: content-box; /* 2 */\n    box-sizing: content-box;\n}\n\n/**\n * Remove inner padding and search cancel button in Safari 5 and Chrome\n * on OS X.\n */\n\ninput[type=\&quot;search\&quot;]::-webkit-search-cancel-button,\ninput[type=\&quot;search\&quot;]::-webkit-search-decoration {\n    -webkit-appearance: none;\n}\n\n/**\n * Remove inner padding and border in Firefox 4+.\n */\n\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n    border: 0;\n    padding: 0;\n}\n\n/**\n * 1. Remove default vertical scrollbar in IE 8/9.\n * 2. Improve readability and alignment in all browsers.\n */\n\ntextarea {\n    overflow: auto; /* 1 */\n    vertical-align: top; /* 2 */\n}\n\n/* ==========================================================================\n   Tables\n   ========================================================================== */\n\n/**\n * Remove most spacing between table cells.\n */\n\ntable {\n    border-collapse: collapse;\n    border-spacing: 0;\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.9&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.10&quot;
 }</pre>
 </div>
-<div description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.0.0-alpha.9">
+<div description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.0.0-alpha.10">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/starlight&quot;,
     &quot;name&quot;: &quot;Starlight&quot;,
@@ -2065,10 +2065,10 @@ WikiText</span>
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\\define border-radius(radius)\n```\n  -webkit-border-radius: $radius$;\n     -moz-border-radius: $radius$;\n          border-radius: $radius$;\n```\n\\end\n\\define box-shadow(shadow)\n```\n  -webkit-box-shadow: $shadow$;\n     -moz-box-shadow: $shadow$;\n          box-shadow: $shadow$;\n```\n\\end\n\\define filter(filter)\n```\n  -webkit-filter: $filter$;\n     -moz-filter: $filter$;\n          filter: $filter$;\n```\n\\end\n\\define background-linear-gradient(gradient)\n```\nbackground-image: linear-gradient($gradient$);\nbackground-image: -o-linear-gradient($gradient$);\nbackground-image: -moz-linear-gradient($gradient$);\nbackground-image: -webkit-linear-gradient($gradient$);\nbackground-image: -ms-linear-gradient($gradient$);\n```\n\\end\n\\define datauri(title)\n&lt;$datauri tiddler=\&quot;$title$\&quot;/&gt;\n\\end\n\n/*\nPlaceholder for a more thorough refinement of Snow White\n*/\n\n@font-face {\n  font-family: \&quot;Arvo\&quot;;\n  font-style: normal;\n  font-weight: 400;\n  src: local(\&quot;Arvo\&quot;), url(&lt;&lt;datauri \&quot;$:/themes/tiddlywiki/starlight/arvo.woff\&quot;&gt;&gt;) format(\&quot;woff\&quot;);\n}\n\nhtml body {\n\tfont-family: \&quot;Arvo\&quot;, \&quot;Times\&quot;;\n  background: url(&lt;&lt;datauri \&quot;$:/themes/tiddlywiki/starlight/ltbg.jpg\&quot;&gt;&gt;);\n}\n\n.tw-page-controls svg {\n  &lt;&lt;filter \&quot;drop-shadow(1px 1px 2px rgba(255,255,255,0.9))\&quot;&gt;&gt;\n}\n\n/*\n** Some rainbow icon colours\n*/\n\nsvg.tw-image-new-button {\n  fill: #5eb95e; /* Green */\n}\n\nsvg.tw-image-options-button {\n  fill: rgb(128, 88, 165); /* Purple */\n}\n\nsvg.tw-image-save-button {\n  fill: #0e90d2; /* Light blue */\n}\n\nsvg.tw-image-info-button {\n  fill: #0e90d2; /* Light blue */\n}\n\nsvg.tw-image-edit-button {\n  fill: rgb(243, 123, 29); /* Orange */\n}\n\nsvg.tw-image-close-button {\n  fill: #dd514c; /* Red */\n}\n\nsvg.tw-image-delete-button {\n  fill: #dd514c; /* Red */\n}\n\nsvg.tw-image-cancel-button {\n  fill: rgb(243, 123, 29); /* Orange */\n}\n\nsvg.tw-image-done-button {\n  fill: #5eb95e; /* Green */\n}\n\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.9&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.10&quot;
 }</pre>
 </div>
-<div description="Experimental theme with titles that stick to the top of the window" name="Sticky Titles" plugin-type="theme" title="$:/themes/tiddlywiki/stickytitles" type="application/json" version="5.0.0-alpha.9">
+<div description="Experimental theme with titles that stick to the top of the window" name="Sticky Titles" plugin-type="theme" title="$:/themes/tiddlywiki/stickytitles" type="application/json" version="5.0.0-alpha.10">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/stickytitles&quot;,
     &quot;name&quot;: &quot;Sticky Titles&quot;,
@@ -2086,10 +2086,10 @@ WikiText</span>
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n.tw-tiddler-title {\n  position: -webkit-sticky;\n  position: -moz-sticky;\n  position: -o-sticky;\n  position: -ms-sticky;\n  position: sticky;\n  top: 0px;\n  background: #fff;\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.9&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.10&quot;
 }</pre>
 </div>
-<div description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.0.0-alpha.9">
+<div description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.0.0-alpha.10">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/centralised&quot;,
     &quot;name&quot;: &quot;Centralised&quot;,
@@ -2107,7 +2107,7 @@ WikiText</span>
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n@media (min-width: 55em) {\n\n\t.tw-page-container {\n\t\ttext-align: center;\n\t}\n\n\t.story-river {\n\t\tposition: relative;\n\t\twidth: 55em;\n\t\tpadding: 3em;\n\t\tmargin: 0 auto;\n\t\ttext-align: left;\n\t}\n\n\t.sidebar-header {\n\t\ttext-align: left;\n\t\tleft: 50%;\n\t\tright: 0;\n\t\tpadding-left: 29.5em;\n\t}\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.9&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.10&quot;
 }</pre>
 </div>
 <div description="A dark theme" name="Rocker" plugin-type="theme" title="$:/themes/giffmex/rocker" type="application/json" version="0.0.0">
@@ -2453,7 +2453,7 @@ Past Hangouts are archived in this YouTube playlist:
 http://www.youtube.com/playlist?list=PLVT_2PPd-1p34gGCQ5qpwC8QdykxVAI3u
 </pre>
 </div>
-<div created="201308251618" creator="JeremyRuston" modified="201308260848" modifier="JeremyRuston" tags="dev" title="TiddlyWiki5 Development Environment">
+<div created="201308251618" creator="JeremyRuston" modified="201308262048" modifier="JeremyRuston" tags="dev" title="TiddlyWiki5 Development Environment">
 <pre>//This information is for people who are working on the development of TiddlyWiki5 itself, and isn't relevant for end users//
 
 ! Setting up npm
@@ -2466,8 +2466,13 @@ npm link
 
 ! Bumping version numbers
 
-As releases are made during development it is necessary to adjust the version number of various TiddlyWiki5 components. This is done with the [[npm version|https://npmjs.org/doc/version.html]] command.
-** As described in #10 in [[this article by npm's author|http://blog.izs.me/post/1675072029/10-cool-things-you-probably-didnt-realize-npm-could-do]], when run from within a git repo this command will also commit the change and tag it
+As releases are made during development it is necessary to adjust the version number of the TiddlyWiki5 core. This is done with the [[npm version|https://npmjs.org/doc/version.html]] command. For example:
+
+```
+npm version 5.0.0-alpha.10
+```
+
+As described in #10 in [[this article by npm's author|http://blog.izs.me/post/1675072029/10-cool-things-you-probably-didnt-realize-npm-could-do]], when run from within a git repo this command will also commit the change and tag it
 </pre>
 </div>
 <div created="201308251457" creator="JeremyRuston" modified="201308251457" modifier="JeremyRuston" tags="introduction" title="TiddlyWiki5 Editions">
@@ -2668,15 +2673,24 @@ The current system tiddlers are:
 &lt;$list filter=&quot;[is[system]sort[title]]&quot;/&gt;
 </pre>
 </div>
-<div tags="concepts" title="TextReference">
+<div created="201308270759" creator="JeremyRuston" modified="201308270759" modifier="JeremyRuston" tags="concepts" title="TextReference">
 <pre>A TextReference identifies a chunk of text from a tiddler that can be retrieved or modified depending on the context.
 
-TextReferences are made up of several parts, most of which can be optional:
+Text references are made up of several parts, most of which can be optional:
 
 * `&lt;tiddler title&gt;` - the text [[field|TiddlerFields]] of the specified tiddler
 * `&lt;tiddler title&gt;!!&lt;metadata field&gt;` - a tiddler metadata [[field|TiddlerFields]] (eg, `modified`, `modifier`, `type` etc)
 * `!!&lt;metadata field&gt;` - a metadata [[field|TiddlerFields]] of the current tiddler
 * `&lt;tiddler title&gt;##&lt;property index&gt;` - extracts a named property from DataTiddlers
+
+Text references can be used in several places:
+
+* As IndirectOperands within TiddlerFilters (eg, `&lt;$list filter=&quot;[tag{MyTag!!name}]&quot;/&gt;`)
+* As IndirectAttributes of an element or widget (eg, `&lt;$widget attrib={{Title!!description}}/&gt;`)
+* As the operand of a shortcut transclusion (eg, `{{MyTiddler!!title}}`)
+* As the `state` attribute of the RevealWidget and the LinkCatcherWidget
+
+//There are probably other places where a title is being used but it would be more flexible to support arbitrary text references//
 </pre>
 </div>
 <div created="201308252133" creator="JeremyRuston" modified="201308252133" modifier="JeremyRuston" tags="concepts" title="TiddlerFields">
@@ -2713,7 +2727,7 @@ The TiddlyWebAdaptor uses a few more fields:
 See [[$:/ConfigInfo]] for details of the fields used in this wiki.
 </pre>
 </div>
-<div modified="201308201405" tags="concepts" title="TiddlerFilters">
+<div created="201308270800" creator="JeremyRuston" modified="201308270800" modifier="JeremyRuston" tags="concepts" title="TiddlerFilters">
 <pre>Filters are used in TiddlyWiki to choose tiddlers by specifying simple match criteria.
 
 ! Examples
@@ -2776,7 +2790,7 @@ The operands available with the `is` operator are:
 
 ! Indirect Operands
 
-If a filter operator is written with curly brackets around the operand then it is taken to be a TiddlerTextReference to the actual value. For example:
+If a filter operator is written with curly brackets around the operand then it is taken to be a TextReference to the actual value. For example:
 
 ''[search{$:/temp/search}]'': selects all tiddlers containing the string contained in the tiddler titled ''$:/temp/search''.
 
@@ -3931,7 +3945,7 @@ The built in parser rules use regular expression matching. Such rules can take a
 {{Building classic TiddlyWiki with TiddlyWiki5}}
 </pre>
 </div>
-<div created="201308252217" creator="JeremyRuston" modified="201308252225" modifier="JeremyRuston" tags="dev" title="Plan for moving from Alpha to Beta">
+<div created="201308252217" creator="JeremyRuston" modified="201308270750" modifier="JeremyRuston" tags="dev" title="Plan for moving from Alpha to Beta">
 <pre>! Goals for moving to Beta
 
 To move from alpha to beta, TiddlyWiki5 needs a better release and deployment process. At a minimum:
@@ -3951,7 +3965,7 @@ It would also be nice to have:
 
 !! Update https://github.com/Jermolene/tiddlywiki.com
 
-This is the repository for the content and build tools for tiddlywiki.com, forked from https://github.com/TiddlyWiki/tiddlywiki.com. It needs updating to includes both TW5 and TW classic, with a unified build and deployment process for the website.
+This is the repository for the content and build tools for tiddlywiki.com, forked from https://github.com/TiddlyWiki/tiddlywiki.com. It needs updating to include both TW5 and TW classic, with a unified build and deployment process for the website. The content from `TiddlyWiki5/editions/tw5.com` would be moved here.
 
 The pull request will be merged when we switch into beta. Until then, we'll build to http://jermolene.github.com, meaning that http://five.tiddlywiki.com will be a replica of tiddlywiki.com post-beta switchover.
 
