@@ -129,6 +129,11 @@ Building classic TiddlyWiki with TiddlyWiki5</span>
 <div class='tw-tiddler'>
 <p>
 <span>
+CamelCase</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-tiddler'>
+<p>
+<span>
 command</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
@@ -144,6 +149,11 @@ concepts</span>
 <div class='tw-tiddler'>
 <p>
 <span>
+ContentType</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-tiddler'>
+<p>
+<span>
 ContextTiddler</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
@@ -155,6 +165,11 @@ Contributing</span>
 <p>
 <span>
 ContributingTemplate</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-tiddler'>
+<p>
+<span>
+DataTiddlers</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
 <p>
@@ -350,6 +365,11 @@ JavaScript</span>
 <p>
 <span>
 JeremyRuston</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-tiddler'>
+<p>
+<span>
+Jermolene</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
 <p>
@@ -2616,6 +2636,52 @@ For example:
 <pre>The ContextTiddler is the current tiddler during WikiText processing. A context tiddler is set by the TiddlerWidget. It allows you to write references like `&lt;$view field=&quot;title&quot; format=&quot;link&quot;/&gt;` in TiddlerTemplates without explicitly specifying the tiddler that it applies to.
 </pre>
 </div>
+<div created="201308291647" creator="JeremyRuston" modified="201308291647" modifier="JeremyRuston" tags="concepts" title="DataTiddlers">
+<pre>Data tiddlers provide a way to access blocks of [[JSON]] data within the `text` field of a tiddler.
+
+//The implementation of data tiddlers is preliminary, with some intentional limitations.//
+
+! Data tiddler format
+
+A native data tiddler must have:
+
+* The ContentType field `type` set to `application/json`
+* Valid JSON data in the `text` field 
+
+For example, the [[history list|$:/HistoryList]] tiddler is a data tiddler.
+
+Other tiddler types with alternative formats can also be parsed to yield a block of data that behaves like a data tiddler.
+
+!! Tiddler dictionary format
+
+The tiddler dictionary format is an alternative syntax for data tiddlers:
+
+* The ContentType field `type` is set to `application/x-tiddler-dictionary`
+* The `text` field consists of one or more lines of the form `&lt;name&gt;:&lt;value&gt;`
+
+For example, the [[metrics of the Snow White theme|$:/themes/tiddlywiki/snowwhite/metrics]] are a tiddler dictionary.
+
+! Accessing data within data tiddlers
+
+Currently, it is only possible to access the top level properties of the data using TextReference syntax.
+
+For example, given a `application/json` tiddler containing:
+
+```
+{&quot;a&quot;:&quot;one&quot;,&quot;b&quot;:&quot;two&quot;,&quot;c&quot;:&quot;three&quot;}
+```
+
+Or the equivalent tiddler dictionary of type `application/x-tiddler-dictionary`:
+
+```
+a:one
+b:two
+c:three
+```
+
+With either of those definitions `{{TiddlerTitle##b}}` would have the value `two`.
+</pre>
+</div>
 <div modified="201308091623" tags="concepts" title="ModuleType">
 <pre>The `module-type` field of a [[JavaScript module|Modules]] is a string that identifies the type of the module.
 
@@ -3198,6 +3264,17 @@ $$$
 See TypedBlockWikiText for more details
 </pre>
 </div>
+<div created="201308281853" creator="JeremyRuston" modified="201308281853" modifier="JeremyRuston" tags="definitions" title="CamelCase">
+<pre>CamelCase is formed by taking a phrase, capitalising each initial letter and smashing them together to form a portmanteau word. Most wikis use CamelCase to signal phrases that should be automatically linked.
+</pre>
+</div>
+<div created="201308281859" creator="JeremyRuston" modified="201308281859" modifier="JeremyRuston" tags="definitions concepts" title="ContentType">
+<pre>Used in Internet protocols to indicate the type that should be used to interpret the content of a web resource.
+
+Under TiddlyWiki5, the `type` field is gives the content type to apply to the main `text` field.
+
+</pre>
+</div>
 <div created="201308251549" creator="JeremyRuston" modified="201308251604" modifier="JeremyRuston" tags="definitions" title="FederatialLimited">
 <pre>Federatial Limited is a software consultancy founded by JeremyRuston specializing in understanding the impact of the web on the way that we work together.
 
@@ -3222,6 +3299,9 @@ Further information:
 * A [[hilarious interview with me|http://www.youtube.com/watch?v=auyIhw8MTmQ]] from British television in 1983
 * Here's a video of a presentation I did in 2007 called [[&quot;How to Start an Open Source Project&quot;|http://vimeo.com/856110]].
 </pre>
+</div>
+<div created="201308281902" creator="JeremyRuston" modified="201308281902" modifier="JeremyRuston" tags="definitions" title="Jermolene">
+<pre>Alias for JeremyRuston.</pre>
 </div>
 <div created="201308251307" creator="JeremyRuston" modified="201308251307" modifier="JeremyRuston" tags="definitions" title="OpenSource">
 <pre>OpenSource is [[defined by Wikipedia|http://en.wikipedia.org/wiki/Open_source]] as //a philosophy, or pragmatic methodology that promotes free redistribution and access to an end product's design and implementation details//.

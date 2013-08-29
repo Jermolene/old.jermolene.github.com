@@ -46,7 +46,7 @@ http://five.tiddlywiki.com/</a></div>
 
 </span><span class='tw-transclude'>
 </span> <span>
-TextReference</span></span></div>
+DataTiddlers</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
 </div></div></span></span><span class='tw-list-element'>
@@ -55,7 +55,7 @@ TextReference</span></span></div>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston.html'>
 JeremyRuston</a></span> <span class='tw-view-date'>
-27 August 2013</span></div>
+29 August 2013</span></div>
 </span></span><span class='tw-list-element'>
 <span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
@@ -77,42 +77,49 @@ concepts</span></span></button>
 <div>
 <div class='tw-transclude'>
 <p>
-A <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TextReference.html'>
-TextReference</a> identifies a chunk of text from a tiddler that can be retrieved or modified depending on the context.</p><p>
-Text references are made up of several parts, most of which can be optional:</p><ul>
-<li>
-<code>
-&lt;tiddler title&gt;</code> - the text <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFields.html'>
-field</a> of the specified tiddler</li><li>
-<code>
-&lt;tiddler title&gt;!!&lt;metadata field&gt;</code> - a tiddler metadata <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFields.html'>
-field</a> (eg, <code>
-modified</code>, <code>
-modifier</code>, <code>
-type</code> etc)</li><li>
-<code>
-!!&lt;metadata field&gt;</code> - a metadata <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFields.html'>
-field</a> of the current tiddler</li><li>
-<code>
-&lt;tiddler title&gt;##&lt;property index&gt;</code> - extracts a named property from <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='DataTiddlers.html'>
-DataTiddlers</a></li></ul><p>
-Text references can be used in several places:</p><ul>
-<li>
-As <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='IndirectOperands.html'>
-IndirectOperands</a> within <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlerFilters.html'>
-TiddlerFilters</a> (eg, <code>
-&lt;$list filter=&quot;[tag{MyTag!!name}]&quot;/&gt;</code>)</li><li>
-As <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='IndirectAttributes.html'>
-IndirectAttributes</a> of an element or widget (eg, <code>
-&lt;$widget attrib={{Title!!description}}/&gt;</code>)</li><li>
-As the operand of a shortcut transclusion (eg, <code>
-{{MyTiddler!!title}}</code>)</li><li>
-As the <code>
-state</code> attribute of the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='RevealWidget.html'>
-RevealWidget</a> and the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='LinkCatcherWidget.html'>
-LinkCatcherWidget</a></li></ul><p>
+Data tiddlers provide a way to access blocks of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='JSON.html'>
+JSON</a> data within the <code>
+text</code> field of a tiddler.</p><p>
 <em>
-There are probably other places where a title is being used but it would be more flexible to support arbitrary text references</em>
+The implementation of data tiddlers is preliminary, with some intentional limitations.</em></p><h1 class=''>
+Data tiddler format</h1><p>
+A native data tiddler must have:</p><ul>
+<li>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ContentType.html'>
+ContentType</a> field <code>
+type</code> set to <code>
+application/json</code></li><li>
+Valid JSON data in the <code>
+text</code> field </li></ul><p>
+For example, the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='%2524%253A%252FHistoryList.html'>
+history list</a> tiddler is a data tiddler.</p><p>
+Other tiddler types with alternative formats can also be parsed to yield a block of data that behaves like a data tiddler.</p><h2 class=''>
+Tiddler dictionary format</h2><p>
+The tiddler dictionary format is an alternative syntax for data tiddlers:</p><ul>
+<li>
+The <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='ContentType.html'>
+ContentType</a> field <code>
+type</code> is set to <code>
+application/x-tiddler-dictionary</code></li><li>
+The <code>
+text</code> field consists of one or more lines of the form <code>
+&lt;name&gt;:&lt;value&gt;</code></li></ul><p>
+For example, the <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-shadow' href='%2524%253A%252Fthemes%252Ftiddlywiki%252Fsnowwhite%252Fmetrics.html'>
+metrics of the Snow White theme</a> are a tiddler dictionary.</p><h1 class=''>
+Accessing data within data tiddlers</h1><p>
+Currently, it is only possible to access the top level properties of the data using <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TextReference.html'>
+TextReference</a> syntax.</p><p>
+For example, given a <code>
+application/json</code> tiddler containing:</p><pre>
+{&quot;a&quot;:&quot;one&quot;,&quot;b&quot;:&quot;two&quot;,&quot;c&quot;:&quot;three&quot;}</pre><p>
+Or the equivalent tiddler dictionary of type <code>
+application/x-tiddler-dictionary</code>:</p><pre>
+a:one
+b:two
+c:three</pre><p>
+With either of those definitions <code>
+{{TiddlerTitle##b}}</code> would have the value <code>
+two</code>.
 </p></div></div></div></span></span></span>
 </div>
 </p>
