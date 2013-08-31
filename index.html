@@ -224,12 +224,12 @@ faq</span>
 <div class='tw-tiddler'>
 <p>
 <span>
-Features</span>
+features</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
 <p>
 <span>
-features</span>
+Features</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
 <p>
@@ -385,6 +385,11 @@ LazyLoadingMechanism</span>
 <p>
 <span>
 LinkWidget</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-tiddler'>
+<p>
+<span>
+ListField</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
 <p>
@@ -669,7 +674,17 @@ TiddlyFox</span>
 <div class='tw-tiddler'>
 <p>
 <span>
+TiddlySpace</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-tiddler'>
+<p>
+<span>
 TiddlySpot</span>
+</p></div></div><div class='tw-list-element'>
+<div class='tw-tiddler'>
+<p>
+<span>
+TiddlyWeb</span>
 </p></div></div><div class='tw-list-element'>
 <div class='tw-tiddler'>
 <p>
@@ -808,13 +823,33 @@ WikiText</span>
             &quot;type&quot;: &quot;text/plain&quot;,
             &quot;text&quot;: &quot;TiddlyWiki created by Jeremy Ruston, (jeremy [at] jermolene [dot] com)\n\nCopyright © Jeremy Ruston 2004-2007\nCopyright © UnaMesa Association 2007-2013\n\nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n\nRedistributions of source code must retain the above copyright notice, this\nlist of conditions and the following disclaimer.\n\nRedistributions in binary form must reproduce the above copyright notice, this\nlist of conditions and the following disclaimer in the documentation and/or other\nmaterials provided with the distribution.\n\nNeither the name of the UnaMesa Association nor the names of its contributors may be\nused to endorse or promote products derived from this software without specific\nprior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS' AND ANY\nEXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES\nOF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT\nSHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,\nINCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED\nTO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR\nBUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\nCONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN\nANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH\nDAMAGE.\n&quot;
         },
+        &quot;$:/docs/fields/bag&quot;: {
+            &quot;title&quot;: &quot;$:/docs/fields/bag&quot;,
+            &quot;text&quot;: &quot;The name of the bag from which a tiddler came&quot;
+        },
         &quot;$:/docs/fields/color&quot;: {
             &quot;title&quot;: &quot;$:/docs/fields/color&quot;,
             &quot;text&quot;: &quot;The CSS color value associated with a tiddler&quot;
         },
+        &quot;$:/docs/fields/created&quot;: {
+            &quot;title&quot;: &quot;$:/docs/fields/created&quot;,
+            &quot;text&quot;: &quot;The date a tiddler was created&quot;
+        },
+        &quot;$:/docs/fields/creator&quot;: {
+            &quot;title&quot;: &quot;$:/docs/fields/creator&quot;,
+            &quot;text&quot;: &quot;The name of the person who created a tiddler&quot;
+        },
         &quot;$:/docs/fields/description&quot;: {
             &quot;title&quot;: &quot;$:/docs/fields/description&quot;,
             &quot;text&quot;: &quot;The descriptive text for a wizard&quot;
+        },
+        &quot;$:/docs/fields/draft.of&quot;: {
+            &quot;title&quot;: &quot;$:/docs/fields/draft.of&quot;,
+            &quot;text&quot;: &quot;For draft tiddlers, contains the title of the tiddler of which this is a draft&quot;
+        },
+        &quot;$:/docs/fields/draft.title&quot;: {
+            &quot;title&quot;: &quot;$:/docs/fields/draft.title&quot;,
+            &quot;text&quot;: &quot;For draft tiddlers, contains the proposed new title of the tiddler&quot;
         },
         &quot;$:/docs/fields/footer&quot;: {
             &quot;title&quot;: &quot;$:/docs/fields/footer&quot;,
@@ -851,6 +886,10 @@ WikiText</span>
         &quot;$:/docs/fields/plugin-type&quot;: {
             &quot;title&quot;: &quot;$:/docs/fields/plugin-type&quot;,
             &quot;text&quot;: &quot;The type of plugin in a plugin tiddler&quot;
+        },
+        &quot;$:/docs/fields/revision&quot;: {
+            &quot;title&quot;: &quot;$:/docs/fields/revision&quot;,
+            &quot;text&quot;: &quot;The revision of the tiddler held at the server&quot;
         },
         &quot;$:/docs/fields/source&quot;: {
             &quot;title&quot;: &quot;$:/docs/fields/source&quot;,
@@ -1365,7 +1404,7 @@ WikiText</span>
             &quot;module-type&quot;: &quot;global&quot;
         },
         &quot;$:/core/modules/rendertree/renderers/element.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/rendertree/renderers/element.js\ntype: application/javascript\nmodule-type: wikirenderer\n\nElement renderer\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nElement widget. A degenerate widget that renders ordinary HTML elements\n*/\nvar ElementWidget = function(renderer) {\n\tthis.renderer = renderer;\n\tthis.tag = this.renderer.parseTreeNode.tag;\n\tthis.attributes = this.renderer.attributes;\n\tthis.children = this.renderer.renderTree.createRenderers(this.renderer,this.renderer.parseTreeNode.children);\n\tthis.events = this.renderer.parseTreeNode.events;\n};\n\nElementWidget.prototype.refreshInDom = function(changedAttributes,changedTiddlers) {\n\t// Check if any of our attribute dependencies have changed\n\tif($tw.utils.count(changedAttributes) &gt; 0) {\n\t\t// Update our attributes\n\t\tthis.renderer.assignAttributes();\n\t}\n\t// Refresh any child nodes\n\t$tw.utils.each(this.children,function(node) {\n\t\tif(node.refreshInDom) {\n\t\t\tnode.refreshInDom(changedTiddlers);\n\t\t}\n\t});\n};\n\n/*\nElement renderer\n*/\nvar ElementRenderer = function(renderTree,parentRenderer,parseTreeNode) {\n\t// Store state information\n\tthis.renderTree = renderTree;\n\tthis.parentRenderer = parentRenderer;\n\tthis.parseTreeNode = parseTreeNode;\n\t// Initialise widget classes\n\tif(!this.widgetClasses) {\n\t\tElementRenderer.prototype.widgetClasses = $tw.modules.applyMethods(\&quot;widget\&quot;);\n\t}\n\t// Select the namespace for the tag\n\tvar tagNameSpaces = {\n\t\tsvg: \&quot;http://www.w3.org/2000/svg\&quot;\n\t};\n\tthis.namespace = tagNameSpaces[this.parseTreeNode.tag];\n\tif(this.namespace) {\n\t\tthis.context = this.context || {};\n\t\tthis.context.namespace = this.namespace;\n\t} else {\n\t\tthis.namespace = this.renderTree.getContextVariable(this.parentRenderer,\&quot;namespace\&quot;,\&quot;http://www.w3.org/1999/xhtml\&quot;);\n\t}\n\t// Get the context tiddler title\n\tthis.tiddlerTitle = this.renderTree.getContextVariable(this.parentRenderer,\&quot;tiddlerTitle\&quot;);\n\t// Compute our dependencies\n\tthis.dependencies = {};\n\tvar self = this;\n\t$tw.utils.each(this.parseTreeNode.attributes,function(attribute,name) {\n\t\tif(attribute.type === \&quot;indirect\&quot;) {\n\t\t\tvar tr = $tw.utils.parseTextReference(attribute.textReference);\n\t\t\tself.dependencies[tr.title ? tr.title : self.tiddlerTitle] = true;\n\t\t}\n\t});\n\t// Compute our attributes\n\tthis.attributes = {};\n\tthis.computeAttributes();\n\t// Create the parasite widget object if required\n\tif(this.parseTreeNode.tag.charAt(0) === \&quot;$\&quot;) {\n\t\t// Choose the class\n\t\tvar WidgetClass = this.widgetClasses[this.parseTreeNode.tag.substr(1)];\n\t\t// Instantiate the widget\n\t\tif(WidgetClass) {\n\t\t\tthis.widget = new WidgetClass(this);\n\t\t} else {\n\t\t\tWidgetClass = this.widgetClasses.error;\n\t\t\tif(WidgetClass) {\n\t\t\t\tthis.widget = new WidgetClass(this,\&quot;Unknown widget '&lt;\&quot; + this.parseTreeNode.tag + \&quot;&gt;'\&quot;);\n\t\t\t}\n\t\t}\n\t}\n\t// If we haven't got a widget, use the generic HTML element widget\n\tif(!this.widget) {\n\t\tthis.widget = new ElementWidget(this);\n\t}\n};\n\nElementRenderer.prototype.computeAttributes = function() {\n\tvar changedAttributes = {},\n\t\tself = this,\n\t\tvalue;\n\t$tw.utils.each(this.parseTreeNode.attributes,function(attribute,name) {\n\t\tif(attribute.type === \&quot;indirect\&quot;) {\n\t\t\tvalue = self.renderTree.wiki.getTextReference(attribute.textReference,\&quot;\&quot;,self.tiddlerTitle);\n\t\t} else if(attribute.type === \&quot;macro\&quot;) {\n\t\t\t// Get the macro definition\n\t\t\tvar macro = self.renderTree.findMacroDefinition(self.parentRenderer,attribute.value.name);\n\t\t\tif(!macro) {\n\t\t\t\tvalue = \&quot;\&quot;;\n\t\t\t} else {\n\t\t\t\t// Substitute the macro parameters\n\t\t\t\tvalue = self.renderTree.substituteParameters(macro,attribute.value);\n\t\t\t\t// Parse the text and render it as text\n\t\t\t\tvalue = self.renderTree.wiki.renderText(\&quot;text/plain\&quot;,\&quot;text/vnd.tiddlywiki\&quot;,value,self.context);\n\t\t\t}\n\t\t} else { // String attribute\n\t\t\tvalue = attribute.value;\n\t\t}\n\t\t// Check whether the attribute has changed\n\t\tif(self.attributes[name] !== value) {\n\t\t\tself.attributes[name] = value;\n\t\t\tchangedAttributes[name] = true;\n\t\t}\n\t});\n\treturn changedAttributes;\n};\n\nElementRenderer.prototype.hasAttribute = function(name) {\n\treturn $tw.utils.hop(this.attributes,name);\n};\n\nElementRenderer.prototype.getAttribute = function(name,defaultValue) {\n\tif($tw.utils.hop(this.attributes,name)) {\n\t\treturn this.attributes[name];\n\t} else {\n\t\treturn defaultValue;\n\t}\n};\n\nElementRenderer.prototype.renderInDom = function() {\n\t// Check if our widget is providing an element\n\tif(this.widget.tag) {\n\t\t// Create the element\n\t\tthis.domNode = this.renderTree.document.createElementNS(this.namespace,this.widget.tag);\n\t\t// Assign any specified event handlers\n\t\t$tw.utils.addEventListeners(this.domNode,this.widget.events);\n\t\t// Assign the attributes\n\t\tthis.assignAttributes();\n\t\t// Render any child nodes\n\t\tvar self = this;\n\t\t$tw.utils.each(this.widget.children,function(node) {\n\t\t\tif(node.renderInDom) {\n\t\t\t\tself.domNode.appendChild(node.renderInDom());\n\t\t\t}\n\t\t});\n\t\t// Call postRenderInDom if the widget provides it and we're in the browser\n\t\tif($tw.browser &amp;&amp; this.widget.postRenderInDom) {\n\t\t\tthis.widget.postRenderInDom();\n\t\t}\n\t\t// Return the dom node\n\t\treturn this.domNode;\n\t} else {\n\t\t// If we're not generating an element, just render our first child\n\t\treturn this.widget.children[0].renderInDom();\n\t}\n};\n\nElementRenderer.prototype.assignAttributes = function() {\n\tvar self = this;\n\t$tw.utils.each(this.widget.attributes,function(v,a) {\n\t\tif(v !== undefined) {\n\t\t\tif($tw.utils.isArray(v)) { // Ahem, could there be arrays other than className?\n\t\t\t\tself.domNode.className = v.join(\&quot; \&quot;); \n\t\t\t} else if (typeof v === \&quot;object\&quot;) { // ...or objects other than style?\n\t\t\t\tfor(var p in v) {\n\t\t\t\t\tself.domNode.style[$tw.utils.unHyphenateCss(p)] = v[p];\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\t// Setting certain attributes can cause a DOM error (eg xmlns on the svg element)\n\t\t\t\ttry {\n\t\t\t\t\tself.domNode.setAttributeNS(null,a,v);\n\t\t\t\t} catch(e) {\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t});\n};\n\nElementRenderer.prototype.refreshInDom = function(changedTiddlers) {\n\t// Update our attributes if required\n\tvar changedAttributes = {};\n\tif($tw.utils.checkDependencies(this.dependencies,changedTiddlers)) {\n\t\tchangedAttributes = this.computeAttributes();\n\t}\n\t// Check if the widget has a refreshInDom method\n\tif(this.widget.refreshInDom) {\n\t\t// Let the widget refresh itself\n\t\tthis.widget.refreshInDom(changedAttributes,changedTiddlers);\n\t} else {\n\t\t// If not, assign the attributes and refresh any child nodes\n\t\tthis.assignAttributes();\n\t\t$tw.utils.each(this.widget.children,function(node) {\n\t\t\tif(node.refreshInDom) {\n\t\t\t\tnode.refreshInDom(changedTiddlers);\n\t\t\t}\n\t\t});\n\t}\n};\n\nexports.element = ElementRenderer\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/rendertree/renderers/element.js\ntype: application/javascript\nmodule-type: wikirenderer\n\nElement renderer\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nElement widget. A degenerate widget that renders ordinary HTML elements\n*/\nvar ElementWidget = function(renderer) {\n\tthis.renderer = renderer;\n\tthis.tag = this.renderer.parseTreeNode.tag;\n\tthis.attributes = this.renderer.attributes;\n\tthis.children = this.renderer.renderTree.createRenderers(this.renderer,this.renderer.parseTreeNode.children);\n\tthis.events = this.renderer.parseTreeNode.events;\n};\n\nElementWidget.prototype.refreshInDom = function(changedAttributes,changedTiddlers) {\n\t// Check if any of our attribute dependencies have changed\n\tif($tw.utils.count(changedAttributes) &gt; 0) {\n\t\t// Update our attributes\n\t\tthis.renderer.assignAttributes();\n\t}\n\t// Refresh any child nodes\n\t$tw.utils.each(this.children,function(node) {\n\t\tif(node.refreshInDom) {\n\t\t\tnode.refreshInDom(changedTiddlers);\n\t\t}\n\t});\n};\n\n/*\nElement renderer\n*/\nvar ElementRenderer = function(renderTree,parentRenderer,parseTreeNode) {\n\t// Store state information\n\tthis.renderTree = renderTree;\n\tthis.parentRenderer = parentRenderer;\n\tthis.parseTreeNode = parseTreeNode;\n\t// Initialise widget classes\n\tif(!this.widgetClasses) {\n\t\tElementRenderer.prototype.widgetClasses = $tw.modules.applyMethods(\&quot;widget\&quot;);\n\t}\n\t// Select the namespace for the tag\n\tvar tagNameSpaces = {\n\t\tsvg: \&quot;http://www.w3.org/2000/svg\&quot;,\n\t\tmath: \&quot;http://www.w3.org/1998/Math/MathML\&quot;\n\t};\n\tthis.namespace = tagNameSpaces[this.parseTreeNode.tag];\n\tif(this.namespace) {\n\t\tthis.context = this.context || {};\n\t\tthis.context.namespace = this.namespace;\n\t} else {\n\t\tthis.namespace = this.renderTree.getContextVariable(this.parentRenderer,\&quot;namespace\&quot;,\&quot;http://www.w3.org/1999/xhtml\&quot;);\n\t}\n\t// Get the context tiddler title\n\tthis.tiddlerTitle = this.renderTree.getContextVariable(this.parentRenderer,\&quot;tiddlerTitle\&quot;);\n\t// Compute our dependencies\n\tthis.dependencies = {};\n\tvar self = this;\n\t$tw.utils.each(this.parseTreeNode.attributes,function(attribute,name) {\n\t\tif(attribute.type === \&quot;indirect\&quot;) {\n\t\t\tvar tr = $tw.utils.parseTextReference(attribute.textReference);\n\t\t\tself.dependencies[tr.title ? tr.title : self.tiddlerTitle] = true;\n\t\t}\n\t});\n\t// Compute our attributes\n\tthis.attributes = {};\n\tthis.computeAttributes();\n\t// Create the parasite widget object if required\n\tif(this.parseTreeNode.tag.charAt(0) === \&quot;$\&quot;) {\n\t\t// Choose the class\n\t\tvar WidgetClass = this.widgetClasses[this.parseTreeNode.tag.substr(1)];\n\t\t// Instantiate the widget\n\t\tif(WidgetClass) {\n\t\t\tthis.widget = new WidgetClass(this);\n\t\t} else {\n\t\t\tWidgetClass = this.widgetClasses.error;\n\t\t\tif(WidgetClass) {\n\t\t\t\tthis.widget = new WidgetClass(this,\&quot;Unknown widget '&lt;\&quot; + this.parseTreeNode.tag + \&quot;&gt;'\&quot;);\n\t\t\t}\n\t\t}\n\t}\n\t// If we haven't got a widget, use the generic HTML element widget\n\tif(!this.widget) {\n\t\tthis.widget = new ElementWidget(this);\n\t}\n};\n\nElementRenderer.prototype.computeAttributes = function() {\n\tvar changedAttributes = {},\n\t\tself = this,\n\t\tvalue;\n\t$tw.utils.each(this.parseTreeNode.attributes,function(attribute,name) {\n\t\tif(attribute.type === \&quot;indirect\&quot;) {\n\t\t\tvalue = self.renderTree.wiki.getTextReference(attribute.textReference,\&quot;\&quot;,self.tiddlerTitle);\n\t\t} else if(attribute.type === \&quot;macro\&quot;) {\n\t\t\t// Get the macro definition\n\t\t\tvar macro = self.renderTree.findMacroDefinition(self.parentRenderer,attribute.value.name);\n\t\t\tif(!macro) {\n\t\t\t\tvalue = \&quot;\&quot;;\n\t\t\t} else {\n\t\t\t\t// Substitute the macro parameters\n\t\t\t\tvalue = self.renderTree.substituteParameters(macro,attribute.value);\n\t\t\t\t// Parse the text and render it as text\n\t\t\t\tvalue = self.renderTree.wiki.renderText(\&quot;text/plain\&quot;,\&quot;text/vnd.tiddlywiki\&quot;,value,self.context);\n\t\t\t}\n\t\t} else { // String attribute\n\t\t\tvalue = attribute.value;\n\t\t}\n\t\t// Check whether the attribute has changed\n\t\tif(self.attributes[name] !== value) {\n\t\t\tself.attributes[name] = value;\n\t\t\tchangedAttributes[name] = true;\n\t\t}\n\t});\n\treturn changedAttributes;\n};\n\nElementRenderer.prototype.hasAttribute = function(name) {\n\treturn $tw.utils.hop(this.attributes,name);\n};\n\nElementRenderer.prototype.getAttribute = function(name,defaultValue) {\n\tif($tw.utils.hop(this.attributes,name)) {\n\t\treturn this.attributes[name];\n\t} else {\n\t\treturn defaultValue;\n\t}\n};\n\nElementRenderer.prototype.renderInDom = function() {\n\t// Check if our widget is providing an element\n\tif(this.widget.tag) {\n\t\t// Create the element\n\t\tthis.domNode = this.renderTree.document.createElementNS(this.namespace,this.widget.tag);\n\t\t// Assign any specified event handlers\n\t\t$tw.utils.addEventListeners(this.domNode,this.widget.events);\n\t\t// Assign the attributes\n\t\tthis.assignAttributes();\n\t\t// Render any child nodes\n\t\tvar self = this;\n\t\t$tw.utils.each(this.widget.children,function(node) {\n\t\t\tif(node.renderInDom) {\n\t\t\t\tself.domNode.appendChild(node.renderInDom());\n\t\t\t}\n\t\t});\n\t\t// Call postRenderInDom if the widget provides it and we're in the browser\n\t\tif($tw.browser &amp;&amp; this.widget.postRenderInDom) {\n\t\t\tthis.widget.postRenderInDom();\n\t\t}\n\t\t// Return the dom node\n\t\treturn this.domNode;\n\t} else {\n\t\t// If we're not generating an element, just render our first child\n\t\treturn this.widget.children[0].renderInDom();\n\t}\n};\n\nElementRenderer.prototype.assignAttributes = function() {\n\tvar self = this;\n\t$tw.utils.each(this.widget.attributes,function(v,a) {\n\t\tif(v !== undefined) {\n\t\t\tif($tw.utils.isArray(v)) { // Ahem, could there be arrays other than className?\n\t\t\t\tself.domNode.className = v.join(\&quot; \&quot;); \n\t\t\t} else if (typeof v === \&quot;object\&quot;) { // ...or objects other than style?\n\t\t\t\tfor(var p in v) {\n\t\t\t\t\tself.domNode.style[$tw.utils.unHyphenateCss(p)] = v[p];\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\t// Setting certain attributes can cause a DOM error (eg xmlns on the svg element)\n\t\t\t\ttry {\n\t\t\t\t\tself.domNode.setAttributeNS(null,a,v);\n\t\t\t\t} catch(e) {\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t});\n};\n\nElementRenderer.prototype.refreshInDom = function(changedTiddlers) {\n\t// Update our attributes if required\n\tvar changedAttributes = {};\n\tif($tw.utils.checkDependencies(this.dependencies,changedTiddlers)) {\n\t\tchangedAttributes = this.computeAttributes();\n\t}\n\t// Check if the widget has a refreshInDom method\n\tif(this.widget.refreshInDom) {\n\t\t// Let the widget refresh itself\n\t\tthis.widget.refreshInDom(changedAttributes,changedTiddlers);\n\t} else {\n\t\t// If not, assign the attributes and refresh any child nodes\n\t\tthis.assignAttributes();\n\t\t$tw.utils.each(this.widget.children,function(node) {\n\t\t\tif(node.refreshInDom) {\n\t\t\t\tnode.refreshInDom(changedTiddlers);\n\t\t\t}\n\t\t});\n\t}\n};\n\nexports.element = ElementRenderer\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/rendertree/renderers/element.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;wikirenderer&quot;
@@ -1895,7 +1934,7 @@ WikiText</span>
         },
         &quot;$:/core/ui/ToolsPanel&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/ToolsPanel&quot;,
-            &quot;text&quot;: &quot;---\n\n{{$:/snippets/viewswitcher}}\n\n---\n\n{{$:/snippets/themeswitcher}}\n\n---\n\nImport: &lt;$import class=\&quot;tw-drop-zone\&quot;/&gt;\n\n---\n\n{{$:/snippets/encryptionstatus}}\n\n---\n\nTiddlyWiki5 version &lt;$version/&gt;\n&quot;
+            &quot;text&quot;: &quot;[[Wiki Info|$:/WikiInfo]]\n\n---\n\n{{$:/snippets/viewswitcher}}\n\n---\n\n{{$:/snippets/themeswitcher}}\n\n---\n\nImport: &lt;$import class=\&quot;tw-drop-zone\&quot;/&gt;\n\n---\n\n{{$:/snippets/encryptionstatus}}\n\n---\n\nTiddlyWiki5 version &lt;$version/&gt;\n&quot;
         },
         &quot;$:/core/ui/ViewTemplate/body&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/ViewTemplate/body&quot;,
@@ -1945,6 +1984,10 @@ WikiText</span>
         &quot;SiteTitle&quot;: {
             &quot;title&quot;: &quot;SiteTitle&quot;,
             &quot;text&quot;: &quot;My ~TiddlyWiki&quot;
+        },
+        &quot;$:/WikiInfo&quot;: {
+            &quot;title&quot;: &quot;$:/WikiInfo&quot;,
+            &quot;text&quot;: &quot;* Tiddlers: &lt;$count filter=\&quot;[!is[system]]\&quot;/&gt;\n* System tiddlers: &lt;$count filter=\&quot;[is[system]]\&quot;/&gt;\n* Shadow tiddlers: &lt;$count filter=\&quot;[is[shadow]]\&quot;/&gt;\n** Over-ridden shadow tiddlers: &lt;$count filter=\&quot;[!is[system]is[shadow]]\&quot;/&gt;\n&quot;
         },
         &quot;$:/snippets/allfields&quot;: {
             &quot;title&quot;: &quot;$:/snippets/allfields&quot;,
@@ -2757,41 +2800,44 @@ Text references can be used in several places:
 //There are probably other places where a title is being used but it would be more flexible to support arbitrary text references//
 </pre>
 </div>
-<div created="201308252133" creator="JeremyRuston" modified="201308252133" modifier="JeremyRuston" tags="concepts" title="TiddlerFields">
+<div created="201308252133" creator="JeremyRuston" modified="201308300902" modifier="JeremyRuston" tags="concepts" title="TiddlerFields">
 <pre>TiddlerFields are name:value pairs that make up a [[tiddler|Tiddlers]]. The standard fields are:
 
-* `title` - The unique title of the tiddler
-* `modified` - The date of the last modification to the tiddler
-* `modifier` - The name of the last person to modify the tiddler
-* `created` - The date the tiddler was created
-* `creator` - The name of the person who created the tiddler
-* `tags` - A list of tags applied to the tiddler
-* `type` - The ContentType that should used to interpret the content of the tiddler
-* `list` - A list of tiddler titles
+|!Field Name |!Reference |!Description |
+|`title` |TitleField |{{$:/docs/fields/title}} |
+|`modified` |ModifiedField |{{$:/docs/fields/modified}} |
+|`modifier` |ModifierField |{{$:/docs/fields/modifier}} |
+|`created` |CreatedField |{{$:/docs/fields/created}} |
+|`creator` |CreatorField |{{$:/docs/fields/creator}} |
+|`tags` |TagsField |{{$:/docs/fields/tags}} |
+|`type` |TypeField |{{$:/docs/fields/type}} |
+|`list` |ListField |{{$:/docs/fields/list}} |
 
 Other fields used by the core are:
 
-* `color` - The colour associated with a tiddler (expressed as a valid CSS value like `#fea` or `rgb(100,100,100)`)
-* `description` - The description of a plugin
-* `draft.of` - For draft tiddlers, contains the title of the tiddler of which this is a draft
-* `draft.title` - For draft tiddlers, contains the proposed new title of the tiddler
-* `footer` - The footer for a modal dialogue (interpreted as WikiText)
-* `library` - Set to `yes` if the tiddler should be loaded in the browser as a `&lt;script&gt;` tag
-* `name` - Human-readable name of a plugin
-* `plugin-priority` - An integer giving the priority for loading plugin tiddlers
-* `plugin-type` - The type of a plugin (currently can be `plugin` or `theme`)
-* `source` - The original URL associated with a tiddler
-* `subtitle` - The subtitle for a modal dialogue (interpreted as WikiText)
+|!Field Name |!Reference |!Description |
+|`color` |ColorField |{{$:/docs/fields/color}} |
+|`description` |DescriptionField |{{$:/docs/fields/description}} |
+|`draft.of` |DraftOfField |{{$:/docs/fields/draft.of}} |
+|`draft.title` |DraftTitleField |{{$:/docs/fields/draft.title}} |
+|`footer` |FooterField |{{$:/docs/fields/footer}} |
+|`library` |LibraryField |{{$:/docs/fields/library}} |
+|`name` |NameField |{{$:/docs/fields/name}} |
+|`plugin-priority` |PluginPriorityField |{{$:/docs/fields/plugin-priority}} |
+|`plugin-type` |PluginTypeField |{{$:/docs/fields/plugin-type}} |
+|`source` |SourceField |{{$:/docs/fields/source}} |
+|`subtitle` |SubtitleField |{{$:/docs/fields/subtitle}} |
 
 The TiddlyWebAdaptor uses a few more fields:
 
-* `bag` - The name of the bag from which a tiddler came
-* `revision` - The revision of the tiddler held at the server
+|!Field Name |!Reference |!Description |
+|`bag` |BagField |{{$:/docs/fields/bag}} |
+|`revision` |RevisionField |{{$:/docs/fields/revision}} |
 
 See [[$:/ConfigInfo]] for details of the fields used in this wiki.
 </pre>
 </div>
-<div created="201308270800" creator="JeremyRuston" modified="201308270800" modifier="JeremyRuston" tags="concepts" title="TiddlerFilters">
+<div created="201308270800" creator="JeremyRuston" modified="201308300906" modifier="JeremyRuston" tags="concepts" title="TiddlerFilters">
 <pre>Filters are used in TiddlyWiki to choose tiddlers by specifying simple match criteria.
 
 ! Examples
@@ -2847,10 +2893,11 @@ The operator defaults to `title` if omitted, so `[[HelloThere]]` is equivalent t
 
 The operands available with the `is` operator are:
 
-* ''system'': selects all system tiddlers
+* ''system'': selects all SystemTiddlers
+* ''shadow'': selects all ShadowTiddlers
 * ''current'': selects the current ContextTiddler
-* ''missing'': selects all missing tiddlers
-* ''orphan'': selects all orphan tiddlers
+* ''missing'': selects all MissingTiddlers
+* ''orphan'': selects all OrphanTiddlers
 
 ! Indirect Operands
 
@@ -2896,21 +2943,10 @@ External links are shown like this: http://tiddlywiki.com/ or [[like this|http:/
 
 </pre>
 </div>
-<div created="201308252135" creator="JeremyRuston" modified="201308252135" modifier="JeremyRuston" tags="concepts" title="Tiddlers">
+<div created="201308252135" creator="JeremyRuston" modified="201308300907" modifier="JeremyRuston" tags="concepts" title="Tiddlers">
 <pre>Tiddlers are the smallest unit of information in TiddlyWiki. They can be structured with [[links|TiddlerLinks]] and tags.
 
-Internally, tiddlers are an immutable dictionary of name:value pairs called fields. The only field that is required is the `title` field, but useful tiddlers also have a `text` field, and some or all of the standard fields listed below:
-
-* `title` - The unique title of the tiddler
-* `modified` - The date of the last modification to the tiddler
-* `modifier` - The name of the last person to modify the tiddler
-* `created` - The date the tiddler was created
-* `creator` - The name of the person who created the tiddler
-* `tags` - A list of tags applied to the tiddler
-* `type` - The ContentType that should used to interpret the content of the tiddler
-
-See TiddlerFields for a complete list of fields used in TiddlyWiki5.
-
+Internally, tiddlers are an immutable dictionary of name:value pairs called fields. The only field that is required is the `title` field, but useful tiddlers also have a `text` field, and some or all of the standard fields listed in TiddlerFields.
 </pre>
 </div>
 <div created="201308221707" creator="JeremyRuston" modified="201308252013" modifier="JeremyRuston" tags="concepts" title="TiddlyWiki">
@@ -2925,20 +2961,20 @@ People [[love using|Raves]] TiddlyWiki. Because it can be used without any compl
 <pre>TiddlyWiki5 is a reboot of TiddlyWiki for the next 25 years. It is a complete interactive wiki in JavaScript that can be run in the browser or on the server under [[node.js]].
 </pre>
 </div>
-<div created="201308252142" creator="JeremyRuston" modified="201308281907" modifier="JeremyRuston" tags="dev" title="TiddlyWikiFolders">
+<div created="201308252142" creator="JeremyRuston" modified="201308300920" modifier="JeremyRuston" tags="dev" title="TiddlyWikiFolders">
 <pre>As well as traditional single file wikis, TiddlyWiki5 [[under node.js|TiddlyWiki5 Node Edition]] supports wikis that are stored as a folder of individual tiddler files.
 
 ! Wiki folder files and folders
 
 Wiki folders can contain the following files and folders:
 
+* ''tiddlywiki.info'' - JSON file containing metadata for the wiki
 * ''\tiddlers'' - folder containing tiddler files comprising the wiki
 * ''\plugins'' - folder containing [[plugin folders|PluginMechanism]] to be included in the wiki
-* ''tiddlywiki.info'' - JSON file containing metadata for the wiki. See below
 
 Only the ''tiddlywiki.info'' file is required, the ''tiddlers'' and ''plugins'' folders are optional. Any files and folders not listed above are ignored.
 
-! Content of `tiddlywiki.info`
+!! Content of `tiddlywiki.info` file
 
 The `tiddlywiki.info` file in a wiki folder contains a JSON object comprising the following fields:
 
@@ -2950,21 +2986,58 @@ For example:
 
 ```
 {
-	&quot;plugins&quot;: [
-		&quot;tiddlywiki/tiddlyweb&quot;,
-		&quot;tiddlywiki/filesystem&quot;
-	],
-	&quot;doNotSave&quot;: [
-		&quot;$:/StoryList&quot;,
-		&quot;$:/HistoryList&quot;,
-		&quot;$:/status/IsLoggedIn&quot;,
-		&quot;$:/status/UserName&quot;
-	],
-	&quot;includeWikis&quot;: [
-		&quot;../tw5.com&quot;
-	]
+  &quot;plugins&quot;: [
+    &quot;tiddlywiki/tiddlyweb&quot;,
+    &quot;tiddlywiki/filesystem&quot;
+  ],
+  &quot;doNotSave&quot;: [
+    &quot;$:/StoryList&quot;,
+    &quot;$:/HistoryList&quot;,
+    &quot;$:/status/IsLoggedIn&quot;,
+    &quot;$:/status/UserName&quot;
+  ],
+  &quot;includeWikis&quot;: [
+    &quot;../tw5.com&quot;
+  ]
 }
 ```
+
+!! Content of `tiddlers` folder
+
+All the TiddlerFiles in the `tiddlers` folder are read into the wiki at startup. Sub-folders are scanned recursively for TiddlerFiles.
+
+Sub-folders within the `tiddlers` folder can also be given a `tiddlywiki.files` JSON file that overrides the default processing for that folder. The file format is illustrated with this example from the D3 plugin:
+
+```
+{
+  &quot;tiddlers&quot;: [
+    {
+      &quot;file&quot;: &quot;d3.min.js&quot;,
+      &quot;fields&quot;: {
+        &quot;type&quot;: &quot;application/javascript&quot;,
+        &quot;title&quot;: &quot;$:/plugins/tiddlywiki/d3/d3.js&quot;,
+        &quot;module-type&quot;: &quot;library&quot;
+      },
+      &quot;prefix&quot;: &quot;var d3;if($tw.browser){\n&quot;,
+      &quot;suffix&quot;: &quot;}\nexports.d3 = d3;\n&quot;
+    },
+    {
+      &quot;file&quot;: &quot;cloud/d3.layout.cloud.js&quot;,
+      &quot;fields&quot;: {
+        &quot;type&quot;: &quot;application/javascript&quot;,
+        &quot;title&quot;: &quot;$:/plugins/tiddlywiki/d3/d3.layout.cloud.js&quot;,
+        &quot;module-type&quot;: &quot;library&quot;
+      }
+    }
+  ]
+}
+```
+
+The JSON data consists of an object with a `tiddlers` property that contains an array of information about each tiddler to be loaded into the wiki. That information consists of:
+
+* `file`: the relative or absolute path to the file to include
+* `fields`: an object containing fields that override any provided in the tiddler file
+* `prefix` &amp; `suffix`: (optional) specify strings to be prefixed and suffixed to the tiddler file text content
 </pre>
 </div>
 <div tags="concepts" title="Wiki">
@@ -3303,6 +3376,14 @@ Further information:
 <div created="201308281902" creator="JeremyRuston" modified="201308281902" modifier="JeremyRuston" tags="definitions" title="Jermolene">
 <pre>Alias for JeremyRuston.</pre>
 </div>
+<div created="201308300925" creator="JeremyRuston" modified="201308300927" modifier="JeremyRuston" tags="fields" title="ListField">
+<pre>The `list` [[field of a tiddler|TiddlerFields]] is an optional feature that can be used to help structure your content. It is defined as an ordered sequence of tiddler titles, and it can be used in several ways:
+
+* The `list` [[filter|TiddlerFilters]] selects the entries from a list
+* The `listed` [[filter|TiddlerFilters]] selects the tiddlers that list the selected tiddler(s)
+* The NavigatorWidget manipulates a StoryList tiddler containing a `list` field of the tiddlers that are displayed in the main story column
+</pre>
+</div>
 <div created="201308251307" creator="JeremyRuston" modified="201308251307" modifier="JeremyRuston" tags="definitions" title="OpenSource">
 <pre>OpenSource is [[defined by Wikipedia|http://en.wikipedia.org/wiki/Open_source]] as //a philosophy, or pragmatic methodology that promotes free redistribution and access to an end product's design and implementation details//.
 
@@ -3333,6 +3414,22 @@ Unusually, TiddlyWiki is also a SingleFileApplication.
 <pre>TiddlyFox is an extension for Firefox that allows standalone TiddlyWiki files to save their changes directly to the file system. TiddlyFox works on both desktop and smartphone versions of Firefox.
 
 See [[How to use TiddlyWiki5 as a standalone HTML file with TiddlyFox]].</pre>
+</div>
+<div created="201308300842" creator="JeremyRuston" modified="201308300842" modifier="JeremyRuston" tags="definitions" title="TiddlySpace">
+<pre>TiddlySpace is an environment for discourse on the web, built from TiddlyWeb.
+
+TiddlySpace was originally sponsored by [[Osmosoft]] at [[BT]].
+</pre>
+</div>
+<div created="201308300841" creator="JeremyRuston" modified="201308300843" modifier="JeremyRuston" tags="definitions" title="TiddlyWeb">
+<pre>TiddlyWeb is a server application that puts [[Tiddlers]] on the web:
+
+http://tiddlyweb.com/
+
+TiddlyWeb can be used to host TiddlyWiki and TiddlyWiki5 wikis, making the individual tiddlers available over a flexible HTTP API.
+
+TiddlyWeb was originally sponsored by [[Osmosoft]] at [[BT]] (along with TiddlySpace).
+</pre>
 </div>
 <div tags="definitions" title="node.js">
 <pre>[[node.js]] is a downloadable application for your PC, Mac or Linux computer that lets it run JavaScript applications. Unlike JavaScript applications running in a web browser, [[node.js]] code has full access to the file system and other resources of the computer, enabling it to perform the roles that have traditionally been the preserve of languages like Java, PHP and Python. See http://nodejs.org/ for more details.
@@ -4067,7 +4164,7 @@ Deployment
 
 </pre>
 </div>
-<div created="201308232038" creator="JeremyRuston" modified="201308252219" modifier="JeremyRuston" tags="planning" title="RoadMap">
+<div created="201308232038" creator="JeremyRuston" modified="201308310847" modifier="JeremyRuston" tags="planning" title="RoadMap">
 <pre>TiddlyWiki5 is under rapid development at the moment, moving through a series of stages from alpha, via beta into a stable release.
 
 ! Alpha Release
@@ -4102,6 +4199,7 @@ The following additional features are planned or under consideration for impleme
 * Minification of plugins (JS and CSS)
 * List editor with drag and drop
 * Selective/weighted searching by title, body and fields
+* Maths notation
 
 ! 5.0 Release
 
@@ -4504,13 +4602,13 @@ Link targets default to the URL encoded title of the tiddler. The `href` can be 
 ```
 </pre>
 </div>
-<div created="201308241419" creator="JeremyRuston" modified="201308241419" modifier="JeremyRuston" tags="widget" title="ListWidget">
+<div created="201308241419" creator="JeremyRuston" modified="201308300837" modifier="JeremyRuston" tags="widget" title="ListWidget">
 <pre>\define demoMacro(title)
 This is the tiddler called [[Blah-$title$]]
 \end
 ! Introduction
 
-The list widget displays a sequence of tiddlers that match a TiddlerFilter. It can be used for many purposes:
+The list widget displays a sequence of tiddlers that match a [[tiddler filter|TiddlerFilters]]. It can be used for many purposes:
 
 * Displaying custom lists of links, like in TiddlyWiki5's sidebar
 * Custom lists, such as &quot;all tiddlers tagged 'task' that are not tagged 'done'&quot;

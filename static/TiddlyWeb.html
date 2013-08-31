@@ -46,7 +46,7 @@ http://five.tiddlywiki.com/</a></div>
 
 </span><span class='tw-transclude'>
 </span> <span>
-LazyLoadingMechanism</span></span></div>
+TiddlyWeb</span></span></div>
 
 <div class='tw-reveal tw-tiddler-info' style='display:none;'>
 </div></div></span></span><span class='tw-list-element'>
@@ -55,7 +55,7 @@ LazyLoadingMechanism</span></span></div>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='JeremyRuston.html'>
 JeremyRuston</a></span> <span class='tw-view-date'>
-25 August 2013</span></div>
+30 August 2013</span></div>
 </span></span><span class='tw-list-element'>
 <span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
@@ -64,20 +64,10 @@ JeremyRuston</a></span> <span class='tw-view-date'>
 <span class='tw-tiddler'>
 <span class='tw-transclude'>
 <button class='tw-button btn-invisible'>
-<span class='tw-tag-label' style='background-color:#e37a61'>
+<span class='tw-tag-label' style='background-color:#7bb95d'>
 <span class='tw-transclude'>
 </span> <span>
-dev</span></span></button>
-<div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
-</div>
-</span></span></span><span class='tw-list-element tw-tag-list-item'>
-<span class='tw-tiddler'>
-<span class='tw-transclude'>
-<button class='tw-button btn-invisible'>
-<span class='tw-tag-label' style='background-color:'>
-<span class='tw-transclude'>
-</span> <span>
-mechanism</span></span></button>
+definitions</span></span></button>
 <div class='tw-reveal tw-popup' style='position:absolute;display:none;'>
 </div>
 </span></span></span></span></div>
@@ -87,15 +77,20 @@ mechanism</span></span></button>
 <div>
 <div class='tw-transclude'>
 <p>
-<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> currently only implements lazy loading when its running in the browser talking to a <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='TiddlyWeb-compatible.html'>
-TiddlyWeb-compatible</a> server. When it syncs, it first requests a &quot;skinny&quot; version of each tiddler (consisting of all the fields apart from the text field). Subsequently, an attempt to read those skinny tiddlers with <code>
-wiki.getTiddler()</code> returns just the skinny fields, but an attempt to read one using <code>
-wiki.getTiddlerText()</code> will trigger an asynchronous load of the full tiddler text, which in turn triggers a refresh cycle, updating the display to reflect the newly loaded tiddler. Widgets that loop through all tiddlers are fine; it's only if they trigger <code>
-wiki.getTiddlerText()</code> for a tiddler that it will get loaded.</p><p>
-So, the browser-based search built into <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
-TiddlyWiki5</a> will only search the text of tiddlers that have been fully loaded. The expectation is that when lazy loading is used in a client-server configuration, then it's the server that really needs to handle search operations, because it's only the server that can &quot;see&quot; the text of all tiddlers. So, the plan is to integrate TW's built in search with <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWeb.html'>
-TiddlyWeb</a>'s search API. The simplest approach is that any local search triggers an asynchronous server side search. The results of the search would be asynchronously loaded such that they would dynamically appear in the local search results.
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWeb.html'>
+TiddlyWeb</a> is a server application that puts <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='Tiddlers.html'>
+Tiddlers</a> on the web:</p><p>
+<a class='tw-tiddlylink tw-tiddlylink-external' href='http://tiddlyweb.com/'>
+http://tiddlyweb.com/</a></p><p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWeb.html'>
+TiddlyWeb</a> can be used to host <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki.html'>
+TiddlyWiki</a> and <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWiki5.html'>
+TiddlyWiki5</a> wikis, making the individual tiddlers available over a flexible HTTP API.</p><p>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlyWeb.html'>
+TiddlyWeb</a> was originally sponsored by <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='Osmosoft.html'>
+Osmosoft</a> at <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-missing' href='BT.html'>
+BT</a> (along with <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='TiddlySpace.html'>
+TiddlySpace</a>).
 </p></div></div></div></span></span></span>
 </div>
 </p>
