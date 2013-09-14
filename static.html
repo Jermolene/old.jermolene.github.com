@@ -523,7 +523,9 @@ pre {
 
 table {
 	border: 1px solid #ddd;
-	width: 100%;
+	width: auto;
+	max-width: 100%;
+	caption-side: bottom;
 }
 
 table th, table td {
@@ -532,12 +534,21 @@ table th, table td {
 	border-left: 1px solid #ddd;
 }
 
+table thead tr td, table th {
+	background-color: #f0f0f0;
+	font-weight: bold;
+}
+
+table tfoot tr td {
+	background-color: #a8a8a8;
+}
+
 .tw-tiddler-frame img, .tw-tiddler-frame svg, .tw-tiddler-frame canvas, .tw-tiddler-frame embed {
 	max-width: 100%;
 }
 
 embed {
-	width: 100%;
+	max-width: 100%;
 	height: 20em;
 }
 
@@ -1636,7 +1647,7 @@ Features</span></span></div>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/JeremyRuston.html'>
 JeremyRuston</a></span> <span class='tw-view-date'>
-25 August 2013</span></div>
+10 September 2013</span></div>
 </span></span><span class='tw-list-element'>
 <span class='tw-transclude'>
 <div class='tw-tags-wrapper'>
@@ -1700,7 +1711,8 @@ quine</a></li></ul><p>
 The deep internal changes mean that <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
 TiddlyWiki5</a> is not compatible with previous versions, using different plugins, themes and so on. Content prepared for previous versions of <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki.html'>
 TiddlyWiki</a> will need massaging to work properly in <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
-TiddlyWiki5</a>.
+TiddlyWiki5</a>. When asking or searching for help be sure to specify <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>
+TiddlyWiki5</a> (or TW5).
 </p></div></div></div></span></span></span>
 </div>
 </span></div></div><div class='tw-list-element tw-tiddler-frame'>
@@ -2219,6 +2231,10 @@ WikiText</a>:</p><ul class='tw-list-frame'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/StyleBlockWikiText.html'>
 StyleBlockWikiText</a></span></div></li><li class='tw-list-element'>
+<div class='tw-tiddler'>
+<span class='tw-view-link'>
+<a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TableWikiText.html'>
+TableWikiText</a></span></div></li><li class='tw-list-element'>
 <div class='tw-tiddler'>
 <span class='tw-view-link'>
 <a class='tw-tiddlylink tw-tiddlylink-internal tw-tiddlylink-resolves' href='static/TypedBlockWikiText.html'>
