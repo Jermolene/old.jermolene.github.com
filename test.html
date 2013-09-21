@@ -402,7 +402,7 @@ test-wikitext.js</span>
             &quot;module-type&quot;: &quot;filteroperator&quot;
         },
         &quot;$:/core/modules/filters/eachday.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/filters/eachday.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilter operator that selects one tiddler for each unique day covered by the specified date field\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.eachday = function(source,operator,options) {\n\t// Convert the source to an array if necessary\n\tif(!$tw.utils.isArray(source)) {\n\t\tvar copy = [];\n\t\t$tw.utils.each(source,function(element,title) {\n\t\t\tcopy.push(title);\n\t\t});\n\t\tsource = copy;\n\t}\n\t// Collect up the first tiddler with each unique day value of the specified field\n\tvar results = [],values = {};\n\t$tw.utils.each(source,function(title) {\n\t\tvar tiddler = options.wiki.getTiddler(title);\n\t\tif(tiddler) {\n\t\t\tvar value = tiddler.getFieldString(operator.operand).substr(0,8);\n\t\t\tif(!$tw.utils.hop(values,value)) {\n\t\t\t\tvalues[value] = true;\n\t\t\t\tresults.push(title);\n\t\t\t}\n\t\t}\n\t});\n\treturn results;\n};\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/filters/eachday.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilter operator that selects one tiddler for each unique day covered by the specified date field\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.eachday = function(source,operator,options) {\n\t// Function to convert a date/time to a date integer\n\tvar toDate = function(value) {\n\t\tvalue = (new Date(value)).setHours(0,0,0,0);\n\t\treturn value+0;\n\t};\n\t// Convert the source to an array if necessary\n\tif(!$tw.utils.isArray(source)) {\n\t\tvar copy = [];\n\t\t$tw.utils.each(source,function(element,title) {\n\t\t\tcopy.push(title);\n\t\t});\n\t\tsource = copy;\n\t}\n\t// Collect up the first tiddler with each unique day value of the specified field\n\tvar results = [],values = [];\n\t$tw.utils.each(source,function(title) {\n\t\tvar tiddler = options.wiki.getTiddler(title);\n\t\tif(tiddler &amp;&amp; tiddler.fields[operator.operand]) {\n\t\t\tvar value = toDate(tiddler.fields[operator.operand]);\n\t\t\tif(values.indexOf(value) === -1) {\n\t\t\t\tvalues.push(value);\n\t\t\t\tresults.push(title);\n\t\t\t}\n\t\t}\n\t});\n\treturn results;\n};\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/filters/eachday.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
@@ -492,7 +492,7 @@ test-wikitext.js</span>
             &quot;module-type&quot;: &quot;filteroperator&quot;
         },
         &quot;$:/core/modules/filters/sameday.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/filters/sameday.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilter operator that selects tiddlers with a modified date field on the same day as the provided value.\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.sameday = function(source,operator,options) {\n\tvar results = [];\n\t// Function to check an individual title\n\tfunction checkTiddler(title) {\n\t\tvar tiddler = options.wiki.getTiddler(title);\n\t\tif(tiddler) {\n\t\t\tvar match = tiddler.getFieldString(\&quot;modified\&quot;).substr(0,8) === operator.operand.substr(0,8);\n\t\t\tif(operator.prefix === \&quot;!\&quot;) {\n\t\t\t\tmatch = !match;\n\t\t\t}\n\t\t\tif(match) {\n\t\t\t\tresults.push(title);\n\t\t\t}\n\t\t}\n\t}\n\t// Iterate through the source tiddlers\n\tif($tw.utils.isArray(source)) {\n\t\t$tw.utils.each(source,function(title) {\n\t\t\tcheckTiddler(title);\n\t\t});\n\t} else {\n\t\t$tw.utils.each(source,function(element,title) {\n\t\t\tcheckTiddler(title);\n\t\t});\n\t}\n\treturn results;\n};\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/filters/sameday.js\ntype: application/javascript\nmodule-type: filteroperator\n\nFilter operator that selects tiddlers with a modified date field on the same day as the provided value.\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nExport our filter function\n*/\nexports.sameday = function(source,operator,options) {\n\tvar results = [],\n\t\tisSameDay = function(dateField,dateString) {\n\t\t\tvar date1 = (new Date(dateField)).setHours(0,0,0,0),\n\t\t\t\tdate2 = (new Date($tw.utils.parseDate(dateString))).setHours(0,0,0,0);\n\t\t\treturn date1 === date2;\n\t\t};\n\t// Function to check an individual title\n\tfunction checkTiddler(title) {\n\t\tvar tiddler = options.wiki.getTiddler(title);\n\t\tif(tiddler) {\n\t\t\tvar match = isSameDay(tiddler.fields.modified,operator.operand);\n\t\t\tif(operator.prefix === \&quot;!\&quot;) {\n\t\t\t\tmatch = !match;\n\t\t\t}\n\t\t\tif(match) {\n\t\t\t\tresults.push(title);\n\t\t\t}\n\t\t}\n\t}\n\t// Iterate through the source tiddlers\n\tif($tw.utils.isArray(source)) {\n\t\t$tw.utils.each(source,function(title) {\n\t\t\tcheckTiddler(title);\n\t\t});\n\t} else {\n\t\t$tw.utils.each(source,function(element,title) {\n\t\t\tcheckTiddler(title);\n\t\t});\n\t}\n\treturn results;\n};\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/filters/sameday.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;filteroperator&quot;
@@ -1653,7 +1653,7 @@ describe(&quot;Filter tests&quot;, function() {
 	});
 
 	it(&quot;should handle the eachday operator&quot;, function() {
-		expect(wiki.filterTiddlers(&quot;[eachday[modified]sort[title]]&quot;).join(&quot;,&quot;)).toBe(&quot;a fourth tiddler,Tiddler Three,TiddlerOne&quot;);
+		expect(wiki.filterTiddlers(&quot;[eachday[modified]sort[title]]&quot;).join(&quot;,&quot;)).toBe(&quot;Tiddler Three,TiddlerOne&quot;);
 	});
 
 	it(&quot;should handle the sameday operator&quot;, function() {
@@ -2456,7 +2456,7 @@ $tw.utils.pad = function(value,length) {
 	return s;
 };
 
-// Convert a date into YYYYMMDDHHMM format
+// Convert a date into UTC YYYYMMDDHHMM format
 $tw.utils.stringifyDate = function(value) {
 	return value.getUTCFullYear() +
 			$tw.utils.pad(value.getUTCMonth() + 1) +
@@ -2465,7 +2465,7 @@ $tw.utils.stringifyDate = function(value) {
 			$tw.utils.pad(value.getUTCMinutes());
 };
 
-// Parse a date from a YYYYMMDDHHMMSSMMM format string
+// Parse a date from a UTC YYYYMMDDHHMMSSMMM format string
 $tw.utils.parseDate = function(value) {
 	if(typeof value === "string") {
 		return new Date(Date.UTC(parseInt(value.substr(0,4),10),
