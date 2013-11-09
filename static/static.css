@@ -1372,7 +1372,7 @@ canvas.tw-edit-bitmapeditor  {
 	border-bottom: 1px solid #ececec;
 }
 
-.tw-sidebar-tab-divider.tw-tab-divider {
+.tw-sidebar-lists .tw-tab-divider {
 	border-top: none;
 	height: 1px;
 	
@@ -1384,12 +1384,12 @@ background-image: -ms-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236
 
 }
 
-.tw-more-sidebar.tw-tab-set {
+.tw-more-sidebar {
 	white-space: nowrap;
 }
 
 @media (min-width: 770px) {
-	.tw-more-sidebar.tw-tab-set {
+	.tw-more-sidebar {
 		margin-left: -14px;
 	}
 }
@@ -1400,6 +1400,16 @@ background-image: -ms-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236
 	text-align: right;
 	padding-top: 0;
 	padding-left: 0;
+}
+
+.tw-more-sidebar .tw-tab-buttons button {
+	display: block;
+	width: 100%;
+	text-align: right;
+}
+
+.tw-sidebar-lists .tw-more-sidebar .tw-tab-divider {
+	display: none;
 }
 
 .tw-more-sidebar .tw-tab-content {
@@ -1427,11 +1437,11 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224
 .tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {
 	background-color: #fff;
 	
-background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255) 100%);
-background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255) 100%);
-background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255) 100%);
-background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255) 100%);
-background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(255,255,255) 100%);
+background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
 
 	border: none;
 }
