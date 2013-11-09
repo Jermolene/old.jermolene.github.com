@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.0-alpha.12" />
+<meta name="tiddlywiki-version" content="5.0.0-alpha.13" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -281,7 +281,7 @@ Error message and password prompt
 </noscript>
 <!----------- Miscellaneous system tiddlers ----------->
 <div id="systemArea" style="display:none;">
-<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.0-alpha.12">
+<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.0-alpha.13">
 <pre>{
     &quot;title&quot;: &quot;$:/core&quot;,
     &quot;description&quot;: &quot;TiddlyWiki5 core plugin&quot;,
@@ -1596,10 +1596,10 @@ Error message and password prompt
             &quot;text&quot;: &quot;Current view: {{$:/view}}\n\n&lt;$linkcatcher to=\&quot;$:/view\&quot;&gt;\n\n&lt;$list filter=\&quot;classic zoomin pop\&quot;&gt;\n\n&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;match\&quot; text={{!!title}}&gt;&amp;bull;&lt;/$reveal&gt;&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;nomatch\&quot; text={{!!title}}&gt;&amp;nbsp;&lt;/$reveal&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=\&quot;title\&quot;/&gt;&lt;/$link&gt;\n\n&lt;/$list&gt;\n\n&lt;/$linkcatcher&gt;\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.12&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.13&quot;
 }</pre>
 </div>
-<div description="Adds support for HTML5 full screen mode" plugin-type="plugin" title="$:/plugins/tiddlywiki/fullscreen" type="application/json" version="5.0.0-alpha.12">
+<div description="Adds support for HTML5 full screen mode" plugin-type="plugin" title="$:/plugins/tiddlywiki/fullscreen" type="application/json" version="5.0.0-alpha.13">
 <pre>{
     &quot;title&quot;: &quot;$:/plugins/tiddlywiki/fullscreen&quot;,
     &quot;description&quot;: &quot;Adds support for HTML5 full screen mode&quot;,
@@ -1613,10 +1613,10 @@ Error message and password prompt
             &quot;module-type&quot;: &quot;browser-startup&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.12&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.13&quot;
 }</pre>
 </div>
-<div description="A plain simple theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.0-alpha.12">
+<div description="A plain simple theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.0-alpha.13">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/snowwhite&quot;,
     &quot;name&quot;: &quot;Snow White&quot;,
@@ -1660,10 +1660,10 @@ Error message and password prompt
             &quot;text&quot;: &quot;fontfamily: `\&quot;Helvetica Neue\&quot;, Helvetica, Arial, \&quot;Lucida Grande\&quot;, sans-serif`\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.12&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.13&quot;
 }</pre>
 </div>
-<div description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.0.0-alpha.12">
+<div description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.0.0-alpha.13">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/starlight&quot;,
     &quot;name&quot;: &quot;Starlight&quot;,
@@ -1691,10 +1691,10 @@ Error message and password prompt
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\\define border-radius(radius)\n```\n  -webkit-border-radius: $radius$;\n     -moz-border-radius: $radius$;\n          border-radius: $radius$;\n```\n\\end\n\\define box-shadow(shadow)\n```\n  -webkit-box-shadow: $shadow$;\n     -moz-box-shadow: $shadow$;\n          box-shadow: $shadow$;\n```\n\\end\n\\define filter(filter)\n```\n  -webkit-filter: $filter$;\n     -moz-filter: $filter$;\n          filter: $filter$;\n```\n\\end\n\\define background-linear-gradient(gradient)\n```\nbackground-image: linear-gradient($gradient$);\nbackground-image: -o-linear-gradient($gradient$);\nbackground-image: -moz-linear-gradient($gradient$);\nbackground-image: -webkit-linear-gradient($gradient$);\nbackground-image: -ms-linear-gradient($gradient$);\n```\n\\end\n\\define datauri(title)\n&lt;$macrocall $name=\&quot;makedatauri\&quot; type={{$title$!!type}} text={{$title$}}/&gt;\n\\end\n\n/*\nPlaceholder for a more thorough refinement of Snow White\n*/\n\n@font-face {\n  font-family: \&quot;Arvo\&quot;;\n  font-style: normal;\n  font-weight: 400;\n  src: local(\&quot;Arvo\&quot;), url(&lt;&lt;datauri \&quot;$:/themes/tiddlywiki/starlight/arvo.woff\&quot;&gt;&gt;) format(\&quot;woff\&quot;);\n}\n\nhtml body {\n\tfont-family: \&quot;Arvo\&quot;, \&quot;Times\&quot;;\n  background: url(&lt;&lt;datauri \&quot;$:/themes/tiddlywiki/starlight/ltbg.jpg\&quot;&gt;&gt;);\n}\n\n.tw-page-controls svg {\n  &lt;&lt;filter \&quot;drop-shadow(1px 1px 2px rgba(255,255,255,0.9))\&quot;&gt;&gt;\n}\n\n/*\n** Some rainbow icon colours\n*/\n\nsvg.tw-image-new-button {\n  fill: #5eb95e; /* Green */\n}\n\nsvg.tw-image-options-button {\n  fill: rgb(128, 88, 165); /* Purple */\n}\n\nsvg.tw-image-save-button {\n  fill: #0e90d2; /* Light blue */\n}\n\nsvg.tw-image-info-button {\n  fill: #0e90d2; /* Light blue */\n}\n\nsvg.tw-image-edit-button {\n  fill: rgb(243, 123, 29); /* Orange */\n}\n\nsvg.tw-image-close-button {\n  fill: #dd514c; /* Red */\n}\n\nsvg.tw-image-delete-button {\n  fill: #dd514c; /* Red */\n}\n\nsvg.tw-image-cancel-button {\n  fill: rgb(243, 123, 29); /* Orange */\n}\n\nsvg.tw-image-done-button {\n  fill: #5eb95e; /* Green */\n}\n\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.12&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.13&quot;
 }</pre>
 </div>
-<div description="Experimental theme with titles that stick to the top of the window" name="Sticky Titles" plugin-type="theme" title="$:/themes/tiddlywiki/stickytitles" type="application/json" version="5.0.0-alpha.12">
+<div description="Experimental theme with titles that stick to the top of the window" name="Sticky Titles" plugin-type="theme" title="$:/themes/tiddlywiki/stickytitles" type="application/json" version="5.0.0-alpha.13">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/stickytitles&quot;,
     &quot;name&quot;: &quot;Sticky Titles&quot;,
@@ -1712,10 +1712,10 @@ Error message and password prompt
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n.tw-tiddler-title {\n  position: -webkit-sticky;\n  position: -moz-sticky;\n  position: -o-sticky;\n  position: -ms-sticky;\n  position: sticky;\n  top: 0px;\n  background: #fff;\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.12&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.13&quot;
 }</pre>
 </div>
-<div description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.0.0-alpha.12">
+<div description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.0.0-alpha.13">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/centralised&quot;,
     &quot;name&quot;: &quot;Centralised&quot;,
@@ -1733,10 +1733,10 @@ Error message and password prompt
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n@media (min-width: 770px) {\n\n\t.tw-page-container {\n\t\ttext-align: center;\n\t}\n\n\t.story-river {\n\t\tposition: relative;\n\t\twidth: 770px;\n\t\tpadding: 42px;\n\t\tmargin: 0 auto;\n\t\ttext-align: left;\n\t}\n\n\t.sidebar-header {\n\t\ttext-align: left;\n\t\tleft: 50%;\n\t\tright: 0;\n\t\tpadding-left: 413px;\n\t}\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.12&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.13&quot;
 }</pre>
 </div>
-<div description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.0.0-alpha.12">
+<div description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.0.0-alpha.13">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/readonly&quot;,
     &quot;name&quot;: &quot;ReadOnly&quot;,
@@ -1754,7 +1754,7 @@ Error message and password prompt
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\nsvg.tw-image-new-button, svg.tw-image-options-button, svg.tw-image-save-button, svg.tw-image-edit-button, svg.tw-image-delete-button, svg.tw-image-cancel-button, svg.tw-image-done-button {\n\tdisplay: none;\t\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.12&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.13&quot;
 }</pre>
 </div>
 <div description="A dark theme" name="Rocker" plugin-type="theme" title="$:/themes/giffmex/rocker" type="application/json" version="0.0.0">
