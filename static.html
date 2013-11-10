@@ -760,15 +760,10 @@ a.tw-tiddlylink-external {
 }
 
 .tw-page-controls svg {
-	height: 1.5em;
+	height: 1.75em;
 	min-width: 1px;
 	padding-right: 0.5em;
 	fill: #fff;
-	
-  -webkit-filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.15));
-     -moz-filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.15));
-          filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.15));
-
 	
   -webkit-transition: fill 150ms ease-in-out;
      -moz-transition: fill 150ms ease-in-out;
@@ -778,11 +773,6 @@ a.tw-tiddlylink-external {
 
 .tw-page-controls svg:hover {
 	fill: #000;
-	
-  -webkit-filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.9));
-     -moz-filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.9));
-          filter: drop-shadow(1px 1px 2px rgba(255,255,255,0.9));
-
 }
 
 .tw-menu-list-item {
@@ -1349,8 +1339,8 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-tab-buttons button {
 	color: #666;
-	margin-left: 4px;
-	margin-right: 4px;
+	margin-left: 2px;
+	margin-right: 2px;
 	font-weight: 300;
 	border: none;
 	background: inherit;
@@ -1488,6 +1478,18 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 	height: 1em;
 }
 
+/*
+** Control panel
+*/
+
+.tw-control-panel td {
+	padding: 4px;
+}
+
+.tw-control-panel table, .tw-control-panel table input, .tw-control-panel table textarea {
+	width: 100%;
+}
+
 </style>
 </head>
 <body class="tw-body">
@@ -1513,7 +1515,7 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 
 </span><span style='fill:;'></span> <span class='title'>HelloThere</span></div>
 
-<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 4 hours ago</div>
+<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 31 hours ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:plum;'> introduction</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
@@ -1528,7 +1530,7 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 
 </span><span style='fill:;'></span> <span class='title'>Features</span></div>
 
-<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 3 hours ago</div>
+<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 31 hours ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:plum;'> introduction</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
@@ -1543,10 +1545,12 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 
 </span><span style='fill:;'></span> <span class='title'>ReleaseHistory</span></div>
 
-<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 8 hours ago</div>
+<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 36 hours ago</div>
 <div class='tw-tags-wrapper'></div>
-<div class='body'><p>Here are the details of recent releases of <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>TiddlyWiki5</a>.</p><div><p><h1><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/Release%25205.0.0-alpha.13.html'>Release 5.0.0-alpha.13</a></h1>
-<div><p><em><a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.12...v5.0.0-alpha.13' target='_blank'>See GitHub for detailed change history of this release</a></em></p><p>This release has several bug fixes:</p><ul><li>Fixes to <a class=' tw-tiddlylink tw-tiddlylink-missing' href='static/DaveGifford.html'>DaveGifford</a>'s themes <strong>blanca</strong>, <strong>blue</strong> and <strong>rocker</strong></li><li>Fix an issue with the <code>&lt;$edit-text&gt;</code> widget</li><li>Documentation updates</li><li>Improved deployment scripts</li><li>Made the modifier field in the subtitle be a link</li><li>Styling improvements for the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='static/CodeMirror.html'>CodeMirror</a> plugin</li><li>Improved the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/ViewWidget.html'>ViewWidget</a> so that it falls back to displaying its content if the field/property is missing or empty</li><li>Extend use of the built-in <code>&lt;&lt;tabs&gt;&gt;</code> macro to the tiddler info panel, the control panel and the sidebar<ul><li>This means that you can add new tabs by creating tiddlers with these tags, and optionally a <code>caption</code> field for the text of the tab:<ul><li><a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252Ftags%252FTiddlerInfo.html'>$:/tags/TiddlerInfo</a> for tiddler info panel tabs</li><li><a class=' tw-tiddlylink tw-tiddlylink-missing' href='static/%2524%253A%252Ftags%252FControlPanel.html'>$:/tags/ControlPanel</a> for control panel tabs</li><li><a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252Ftags%252FSideBar.html'>$:/tags/SideBar</a> for sidebar tabs</li><li><a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252Ftags%252FMoreSideBar.html'>$:/tags/MoreSideBar</a> for tabs in the &quot;more&quot; sidebar</li><li>Change the order of tabs by adjusting the <code>list</code> field of the corresponding tag tiddler</li></ul></li></ul></li></ul></div>
+<div class='body'><p>Here are the details of recent releases of <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>TiddlyWiki5</a>.</p><div><p><h1><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/Release%25205.0.0-alpha.14.html'>Release 5.0.0-alpha.14</a></h1>
+<div><p><em><a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.13...v5.0.0-alpha.14' target='_blank'>See GitHub for detailed change history of this release</a></em></p><p>This release has several bug fixes:</p><ul><li>Improved the layout of the <a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252FControlPanel.html'>control panel</a></li><li>Fixed problem with using the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/CheckboxWidget.html'>CheckboxWidget</a> to apply tags to tiddlers that don't have any existing tags</li><li>Fixed problem with default password for the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/PasswordWidget.html'>PasswordWidget</a> being the string &quot;null&quot;</li></ul></div>
+</p></div><div><p><h1><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/Release%25205.0.0-alpha.13.html'>Release 5.0.0-alpha.13</a></h1>
+<div><p><em><a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.12...v5.0.0-alpha.13' target='_blank'>See GitHub for detailed change history of this release</a></em></p><p>This release has several bug fixes:</p><ul><li>Fixes to <a class=' tw-tiddlylink tw-tiddlylink-missing' href='static/DaveGifford.html'>DaveGifford</a>'s themes <strong>blanca</strong>, <strong>blue</strong> and <strong>rocker</strong></li><li>Fix an issue with the <code>&lt;$edit-text&gt;</code> widget</li><li>Documentation updates</li><li>Improved deployment scripts</li><li>Made the modifier field in the subtitle be a link</li><li>Styling improvements for the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='static/CodeMirror.html'>CodeMirror</a> plugin</li><li>Improved the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/ViewWidget.html'>ViewWidget</a> so that it falls back to displaying its content if the field/property is missing or empty</li><li>Extend use of the built-in <code>&lt;&lt;tabs&gt;&gt;</code> macro to the tiddler info panel, the control panel and the sidebar<ul><li>This means that you can add new tabs by creating tiddlers with these tags, and optionally a <code>caption</code> field for the text of the tab:<ul><li><a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252Ftags%252FTiddlerInfo.html'>$:/tags/TiddlerInfo</a> for tiddler info panel tabs</li><li><a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252Ftags%252FControlPanel.html'>$:/tags/ControlPanel</a> for control panel tabs</li><li><a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252Ftags%252FSideBar.html'>$:/tags/SideBar</a> for sidebar tabs</li><li><a class=' tw-tiddlylink tw-tiddlylink-shadow' href='static/%2524%253A%252Ftags%252FMoreSideBar.html'>$:/tags/MoreSideBar</a> for tabs in the &quot;more&quot; sidebar</li><li>Change the order of tabs by adjusting the <code>list</code> field of the corresponding tag tiddler</li></ul></li></ul></li></ul></div>
 </p></div><div><p><h1><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/Release%25205.0.0-alpha.12.html'>Release 5.0.0-alpha.12</a></h1>
 <div><p><em><a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.11...v5.0.0-alpha.12' target='_blank'>See GitHub for detailed change history of this release</a></em></p><p>This minor release just contains fixes for the syncer and related adaptor modules for the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/TiddlyWeb.html'>TiddlyWeb</a> edition and for <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/TiddlyWiki5.html'>TiddlyWiki5</a>'s integrated server.
 </p></div>
@@ -1562,7 +1566,7 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 
 </span><span style='fill:;'></span> <span class='title'>Community</span></div>
 
-<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 3 hours ago</div>
+<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 31 hours ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> community</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
@@ -1590,7 +1594,7 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 
 </span><span style='fill:;'></span> <span class='title'>RoadMap</span></div>
 
-<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 3 hours ago</div>
+<div class='tw-tiddler-info tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='static/JeremyRuston.html'>JeremyRuston</a> 31 hours ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> planning</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
