@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.0-alpha.16" />
+<meta name="tiddlywiki-version" content="5.0.0-alpha.17" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -165,8 +165,8 @@ Error message and password prompt
 </p><p><li>EncryptWidget</li>
 </p><p><li>Examples</li>
 </p><p><li>faq</li>
-</p><p><li>features</li>
 </p><p><li>Features</li>
+</p><p><li>features</li>
 </p><p><li>FederatialLimited</li>
 </p><p><li>FieldManglerWidget</li>
 </p><p><li>FieldsWidget</li>
@@ -228,6 +228,7 @@ Error message and password prompt
 </p><p><li>Release 5.0.0-alpha.14</li>
 </p><p><li>Release 5.0.0-alpha.15</li>
 </p><p><li>Release 5.0.0-alpha.16</li>
+</p><p><li>Release 5.0.0-alpha.17</li>
 </p><p><li>ReleaseHistory</li>
 </p><p><li>Releasing a new version of TiddlyWiki5</li>
 </p><p><li>RenderingMechanism</li>
@@ -315,7 +316,7 @@ Error message and password prompt
 </noscript>
 <!----------- Ordinary tiddlers ----------->
 <div id="storeArea" style="display:none;">
-<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.0-alpha.16">
+<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/core&quot;,
     &quot;description&quot;: &quot;TiddlyWiki5 core plugin&quot;,
@@ -1845,7 +1846,7 @@ Error message and password prompt
             &quot;text&quot;: &quot;Current view: {{$:/view}}\n\n&lt;$linkcatcher to=\&quot;$:/view\&quot;&gt;&lt;$list filter=\&quot;classic zoomin pop\&quot;&gt;&lt;div&gt;&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;match\&quot; text={{!!title}}&gt;&amp;bull;&lt;/$reveal&gt;&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;nomatch\&quot; text={{!!title}}&gt;&amp;nbsp;&lt;/$reveal&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=\&quot;title\&quot;/&gt;&lt;/$link&gt;\n&lt;/div&gt;\n&lt;/$list&gt;\n&lt;/$linkcatcher&gt;\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
 <div created="20131127215321439" creator="JeremyRuston" modified="20131128181252154" modifier="JeremyRuston" title="$:/DefaultTiddlers" type="text/vnd.tiddlywiki">
@@ -1865,11 +1866,11 @@ Docs
 </pre>
 </div>
 <div tags="$:/tags/PageTemplate" title="$:/editions/tw5.com/github-fork-ribbon">
-<pre>&lt;div class=&quot;github-fork-ribbon-wrapper right&quot; style&gt;&lt;div class=&quot;github-fork-ribbon&quot; style=&quot;background-color:#12991D;&quot;&gt;&lt;$link to=&quot;ReleaseHistory&quot;&gt;&lt;&lt;version&gt;&gt;&lt;/$link&gt;&lt;/div&gt;
+<pre>&lt;div class=&quot;github-fork-ribbon-wrapper right&quot; style&gt;&lt;div class=&quot;github-fork-ribbon&quot; style=&quot;background-color:#41BD23;&quot;&gt;&lt;$link to=&quot;ReleaseHistory&quot;&gt;&lt;&lt;version&gt;&gt;&lt;/$link&gt;&lt;/div&gt;
 &lt;/div&gt;</pre>
 </div>
 <div title="$:/editions/tw5.com/snippets/download-empty-button">
-<pre>&lt;$button message=&quot;tw-download-file&quot; param=&quot;$:/editions/tw5.com/save-empty&quot; class=&quot;btn-big-green&quot;&gt;Download Empty {{$:/core/images/save-button}}&lt;/$button&gt;</pre>
+<pre>&lt;$button message=&quot;tw-download-file&quot; param=&quot;$:/editions/tw5.com/download-empty&quot; class=&quot;btn-big-green&quot;&gt;Download Empty {{$:/core/images/save-button}}&lt;/$button&gt;</pre>
 </div>
 <div caption="Static Link" tags="$:/tags/TiddlerInfo" title="$:/editions/tw5.com/TiddlerInfo/StaticLink">
 <pre>\define makeLink()
@@ -1892,7 +1893,7 @@ A static HTML representation of this tiddler is available at the URL:
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div description="Adds support for HTML5 full screen mode" plugin-type="plugin" title="$:/plugins/tiddlywiki/fullscreen" type="application/json" version="5.0.0-alpha.16">
+<div description="Adds support for HTML5 full screen mode" plugin-type="plugin" title="$:/plugins/tiddlywiki/fullscreen" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/plugins/tiddlywiki/fullscreen&quot;,
     &quot;description&quot;: &quot;Adds support for HTML5 full screen mode&quot;,
@@ -1906,10 +1907,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;module-type&quot;: &quot;browser-startup&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="Codemirror plugin" plugin-type="plugin" title="$:/plugins/tiddlywiki/github-fork-ribbon" type="application/json" version="5.0.0-alpha.16">
+<div description="Codemirror plugin" plugin-type="plugin" title="$:/plugins/tiddlywiki/github-fork-ribbon" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/plugins/tiddlywiki/github-fork-ribbon&quot;,
     &quot;description&quot;: &quot;Codemirror plugin&quot;,
@@ -1926,10 +1927,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;/* Left will inherit from right (so we don't need to duplicate code */\n.github-fork-ribbon {\n  /* The right and left lasses determine the side we attach our banner to */\n  position: absolute;\n\n  /* Add a bit of padding to give some substance outside the \&quot;stitching\&quot; */\n  padding: 2px 0;\n\n  /* Set the base colour */\n  background-color: #a00;\n\n  /* Set a gradient: transparent black at the top to almost-transparent black at the bottom */\n  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.00)), to(rgba(0, 0, 0, 0.15)));\n  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));\n  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));\n  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));\n  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));\n  background-image: linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));\n  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#000000', EndColorStr='#000000');\n\n  /* Add a drop shadow */\n  -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);\n  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);\n\n  z-index: 999;\n  pointer-events: auto;\n}\n\n.github-fork-ribbon a, .github-fork-ribbon a.tw-tiddlylink,\n.github-fork-ribbon a:hover, .github-fork-ribbon a.tw-tiddlylink:hover  {\n  /* Set the font */\n  font-family: \&quot;Helvetica Neue\&quot;, Helvetica, Arial, sans-serif;\n  font-size: 13px;\n  font-weight: 700;\n  color: white;\n\n  /* Set the text properties */\n  text-decoration: none;\n  text-shadow: 0 -1px rgba(0,0,0,0.5);\n  text-align: center;\n\n  /* Set the geometry. If you fiddle with these you'll also need to tweak the top and right values in #github-fork-ribbon. */\n  width: 200px;\n  line-height: 20px;\n\n  /* Set the layout properties */\n  display: inline-block;\n  padding: 2px 0;\n\n  /* Add \&quot;stitching\&quot; effect */\n  border-width: 1px 0;\n  border-style: dotted;\n  border-color: rgba(255,255,255,0.7);\n}\n\n.github-fork-ribbon-wrapper {\n  width: 150px;\n  height: 150px;\n  position: absolute;\n  overflow: hidden;\n  top: 0;\n  z-index: 999;\n  pointer-events: none;\n}\n\n.github-fork-ribbon-wrapper.fixed {\n  position: fixed;\n}\n\n.github-fork-ribbon-wrapper.left {\n  left: 0;\n}\n\n.github-fork-ribbon-wrapper.right {\n  right: 0;\n}\n\n.github-fork-ribbon-wrapper.left-bottom {\n  position: fixed;\n  top: inherit;\n  bottom: 0;\n  left: 0;\n}\n\n.github-fork-ribbon-wrapper.right-bottom {\n  position: fixed;\n  top: inherit;\n  bottom: 0;\n  right: 0;\n}\n\n.github-fork-ribbon-wrapper.right .github-fork-ribbon {\n  top: 42px;\n  right: -43px;\n\n  /* Rotate the banner 45 degrees */\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n\n.github-fork-ribbon-wrapper.left .github-fork-ribbon {\n  top: 42px;\n  left: -43px;\n\n  /* Rotate the banner -45 degrees */\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n\n\n.github-fork-ribbon-wrapper.left-bottom .github-fork-ribbon {\n  top: 80px;\n  left: -43px;\n\n  /* Rotate the banner -45 degrees */\n  -webkit-transform: rotate(45deg);\n  -moz-transform: rotate(45deg);\n  -o-transform: rotate(45deg);\n  transform: rotate(45deg);\n}\n\n.github-fork-ribbon-wrapper.right-bottom .github-fork-ribbon {\n  top: 80px;\n  right: -43px;\n\n  /* Rotate the banner -45 degrees */\n  -webkit-transform: rotate(-45deg);\n  -moz-transform: rotate(-45deg);\n  -o-transform: rotate(-45deg);\n  transform: rotate(-45deg);\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="Google Analytics plugin for TiddlyWiki5" plugin-type="plugin" title="$:/plugins/tiddlywiki/googleanalytics" type="application/json" version="5.0.0-alpha.16">
+<div description="Google Analytics plugin for TiddlyWiki5" plugin-type="plugin" title="$:/plugins/tiddlywiki/googleanalytics" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/plugins/tiddlywiki/googleanalytics&quot;,
     &quot;description&quot;: &quot;Google Analytics plugin for TiddlyWiki5&quot;,
@@ -1943,7 +1944,7 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;module-type&quot;: &quot;startup&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
 <div title="$:/StaticBanner">
@@ -2022,7 +2023,7 @@ A static HTML representation of this tiddler is available at the URL:
     }
 }</pre>
 </div>
-<div description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.0.0-alpha.16">
+<div description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/centralised&quot;,
     &quot;name&quot;: &quot;Centralised&quot;,
@@ -2040,10 +2041,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n@media (min-width: 770px) {\n\n\t.tw-page-container {\n\t\ttext-align: center;\n\t}\n\n\t.story-river {\n\t\tposition: relative;\n\t\twidth: 770px;\n\t\tpadding: 42px;\n\t\tmargin: 0 auto;\n\t\ttext-align: left;\n\t}\n\n\t.sidebar-header {\n\t\ttext-align: left;\n\t\tleft: 50%;\n\t\tright: 0;\n\t\tpadding-left: 413px;\n\t}\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="A darker theme" name="Night-time" plugin-type="theme" title="$:/themes/tiddlywiki/nighttime" type="application/json" version="5.0.0-alpha.16">
+<div description="A darker theme" name="Night-time" plugin-type="theme" title="$:/themes/tiddlywiki/nighttime" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/nighttime&quot;,
     &quot;name&quot;: &quot;Night-time&quot;,
@@ -2061,10 +2062,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\nhtml body.tw-body {\n\tbackground-color: #5C5D8E;\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.0.0-alpha.16">
+<div description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/readonly&quot;,
     &quot;name&quot;: &quot;ReadOnly&quot;,
@@ -2082,10 +2083,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\nsvg.tw-image-new-button, svg.tw-image-options-button, svg.tw-image-save-button, svg.tw-image-edit-button, svg.tw-image-delete-button, svg.tw-image-cancel-button, svg.tw-image-done-button {\n\tdisplay: none;\t\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.0-alpha.16">
+<div description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/snowwhite&quot;,
     &quot;name&quot;: &quot;Snow White&quot;,
@@ -2103,10 +2104,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\\define border-radius(radius)\n```\n  -webkit-border-radius: $radius$;\n     -moz-border-radius: $radius$;\n          border-radius: $radius$;\n```\n\\end\n\\define box-shadow(shadow)\n```\n  -webkit-box-shadow: $shadow$;\n     -moz-box-shadow: $shadow$;\n          box-shadow: $shadow$;\n```\n\\end\n\\define filter(filter)\n```\n  -webkit-filter: $filter$;\n     -moz-filter: $filter$;\n          filter: $filter$;\n```\n\\end\n\\define transition(transition)\n```\n  -webkit-transition: $transition$;\n     -moz-transition: $transition$;\n          transition: $transition$;\n```\n\\end\n\\define transform-origin(origin)\n```\n  -webkit-transform-origin: $origin$;\n     -moz-transform-origin: $origin$;\n          transform-origin: $origin$;\n```\n\\end\n\\define background-linear-gradient(gradient)\n```\nbackground-image: linear-gradient($gradient$);\nbackground-image: -o-linear-gradient($gradient$);\nbackground-image: -moz-linear-gradient($gradient$);\nbackground-image: -webkit-linear-gradient($gradient$);\nbackground-image: -ms-linear-gradient($gradient$);\n```\n\\end\n\n.sidebar-header {\n\ttext-shadow: 0 1px 0 rgba(255,255,255, 0.8);\n}\n\n.tw-page-controls svg {\n\t&lt;&lt;transition \&quot;fill 150ms ease-in-out\&quot;&gt;&gt;\n}\n\n.tw-tiddler-info {\n\t&lt;&lt;box-shadow \&quot;inset 1px 2px 3px rgba(0,0,0,0.1)\&quot;&gt;&gt;\n}\n\n@media screen {\n\t.tw-tiddler-frame {\n\t\t&lt;&lt;box-shadow \&quot;5px 5px 5px rgba(0, 0, 0, 0.1)\&quot;&gt;&gt;\n\t}\n}\n\n@media (max-width: 770px) {\n\t.tw-tiddler-frame {\n\t\t&lt;&lt;box-shadow none&gt;&gt;\n\t}\n}\n\n.tw-tiddler-controls button svg {\n\t&lt;&lt;transition \&quot;fill 150ms ease-in-out\&quot;&gt;&gt;\n}\n\n.tw-tiddler-controls button.tw-selected svg {\n\t&lt;&lt;filter \&quot;drop-shadow(0px -1px 2px rgba(0,0,0,0.25))\&quot;&gt;&gt;\n}\n\n.tw-tiddler-frame input.tw-edit-texteditor {\n\t&lt;&lt;box-shadow \&quot;inset 0 1px 8px rgba(0, 0, 0, 0.15)\&quot;&gt;&gt;\n}\n\n.tw-edit-tags {\n\t&lt;&lt;box-shadow \&quot;inset 0 1px 8px rgba(0, 0, 0, 0.15)\&quot;&gt;&gt;\n}\n\n.tw-tiddler-frame .tw-edit-tags input.tw-edit-texteditor {\n\t&lt;&lt;box-shadow \&quot;none\&quot;&gt;&gt;\n\tborder: none;\n\toutline: none;\n}\n\ncanvas.tw-edit-bitmapeditor  {\n\t&lt;&lt;box-shadow \&quot;2px 2px 5px rgba(0, 0, 0, 0.5)\&quot;&gt;&gt;\n}\n\n.tw-drop-down {\n\t&lt;&lt;border-radius 4px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;2px 2px 10px rgba(0, 0, 0, 0.5)\&quot;&gt;&gt;\n}\n\n.tw-block-dropdown {\n\t&lt;&lt;border-radius 4px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;2px 2px 10px rgba(0, 0, 0, 0.5)\&quot;&gt;&gt;\n}\n\n.modal {\n\t&lt;&lt;border-radius 6px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;0 3px 7px rgba(0,0,0,0.3)\&quot;&gt;&gt;\n}\n\n.modal-footer {\n\t&lt;&lt;border-radius \&quot;0 0 6px 6px\&quot;&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;inset 0 1px 0 #fff\&quot;&gt;&gt;;\n}\n\n.tw-notification {\n\t&lt;&lt;border-radius 6px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;0 3px 7px rgba(0,0,0,0.3)\&quot;&gt;&gt;\n\ttext-shadow: 0 1px 0 rgba(255,255,255, 0.8);\n}\n\n.tw-sidebar-lists .tw-tab-divider {\n\t&lt;&lt;background-linear-gradient \&quot;left, rgb(216,216,216) 0%, rgb(236,236,236) 250px\&quot;&gt;&gt;\n}\n\n.tw-more-sidebar .tw-tab-buttons button {\n\t&lt;&lt;background-linear-gradient \&quot;left, rgb(236,236,236) 0%, rgb(224,224,224) 100%\&quot;&gt;&gt;\n}\n\n.tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {\n\t&lt;&lt;background-linear-gradient \&quot;left, rgb(236,236,236) 0%, rgb(248,248,248) 100%\&quot;&gt;&gt;\n}\n\n.tw-message-box img {\n\t&lt;&lt;box-shadow \&quot;1px 1px 3px rgba(0,0,0,0.5)\&quot;&gt;&gt;\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.0.0-alpha.16">
+<div description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/starlight&quot;,
     &quot;name&quot;: &quot;Starlight&quot;,
@@ -2140,10 +2141,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;Demo of a control panel tab dynamically loaded with a theme.\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="Experimental theme with titles that stick to the top of the window" name="Sticky Titles" plugin-type="theme" title="$:/themes/tiddlywiki/stickytitles" type="application/json" version="5.0.0-alpha.16">
+<div description="Experimental theme with titles that stick to the top of the window" name="Sticky Titles" plugin-type="theme" title="$:/themes/tiddlywiki/stickytitles" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/stickytitles&quot;,
     &quot;name&quot;: &quot;Sticky Titles&quot;,
@@ -2161,10 +2162,10 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\n.tw-tiddler-title {\n  position: -webkit-sticky;\n  position: -moz-sticky;\n  position: -o-sticky;\n  position: -ms-sticky;\n  position: sticky;\n  top: 0px;\n  background: #fff;\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
-<div description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.0.0-alpha.16">
+<div description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.0.0-alpha.17">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/vanilla&quot;,
     &quot;name&quot;: &quot;Vanilla&quot;,
@@ -2210,7 +2211,7 @@ A static HTML representation of this tiddler is available at the URL:
             &quot;text&quot;: &quot;fontfamily: `\&quot;Helvetica Neue\&quot;, Helvetica, Arial, \&quot;Lucida Grande\&quot;, sans-serif`\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.0-alpha.16&quot;
+    &quot;version&quot;: &quot;5.0.0-alpha.17&quot;
 }</pre>
 </div>
 <div modified="20130507095600000" modifier="JeremyRuston" tags="introduction" title="Acknowledgements">
@@ -2740,9 +2741,6 @@ The content of the `&lt;$encrypt&gt;` widget is ignored.
 <div color="#cf7d89" created="20130825162200000" creator="JeremyRuston" modified="20130825162200000" modifier="JeremyRuston" title="faq">
 <pre></pre>
 </div>
-<div color="darkorange" modified="20130613105800000" title="features">
-<pre></pre>
-</div>
 <div created="20130822172800000" creator="JeremyRuston" modified="20131129163630584" modifier="JeremyRuston" tags="introduction" title="Features" type="text/vnd.tiddlywiki">
 <pre>* The ability to save changes on almost any desktop HTML5 compatible-browser, with custom apps to enable [[Saving on iPad/iPhone]] and [[Android|How to use TiddlyWiki5 as a standalone HTML file with AndTidWiki]], and a cross-platform [[Firefox extension|Saving with TiddlyFox]] that even runs on Android
 * [[Bitmap images|Motovun Jack.jpg]] and [[SVG images|UsingSVG]] are first-class citizens alongside text
@@ -2766,6 +2764,9 @@ The content of the `&lt;$encrypt&gt;` widget is ignored.
 
 The deep internal changes mean that TiddlyWiki5 is not compatible with previous versions, using different plugins, themes and so on. Content prepared for previous versions of TiddlyWiki will need massaging to work properly in TiddlyWiki5. When asking or searching for help be sure to specify TiddlyWiki5 (or TW5).
 </pre>
+</div>
+<div color="darkorange" modified="20130613105800000" title="features">
+<pre></pre>
 </div>
 <div created="20130825154900000" creator="JeremyRuston" modified="20130825160400000" modifier="JeremyRuston" tags="definitions" title="FederatialLimited">
 <pre>Federatial Limited is a software consultancy founded by JeremyRuston specializing in understanding the impact of the web on the way that we work together.
@@ -3665,7 +3666,7 @@ This release has several bug fixes:
 Contributors to this release include @jermolene and @grayeul.
 </pre>
 </div>
-<div created="20131119125600007" creator="JeremyRuston" modified="20131129095531749" modifier="JeremyRuston" tags="releasenote" title="Release 5.0.0-alpha.16" type="text/vnd.tiddlywiki">
+<div created="20131119125600007" creator="JeremyRuston" modified="20131130095531749" modifier="JeremyRuston" tags="releasenote" title="Release 5.0.0-alpha.16" type="text/vnd.tiddlywiki">
 <pre>//[[See GitHub for detailed change history of this release|https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.15...v5.0.0-alpha.16]]//
 
 !! New Features and Improvements
@@ -3702,6 +3703,14 @@ Contributors to this release include @jermolene and @grayeul.
 * Moved tw5.com's Google Analytics integration into a proper plugin
 
 Contributors to this release include @jermolene, @asampal and @pmario.
+</pre>
+</div>
+<div created="20131130151600007" creator="JeremyRuston" modified="20131130151631749" modifier="JeremyRuston" tags="releasenote" title="Release 5.0.0-alpha.17" type="text/vnd.tiddlywiki">
+<pre>//[[See GitHub for detailed change history of this release|https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.16...v5.0.0-alpha.17]]//
+
+!! Bug fixes
+
+* Fixes a small but important bug that prevented downloading an empty wiki with alpha.16
 </pre>
 </div>
 <div created="20131109105400007" creator="JeremyRuston" modified="20131109105400007" modifier="JeremyRuston" title="ReleaseHistory">
