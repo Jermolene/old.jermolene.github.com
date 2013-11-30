@@ -52,6 +52,334 @@ Error message and password prompt
 	font-size: 16px;
 	line-height: 20px;
 }
+/* Left will inherit from right (so we don't need to duplicate code */
+.github-fork-ribbon {
+  /* The right and left lasses determine the side we attach our banner to */
+  position: absolute;
+
+  /* Add a bit of padding to give some substance outside the "stitching" */
+  padding: 2px 0;
+
+  /* Set the base colour */
+  background-color: #a00;
+
+  /* Set a gradient: transparent black at the top to almost-transparent black at the bottom */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.00)), to(rgba(0, 0, 0, 0.15)));
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#000000', EndColorStr='#000000');
+
+  /* Add a drop shadow */
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.github-fork-ribbon a, .github-fork-ribbon a.tw-tiddlylink,
+.github-fork-ribbon a:hover, .github-fork-ribbon a.tw-tiddlylink:hover  {
+  /* Set the font */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+
+  /* Set the text properties */
+  text-decoration: none;
+  text-shadow: 0 -1px rgba(0,0,0,0.5);
+  text-align: center;
+
+  /* Set the geometry. If you fiddle with these you'll also need to tweak the top and right values in #github-fork-ribbon. */
+  width: 200px;
+  line-height: 20px;
+
+  /* Set the layout properties */
+  display: inline-block;
+  padding: 2px 0;
+
+  /* Add "stitching" effect */
+  border-width: 1px 0;
+  border-style: dotted;
+  border-color: rgba(255,255,255,0.7);
+}
+
+.github-fork-ribbon-wrapper {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.github-fork-ribbon-wrapper.fixed {
+  position: fixed;
+}
+
+.github-fork-ribbon-wrapper.left {
+  left: 0;
+}
+
+.github-fork-ribbon-wrapper.right {
+  right: 0;
+}
+
+.github-fork-ribbon-wrapper.left-bottom {
+  position: fixed;
+  top: inherit;
+  bottom: 0;
+  left: 0;
+}
+
+.github-fork-ribbon-wrapper.right-bottom {
+  position: fixed;
+  top: inherit;
+  bottom: 0;
+  right: 0;
+}
+
+.github-fork-ribbon-wrapper.right .github-fork-ribbon {
+  top: 42px;
+  right: -43px;
+
+  /* Rotate the banner 45 degrees */
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.github-fork-ribbon-wrapper.left .github-fork-ribbon {
+  top: 42px;
+  left: -43px;
+
+  /* Rotate the banner -45 degrees */
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+
+.github-fork-ribbon-wrapper.left-bottom .github-fork-ribbon {
+  top: 80px;
+  left: -43px;
+
+  /* Rotate the banner -45 degrees */
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.github-fork-ribbon-wrapper.right-bottom .github-fork-ribbon {
+  top: 80px;
+  right: -43px;
+
+  /* Rotate the banner -45 degrees */
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.sidebar-header {
+	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+}
+
+.tw-page-controls svg {
+	
+  -webkit-transition: fill 150ms ease-in-out;
+     -moz-transition: fill 150ms ease-in-out;
+          transition: fill 150ms ease-in-out;
+
+}
+
+.tw-tiddler-info {
+	
+  -webkit-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+     -moz-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+          box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+
+}
+
+@media screen {
+	.tw-tiddler-frame {
+		
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+
+	}
+}
+
+@media (max-width: 770px) {
+	.tw-tiddler-frame {
+		
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+
+	}
+}
+
+.tw-tiddler-controls button svg {
+	
+  -webkit-transition: fill 150ms ease-in-out;
+     -moz-transition: fill 150ms ease-in-out;
+          transition: fill 150ms ease-in-out;
+
+}
+
+.tw-tiddler-controls button.tw-selected svg {
+	
+  -webkit-filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
+     -moz-filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
+          filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
+
+}
+
+.tw-tiddler-frame input.tw-edit-texteditor {
+	
+  -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+     -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+.tw-edit-tags {
+	
+  -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+     -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+
+}
+
+.tw-tiddler-frame .tw-edit-tags input.tw-edit-texteditor {
+	
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+
+	border: none;
+	outline: none;
+}
+
+canvas.tw-edit-bitmapeditor  {
+	
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.tw-drop-down {
+	
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+
+	
+  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.tw-block-dropdown {
+	
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+
+	
+  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+.modal {
+	
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+
+	
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+          box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+
+}
+
+.modal-footer {
+	
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+
+	
+  -webkit-box-shadow: inset 0 1px 0 #fff;
+     -moz-box-shadow: inset 0 1px 0 #fff;
+          box-shadow: inset 0 1px 0 #fff;
+;
+}
+
+.tw-notification {
+	
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+
+	
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+          box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+
+	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+}
+
+.tw-sidebar-lists .tw-tab-divider {
+	
+background-image: linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -o-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -moz-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -webkit-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -ms-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+
+}
+
+.tw-more-sidebar .tw-tab-buttons button {
+	
+background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+
+}
+
+.tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {
+	
+background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+
+}
+
+.tw-message-box img {
+	
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+     -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+          box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+
+}
 /*
 ** Start with the normalize CSS reset, and then belay some of its effects
 */
@@ -655,12 +983,27 @@ a.tw-tiddlylink-external {
 	border: none;
 }
 
+.btn-big-green {
+	padding: 8px;
+	margin: 8px;
+	background: #34C734;
+	color: #fff;
+	fill: #fff;
+	border: none;
+	font-size: 1.2em;
+	line-height: 1.4em;
+}
+
 .btn-mini {
 	color: #e0e0e0;
 }
 
 .btn-mini:hover {
 	color: #444;
+}
+
+.tw-image-button {
+	height: 1em;
 }
 
 /*
@@ -719,7 +1062,6 @@ a.tw-tiddlylink-external {
 
 .sidebar-header {
 	color: #acacac;
-	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
 }
 
 .sidebar-header .title a.tw-tiddlylink-resolves {
@@ -752,11 +1094,6 @@ a.tw-tiddlylink-external {
 	min-width: 1px;
 	padding-right: 0.5em;
 	fill: #fff;
-	
-  -webkit-transition: fill 150ms ease-in-out;
-     -moz-transition: fill 150ms ease-in-out;
-          transition: fill 150ms ease-in-out;
-
 }
 
 .tw-page-controls svg:hover {
@@ -773,10 +1110,6 @@ a.tw-tiddlylink-external {
 
 .tw-open-tiddler-list {
 	
-  -webkit-transform-origin: 0% 0%;
-     -moz-transform-origin: 0% 0%;
-          transform-origin: 0% 0%;
-
 }
 
 .tw-menu-list-subitem {
@@ -851,11 +1184,6 @@ a.tw-tiddlylink-external {
 	background-color: #f8f8f8;
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
-	
-  -webkit-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
-     -moz-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
-          box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
-
 }
 
 .tw-tiddler-info .tw-tab-buttons button.tw-tab-selected {
@@ -874,16 +1202,6 @@ a.tw-tiddlylink-external {
 }
 
 .tw-view-field-value {
-}
-
-@media screen {
-	.tw-tiddler-frame {
-		
-  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-     -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-
-	}
 }
 
 @media (max-width: 770px) {
@@ -940,20 +1258,10 @@ a.tw-tiddlylink-external {
 .tw-tiddler-controls button svg {
 	height: 0.75em;
 	fill: #ccc;
-	
-  -webkit-transition: fill 150ms ease-in-out;
-     -moz-transition: fill 150ms ease-in-out;
-          transition: fill 150ms ease-in-out;
-
 }
 
 .tw-tiddler-controls button.tw-selected svg {
 	fill: #444;
-	
-  -webkit-filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
-     -moz-filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
-          filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
-
 }
 
 .tw-tiddler-controls svg:hover {
@@ -986,11 +1294,6 @@ a.tw-tiddlylink-external {
 
 .tw-tiddler-frame input.tw-edit-texteditor {
 	background-color: #f8f8f8;
-	
-  -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
-     -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
-          box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
-
 }
 
 canvas.tw-edit-bitmapeditor  {
@@ -999,11 +1302,6 @@ canvas.tw-edit-bitmapeditor  {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
-	
-  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-
 	margin-top: 6px;
 	margin-bottom: 6px;
 }
@@ -1029,6 +1327,23 @@ canvas.tw-edit-bitmapeditor  {
 	font-style: normal;
 }
 
+.tw-edit-tags {
+	border: 1px solid #ddd;
+	padding: 4px 8px 4px 8px;
+}
+
+.tw-edit-add-tag {
+	display: inline-block;
+}
+
+.tw-edit-add-tag .tw-add-tag-name input {
+	width: 50%;
+}
+
+.tw-edit-tags .tw-tag-label {
+	display: inline-block;
+}
+
 .tw-edit-tags-list {
 	margin: 14px 0 14px 0;
 }
@@ -1040,11 +1355,6 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-remove-tag-button {
 	padding-left: 4px;
-}
-
-.tw-add-tag-name {
-	display: inline-block;
-	width: 15%;
 }
 
 .tw-tiddler-preview {
@@ -1123,16 +1433,6 @@ canvas.tw-edit-bitmapeditor  {
 	min-width: 280px;
 	border: 1px solid #bbb;
 	background-color: #fff;
-	
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-
-	
-  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-     -moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-
 	padding: 7px 0 7px 0;
 	margin: 4px 0 0 0;
 	white-space: nowrap;
@@ -1171,16 +1471,6 @@ canvas.tw-edit-bitmapeditor  {
 	min-width: 280px;
 	border: 1px solid #bbb;
 	background-color: #fff;
-	
-  -webkit-border-radius: 4px;
-     -moz-border-radius: 4px;
-          border-radius: 4px;
-
-	
-  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-     -moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-
 	padding: 0 0 0 0;
 	margin: 4px 0 0 0;
 	white-space: nowrap;
@@ -1221,44 +1511,30 @@ canvas.tw-edit-bitmapeditor  {
 	background-color: #fff;
 	border: 1px solid #999;
 	border: 1px solid rgba(0,0,0,.3);
-	
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-
-	
-  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
-     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
-          box-shadow: 0 3px 7px rgba(0,0,0,0.3);
-
 }
 
 @media (max-width: 55em) {
+	.modal {
+		position: absolute;
+		top: 1em;
+		left: 1em;
+		right: 1em;
+	}
 
-.modal {
-	position: absolute;
-	top: 1em;
-	left: 1em;
-	right: 1em;
-}
-
-.modal-body {
-	overflow-y: auto;
-	max-height: 400px;
-}
-
+	.modal-body {
+		overflow-y: auto;
+		max-height: 400px;
+	}
 }
 
 @media (min-width: 55em) {
-
-.modal {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	width: 560px;
-	margin: -250px 0 0 -280px;
-}
-
+	.modal {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		width: 560px;
+		margin: -250px 0 0 -280px;
+	}
 }
 
 .modal-header {
@@ -1281,16 +1557,6 @@ canvas.tw-edit-bitmapeditor  {
 	text-align: right;
 	background-color: #f5f5f5;
 	border-top: 1px solid #ddd;
-	
-  -webkit-border-radius: 0 0 6px 6px;
-     -moz-border-radius: 0 0 6px 6px;
-          border-radius: 0 0 6px 6px;
-
-	
-  -webkit-box-shadow: inset 0 1px 0 #fff;
-     -moz-box-shadow: inset 0 1px 0 #fff;
-          box-shadow: inset 0 1px 0 #fff;
-;
 }
 
 /*
@@ -1307,17 +1573,6 @@ canvas.tw-edit-bitmapeditor  {
 	background-color: #ffd;
 	border: 1px solid #999;
 	border: 1px solid rgba(0,0,0,.3);
-	
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-
-	
-  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
-     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
-          box-shadow: 0 3px 7px rgba(0,0,0,0.3);
-
-	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
 }
 
 /*
@@ -1375,12 +1630,6 @@ canvas.tw-edit-bitmapeditor  {
 	border-top: none;
 	height: 1px;
 	
-background-image: linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
-background-image: -o-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
-background-image: -moz-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
-background-image: -webkit-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
-background-image: -ms-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
-
 }
 
 .tw-more-sidebar {
@@ -1421,12 +1670,6 @@ background-image: -ms-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236
 .tw-more-sidebar .tw-tab-buttons button {
 	background-color: #ececec;
 	
-background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
-background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
-background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
-background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
-background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
-
 	border-top: none;
 	border-left: none;
 	border-bottom: none;
@@ -1436,12 +1679,6 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224
 .tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {
 	background-color: #fff;
 	
-background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
-background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
-background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
-background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
-background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
-
 	border: none;
 }
 
@@ -1462,8 +1699,13 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 }
 
 .tw-static-alert {
+	position: relative;
+}
+
+.tw-static-alert-inner {
 	padding: 0 2px 2px 42px;
 	color: #AAA;
+	position: absolute;
 }
 
 /*
@@ -1485,4 +1727,23 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
 
 .tw-control-panel table, .tw-control-panel table input, .tw-control-panel table textarea {
 	width: 100%;
+}
+
+/*
+** Message boxes
+*/
+
+.tw-message-box {
+	border: 1px solid #CFD6E6;
+	background: #ECF2FF;
+	padding: 0px 21px 0px 21px;
+	margin: 0 -21px 0 -21px;
+	font-size: 12px;
+	line-height: 18px;
+	color: #547599;
+}
+
+.tw-message-box img {
+	float: right;
+	width: 150px;
 }
