@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.1" />
+<meta name="tiddlywiki-version" content="5.0.1-alpha" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -122,7 +122,7 @@ Error message and password prompt
 </noscript>
 <!----------- Ordinary tiddlers ----------->
 <div id="storeArea" style="display:none;">
-<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.1">
+<div description="TiddlyWiki5 core plugin" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.1-alpha">
 <pre>{
     &quot;title&quot;: &quot;$:/core&quot;,
     &quot;description&quot;: &quot;TiddlyWiki5 core plugin&quot;,
@@ -1662,7 +1662,7 @@ Error message and password prompt
             &quot;text&quot;: &quot;Current view: {{$:/view}}\n\n&lt;$linkcatcher to=\&quot;$:/view\&quot;&gt;&lt;$list filter=\&quot;classic zoomin pop\&quot;&gt;&lt;div&gt;&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;match\&quot; text={{!!title}}&gt;&amp;bull;&lt;/$reveal&gt;&lt;$reveal state=\&quot;$:/view\&quot; type=\&quot;nomatch\&quot; text={{!!title}}&gt;&amp;nbsp;&lt;/$reveal&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=\&quot;title\&quot;/&gt;&lt;/$link&gt;\n&lt;/div&gt;\n&lt;/$list&gt;\n&lt;/$linkcatcher&gt;\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.1&quot;
+    &quot;version&quot;: &quot;5.0.1-alpha&quot;
 }</pre>
 </div>
 <div title="$:/DefaultTiddlers">
@@ -1672,7 +1672,7 @@ Error message and password prompt
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div description="Support for saving changes to Tahoe-LAFS" plugin-type="plugin" title="$:/plugins/tiddlywiki/tahoelafs" type="application/json" version="5.0.1">
+<div description="Support for saving changes to Tahoe-LAFS" plugin-type="plugin" title="$:/plugins/tiddlywiki/tahoelafs" type="application/json" version="5.0.1-alpha">
 <pre>{
     &quot;title&quot;: &quot;$:/plugins/tiddlywiki/tahoelafs&quot;,
     &quot;description&quot;: &quot;Support for saving changes to Tahoe-LAFS&quot;,
@@ -1686,13 +1686,13 @@ Error message and password prompt
             &quot;module-type&quot;: &quot;saver&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.1&quot;
+    &quot;version&quot;: &quot;5.0.1-alpha&quot;
 }</pre>
 </div>
 <div list="HelloThere" title="$:/StoryList">
 <pre></pre>
 </div>
-<div description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.1">
+<div description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.1-alpha">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/snowwhite&quot;,
     &quot;name&quot;: &quot;Snow White&quot;,
@@ -1710,10 +1710,10 @@ Error message and password prompt
             &quot;text&quot;: &quot;\\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline\n\\define border-radius(radius)\n```\n  -webkit-border-radius: $radius$;\n     -moz-border-radius: $radius$;\n          border-radius: $radius$;\n```\n\\end\n\\define box-shadow(shadow)\n```\n  -webkit-box-shadow: $shadow$;\n     -moz-box-shadow: $shadow$;\n          box-shadow: $shadow$;\n```\n\\end\n\\define filter(filter)\n```\n  -webkit-filter: $filter$;\n     -moz-filter: $filter$;\n          filter: $filter$;\n```\n\\end\n\\define transition(transition)\n```\n  -webkit-transition: $transition$;\n     -moz-transition: $transition$;\n          transition: $transition$;\n```\n\\end\n\\define transform-origin(origin)\n```\n  -webkit-transform-origin: $origin$;\n     -moz-transform-origin: $origin$;\n          transform-origin: $origin$;\n```\n\\end\n\\define background-linear-gradient(gradient)\n```\nbackground-image: linear-gradient($gradient$);\nbackground-image: -o-linear-gradient($gradient$);\nbackground-image: -moz-linear-gradient($gradient$);\nbackground-image: -webkit-linear-gradient($gradient$);\nbackground-image: -ms-linear-gradient($gradient$);\n```\n\\end\n\n.sidebar-header {\n\ttext-shadow: 0 1px 0 rgba(255,255,255, 0.8);\n}\n\n.tw-page-controls svg {\n\t&lt;&lt;transition \&quot;fill 150ms ease-in-out\&quot;&gt;&gt;\n}\n\n.tw-tiddler-info {\n\t&lt;&lt;box-shadow \&quot;inset 1px 2px 3px rgba(0,0,0,0.1)\&quot;&gt;&gt;\n}\n\n@media screen {\n\t.tw-tiddler-frame {\n\t\t&lt;&lt;box-shadow \&quot;5px 5px 5px rgba(0, 0, 0, 0.1)\&quot;&gt;&gt;\n\t}\n}\n\n@media (max-width: 770px) {\n\t.tw-tiddler-frame {\n\t\t&lt;&lt;box-shadow none&gt;&gt;\n\t}\n}\n\n.tw-tiddler-controls button svg {\n\t&lt;&lt;transition \&quot;fill 150ms ease-in-out\&quot;&gt;&gt;\n}\n\n.tw-tiddler-controls button.tw-selected svg {\n\t&lt;&lt;filter \&quot;drop-shadow(0px -1px 2px rgba(0,0,0,0.25))\&quot;&gt;&gt;\n}\n\n.tw-tiddler-frame input.tw-edit-texteditor {\n\t&lt;&lt;box-shadow \&quot;inset 0 1px 8px rgba(0, 0, 0, 0.15)\&quot;&gt;&gt;\n}\n\n.tw-edit-tags {\n\t&lt;&lt;box-shadow \&quot;inset 0 1px 8px rgba(0, 0, 0, 0.15)\&quot;&gt;&gt;\n}\n\n.tw-tiddler-frame .tw-edit-tags input.tw-edit-texteditor {\n\t&lt;&lt;box-shadow \&quot;none\&quot;&gt;&gt;\n\tborder: none;\n\toutline: none;\n}\n\ncanvas.tw-edit-bitmapeditor  {\n\t&lt;&lt;box-shadow \&quot;2px 2px 5px rgba(0, 0, 0, 0.5)\&quot;&gt;&gt;\n}\n\n.tw-drop-down {\n\t&lt;&lt;border-radius 4px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;2px 2px 10px rgba(0, 0, 0, 0.5)\&quot;&gt;&gt;\n}\n\n.tw-block-dropdown {\n\t&lt;&lt;border-radius 4px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;2px 2px 10px rgba(0, 0, 0, 0.5)\&quot;&gt;&gt;\n}\n\n.modal {\n\t&lt;&lt;border-radius 6px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;0 3px 7px rgba(0,0,0,0.3)\&quot;&gt;&gt;\n}\n\n.modal-footer {\n\t&lt;&lt;border-radius \&quot;0 0 6px 6px\&quot;&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;inset 0 1px 0 #fff\&quot;&gt;&gt;;\n}\n\n.tw-notification {\n\t&lt;&lt;border-radius 6px&gt;&gt;\n\t&lt;&lt;box-shadow \&quot;0 3px 7px rgba(0,0,0,0.3)\&quot;&gt;&gt;\n\ttext-shadow: 0 1px 0 rgba(255,255,255, 0.8);\n}\n\n.tw-sidebar-lists .tw-tab-divider {\n\t&lt;&lt;background-linear-gradient \&quot;left, rgb(216,216,216) 0%, rgb(236,236,236) 250px\&quot;&gt;&gt;\n}\n\n.tw-more-sidebar .tw-tab-buttons button {\n\t&lt;&lt;background-linear-gradient \&quot;left, rgb(236,236,236) 0%, rgb(224,224,224) 100%\&quot;&gt;&gt;\n}\n\n.tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {\n\t&lt;&lt;background-linear-gradient \&quot;left, rgb(236,236,236) 0%, rgb(248,248,248) 100%\&quot;&gt;&gt;\n}\n\n.tw-message-box img {\n\t&lt;&lt;box-shadow \&quot;1px 1px 3px rgba(0,0,0,0.5)\&quot;&gt;&gt;\n}\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.1&quot;
+    &quot;version&quot;: &quot;5.0.1-alpha&quot;
 }</pre>
 </div>
-<div description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.0.1">
+<div description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.0.1-alpha">
 <pre>{
     &quot;title&quot;: &quot;$:/themes/tiddlywiki/vanilla&quot;,
     &quot;name&quot;: &quot;Vanilla&quot;,
@@ -1759,7 +1759,7 @@ Error message and password prompt
             &quot;text&quot;: &quot;fontfamily: `\&quot;Helvetica Neue\&quot;, Helvetica, Arial, \&quot;Lucida Grande\&quot;, sans-serif`\n&quot;
         }
     },
-    &quot;version&quot;: &quot;5.0.1&quot;
+    &quot;version&quot;: &quot;5.0.1-alpha&quot;
 }</pre>
 </div>
 <div title="HelloThere">
