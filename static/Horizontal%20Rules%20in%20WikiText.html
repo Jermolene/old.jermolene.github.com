@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.0-alpha.17" />
+<meta name="tiddlywiki-version" content="5.0.1" />
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki5 — a non-linear personal web notebook</title>
@@ -17,28 +17,13 @@
 </button><button class='btn-invisible'><svg class='tw-image-close-button tw-image-button' height='22pt' viewBox='222 150 56 56' width='22pt'><path d='M 249.56668 185.88827 L 267.06757 203.38916 C 269.26427 205.58586 272.82582 205.58586 275.02252 203.38916 L 275.02252 203.38916 C 277.21922 201.19246 277.21922 197.63091 275.02252 195.43421 L 257.52163 177.93332 L 275.38916 160.06579 C 277.58586 157.86909 277.58586 154.30754 275.38916 152.11084 C 273.19246 149.91414 269.63091 149.91414 267.43421 152.11084 L 249.56668 169.97837 L 232.06579 152.47748 L 232.06579 152.47748 C 232.06579 152.47748 232.06579 152.47748 232.06579 152.47748 C 229.86909 150.28078 226.30754 150.28078 224.11084 152.47748 L 224.11084 152.47748 C 221.91414 154.674175 221.91414 158.23573 224.11084 160.43243 L 241.61173 177.93332 L 224.47748 195.06757 L 224.47748 195.06757 L 224.47748 195.06757 C 224.47748 195.06757 224.47748 195.06757 224.47748 195.06757 C 222.28078 197.26427 222.28078 200.82583 224.47748 203.02252 L 224.47748 203.02252 C 226.67418 205.21922 230.23573 205.21922 232.43243 203.02252 Z'></path></svg>
 </button>
 
-</span><span style='fill:;'></span> <span class='title'>StyleBlockWikiText</span></div>
+</span><span style='fill:;'></span> <span class='title'>Horizontal Rules in WikiText</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> wikitextrule</button>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JeremyRuston.html'>JeremyRuston</a> 25 hours ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> wikitext</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
-<div class='body'><p>This syntax enables you to assign arbitrary styles and classes to generated elements. For example:</p><pre>@@color:#f00;
-@@text-decoration:underline;
-@@.myClass
-This is in red!
-@@</pre><p>Generates the results:</p><p class='myClass' style='color:#f00;text-decoration:underline;'>This is in red!
-</p><p>The HTML looks like this:</p><pre>&lt;p class=&quot;myClass&quot; style=&quot;color:rgb(255, 0, 0); text-decoration:underline;&quot;&gt;This is in red!&lt;/p&gt;</pre><p>Note that classes and styles can be mixed subject to the rule that styles must precede classes. For example</p><pre>@@.myFirstClass.mySecondClass
-@@width:100px;.myThirdClass
-This is a paragraph
-@@</pre><p>Note that the style block doesn't generate any HTML elements itself, but instead causes the styles to be applied to all of the elements contained within the style block. This means that you can assign styles to elements generated from <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a>. For example, here is a list with some additional styles applied:</p><pre>@@background-color:#00f;
-* First item
-* Second item
-* Third item
-@@</pre><p>The generated HTML is:</p><pre>&lt;ul style=&quot;background-color: #00f;&quot;&gt;
-&lt;li&gt;First item&lt;/li&gt;
-&lt;li&gt;Second item&lt;/li&gt;
-&lt;li&gt;Third item&lt;/li&gt;&lt;/ul&gt;</pre></div>
+<div class='body'><p>You can include a horizontal rule with three or more dashes on their own on a line:</p></div>
 </div>
 
 </p>

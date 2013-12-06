@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.0-alpha.17" />
+<meta name="tiddlywiki-version" content="5.0.1" />
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki5 — a non-linear personal web notebook</title>
@@ -17,24 +17,13 @@
 </button><button class='btn-invisible'><svg class='tw-image-close-button tw-image-button' height='22pt' viewBox='222 150 56 56' width='22pt'><path d='M 249.56668 185.88827 L 267.06757 203.38916 C 269.26427 205.58586 272.82582 205.58586 275.02252 203.38916 L 275.02252 203.38916 C 277.21922 201.19246 277.21922 197.63091 275.02252 195.43421 L 257.52163 177.93332 L 275.38916 160.06579 C 277.58586 157.86909 277.58586 154.30754 275.38916 152.11084 C 273.19246 149.91414 269.63091 149.91414 267.43421 152.11084 L 249.56668 169.97837 L 232.06579 152.47748 L 232.06579 152.47748 C 232.06579 152.47748 232.06579 152.47748 232.06579 152.47748 C 229.86909 150.28078 226.30754 150.28078 224.11084 152.47748 L 224.11084 152.47748 C 221.91414 154.674175 221.91414 158.23573 224.11084 160.43243 L 241.61173 177.93332 L 224.47748 195.06757 L 224.47748 195.06757 L 224.47748 195.06757 C 224.47748 195.06757 224.47748 195.06757 224.47748 195.06757 C 222.28078 197.26427 222.28078 200.82583 224.47748 203.02252 L 224.47748 203.02252 C 226.67418 205.21922 230.23573 205.21922 232.43243 203.02252 Z'></path></svg>
 </button>
 
-</span><span style='fill:;'></span> <span class='title'>TableWikiText</span></div>
+</span><span style='fill:;'></span> <span class='title'>Saving on TiddlySpot</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JeremyRuston.html'>JeremyRuston</a> 2 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> wikitextrule</button>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JeremyRuston.html'>JeremyRuston</a> 3 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> howto</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
-<div class='body'><h1 class=''>Basics</h1><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> formats tables using vertical bar characters like so:</p><pre>|!Cell1 |!Cell2 |
-|Cell3 |Cell3 |</pre><p>Exclamation marks are used to indicate header cells. The example renders as:</p><table><tbody><tr class='evenRow'><th align='left'>Cell1</th><th align='left'>Cell2</th></tr><tr class='oddRow'><td align='left'>Cell3</td><td align='left'>Cell3</td></tr></tbody></table><h1 class=''>Cell Alignment</h1><p>Table cell alignment is controlled by inserting space characters before and/or after the cell content. For example:</p><pre>|Left aligned content |
-| Right aligned content|
-| Centred content |
-|+++ a very wide column so we can see the alignment +++|</pre><p>The example renders as:</p><table><tbody><tr class='evenRow'><td align='left'>Left aligned content</td></tr><tr class='oddRow'><td align='right'>Right aligned content</td></tr><tr class='evenRow'><td align='center'>Centred content</td></tr><tr class='oddRow'><td>+++ a very wide column so we can see the alignment +++</td></tr></tbody></table><h1 class=''>Cell Merging</h1><p>To merge a table cell with the one above, use the special cell text <code>~</code>. To merge a cell with the one to its left use the text <code>&gt;</code>. For example:</p><pre>|Cell1 |Cell2 |Cell3 |Cell4 |
-|Cell5 |Cell6 |Cell7 |&gt;|
-|Cell5 |~|Cell7 |Cell8 |</pre><p>Renders as:</p><table><tbody><tr class='evenRow'><td align='left'>Cell1</td><td align='left'>Cell2</td><td align='left'>Cell3</td><td align='left'>Cell4</td></tr><tr class='oddRow'><td align='left'>Cell5</td><td align='left' rowspan='2' valign='center'>Cell6</td><td align='left' colspan='2'>Cell7</td></tr><tr class='evenRow'><td align='left'>Cell5</td><td align='left'>Cell7</td><td align='left'>Cell8</td></tr></tbody></table><h1 class=''>Table Classes, Captions, Headers and Footers</h1><p>Table CSS classes, captions, headers and footers can be specified as special pseudo-rows:</p><pre>|myclass anotherClass|k
-|This is a caption |c
-|Cell1 |Cell2 |
-|Cell3 |Cell3 |
-|Header|Header|h
-|Footer|Footer|f</pre><p>Renders as:</p><table class='myclass anotherClass'><caption>This is a caption </caption><tbody><tr class='evenRow'><td align='left'>Cell1</td><td align='left'>Cell2</td></tr><tr class='oddRow'><td align='left'>Cell3</td><td align='left'>Cell3</td></tr></tbody><thead><tr class='evenRow'><td>Header</td><td>Header</td></tr></thead><tfoot><tr class='oddRow'><td>Footer</td><td>Footer</td></tr></tfoot></table></div>
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlySpot.html'>TiddlySpot</a> is a free hosting service for <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> documents from Simon and Daniel Baird. It has been in operation almost as long as <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> itself.</p><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> isn't yet built in to <a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlySpot.html'>TiddlySpot</a> but you can use it by following these steps:</p><ol><li>Sign up for a new wiki at <a class='tw-tiddlylink-external' href='http://tiddlyspot.com/' target='_blank'>http://tiddlyspot.com/</a>, and remember the wiki name and password</li><li>Open <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> in your browser from <a class='tw-tiddlylink-external' href='http://five.tiddlywiki.com/empty.html' target='_blank'>http://five.tiddlywiki.com/empty.html</a></li><li>Fill in the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlySpot.html'>TiddlySpot</a> wikiname and password in the control panel</li><li>Click the &quot;Save Changes&quot; button. You should get a confirmation notification at the top right saying <strong>Saved wiki</strong>. Saving can take several seconds if you're on a slow connection or working with a large wiki.<ul><li><em>This step won't work in Firefox thanks to its default security policy. Google Chrome works fine</em></li></ul></li><li>Navigate to your <a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlySpot.html'>TiddlySpot</a> URL at <a class='tw-tiddlylink-external' href='http://{wikiname}.tiddlyspot.com/' target='_blank'>http://{wikiname}.tiddlyspot.com/</a></li><li>You should see a copy of <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a>. You can edit and create tiddlers, and click &quot;Save Changes&quot; to save changes back up to <a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlySpot.html'>TiddlySpot</a> (you'll need to re-enter your password the first time you visit the wiki on <a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlySpot.html'>TiddlySpot</a>)</li></ol></div>
 </div>
 
 </p>
