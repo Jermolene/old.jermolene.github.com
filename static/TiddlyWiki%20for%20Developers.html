@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.1-alpha" />
+<meta name="tiddlywiki-version" content="5.0.2-beta" />
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="static.css">
-<title>TiddlyWiki5 — a non-linear personal web notebook</title>
+<title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
 <body class="tw-body">
 <p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://five.tiddlywiki.com/' target='_blank'>http://five.tiddlywiki.com/</a></div></div>
@@ -17,17 +17,16 @@
 </button><button class='btn-invisible'><svg class='tw-image-close-button tw-image-button' height='22pt' viewBox='222 150 56 56' width='22pt'><path d='M 249.56668 185.88827 L 267.06757 203.38916 C 269.26427 205.58586 272.82582 205.58586 275.02252 203.38916 L 275.02252 203.38916 C 277.21922 201.19246 277.21922 197.63091 275.02252 195.43421 L 257.52163 177.93332 L 275.38916 160.06579 C 277.58586 157.86909 277.58586 154.30754 275.38916 152.11084 C 273.19246 149.91414 269.63091 149.91414 267.43421 152.11084 L 249.56668 169.97837 L 232.06579 152.47748 L 232.06579 152.47748 C 232.06579 152.47748 232.06579 152.47748 232.06579 152.47748 C 229.86909 150.28078 226.30754 150.28078 224.11084 152.47748 L 224.11084 152.47748 C 221.91414 154.674175 221.91414 158.23573 224.11084 160.43243 L 241.61173 177.93332 L 224.47748 195.06757 L 224.47748 195.06757 L 224.47748 195.06757 C 224.47748 195.06757 224.47748 195.06757 224.47748 195.06757 C 222.28078 197.26427 222.28078 200.82583 224.47748 203.02252 L 224.47748 203.02252 C 226.67418 205.21922 230.23573 205.21922 232.43243 203.02252 Z'></path></svg>
 </button>
 
-</span><span style='fill:;'></span> <span class='title'>Building classic TiddlyWiki with TiddlyWiki5</span></div>
+</span><span style='fill:;'></span> <span class='title'>TiddlyWiki for Developers</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JeremyRuston.html'>JeremyRuston</a> 7 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> howto</button>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 3 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:#e37a61;'> dev</button>
+<span class=' tw-reveal' hidden='true'></span></span>
+<span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:plum;'> introduction</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
-<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> can be used to build older 2.x.x versions of <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> from their constituent components. Doing so involves these additional features over and above those used for building <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a>:</p><ul><li>The <code>tiddlywiki2/loadrecipe</code> plugin, containing a deserializer module which allows tiddlers to be loaded from <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> 2.x.x <code>.recipe</code> files</li><li>The <code>tiddlywiki2/stripcomments</code> plugin, containing a new viewer format for the <code>&lt;$view&gt;</code> widget that strips single line <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> comments starting <code>//#</code></li><li>The <code>stripTitlePrefix='yes'</code> attribute of the <code>&lt;$fields&gt;</code> widget, which removes prefixes wrapped in curly braces from the <code>title</code> attribute<ul><li>For example, <code>{tiddler}HelloThere</code> would be transformed to <code>HelloThere</code></li></ul></li></ul><h1 class=''>Usage</h1><p><a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlyWikiClassic.html'>TiddlyWikiClassic</a> is built from the command line by running <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5%2520on%2520Node.js.html'>TiddlyWiki5 on Node.js</a>. A typical usage would be:</p><pre>node ../../tiddlywiki.js \
-	--verbose \
-	--load &lt;path_to_recipe_file&gt; \
-	--rendertiddler $:/core/templates/tiddlywiki2.template.html &lt;path_to_write_index_file&gt; text/plain \
-	|| exit 1</pre></div>
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is published as <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='OpenSource.html'>OpenSource</a> which means that anyone can read the code and contribute to its development. It's a big, complex piece of software and can be overwhelming to newcomers.</p><h1 class=''>Resources</h1><p>If you're interested in understanding more about the internal operation of <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>, start by reviewing <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki%2520for%2520Developers.html'>TiddlyWiki for Developers</a> and then read the code – start with the boot kernel <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='%2524%253A%252Fboot%252Fboot.js.html'>$:/boot/boot.js</a>.</p><h1 class=''>The one thing you need to know</h1><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s architecture is very different from an HTML page written using jQuery. This section concisely explains what <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> does differently. It may not make much sense on the first reading.</p><p>The key to understanding how it works internally is to see that the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='RefreshMechanism.html'>RefreshMechanism</a> requires that any region of the DOM can be regenerated at any time. This means that the entire state of the user interface must reside in the tiddler store, and not in the DOM.</p><p>It also determines the standard UI flow:</p><ol><li>An event handler on a widget is triggered</li><li>The event handler can manipulate the DOM nodes directly created by the widget, and/or modify the state of the tiddler store</li><li>The core then issues a store change event which triggers the refresh cycle</li><li>Each widget in the tree then gets a chance to refresh itself to reflect the changes in the store if they need to</li></ol><p>From a technical perspective, <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is a fairly classic MVC architecture, with strict separation of concerns. The model is the tiddler store, the view is a rendering tree (such as the one created from <a class=' tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fui%252FPageMacros.html'>$:/core/ui/PageMacros</a> in startup.js), and the controller is the core code itself.
+</p></div>
 </div>
 
 </p>

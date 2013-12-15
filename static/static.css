@@ -846,6 +846,11 @@ blockquote {
 	padding-left: 10px;
 }
 
+dl dt {
+	font-weight: bold;
+	margin-top: 6px;
+}
+
 /*
 Markdown likes putting code elements inside pre elements
 */
@@ -894,7 +899,7 @@ table tfoot tr td {
 a.tw-tiddlylink {
 	text-decoration: none;
 	font-weight: normal;
-	color: #007dff;
+	color: #5778D8;
 	-webkit-user-select: inherit; /* Otherwise the draggable attribute makes links impossible to select */
 }
 
@@ -1451,7 +1456,7 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-drop-down a:hover {
 	color: #fff;
-	background-color: #007dff;
+	background-color: #5778D8;
 	text-decoration: none;
 }
 
@@ -1490,7 +1495,7 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-block-dropdown a:hover {
 	color: #fff;
-	background-color: #007dff;
+	background-color: #5778D8;
 	text-decoration: none;
 }
 
