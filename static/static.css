@@ -799,7 +799,7 @@ html {
 body.tw-body {
 	font-size: 14px;
 	line-height: 20px;
-	color: #333;
+	color: #333333;
 	background-color: #ececec;
 	word-wrap: break-word;
 }
@@ -1107,7 +1107,7 @@ a.tw-tiddlylink-external {
 	fill: #fff;
 }
 
-.tw-page-controls svg:hover {
+.tw-page-controls button:hover svg, .tw-page-controls a:hover svg {
 	fill: #000;
 }
 
@@ -1186,7 +1186,7 @@ a.tw-tiddlylink-external {
 
 .tw-tiddler-frame {
 	margin-bottom: 28px;
-	background-color: #fff;
+	background-color: #ffffff;
 }
 
 .tw-tiddler-info {
@@ -1275,7 +1275,7 @@ a.tw-tiddlylink-external {
 	fill: #444;
 }
 
-.tw-tiddler-controls svg:hover {
+.tw-tiddler-controls button:hover svg {
 	fill: #888;
 }
 
@@ -1442,8 +1442,8 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-drop-down {
 	min-width: 280px;
-	border: 1px solid #bbb;
-	background-color: #fff;
+	border: 1px solid #bbbbbb;
+	background-color: #ffffff;
 	padding: 7px 0 7px 0;
 	margin: 4px 0 0 0;
 	white-space: nowrap;
@@ -1455,7 +1455,7 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .tw-drop-down a:hover {
-	color: #fff;
+	color: #ffffff;
 	background-color: #5778D8;
 	text-decoration: none;
 }
@@ -1480,8 +1480,8 @@ canvas.tw-edit-bitmapeditor  {
 .tw-block-dropdown {
 	position: absolute;
 	min-width: 280px;
-	border: 1px solid #bbb;
-	background-color: #fff;
+	border: 1px solid #bbbbbb;
+	background-color: #ffffff;
 	padding: 0 0 0 0;
 	margin: 4px 0 0 0;
 	white-space: nowrap;
@@ -1494,7 +1494,7 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .tw-block-dropdown a:hover {
-	color: #fff;
+	color: #ffffff;
 	background-color: #5778D8;
 	text-decoration: none;
 }
