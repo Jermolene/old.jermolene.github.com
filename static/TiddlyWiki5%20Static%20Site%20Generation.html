@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.6-beta" />
+<meta name="tiddlywiki-version" content="5.0.7-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,13 +20,13 @@
 
 </span><span style='fill:;'></span> <span class='title'>TiddlyWiki5 Static Site Generation</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 35 days ago</div>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 58 days ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> howto</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
-<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> can be used to generate a static HTML representation of a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> that doesn't need <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a>.</p><h1 class=''>Example</h1><p>You can explore a static representation of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> site at <a href='static.html'>static.html</a>. That file is a static representation of the current <a class=' tw-tiddlylink tw-tiddlylink-missing' href='DefaultTiddlers.html'>DefaultTiddlers</a>. Any tiddlers that it links to are referred to via URLs of the form <code>/static/HelloThere.html</code> that point to HTML representations of individual tiddlers. The tiddler HTML files reference a <code>static.css</code> stylesheet file.</p><p>The included <code>bld.sh</code> script includes these commands that are involved in generating the sample static version of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> site:</p><pre>--rendertiddler $:/core/templates/static.template.html $TW5_BUILD_OUTPUT/static.html text/plain \
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> can be used to generate a static HTML representation of a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> that doesn't need <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a>.</p><h1 class=''>Example</h1><p>You can explore a static representation of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> site at <a href='static.html'>static.html</a>. That file is a static representation of the current <a class=' tw-tiddlylink tw-tiddlylink-missing' href='DefaultTiddlers.html'>DefaultTiddlers</a>. Any tiddlers that it links to are referred to via URLs of the form <code>/static/HelloThere.html</code> that point to HTML representations of individual tiddlers. The tiddler HTML files reference a <code>static.css</code> stylesheet file.</p><p>The included <code>bld.sh</code> script includes these commands that are involved in generating the sample static version of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> site:</p><pre><code>--rendertiddler $:/core/templates/static.template.html $TW5_BUILD_OUTPUT/static.html text/plain \
 --rendertiddler $:/core/templates/static.template.css $TW5_BUILD_OUTPUT/static/static.css text/plain \
---rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html $TW5_BUILD_OUTPUT/static text/plain \</pre><p>The first <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RenderTiddlerCommand.html'>RenderTiddlerCommand</a> saves the static version of the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='DefaultTiddlers.html'>DefaultTiddlers</a>, the second saves the stylesheet, and the final <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RenderTiddlersCommand.html'>RenderTiddlersCommand</a> generates the HTML representations of individual tiddlers.
+--rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html $TW5_BUILD_OUTPUT/static text/plain \</code></pre><p>The first <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RenderTiddlerCommand.html'>RenderTiddlerCommand</a> saves the static version of the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='DefaultTiddlers.html'>DefaultTiddlers</a>, the second saves the stylesheet, and the final <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RenderTiddlersCommand.html'>RenderTiddlersCommand</a> generates the HTML representations of individual tiddlers.
 </p></div>
 </div>
 

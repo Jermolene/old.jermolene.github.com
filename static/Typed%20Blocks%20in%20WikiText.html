@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.6-beta" />
+<meta name="tiddlywiki-version" content="5.0.7-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,29 +20,27 @@
 
 </span><span style='fill:;'></span> <span class='title'>Typed Blocks in WikiText</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 29 days ago</div>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 6 days ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> wikitext</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
-<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> can include blocks of text that are rendered with an explicit <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> like this:</p><pre>$$$application/javascript
-//This is some JavaScript
-var thing = 2 + &quot;one&quot;;
-$$$</pre><p>This renders as:</p><pre>//This is some JavaScript
-var thing = 2 + &quot;one&quot;;</pre><p>It is also possible to abbreviate the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> to a file extension. For example:</p><pre>$$$.svg
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> can include blocks of text that are rendered with an explicit <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> like this:</p><pre><code>$$$image/svg+xml
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;150&quot; height=&quot;100&quot;&gt;
+  &lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;green&quot; /&gt;
+&lt;/svg&gt;
+$$$</code></pre><p>This renders as:</p><img src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22100%22%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20fill%3D%22green%22%20%2F%3E%0A%3C%2Fsvg%3E'><p>It is also possible to abbreviate the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> to a file extension. For example:</p><pre><code>$$$.svg
 &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;150&quot; height=&quot;100&quot;&gt;
   &lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;red&quot; /&gt;
 &lt;/svg&gt;
-$$$</pre><p>This renders as:</p><img src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22100%22%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20fill%3D%22red%22%20%2F%3E%0A%3C%2Fsvg%3E'><p>And, finally, a JSON example:</p><pre>$$$.json
-{&quot;teapot&quot;: &quot;brown&quot;,&quot;inside&quot;:[&quot;milk&quot;,&quot;sugar&quot;,23]}
-$$$</pre><p>Which renders as:</p><pre>{&quot;teapot&quot;: &quot;brown&quot;,&quot;inside&quot;:[&quot;milk&quot;,&quot;sugar&quot;,23]}</pre><p>Unknown types render as plain text:</p><pre>$$$text/unknown
+$$$</code></pre><p>This renders as:</p><img src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22100%22%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20fill%3D%22red%22%20%2F%3E%0A%3C%2Fsvg%3E'><p>Unknown types render as plain text:</p><pre><code>$$$text/unknown
 Some plain text, which will not be //formatted//.
-$$$</pre><p>Which renders as:</p><pre>Some plain text, which will not be //formatted//.</pre><p>A render type can also be specified, causing a particular text rendering to be displayed. For example:</p><pre>$$$text/vnd.tiddlywiki&gt;text/html
+$$$</code></pre><p>Which renders as:</p><pre>Some plain text, which will not be //formatted//.</pre><p>A render type can also be specified, causing a particular text rendering to be displayed. For example:</p><pre><code>$$$text/vnd.tiddlywiki&gt;text/html
 This is ''some'' wikitext
 $$$
 
 $$$text/vnd.tiddlywiki&gt;text/plain
 This is ''some'' wikitext
-$$$</pre><p>Renders as:</p><pre>&lt;p&gt;This is &lt;strong&gt;some&lt;/strong&gt; wikitext&lt;/p&gt;</pre><pre>This is some wikitext</pre></div>
+$$$</code></pre><p>Renders as:</p><pre>&lt;p&gt;This is &lt;strong&gt;some&lt;/strong&gt; wikitext&lt;/p&gt;</pre><pre>This is some wikitext</pre></div>
 </div>
 
 </p>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.6-beta" />
+<meta name="tiddlywiki-version" content="5.0.7-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,15 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>TestingMechanism</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 41 days ago</div>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:#e37a61;'> dev</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
-<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> incorporates the Jasmine <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> testing framework (see <a class='tw-tiddlylink-external' href='http://pivotal.github.io/jasmine/' target='_blank'>http://pivotal.github.io/jasmine/</a>). It allows the same tests to be run both in the browser and under Node.js.</p><h1 class=''><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> Testing Components</h1><p>There are two main elements to the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> testing mechanism:</p><ul><li>The plugin <code>tiddlywiki/jasmine</code> that wraps Jasmine up into a plugin along with some glue code</li><li>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> edition <code>test</code> that contains the core test specifications and includes the Jasmine plugin</li></ul><h1 class=''>Running the Tests in Node.js</h1><p>To run the tests under Node.js just load up the <code>test</code> wiki:</p><pre>node ./tiddlywiki.js \
-	./editions/test \</pre><h1 class=''>Running the Tests in the Browser</h1><p>To generate a wiki containing the browser tests load up the <code>test</code> wiki and save it as an HTML file:</p><pre>node ./tiddlywiki.js \
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> incorporates the Jasmine <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> testing framework (see <a class='tw-tiddlylink-external' href='http://pivotal.github.io/jasmine/' target='_blank'>http://pivotal.github.io/jasmine/</a>). It allows the same tests to be run both in the browser and under Node.js.</p><h1 class=''><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> Testing Components</h1><p>There are two main elements to the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> testing mechanism:</p><ul><li>The plugin <code>tiddlywiki/jasmine</code> that wraps Jasmine up into a plugin along with some glue code</li><li>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> edition <code>test</code> that contains the core test specifications and includes the Jasmine plugin</li></ul><h1 class=''>Running the Tests in Node.js</h1><p>To run the tests under Node.js just load up the <code>test</code> wiki:</p><pre><code>node ./tiddlywiki.js \
+	./editions/test \</code></pre><h1 class=''>Running the Tests in the Browser</h1><p>To generate a wiki containing the browser tests load up the <code>test</code> wiki and save it as an HTML file:</p><pre><code>node ./tiddlywiki.js \
 	./editions/test \
 	--verbose \
-	--rendertiddler $:/core/save/all $TW5_BUILD_OUTPUT/test.html text/plain \</pre><p>Then, open the <code>test.html</code> file in the browser to see the test results. There is a prebuilt version of <code>test.html</code> at:</p><p><a class='tw-tiddlylink-external' href='http://tiddlywiki.com/test.html' target='_blank'>http://tiddlywiki.com/test.html</a>
+	--rendertiddler $:/core/save/all $TW5_BUILD_OUTPUT/test.html text/plain \</code></pre><p>Then, open the <code>test.html</code> file in the browser to see the test results. There is a prebuilt version of <code>test.html</code> at:</p><p><a class='tw-tiddlylink-external' href='http://tiddlywiki.com/test.html' target='_blank'>http://tiddlywiki.com/test.html</a>
 </p></div>
 </div>
 

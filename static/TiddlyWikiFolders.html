@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.6-beta" />
+<meta name="tiddlywiki-version" content="5.0.7-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,11 +20,11 @@
 
 </span><span style='fill:;'></span> <span class='title'>TiddlyWikiFolders</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 22 days ago</div>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 45 days ago</div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:#e37a61;'> dev</button>
 <span class=' tw-reveal' hidden='true'></span></span>
 </div>
-<div class='body'><p>As well as traditional single file wikis, <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki%2520on%2520Node.js.html'>TiddlyWiki on Node.js</a> supports wikis that are stored as a folder of individual tiddler files.</p><h1 class=''>Wiki folder files and folders</h1><p>Wiki folders can contain the following files and folders:</p><ul><li><strong>tiddlywiki.info</strong> - JSON file containing metadata for the wiki</li><li><strong>\tiddlers</strong> - folder containing tiddler files comprising the wiki</li><li><strong>\plugins</strong> - folder containing <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='PluginMechanism.html'>plugin folders</a> to be included in the wiki</li></ul><p>Only the <strong>tiddlywiki.info</strong> file is required, the <strong>tiddlers</strong> and <strong>plugins</strong> folders are optional. Any files and folders not listed above are ignored.</p><h2 class=''>Content of <code>tiddlywiki.info</code> file</h2><p>The <code>tiddlywiki.info</code> file in a wiki folder contains a JSON object comprising the following fields:</p><ul><li><strong>plugins</strong> - an array of plugin names to be included in the wiki</li><li><strong>doNotSave</strong> - an array of tiddler titles that should not be saved by the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='FileSystemAdaptorPlugin.html'>FileSystemAdaptorPlugin</a></li><li><strong>includeWikis</strong> - an array of relative paths to external wiki folders to be included in the wiki</li></ul><p>For example:</p><pre>{
+<div class='body'><p>As well as traditional single file wikis, <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki%2520on%2520Node.js.html'>TiddlyWiki on Node.js</a> supports wikis that are stored as a folder of individual tiddler files.</p><h1 class=''>Wiki folder files and folders</h1><p>Wiki folders can contain the following files and folders:</p><ul><li><strong>tiddlywiki.info</strong> - JSON file containing metadata for the wiki</li><li><strong>\tiddlers</strong> - folder containing tiddler files comprising the wiki</li><li><strong>\plugins</strong> - folder containing <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='PluginMechanism.html'>plugin folders</a> to be included in the wiki</li></ul><p>Only the <strong>tiddlywiki.info</strong> file is required, the <strong>tiddlers</strong> and <strong>plugins</strong> folders are optional. Any files and folders not listed above are ignored.</p><h2 class=''>Content of <code>tiddlywiki.info</code> file</h2><p>The <code>tiddlywiki.info</code> file in a wiki folder contains a JSON object comprising the following fields:</p><ul><li><strong>plugins</strong> - an array of plugin names to be included in the wiki</li><li><strong>doNotSave</strong> - an array of tiddler titles that should not be saved by the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='FileSystemAdaptorPlugin.html'>FileSystemAdaptorPlugin</a></li><li><strong>includeWikis</strong> - an array of relative paths to external wiki folders to be included in the wiki</li></ul><p>For example:</p><pre><code>{
   &quot;plugins&quot;: [
     &quot;tiddlywiki/tiddlyweb&quot;,
     &quot;tiddlywiki/filesystem&quot;
@@ -38,7 +38,7 @@
   &quot;includeWikis&quot;: [
     &quot;../tw5.com&quot;
   ]
-}</pre><h2 class=''>Content of <code>tiddlers</code> folder</h2><p>All the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFiles.html'>TiddlerFiles</a> in the <code>tiddlers</code> folder are read into the wiki at startup. Sub-folders are scanned recursively for <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFiles.html'>TiddlerFiles</a>.</p><p>Sub-folders within the <code>tiddlers</code> folder can also be given a <code>tiddlywiki.files</code> JSON file that overrides the default processing for that folder. The file format is illustrated with this example from the D3 plugin:</p><pre>{
+}</code></pre><h2 class=''>Content of <code>tiddlers</code> folder</h2><p>All the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFiles.html'>TiddlerFiles</a> in the <code>tiddlers</code> folder are read into the wiki at startup. Sub-folders are scanned recursively for <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFiles.html'>TiddlerFiles</a>.</p><p>Sub-folders within the <code>tiddlers</code> folder can also be given a <code>tiddlywiki.files</code> JSON file that overrides the default processing for that folder. The file format is illustrated with this example from the D3 plugin:</p><pre><code>{
   &quot;tiddlers&quot;: [
     {
       &quot;file&quot;: &quot;d3.min.js&quot;,
@@ -59,7 +59,7 @@
       }
     }
   ]
-}</pre><p>The JSON data consists of an object with a <code>tiddlers</code> property that contains an array of information about each tiddler to be loaded into the wiki. That information consists of:</p><ul><li><code>file</code>: the relative or absolute path to the file to include</li><li><code>fields</code>: an object containing fields that override any provided in the tiddler file</li><li><code>prefix</code> &amp; <code>suffix</code>: (optional) specify strings to be prefixed and suffixed to the tiddler file text content</li></ul></div>
+}</code></pre><p>The JSON data consists of an object with a <code>tiddlers</code> property that contains an array of information about each tiddler to be loaded into the wiki. That information consists of:</p><ul><li><code>file</code>: the relative or absolute path to the file to include</li><li><code>fields</code>: an object containing fields that override any provided in the tiddler file</li><li><code>prefix</code> &amp; <code>suffix</code>: (optional) specify strings to be prefixed and suffixed to the tiddler file text content</li></ul></div>
 </div>
 
 </p>
