@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>FieldsWidget</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> widget</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 3 months ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#6188da;'>
+ widget
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><h1 class=''>Introduction</h1><p>The fields widget renders each field of a specified tiddler through a simple text template. A list of fields to exclude can be provided. It is used internally by <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a>, notably by the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='FileSavingMechanism.html'>FileSavingMechanism</a>.</p><h2 class=''>Template Handling</h2><p>The provided template is rendered with the following special substitutions:</p><table><tbody><tr class='evenRow'><th align='left'>Symbol</th><th align='left'>Substitution</th></tr><tr class='oddRow'><td align='left'>$name$</td><td align='left'>Field name</td></tr><tr class='evenRow'><td align='left'>$value$</td><td align='left'>Field value</td></tr><tr class='oddRow'><td align='left'>$encoded_value$</td><td align='left'>HTML encoded form of field value</td></tr></tbody></table><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$fields&gt;</code> widget is ignored.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>Title of the tiddler from which the fields are to be displayed (defaults to the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='WidgetVariable%253A%2520currentTiddler.html'>WidgetVariable: currentTiddler</a>)</td></tr><tr class='evenRow'><td align='left'>template</td><td align='left'>Text of the template (see above)</td></tr><tr class='oddRow'><td align='left'>exclude</td><td align='left'>Lists of fields to be excluded (defaults to &quot;text&quot;)</td></tr><tr class='evenRow'><td align='left'>stripTitlePrefix</td><td align='left'>If set to &quot;yes&quot; then curly bracketed prefixes are removed from titles (for example <code>{prefix}HelloThere</code> converts to <code>HelloThere</code>)</td></tr></tbody></table><p>The <code>stripTitlePrefix</code> attribute is used when building <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> Classic; see <code>editions/tw2</code> in the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> repo.
 </p></div>

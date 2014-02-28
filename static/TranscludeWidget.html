@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,11 +20,22 @@
 
 </span><span style='fill:;'></span> <span class='title'>TranscludeWidget</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> widget</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 15 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#6188da;'>
+ widget
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
-<div class='body'><h1 class=''>Introduction</h1><p>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a> dynamically imports content from another tiddler.</p><h1 class=''>Attributes</h1><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The title of the tiddler to transclude (defaults to the current tiddler)</td></tr><tr class='evenRow'><td align='left'>field</td><td align='left'>The field name of the current tiddler (defaults to &quot;text&quot;; if present takes precedence over the index attribute)</td></tr><tr class='oddRow'><td align='left'>index</td><td align='left'>The index of a property in a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a></td></tr><tr class='evenRow'><td align='left'>class</td><td align='left'>CSS classes to added to the generated elements</td></tr><tr class='oddRow'><td align='left'>style</td><td align='left'>CSS styles to be added to the generated elements</td></tr><tr class='evenRow'><td align='left'>tooltip</td><td align='left'>Tooltip to be added to the generated elements</td></tr></tbody></table><p>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a> ignores any contained content.</p></div>
+<div class='body'><h1 class=''>Introduction</h1><p>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a> dynamically imports content from another tiddler.</p><h1 class=''>Attributes</h1><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The title of the tiddler to transclude (defaults to the current tiddler)</td></tr><tr class='evenRow'><td align='left'>field</td><td align='left'>The field name of the current tiddler (defaults to &quot;text&quot;; if present takes precedence over the index attribute)</td></tr><tr class='oddRow'><td align='left'>index</td><td align='left'>The index of a property in a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a></td></tr><tr class='evenRow'><td align='left'>class</td><td align='left'>CSS classes to added to the generated elements</td></tr><tr class='oddRow'><td align='left'>style</td><td align='left'>CSS styles to be added to the generated elements</td></tr><tr class='evenRow'><td align='left'>tooltip</td><td align='left'>Tooltip to be added to the generated elements</td></tr><tr class='oddRow'><td align='left'>mode</td><td align='left'>Override the default parsing mode for the transcluded text to &quot;block&quot; or &quot;inline&quot;</td></tr></tbody></table><p>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a> treats any contained content as a fallback if the target of the transclusion is not defined (ie a missing tiddler or a missing field).</p><h1 class=''>Parsing modes</h1><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> parses text in two modes:</p><ul><li><strong>inline</strong> mode recognises character formatting such as emphasis, links</li><li><strong>block</strong> mode recognises all the <strong>inline</strong> formatting, and adds block formatting such as tables, headings and lists</li></ul><p>Usually, the mode is determined by whether the transclude widget itself has been parsed in block or inline mode. This can be overridden with the <code>mode</code> attribute.</p><p>For example, consider tiddler &quot;A&quot; with this content:</p><pre><code># Item one
+#&lt;$transclude tiddler=&quot;B&quot;/&gt;
+# Item two</code></pre><p>And a tiddler &quot;B&quot; with this content:</p><pre><code># Item one - a
+# Item one - b</code></pre><p>The result will be something like this:</p><ol><li>Item one</li><li># Item one - a # Item one - b</li><li>Item two</li></ol><p>This can be fixed by amending tiddler &quot;A&quot;:</p><pre><code># Item one
+#&lt;$transclude tiddler=&quot;B&quot; mode=&quot;block&quot;/&gt;
+# Item two</code></pre></div>
 </div>
 
 </p>

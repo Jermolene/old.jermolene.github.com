@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>MakeDataUriMacro</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 29 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> macros</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#d67fbf;'>
+ macros
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><p>The makedatauri macro constructs a data URI from a block of text and an associated <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a>. It is commonly used within stylesheets to generate an inline image or font.</p><h1 class=''>Parameters</h1><table><tbody><tr class='evenRow'><th align='left'>Position</th><th align='left'>Name</th><th align='left'>Description</th><th align='left'>Default</th></tr><tr class='oddRow'><td align='left'>1st</td><td align='left'>text</td><td align='left'>Text to be converted to a data URI</td><td align='center'></td></tr><tr class='evenRow'><td align='left'>2nd</td><td align='left'>type</td><td align='left'><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> of text</td><td align='center'></td></tr></tbody></table><h1 class=''>Examples</h1><p>A trivial example to show how the macro works:</p><pre><code>&lt;&lt;makedatauri &quot;HelloThere&quot; &quot;text/plain&quot;&gt;&gt;</code></pre><p><a class='tw-tiddlylink-external' href='data:text/plain,HelloThere' target='_blank'>data:text/plain,HelloThere</a></p><p>A user-defined macro such as this would typically be used within a stylesheet:</p><pre><code>\define datauri(title)
 &lt;$macrocall $name=&quot;makedatauri&quot; type={{$title$!!type}} text={{$title$}}/&gt;

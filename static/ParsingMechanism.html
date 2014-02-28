@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>ParsingMechanism</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> mechanism</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 3 months ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#9fa3cb;'>
+ mechanism
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><h1 class=''>Introduction</h1><p>The parsing mechanism analyses the text of a tiddler against a set of parsing rules, producing a tree representing the structure of the text. The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RenderingMechanism.html'>RenderingMechanism</a> is used to transform parse trees into render trees of widget nodes.</p><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> includes <a class=' tw-tiddlylink tw-tiddlylink-missing' href='ParserModules.html'>ParserModules</a> for several types of tiddler:</p><ul><li><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a></li><li>Raw HTML</li><li>Plain text</li><li>Images (bitmap, SVG and PDF)</li></ul><p>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> parser is the most complex, comprising separate individual <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WikiRuleModules.html'>WikiRuleModules</a> encapsulating each parsing rule.</p><h1 class=''>Parse Trees</h1><p>The output of parsing a tiddler is an object containing a tree of parse nodes corresponding to the original text. For example:</p><pre><code>&gt; JSON.stringify($tw.wiki.parseText(&quot;text/vnd.tiddlywiki&quot;,&quot;Some //italics// and a {{Transclusion}}.&quot;).tree)
 

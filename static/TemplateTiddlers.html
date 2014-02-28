@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>TemplateTiddlers</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 19 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:#FF8383;'> concepts</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 52 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#FF8383;'>
+ concepts
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><p>A template tiddler is not in fact a type of tiddler, it is a role in which a tiddler can be used.</p><p>When text is wikified there is the concept of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='CurrentTiddler.html'>CurrentTiddler</a>. Certain widgets (like the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ViewWidget.html'>ViewWidget</a>) can use the current tiddler implicitly. For example:</p><pre><code>&lt;$view tiddler=&quot;HelloThere&quot; field=&quot;myfield&quot;/&gt; - displays the field &quot;myfield&quot; of the tiddler HelloThere
 &lt;$view field=&quot;myfield&quot;/&gt; - displays the field &quot;myfield&quot; of the current tiddler</code></pre><p>When the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a> pulls in the content from another tiddler, by default it does not change the current tiddler, so the transcluded content behaves as if it were in the context of the transcluding tiddler.</p><p>So, if we have a tiddler &quot;A&quot; that contains:</p><pre><code>&lt;$view field=&quot;myfield&quot;/&gt;</code></pre><p>And then transclude it from a tiddler &quot;B&quot; like so:</p><pre><code>My field value is: &lt;$transclude tiddler=&quot;A&quot;/&gt;</code></pre><p>The result will be that the field from the tiddler &quot;B&quot; is displayed; in other words, tiddler &quot;A&quot; is acting as a template for displaying information from tiddler &quot;B&quot;.</p><p>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerWidget.html'>TiddlerWidget</a> is used to change the current tiddler. Consider a tiddler &quot;C&quot; containing:</p><pre><code>&lt;$tiddler tiddler=&quot;A&quot;&gt;&lt;$transclude tiddler=&quot;A&quot;/&gt;&lt;/$tiddler&gt;</code></pre><p>It is still transcluding tiddler &quot;A&quot;, but now it is also setting the current tiddler to &quot;A&quot;. The result is therefore that the field &quot;myfield&quot; for tiddler &quot;A&quot; is displayed.</p><p>The shorthand syntax for transcluding actually generates both a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerWidget.html'>TiddlerWidget</a> and a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a>.

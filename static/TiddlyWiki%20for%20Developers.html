@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,13 +20,25 @@
 
 </span><span style='fill:;'></span> <span class='title'>TiddlyWiki for Developers</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 45 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:#e37a61;'> dev</button>
-<span class=' tw-reveal' hidden='true'></span></span>
-<span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:plum;'> introduction</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#769ee1;'>
+ dev
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
+<span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:plum;'>
+ introduction
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
-<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is published as <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='OpenSource.html'>OpenSource</a> which means that anyone can read the code and contribute to its development. It's a big, complex piece of software and can be overwhelming to newcomers.</p><h1 class=''>Resources</h1><p>If you're interested in understanding more about the internal operation of <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>, start by reviewing <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki%2520for%2520Developers.html'>TiddlyWiki for Developers</a> and then read the code – start with the boot kernel <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='%2524%253A%252Fboot%252Fboot.js.html'>$:/boot/boot.js</a>.</p><h1 class=''>The one thing you need to know</h1><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s architecture is very different from an HTML page written using jQuery. This section concisely explains what <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> does differently. It may not make much sense on the first reading.</p><p>The key to understanding how it works internally is to see that the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='RefreshMechanism.html'>RefreshMechanism</a> requires that any region of the DOM can be regenerated at any time. This means that the entire state of the user interface must reside in the tiddler store, and not in the DOM.</p><p>It also determines the standard UI flow:</p><ol><li>An event handler on a widget is triggered</li><li>The event handler can manipulate the DOM nodes directly created by the widget, and/or modify the state of the tiddler store</li><li>The core then issues a store change event which triggers the refresh cycle</li><li>Each widget in the tree then gets a chance to refresh itself to reflect the changes in the store if they need to</li></ol><p>From a technical perspective, <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is a fairly classic MVC architecture, with strict separation of concerns. The model is the tiddler store, the view is a rendering tree (such as the one created from <a class=' tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fui%252FPageMacros.html'>$:/core/ui/PageMacros</a> in startup.js), and the controller is the core code itself.
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is published as <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='OpenSource.html'>OpenSource</a> which means that anyone can read the code and contribute to its development. It's a big, complex piece of software and can be overwhelming to newcomers.</p><h1 class=''>Resources</h1><p>If you're interested in understanding more about the internal operation of <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>, start by reviewing <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki%2520for%2520Developers.html'>TiddlyWiki for Developers</a> and then read the code – start with the boot kernel <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='%2524%253A%252Fboot%252Fboot.js.html'>$:/boot/boot.js</a>.</p><h1 class=''>The one thing you need to know</h1><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s architecture is very different from an HTML page written using jQuery. This section concisely explains what <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> does differently. It may not make much sense on the first reading.</p><p>The key to understanding how it works internally is to see that the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='RefreshMechanism.html'>RefreshMechanism</a> requires that any region of the DOM can be regenerated at any time. This means that the entire state of the user interface must reside in the tiddler store, from where it is synchronised into the DOM. This is done to improve performance by minimising the DOM interactions during the refresh cycles.</p><p>It also determines the standard UI flow:</p><ol><li>An event handler on a widget is triggered</li><li>The event handler can manipulate the DOM nodes directly created by the widget, and/or modify the state of the tiddler store</li><li>The core then issues a store change event which triggers the refresh cycle</li><li>Each widget in the tree then gets a chance to refresh itself to reflect the changes in the store if they need to</li></ol><p>From a technical perspective, <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is a fairly classic MVC architecture, with strict separation of concerns. The model is the tiddler store, the view is a rendering tree (such as the one created from <a class=' tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fui%252FPageMacros.html'>$:/core/ui/PageMacros</a> in startup.js), and the controller is the core code itself.
 </p></div>
 </div>
 

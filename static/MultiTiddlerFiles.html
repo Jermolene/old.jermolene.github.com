@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -18,15 +18,33 @@
 </button><button class='btn-invisible'><svg class='tw-image-close-button tw-image-button' height='22pt' viewBox='222 150 56 56' width='22pt'><path d='M 249.56668 185.88827 L 267.06757 203.38916 C 269.26427 205.58586 272.82582 205.58586 275.02252 203.38916 L 275.02252 203.38916 C 277.21922 201.19246 277.21922 197.63091 275.02252 195.43421 L 257.52163 177.93332 L 275.38916 160.06579 C 277.58586 157.86909 277.58586 154.30754 275.38916 152.11084 C 273.19246 149.91414 269.63091 149.91414 267.43421 152.11084 L 249.56668 169.97837 L 232.06579 152.47748 L 232.06579 152.47748 C 232.06579 152.47748 232.06579 152.47748 232.06579 152.47748 C 229.86909 150.28078 226.30754 150.28078 224.11084 152.47748 L 224.11084 152.47748 C 221.91414 154.674175 221.91414 158.23573 224.11084 160.43243 L 241.61173 177.93332 L 224.47748 195.06757 L 224.47748 195.06757 L 224.47748 195.06757 C 224.47748 195.06757 224.47748 195.06757 224.47748 195.06757 C 222.28078 197.26427 222.28078 200.82583 224.47748 203.02252 L 224.47748 203.02252 C 226.67418 205.21922 230.23573 205.21922 232.43243 203.02252 Z'></path></svg>
 </button>
 
-</span><span style='fill:;'></span> <span class='title'>TiddlyWiki5 Static Site Generation</span></div>
+</span><span style='fill:;'></span> <span class='title'>MultiTiddlerFiles</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 58 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> howto</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> </div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#84c271;'>
+ deserializers
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
+<span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#769ee1;'>
+ dev
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
-<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> can be used to generate a static HTML representation of a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> that doesn't need <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a>.</p><h1 class=''>Example</h1><p>You can explore a static representation of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> site at <a href='static.html'>static.html</a>. That file is a static representation of the current <a class=' tw-tiddlylink tw-tiddlylink-missing' href='DefaultTiddlers.html'>DefaultTiddlers</a>. Any tiddlers that it links to are referred to via URLs of the form <code>/static/HelloThere.html</code> that point to HTML representations of individual tiddlers. The tiddler HTML files reference a <code>static.css</code> stylesheet file.</p><p>The included <code>bld.sh</code> script includes these commands that are involved in generating the sample static version of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> site:</p><pre><code>--rendertiddler $:/core/templates/static.template.html $TW5_BUILD_OUTPUT/static.html text/plain \
---rendertiddler $:/core/templates/static.template.css $TW5_BUILD_OUTPUT/static/static.css text/plain \
---rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html $TW5_BUILD_OUTPUT/static text/plain \</code></pre><p>The first <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RenderTiddlerCommand.html'>RenderTiddlerCommand</a> saves the static version of the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='DefaultTiddlers.html'>DefaultTiddlers</a>, the second saves the stylesheet, and the final <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RenderTiddlersCommand.html'>RenderTiddlersCommand</a> generates the HTML representations of individual tiddlers.
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='MultiTiddlerFiles.html'>MultiTiddlerFiles</a> allow multiple tiddlers to be concisely represented in a single text file.</p><p>The goals of this format are:</p><ul><li>To be easy to type and easy to read</li><li>Optimised for single line strings</li><li>To allow common fields or tags to be shared within groups of tiddlers</li><li>To be simple to process with external tools</li></ul><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='MultiTiddlerFiles.html'>MultiTiddlerFiles</a> have the extension <code>multids</code>. The file is structured as a block of shared fields followed by a blank line. The rest of the file is a sequence of comments and tiddlers. Tiddlers are specified by their title, followed by a colon, at least one space character, and then the rest of the line is the text field for the tiddler.</p><p>For example:</p><pre><code>title: $:/language/ControlPanel/
+tags: strings
+modifier: JoeBloggs
+
+Basics/Caption: Basics
+# This is a comment
+Basics/Version: ~TiddlyWiki Version</code></pre><p>This example defines two tiddlers, <a class=' tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Flanguage%252FControlPanel%252FBasics%252FCaption.html'>$:/language/ControlPanel/Basics/Caption</a> and <a class=' tw-tiddlylink tw-tiddlylink-missing' href='%2524%253A%252Flanguage%252FControlPanel%252FBasics%252FVersion.html'>$:/language/ControlPanel/Basics/Version</a>.</p><p>If a <code>title</code> field is specified in the header then it is treated as a prefix for the individual tiddlers defined in the title.
 </p></div>
 </div>
 

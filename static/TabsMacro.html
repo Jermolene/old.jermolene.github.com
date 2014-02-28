@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,11 +20,17 @@
 
 </span><span style='fill:;'></span> <span class='title'>TabsMacro</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 29 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> macros</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#d67fbf;'>
+ macros
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
-<div class='body'><p>The tabs macro displays a list of tiddlers as a tab control. The user can switch between tabs by clicking on them. By default, the tabs are labelled with the title of the corresponding tiddler. Alternatively, if a <code>caption</code> field is specified then it is used instead.</p><h1 class=''>Parameters</h1><table><tbody><tr class='evenRow'><th align='left'>Position</th><th align='left'>Name</th><th align='left'>Description</th><th align='left'>Default</th></tr><tr class='oddRow'><td align='left'>1st</td><td align='left'>tabsList</td><td align='left'>Filter giving the tiddlers to be displayed</td><td align='center'></td></tr><tr class='evenRow'><td align='left'>2nd</td><td align='left'>default</td><td align='left'>Name of the tiddler containing the default tab</td><td align='center'></td></tr><tr class='oddRow'><td align='left'>3rd</td><td align='left'>state</td><td align='left'>String to distinguish multiple tabs within the same tiddler</td><td align='left'><strong>$:/state/tab</strong></td></tr></tbody></table><h1 class=''>Examples</h1><p>Here is an example of the tabs macro:</p><pre><code>&lt;&lt;tabs &quot;Docs WikiText Features RoadMap&quot; &quot;WikiText&quot; 1&gt;&gt;</code></pre></div>
+<div class='body'><p>The tabs macro displays a list of tiddlers as a tab control. The user can switch between tabs by clicking on them. The tabs are labelled with the title of the corresponding tiddler, unless there is a <code>caption</code> field present in which case it is used instead.</p><h1 class=''>Parameters</h1><table><tbody><tr class='evenRow'><th align='left'>Position</th><th align='left'>Name</th><th align='left'>Description</th><th align='left'>Default</th></tr><tr class='oddRow'><td align='left'>1st</td><td align='left'>tabsList</td><td align='left'>Filter giving the tiddlers to be displayed</td><td align='center'></td></tr><tr class='evenRow'><td align='left'>2nd</td><td align='left'>default</td><td align='left'>Name of the tiddler containing the default tab</td><td align='center'></td></tr><tr class='oddRow'><td align='left'>3rd</td><td align='left'>state</td><td align='left'>String to distinguish multiple tabs within the same tiddler (use of the system tiddler prefix is recommended)</td><td align='left'><strong>$:/state/tab</strong></td></tr></tbody></table><h1 class=''>Examples</h1><p>Here is an example of the tabs macro:</p><pre><code>&lt;&lt;tabs &quot;Docs WikiText Features RoadMap&quot; &quot;WikiText&quot; &quot;$:/state/tab1&quot;&gt;&gt;</code></pre></div>
 </div>
 
 </p>

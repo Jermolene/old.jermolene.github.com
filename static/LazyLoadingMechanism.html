@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,13 +20,25 @@
 
 </span><span style='fill:;'></span> <span class='title'>LazyLoadingMechanism</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 5 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:#e37a61;'> dev</button>
-<span class=' tw-reveal' hidden='true'></span></span>
-<span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> mechanism</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 21 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#769ee1;'>
+ dev
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
+<span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#9fa3cb;'>
+ mechanism
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
-<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> currently only implements lazy loading when its running in the browser talking to a <a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlyWeb-compatible.html'>TiddlyWeb-compatible</a> server. When it syncs, it first requests a &quot;skinny&quot; version of each tiddler (consisting of all the fields apart from the text field). Subsequently, an attempt to read those skinny tiddlers with <code>wiki.getTiddler()</code> returns just the skinny fields, but an attempt to read one using <code>wiki.getTiddlerText()</code> will trigger an asynchronous load of the full tiddler text, which in turn triggers a refresh cycle, updating the display to reflect the newly loaded tiddler. Widgets that loop through all tiddlers are fine; it's only if they trigger <code>wiki.getTiddlerText()</code> for a tiddler that it will get loaded.</p><p>So, the browser-based search built into <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> will only search the text of tiddlers that have been fully loaded. The expectation is that when lazy loading is used in a client-server configuration, then it's the server that really needs to handle search operations, because it's only the server that can &quot;see&quot; the text of all tiddlers. So, the plan is to integrate TW's built in search with <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWeb.html'>TiddlyWeb</a>'s search API. The simplest approach is that any local search triggers an asynchronous server side search. The results of the search would be asynchronously loaded such that they would dynamically appear in the local search results.
+<div class='body'><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> currently only implements <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='LazyLoading.html'>LazyLoading</a> when it is running in the browser talking to a <a class=' tw-tiddlylink tw-tiddlylink-missing' href='TiddlyWeb-compatible.html'>TiddlyWeb-compatible</a> server.</p><p>In the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki%2520in%2520the%2520Sky%2520for%2520TiddlyWeb.html'>configuration for TiddlyWeb</a>, the browser first requests a &quot;skinny&quot; version of each tiddler (consisting of all the fields apart from the text field). Subsequently, an attempt to read those skinny tiddlers with <code>wiki.getTiddler()</code> returns just the skinny fields, but an attempt to read one using <code>wiki.getTiddlerText()</code> will trigger an asynchronous load of the full tiddler text, which in turn triggers a refresh cycle, updating the display to reflect the newly loaded tiddler. Widgets that loop through all tiddlers are fine; it's only if they trigger <code>wiki.getTiddlerText()</code> for a tiddler that it will get loaded.</p><p>Lazy loading can also be used with <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s own server. The core provides a template that enables images to be lazily loaded while other tiddlers are packaged into the initial HTML file in the usual way.</p><p>The browser-based search built into <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> will only search the text of tiddlers that have been fully loaded. The expectation is that when lazy loading is used in a client-server configuration, then it is the server that really needs to handle search operations, because it is only the server that can &quot;see&quot; the text of all tiddlers. So, the plan is to integrate the built in search with <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWeb.html'>TiddlyWeb</a>'s search API. The simplest approach is that any local search triggers an asynchronous server side search. The results of the search would be asynchronously loaded such that they would dynamically appear in the local search results.
 </p></div>
 </div>
 

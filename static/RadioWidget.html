@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>RadioWidget</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 45 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> widget</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#6188da;'>
+ widget
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><h1 class=''>Introduction</h1><p>The radio widget displays an HTML <code>&lt;input type=&quot;radio&quot;&gt;</code>  that reflects whether a given tiddler field has a specified value. Selecting the radio button sets to the tiddler field to the value.</p><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$radio&gt;</code> widget is displayed within an HTML <code>&lt;label&gt;</code> element also containing the radio button. This means that clicking on the content will have the same effect as clicking on the button itself.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>Title of the tiddler to manipulate (defaults to the <a class=' tw-tiddlylink tw-tiddlylink-missing' href='WidgetVariable%253A%2520currentTiddler.html'>WidgetVariable: currentTiddler</a>)</td></tr><tr class='evenRow'><td align='left'>field</td><td align='left'>The name of the field to which the radio button will be bound</td></tr><tr class='oddRow'><td align='left'>value</td><td align='left'>The value for the tiddler field</td></tr><tr class='evenRow'><td align='left'>class</td><td align='left'>CSS classes to be assigned to the label around the radio button</td></tr></tbody></table><h1 class=''>Example</h1><p>This example uses the radio widget to change the <code>modifier</code> field of this tiddler:</p><pre><code>&lt;$radio field=&quot;modifier&quot; value=&quot;JoeBloggs&quot;&gt; Joe Bloggs&lt;/$radio&gt;
 

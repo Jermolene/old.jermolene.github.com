@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>TextReference</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:#FF8383;'> concepts</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 3 months ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#FF8383;'>
+ concepts
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><p>A <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TextReference.html'>TextReference</a> identifies a chunk of text from a tiddler that can be retrieved or modified depending on the context.</p><p>Text references are made up of several parts, most of which can be optional:</p><ul><li><code>&lt;tiddler title&gt;</code> - the text <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFields.html'>field</a> of the specified tiddler</li><li><code>&lt;tiddler title&gt;!!&lt;metadata field&gt;</code> - a tiddler metadata <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFields.html'>field</a> (eg, <code>modified</code>, <code>modifier</code>, <code>type</code> etc)</li><li><code>!!&lt;metadata field&gt;</code> - a metadata <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFields.html'>field</a> of the current tiddler</li><li><code>&lt;tiddler title&gt;##&lt;property index&gt;</code> - extracts a named property from <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddlers</a></li></ul><p>Text references can be used in several places:</p><ul><li>As <a class=' tw-tiddlylink tw-tiddlylink-missing' href='IndirectOperands.html'>IndirectOperands</a> within <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFilters.html'>TiddlerFilters</a> (eg, <code>&lt;$list filter=&quot;[tag{MyTag!!name}]&quot;/&gt;</code>)</li><li>As <a class=' tw-tiddlylink tw-tiddlylink-missing' href='IndirectAttributes.html'>IndirectAttributes</a> of an element or widget (eg, <code>&lt;$widget attrib={{Title!!description}}/&gt;</code>)</li><li>As the operand of a shortcut transclusion (eg, <code>{{MyTiddler!!title}}</code>)</li><li>As the <code>state</code> attribute of the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='RevealWidget.html'>RevealWidget</a> and the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='LinkCatcherWidget.html'>LinkCatcherWidget</a></li></ul></div>
 </div>

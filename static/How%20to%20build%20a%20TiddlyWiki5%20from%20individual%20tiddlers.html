@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>How to build a TiddlyWiki5 from individual tiddlers</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 15 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> howto</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 48 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#d96490;'>
+ howto
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><p>First install <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> as described in <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='Installing%2520TiddlyWiki%2520on%2520Node.js.html'>Installing TiddlyWiki on Node.js</a>.</p><ol><li>Create an empty <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWikiFolders.html'>TiddlyWikiFolder</a><ol><li>Create a new folder in a convenient place (for example <code>~/MyWiki</code>)</li><li>Create a file called <code>tiddlywiki.info</code> containing the following text:<ul><li><code>{&quot;themes&quot;: [&quot;tiddlywiki/vanilla&quot;,&quot;tiddlywiki/snowwhite&quot;]}</code></li></ul></li><li>Create a subfolder called <code>tiddlers</code><ul><li>Alternatively, just copy the <code>editions/empty</code> folder from the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> repo</li></ul></li></ol></li><li>Create individual <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerFiles.html'>TiddlerFiles</a> in the <code>~/MyWiki/tiddlers</code> directory</li><li>Execute the following command from the <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> root directory to build a <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> file from the tiddlers:<ol><li><code>tiddlywiki ~/MyWiki --rendertiddler $:/core/save/all index.html text/plain</code></li></ol></li></ol></div>
 </div>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,13 +20,19 @@
 
 </span><span style='fill:;'></span> <span class='title'>Macros in WikiText</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 52 days ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> wikitext</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 16 days ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:;'>
+ wikitext
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
-<div class='body'><p>Macros are snippets of text that can be inserted with a concise shortcut. A macro is defined like this:</p><pre><code>\define mysamplemacro(name:&quot;Bugs Bunny&quot;,address:&quot;Rabbit Hole Hill&quot;)
+<div class='body'><h1 class=''>Defining Macros</h1><p>Macros are snippets of text that can be inserted with a concise shortcut. A macro is defined like this:</p><pre><code>\define mysamplemacro(name:&quot;Bugs Bunny&quot;,address:&quot;Rabbit Hole Hill&quot;)
 Hi, I'm $name$ and I live in $address$
-\end</code></pre><p>The first line of the definition specifies the macro name and any parameters. Parameters are named and can optionally have default values that are used if the parameter isn't specified at the time of calling. The body of the macro definition follows, terminated with <code>\end</code>. The macro can include parameters using the <code>$name$</code> construction.</p><p>Macro definitions must be placed at the top of a tiddler. Macros are available to the tiddler that defines them, plus any tiddlers that it transcludes.</p><p>Macros are used like this:</p><pre><code>&lt;&lt;mysamplemacro&gt;&gt;
+\end</code></pre><p>The first line of the definition specifies the macro name and any parameters. Parameters are named and can optionally have default values that are used if the parameter isn't specified at the time of calling. The body of the macro definition follows, terminated with <code>\end</code>. The macro can include parameters using the <code>$name$</code> construction.</p><p>Macro definitions must be placed at the top of a tiddler. Macros are available to the tiddler that defines them, plus any tiddlers that it transcludes.</p><p><a class=' tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript%2520Macros.html'>JavaScript Macros</a> can also be used for more flexibility.</p><h1 class=''>Using Macros</h1><p>Macros are used like this:</p><pre><code>&lt;&lt;mysamplemacro&gt;&gt;
 &lt;&lt;mysamplemacro &quot;Donald Duck&quot;&gt;&gt;
 &lt;&lt;mysamplemacro &quot;Mickey Mouse&quot; &quot;Mouse House&quot;&gt;&gt;</code></pre><p>Resulting in:</p><pre><code>Hi I'm Bugs Bunny and I live in Rabbit Hole Hill
 Hi I'm Donald Duck and I live in Rabbit Hole Hill

@@ -59,6 +59,7 @@ Error message and password prompt
 .tw-password-wrapper input {
 	width: 100%;
 }
+
 /* Left will inherit from right (so we don't need to duplicate code */
 .github-fork-ribbon {
   /* The right and left lasses determine the side we attach our banner to */
@@ -194,6 +195,8 @@ Error message and password prompt
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
+
+
 .sidebar-header {
 	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
 }
@@ -310,6 +313,10 @@ canvas.tw-edit-bitmapeditor  {
 
 }
 
+.tw-modal-displayed {
+	-webkit-filter: blur(4px);
+}
+
 .modal {
 	`
   -webkit-border-radius: 6px;
@@ -334,6 +341,20 @@ canvas.tw-edit-bitmapeditor  {
      -moz-box-shadow: inset 0 1px 0 #fff;
           box-shadow: inset 0 1px 0 #fff;
 ;
+}
+
+
+.tw-alert {
+	`
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+
+	`
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.6);
+     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.6);
+          box-shadow: 0 3px 7px rgba(0,0,0,0.6);
+
 }
 
 .tw-notification {
@@ -387,6 +408,8 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
           box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
 
 }
+
+
 /*
 ** Start with the normalize CSS reset, and then belay some of its effects
 */
@@ -825,7 +848,7 @@ pre {
 	white-space: pre;
 	white-space: pre-wrap;
 	background-color: #f5f5f5;
-	border: 1px solid #ccc;
+	border: 1px solid #cccccc;
 	padding: 0 3px 2px;
 	`
   -webkit-border-radius: 3px;
@@ -835,7 +858,7 @@ pre {
 }
 
 code {
-	color: #d14;
+	color: #dd1144;
 	background-color: #f7f7f9;
 	border: 1px solid #e1e1e8;
     white-space: pre-wrap;
@@ -848,7 +871,7 @@ code {
 }
 
 blockquote {
-	border-left: 5px solid #ddd;
+	border-left: 5px solid #999999;
 	margin-left: 25px;
 	padding-left: 10px;
 }
@@ -869,7 +892,7 @@ pre > code {
 }
 
 table {
-	border: 1px solid #ddd;
+	border: 1px solid #dddddd;
 	width: auto;
 	max-width: 100%;
 	caption-side: bottom;
@@ -877,8 +900,8 @@ table {
 
 table th, table td {
 	padding: 0 7px 0 7px;
-	border-top: 1px solid #ddd;
-	border-left: 1px solid #ddd;
+	border-top: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
 }
 
 table thead tr td, table th {
@@ -906,16 +929,16 @@ table tfoot tr td {
 a.tw-tiddlylink {
 	text-decoration: none;
 	font-weight: normal;
-	color: #5778D8;
+	color: #5778d8;
 	-webkit-user-select: inherit; /* Otherwise the draggable attribute makes links impossible to select */
 }
 
 .tw-sidebar-lists a.tw-tiddlylink {
-	color: #999;
+	color: #999999;
 }
 
 .tw-sidebar-lists a.tw-tiddlylink:hover {
-	color: #444;
+	color: #444444;
 }
 
 a.tw-tiddlylink:hover {
@@ -939,6 +962,18 @@ a.tw-tiddlylink-missing {
 
 a.tw-tiddlylink-external {
 	text-decoration: underline;
+	color: #0000ee;
+	background-color: ;
+}
+
+a.tw-tiddlylink-external:visited {
+	color: #0000aa;
+	background-color: ;
+}
+
+a.tw-tiddlylink-external:hover {
+	color: ;
+	background-color: ;
 }
 
 /*
@@ -957,11 +992,11 @@ a.tw-tiddlylink-external {
 	font-size: 16.9px;
 	font-weight: bold;
 	line-height: 20px;
-	color: #fff;
+	color: #ffffff;
 	text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
 	white-space: nowrap;
 	vertical-align: baseline;
-	background-color: #000;
+	background-color: #333333;
 	`
   -webkit-border-radius: 20px;
      -moz-border-radius: 20px;
@@ -1004,26 +1039,26 @@ a.tw-tiddlylink-external {
 .btn-icon svg {
 	height: 1em;
 	width: 1em;
-	fill: #999;
+	fill: #999999;
 }
 
 .btn-big-green {
 	padding: 8px;
 	margin: 4px 8px 4px 8px;
-	background: #34C734;
-	color: #fff;
-	fill: #fff;
+	background: #34c734;
+	color: #ffffff;
+	fill: #ffffff;
 	border: none;
 	font-size: 1.2em;
 	line-height: 1.4em;
 }
 
 .btn-mini {
-	color: #e0e0e0;
+	color: #c0c0c0;
 }
 
 .btn-mini:hover {
-	color: #444;
+	color: #444444;
 }
 
 .tw-image-button {
@@ -1035,6 +1070,7 @@ a.tw-tiddlylink-external {
 */
 
 .tw-tag-list-item {
+	position: relative;
 	display: inline-block;
 	margin-right: 7px;
 }
@@ -1059,10 +1095,10 @@ a.tw-tiddlylink-external {
 	font-size: 0.9em;
 	font-weight: 300;
 	line-height: 1.2em;
-	color: #fff;
+	color: #ffffff;
 	white-space: nowrap;
 	vertical-align: baseline;
-	background-color: #D5AD34;
+	background-color: #d5ad34;
 	`
   -webkit-border-radius: 8px;
      -moz-border-radius: 8px;
@@ -1071,13 +1107,13 @@ a.tw-tiddlylink-external {
 }
 
 .tw-untagged-label {
-	background-color: #999;
+	background-color: #999999;
 }
 
 .tw-tag-label svg {
 	height: 1em;
 	width: 1em;
-	fill: #fff;
+	fill: #ffffff;
 }
 
 /*
@@ -1095,6 +1131,10 @@ a.tw-tiddlylink-external {
 .sidebar-header .tw-sidebar-lists p {
 	margin-top: 3px;
 	margin-bottom: 3px;
+}
+
+.sidebar-header .tw-missing-tiddler-label {
+	color: #acacac;
 }
 
 .tw-search a svg {
@@ -1117,11 +1157,11 @@ a.tw-tiddlylink-external {
 	height: 1.75em;
 	min-width: 1px;
 	padding-right: 0.5em;
-	fill: #fff;
+	fill: #ffffff;
 }
 
 .tw-page-controls button:hover svg, .tw-page-controls a:hover svg {
-	fill: #000;
+	fill: #000000;
 }
 
 .tw-menu-list-item {
@@ -1133,7 +1173,11 @@ a.tw-tiddlylink-external {
 }
 
 .tw-open-tiddler-list {
-	
+	`
+  -webkit-transform-origin: 0% 0%;
+     -moz-transform-origin: 0% 0%;
+          transform-origin: 0% 0%;
+
 }
 
 .tw-menu-list-subitem {
@@ -1200,13 +1244,14 @@ a.tw-tiddlylink-external {
 .tw-tiddler-frame {
 	margin-bottom: 28px;
 	background-color: #ffffff;
+	border: 1px solid #ffffff;
 }
 
 .tw-tiddler-info {
 	padding: 14px 42px 14px 42px;
 	background-color: #f8f8f8;
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
 }
 
 .tw-tiddler-info .tw-tab-buttons button.tw-tab-selected {
@@ -1281,15 +1326,15 @@ a.tw-tiddlylink-external {
 
 .tw-tiddler-controls button svg {
 	height: 0.75em;
-	fill: #ccc;
+	fill: #cccccc;
 }
 
 .tw-tiddler-controls button.tw-selected svg {
-	fill: #444;
+	fill: #444444;
 }
 
-.tw-tiddler-controls button:hover svg {
-	fill: #888;
+.tw-tiddler-controls button.btn-invisible:hover svg {
+	fill: #888888;
 }
 
 @media print {
@@ -1299,7 +1344,7 @@ a.tw-tiddlylink-external {
 }
 
 .tw-tiddler-help { /* Help prompts within tiddler template */
-	color: #999;
+	color: #999999;
 	margin-top: 14px;
 }
 
@@ -1310,7 +1355,7 @@ a.tw-tiddlylink-external {
 .tw-tiddler-frame input.tw-edit-texteditor, .tw-tiddler-frame textarea.tw-edit-texteditor {
 	width: 100%;
 	padding: 3px 3px 3px 3px;
-	border: 1px solid #ccc;
+	border: 1px solid #cccccc;
 	line-height: 1.3em;
 	-webkit-appearance: none;
 	margin: 4px 0 4px 0;
@@ -1321,7 +1366,7 @@ a.tw-tiddlylink-external {
 }
 
 canvas.tw-edit-bitmapeditor  {
-	border: 6px solid #fff;
+	border: 6px solid #ffffff;
 	cursor: crosshair;
 	-moz-user-select: none;
 	-webkit-user-select: none;
@@ -1339,11 +1384,51 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 /*
+** Toolbar buttons
+*/
+
+.tw-page-controls svg.tw-image-new-button {
+  fill: ;
+}
+
+.tw-page-controls svg.tw-image-options-button {
+  fill: ;
+}
+
+.tw-page-controls svg.tw-image-save-button {
+  fill: ;
+}
+
+.tw-tiddler-controls button svg.tw-image-info-button {
+  fill: ;
+}
+
+.tw-tiddler-controls button svg.tw-image-edit-button {
+  fill: ;
+}
+
+.tw-tiddler-controls button svg.tw-image-close-button {
+  fill: ;
+}
+
+.tw-tiddler-controls button svg.tw-image-delete-button {
+  fill: ;
+}
+
+.tw-tiddler-controls button svg.tw-image-cancel-button {
+  fill: ;
+}
+
+.tw-tiddler-controls button svg.tw-image-done-button {
+  fill: ;
+}
+
+/*
 ** Tiddler edit mode
 */
 
 .tw-tiddler-edit-frame em.tw-edit {
-	color: #999;
+	color: #999999;
 	font-style: normal;
 }
 
@@ -1352,7 +1437,7 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .tw-edit-tags {
-	border: 1px solid #ddd;
+	border: 1px solid #cccccc;
 	padding: 4px 8px 4px 8px;
 }
 
@@ -1388,7 +1473,7 @@ canvas.tw-edit-bitmapeditor  {
 .tw-tiddler-preview-preview {
 	float: right;
 	width: 48%;
-	border: 1px solid #ccc;
+	border: 1px solid #cccccc;
 	margin: 4px 3px 3px 3px;
 	padding: 3px 3px 3px 3px;
 }
@@ -1429,7 +1514,7 @@ canvas.tw-edit-bitmapeditor  {
 .tw-edit-field-remove svg {
 	height: 1em;
 	width: 1em;
-	fill: #888;
+	fill: #999999;
 	vertical-align: middle;
 }
 
@@ -1450,12 +1535,12 @@ canvas.tw-edit-bitmapeditor  {
 .btn-dropdown svg {
 	height: 1em;
 	width: 1em;
-	fill: #999;
+	fill: #999999;
 }
 
 .tw-drop-down {
 	min-width: 280px;
-	border: 1px solid #bbbbbb;
+	border: 1px solid #999999;
 	background-color: #ffffff;
 	padding: 7px 0 7px 0;
 	margin: 4px 0 0 0;
@@ -1473,7 +1558,7 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-drop-down a:hover {
 	color: #ffffff;
-	background-color: #5778D8;
+	background-color: #5778d8;
 	text-decoration: none;
 }
 
@@ -1497,7 +1582,7 @@ canvas.tw-edit-bitmapeditor  {
 .tw-block-dropdown {
 	position: absolute;
 	min-width: 280px;
-	border: 1px solid #bbbbbb;
+	border: 1px solid #999999;
 	background-color: #ffffff;
 	padding: 0 0 0 0;
 	margin: 4px 0 0 0;
@@ -1512,17 +1597,13 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-block-dropdown a:hover {
 	color: #ffffff;
-	background-color: #5778D8;
+	background-color: #5778d8;
 	text-decoration: none;
 }
 
 /*
 ** Modals
 */
-
-.tw-modal-displayed {
-	-webkit-filter: blur(4px);
-}
 
 .modal-backdrop {
 	position: fixed;
@@ -1531,14 +1612,13 @@ canvas.tw-edit-bitmapeditor  {
 	bottom: 0;
 	left: 0;
 	z-index: 1000;
-	background-color: #000;
+	background-color: #333333;
 }
 
 .modal {
 	z-index: 1100;
-	background-color: #fff;
-	border: 1px solid #999;
-	border: 1px solid rgba(0,0,0,.3);
+	background-color: #ffffff;
+	border: 1px solid #999999;
 }
 
 @media (max-width: 55em) {
@@ -1567,7 +1647,7 @@ canvas.tw-edit-bitmapeditor  {
 
 .modal-header {
 	padding: 9px 15px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #eeeeee;
 }
 
 .modal-header h3 {
@@ -1584,7 +1664,7 @@ canvas.tw-edit-bitmapeditor  {
 	margin-bottom: 0;
 	text-align: right;
 	background-color: #f5f5f5;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid #dddddd;
 }
 
 /*
@@ -1598,9 +1678,8 @@ canvas.tw-edit-bitmapeditor  {
 	z-index: 1000;
 	max-width: 280px;
 	padding: 0 14px 0 14px;
-	background-color: #ffd;
-	border: 1px solid #999;
-	border: 1px solid rgba(0,0,0,.3);
+	background-color: #ffffdd;
+	border: 1px solid #999999;
 }
 
 /*
@@ -1617,28 +1696,25 @@ canvas.tw-edit-bitmapeditor  {
 	margin-bottom: -1px;
 }
 
+.tw-tab-buttons button.tw-tab-selected {
+	color: #666666;
+	background-color: #ffffff;
+	border-left: 1px solid #d8d8d8;
+	border-top: 1px solid #d8d8d8;
+	border-right: 1px solid #d8d8d8;
+}
+
 .tw-tab-buttons button {
-	color: #666;
+	color: #666666;
 	margin-left: 2px;
 	margin-right: 2px;
 	font-weight: 300;
 	border: none;
 	background: inherit;
-}
-
-.tw-tab-buttons button.tw-tab-selected {
-	background-color: #fff;
-	border-left: 1px solid #d8d8d8;
-	border-top: 1px solid #d8d8d8;
-	border-right: 1px solid #d8d8d8;
-	margin-bottom: -1px;
-}
-
-.tw-tab-buttons button:not(.tw-tab-selected) {
 	background-color: #d8d8d8;
-	border-left: 1px solid #ccc;
-	border-top: 1px solid #ccc;
-	border-right: 1px solid #ccc;
+	border-left: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
 }
 
 .tw-tab-divider {
@@ -1651,13 +1727,22 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-sidebar-lists .tw-tab-buttons button.tw-tab-selected {
 	background-color: #ececec;
-	border-bottom: 1px solid #ececec;
+	color: ;
+	border-left: 1px solid #d8d8d8;
+	border-top: 1px solid #d8d8d8;
+	border-right: 1px solid #d8d8d8;
+}
+
+.tw-sidebar-lists .tw-tab-buttons button {
+	background-color: #d8d8d8;
+	color: #666666;
+	border-left: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
 }
 
 .tw-sidebar-lists .tw-tab-divider {
-	border-top: none;
-	height: 1px;
-	
+	border-top: 1px solid #e4e4e4;
 }
 
 .tw-more-sidebar {
@@ -1696,8 +1781,7 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .tw-more-sidebar .tw-tab-buttons button {
-	background-color: #ececec;
-	
+	background-color: #d8d8d8;
 	border-top: none;
 	border-left: none;
 	border-bottom: none;
@@ -1705,8 +1789,7 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .tw-more-sidebar .tw-tab-buttons button.tw-tab-selected {
-	background-color: #fff;
-	
+	background-color: #ececec;
 	border: none;
 }
 
@@ -1714,16 +1797,39 @@ canvas.tw-edit-bitmapeditor  {
 ** Alerts
 */
 
-.tw-alert {
-	`
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
+.tw-alerts {
+	position: fixed;
+	top: 0;
+	left: 0;
+	max-width: 500px;
+	z-index: 20000;
+}
 
-	margin: 7px 7px 7px 7px;
+.tw-alert {
+	position: relative;
+	margin: 28px;
 	padding: 14px 14px 14px 14px;
-	border: 3px solid #DBB727;
-	background-color: rgb(250, 210, 50);
+	border: 2px solid #b99e2f;
+	background-color: #ffe476;
+}
+
+.tw-alert-toolbar {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+}
+
+.tw-alert-toolbar svg {
+	fill: #b99e2f;
+}
+
+.tw-alert-subtitle {
+	color: #b99e2f;
+	font-weight: bold;
+}
+
+.tw-alert-highlight {
+	color: #881122;	
 }
 
 .tw-static-alert {
@@ -1732,7 +1838,7 @@ canvas.tw-edit-bitmapeditor  {
 
 .tw-static-alert-inner {
 	padding: 0 2px 2px 42px;
-	color: #AAA;
+	color: #aaaaaa;
 	position: absolute;
 }
 
@@ -1762,8 +1868,8 @@ canvas.tw-edit-bitmapeditor  {
 */
 
 .tw-message-box {
-	border: 1px solid #CFD6E6;
-	background: #ECF2FF;
+	border: 1px solid #cfd6e6;
+	background: #ecf2ff;
 	padding: 0px 21px 0px 21px;
 	margin: 0 -21px 0 -21px;
 	font-size: 12px;
@@ -1776,3 +1882,49 @@ canvas.tw-edit-bitmapeditor  {
 	width: 150px;
 	margin: 0px 0px 12px 12px;
 }
+
+/*
+** Chooser
+*/
+
+.tw-chooser {
+	border: 1px solid #dddddd;
+}
+
+.tw-chooser-item {
+	border: 8px;
+}
+
+.tw-chooser-item a.tw-tiddlylink {
+	display: block;
+	text-decotoration: none;
+	color: #5778d8;
+	background-color: #ffffff;
+	margin: 4px;
+}
+
+.tw-chooser-item a.tw-tiddlylink:hover {
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #5778d8;
+}
+
+/*
+** Palette swatches
+*/
+
+.tw-swatches-horiz {
+}
+
+.tw-swatches-horiz .tw-swatch {
+	display: inline-block;
+}
+
+.tw-swatch {
+	width: 2em;
+	height: 2em;
+	margin: 4px;
+	border: 1px solid #000;
+}
+
+

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,11 +20,68 @@
 
 </span><span style='fill:;'></span> <span class='title'>NavigatorWidget</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 2 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> widget</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 44 hours ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#6188da;'>
+ widget
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
-<div class='body'><h1 class=''>Introduction</h1><p>The navigator widget manipulates the current store, the story list and history lists in response to various <a class=' tw-tiddlylink tw-tiddlylink-missing' href='WidgetMessages.html'>WidgetMessages</a>.</p><h1 class=''>Navigator Widget Messages</h1><p>The actions performed by each widget message are described below.</p><h2 class=''>Action of <code>tw-navigate</code> message</h2><p>The navigate message inserts the specified tiddler into the story and puts it at the top of the history stack. If the tiddler is not already present in the story then it will be positioned immediately after the tiddler specified in <code>event.navigateFromTitle</code>.</p><p>The navigate message requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>navigateTo</td><td align='left'>Title of the tiddler that is being navigated</td></tr><tr class='evenRow'><td align='left'>navigateFromTitle</td><td align='left'>Title of the tiddler from which the navigation was initiated</td></tr><tr class='oddRow'><td align='left'>navigateFromClientRect</td><td align='left'>Bounding rectangle in client page coordinates of the element initiating the navigation</td></tr></tbody></table><h2 class=''>Action of <code>tw-edit-tiddler</code> message</h2><p>The edit tiddler message replaces the specified tiddler in the current story with a draft version of itself. It requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddlerTitle</td><td align='left'>Title of the tiddler that is being switched to edit mode</td></tr></tbody></table><h2 class=''>Action of <code>tw-delete-tiddler</code> message</h2><p>The delete tiddler message deletes specified tiddler and removes it from the current story. If the tiddler is a draft then it also deletes the tiddler specified in the <code>draft.of</code> field. The delete tiddler message requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddlerTitle</td><td align='left'>Title of the tiddler that is being switched to edit mode</td></tr></tbody></table><h2 class=''>Action of <code>tw-save-tiddler</code> message</h2><p>The save tiddler message is applied to draft tiddlers. It saves the draft over the tiddler identified in the <code>draft.of</code> field and then deletes the draft. The save tiddler message requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddlerTitle</td><td align='left'>Title of the tiddler that is being switched out of edit mode</td></tr></tbody></table><h2 class=''>Action of <code>tw-cancel-tiddler</code> message</h2><p>The cancel tiddler message abandons the changes in a draft tiddler. It requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddlerTitle</td><td align='left'>Title of the tiddler that is being cancelled out of edit mode</td></tr></tbody></table><h2 class=''>Action of <code>tw-close-tiddler</code> message</h2><p>The close tiddler message removes a specified tiddler from the story list. It requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddlerTitle</td><td align='left'>Title of the tiddler that is to be closed</td></tr></tbody></table><h2 class=''>Action of <code>tw-close-all-tiddlers</code> message</h2><p>The close all tiddlers message empties the story list.</p><h2 class=''>Action of <code>tw-new-tiddler</code> message</h2><p>The new tiddler message creates a new draft tiddler and adds it to the current story. It requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>navigateFromTitle</td><td align='left'>Title of the tiddler from which the navigation to the new tiddler was initiated</td></tr></tbody></table><h2 class=''>Action of <code>tw-import-tiddlers</code> message</h2><p>The import tiddlers message adds a list of tiddlers to the store and adds them to the current story. It requires the following properties on the <code>event</code> object:</p><table><tbody><tr class='evenRow'><th align='left'>Name</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>param</td><td align='left'>JSON text of the tiddlers to be imported</td></tr></tbody></table><h1 class=''>Content and Attributes</h1><p>The navigator widget displays any contained content, and responds to <a class=' tw-tiddlylink tw-tiddlylink-missing' href='WidgetMessages.html'>WidgetMessages</a> dispatched within it.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>story</td><td align='left'>Name of the tiddler containing the story list to be manipulated</td></tr><tr class='evenRow'><td align='left'>history</td><td align='left'>Name of the tiddler containing the history list to be manipulated</td></tr></tbody></table></div>
+<div class='body'><h1 class=''>Introduction</h1><p>The navigator widget manipulates the current store, the story list and history lists in response to various <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessages.html'>WidgetMessages</a>.</p><h1 class=''>Content and Attributes</h1><p>The navigator widget displays any contained content, and responds to <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessages.html'>WidgetMessages</a> dispatched within it.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>story</td><td align='left'>Name of the tiddler containing the story list to be manipulated</td></tr><tr class='evenRow'><td align='left'>history</td><td align='left'>Name of the tiddler containing the history list to be manipulated</td></tr></tbody></table><h1 class=''>Widget Messages</h1><p>The following <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessages.html'>WidgetMessages</a> are handled by the navigator widget:</p><p><ul>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-cancel-tiddler.html'>
+WidgetMessage: tw-cancel-tiddler
+</a>
+</li>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-close-all-tiddlers.html'>
+WidgetMessage: tw-close-all-tiddlers
+</a>
+</li>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-close-tiddler.html'>
+WidgetMessage: tw-close-tiddler
+</a>
+</li>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-delete-tiddler.html'>
+WidgetMessage: tw-delete-tiddler
+</a>
+</li>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-edit-tiddler.html'>
+WidgetMessage: tw-edit-tiddler
+</a>
+</li>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-import-tiddlers.html'>
+WidgetMessage: tw-import-tiddlers
+</a>
+</li>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-new-tiddler.html'>
+WidgetMessage: tw-new-tiddler
+</a>
+</li>
+
+<li>
+<a class=' tw-tiddlylink tw-tiddlylink-resolves' href='WidgetMessage%253A%2520tw-save-tiddler.html'>
+WidgetMessage: tw-save-tiddler
+</a>
+</li>
+
+</ul>
+</p></div>
 </div>
 
 </p>

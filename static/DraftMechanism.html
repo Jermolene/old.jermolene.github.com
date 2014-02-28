@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.7-beta" />
+<meta name="tiddlywiki-version" content="5.0.8-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -20,9 +20,15 @@
 
 </span><span style='fill:;'></span> <span class='title'>DraftMechanism</span></div>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 5 months ago</div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'><button class='btn-invisible tw-tag-label' style='background-color:;'> mechanism</button>
-<span class=' tw-reveal' hidden='true'></span></span>
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div></div><div class='tw-subtitle'><a class=' tw-tiddlylink tw-tiddlylink-missing' href='.html'></a> 6 months ago</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#9fa3cb;'>
+ mechanism
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
 </div>
 <div class='body'><p>Tiddlers that have a <code>draft.of</code> field are treated as pending drafts of the tiddler specified in the field. Draft tiddlers should also have a <code>draft.title</code> field that specifies the title that will be given to the tiddler when it is saved.</p><p>Several features work in concert to give the desired behaviour for draft tiddlers:</p><ul><li>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='ListWidget.html'>ListWidget</a> can optionally render draft tiddlers through a different template</li><li>The <a class=' tw-tiddlylink tw-tiddlylink-resolves' href='NavigatorWidget.html'>NavigatorWidget</a> incorporates handlers for the following events:<ul><li><code>tw-new-tiddler</code> for creating a new tiddler in draft mode</li><li><code>tw-edit-tiddler</code> for moving a tiddler into edit mode </li><li><code>tw-cancel-tiddler</code> for cancelling a tiddler out of edit mode</li><li><code>tw-save-tiddler</code> for saving a draft tiddler</li></ul></li><li>Draft tiddlers are automatically excluded from search operations</li></ul></div>
 </div>
