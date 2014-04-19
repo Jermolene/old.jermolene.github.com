@@ -58,46 +58,6 @@ Error message and password prompt
 	width: 100%;
 }
 
-@media (min-width: 600px) {
-
-	.tw-link-info {
-		-moz-column-count: 2;
-		-moz-column-gap: 10px;
-		-webkit-column-count: 2;
-		-webkit-column-gap: 10px;
-		column-count: 2;
-		column-gap: 10px;
-	}
-
-	.tw-link-info-item {
-		width: 100%;
-	}
-
-}
-
-.tw-link-info-item {
-	display: inline-block;
-	border: 1px solid #bbb;
-	padding: 5px 10px;
-	margin-bottom: 10px;
-	background: #fcf8f8;
-	font-size: 0.8em;
-	line-height: 1.2;
-}
-
-.tw-link-info-item h1 {
-	font-weight: 500;
-	font-size: 16px;	
-}
-
-.tw-scrollable-demo {
-	border: 1px solid #cfd6e6;
-	background-color: #ecf2ff;
-	padding: 1em;
-	height: 400px;
-}
-
-
 /* Left will inherit from right (so we don't need to duplicate code */
 .github-fork-ribbon {
   /* The right and left lasses determine the side we attach our banner to */
@@ -1094,7 +1054,7 @@ a.tw-tiddlylink-external:hover {
 	color: #333333;
 }
 
-.tw-sidebar-lists button {
+.tw-sidebar-lists button.btn {
 	color: #333333;
 }
 
@@ -1167,13 +1127,13 @@ a.tw-tiddlylink-external:hover {
 }
 
 .tw-topbar-left {
-	left: 0;
-	top: 0;
+	left: 29px;
+	top: 5px;
 }
 
 .tw-topbar-right {
-	top: 0;
-	right: 0;
+	top: 5px;
+	right: 29px;
 }
 
 .tw-topbar button {
@@ -1314,7 +1274,7 @@ a.tw-tiddlylink-external:hover {
 }
 
 @media print {
-	.sidebar-header {
+	.sidebar-header, .tw-topbar {
 		display: none;
 	}
 
@@ -2024,5 +1984,45 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 
+
+
+@media (min-width: 600px) {
+
+	.tw-link-info {
+		-moz-column-count: 2;
+		-moz-column-gap: 10px;
+		-webkit-column-count: 2;
+		-webkit-column-gap: 10px;
+		column-count: 2;
+		column-gap: 10px;
+	}
+
+	.tw-link-info-item {
+		width: 100%;
+	}
+
+}
+
+.tw-link-info-item {
+	display: inline-block;
+	border: 1px solid #bbb;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+	background: #fcf8f8;
+	font-size: 0.8em;
+	line-height: 1.2;
+}
+
+.tw-link-info-item h1 {
+	font-weight: 500;
+	font-size: 16px;	
+}
+
+.tw-scrollable-demo {
+	border: 1px solid #cfd6e6;
+	background-color: #ecf2ff;
+	padding: 1em;
+	height: 400px;
+}
 
 
