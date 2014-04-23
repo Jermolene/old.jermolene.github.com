@@ -12092,10 +12092,10 @@ https://github.com/Jermolene/TiddlyWiki5
 <div background-color="#d3d8e7" title="Features">
 <pre>! More Features
 
-* Story views
-* Languages
+* Story views for visualising tiddler sequences
+* Multi-language support for the user interface and your content
 * Themes
-* Palettes
+* Colour palettes
 * Saving
 * Encryption
 * Static Renderings
@@ -12166,7 +12166,11 @@ PouchDB - https://gist.github.com/judell/9744381
 
 Like Angular and Ractive. Not string based; always uses a DOM and selective updating.
 
-Show how sidebar state is held in [[$:/state/sidebar]]
+Show how sidebar state is held in [[$:/state/sidebar]]:
+
+```
+$tw.wiki.addTiddler(new $tw.Tiddler({title: &quot;$:/state/sidebar&quot;,text: &quot;yes&quot;}))
+```
 </pre>
 </div>
 <div tags="picture" title="Server Architecture.svg" type="image/svg+xml">
@@ -12403,6 +12407,7 @@ How an end user might use ~TiddlyWiki
 
 If you are a full stack JavaScript developer that knows node.js and the DOM, then node-webkit will make you feel like somebody from France discovering they can speak French in Canada.
 
+Use Canvas on the server. Take web page thumbnails. Give your server a synchronous GUI.
 </pre>
 </div>
 <div tags="picture" title="TiddlyWiki Architecture.svg" type="image/svg+xml">
