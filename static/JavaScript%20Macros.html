@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.10-beta" />
+<meta name="tiddlywiki-version" content="5.0.11-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -38,7 +38,7 @@ JavaScript Macros
 </div><div class='tw-subtitle'>
 <a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
 
-</a> 2 months ago
+</a> 22 days ago
 </div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
 
@@ -50,8 +50,7 @@ JavaScript Macros
 </span>
 </div>
 
-<div class='body'><p>Macros can be implemented as <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> modules as well as via the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='Macros%2520in%2520WikiText.html'>wikitext syntax</a>.</p><h1 class=''>Overview</h1><p><a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros are modules with their <strong>module-type</strong> field set to <strong>macro</strong>. They must export these three properties:</p><ul><li><strong>name</strong>: A string giving the name used to invoke the macro</li><li><strong>params</strong>: An array of objects with the following properties:<ul><li><em>name</em>: name of the parameter</li><li><em>default</em>: (optional) default value for the parameter</li></ul></li><li><strong>run</strong>: Function called when the macro requires evaluation. The parameters are pulled from the macro call and arranged according to the <strong>params</strong> array. The <strong>run</strong> function should return the string value of the macro. When invoked, <code>this</code> points to the widget node invoking the macro.</li></ul><p>Note that if the <strong>params</strong> array is missing or blank, then all the supplied parameters are passed to the <code>run()</code> method.</p><h1 class=''>Writing <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros</h1><p>There are several <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros built into the core which can serve as a jumping off point for your own macros:</p><p><a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/tree/master/core/modules/macros' target='_blank'>https://github.com/Jermolene/TiddlyWiki5/tree/master/core/modules/macros</a></p><p>Note that <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros work on both the client and the server, and so do not have access to the browser DOM.
-</p></div>
+<div class='body'><p>Macros can be implemented as <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> modules as well as via the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='Macros%2520in%2520WikiText.html'>wikitext syntax</a>.</p><h1 class=''>Overview</h1><p><a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros are modules with their <strong>module-type</strong> field set to <strong>macro</strong>. They must export these three properties:</p><ul><li><strong>name</strong>: A string giving the name used to invoke the macro</li><li><strong>params</strong>: An array of objects with the following properties:<ul><li><em>name</em>: name of the parameter</li><li><em>default</em>: (optional) default value for the parameter</li></ul></li><li><strong>run</strong>: Function called when the macro requires evaluation. The parameters are pulled from the macro call and arranged according to the <strong>params</strong> array. The <strong>run</strong> function should return the string value of the macro. When invoked, <code>this</code> points to the widget node invoking the macro.</li></ul><p>Note that if the <strong>params</strong> array is missing or blank, then all the supplied parameters are passed to the <code>run()</code> method.</p><h1 class=''>Writing <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros</h1><p>There are several <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros built into the core which can serve as a jumping off point for your own macros:</p><p><a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/tree/master/core/modules/macros' target='_blank'>https://github.com/Jermolene/TiddlyWiki5/tree/master/core/modules/macros</a></p><p>Note that <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> macros work on both the client and the server, and so do not have access to the browser DOM.</p><h2 class=''>Macro Behaviour</h2><p>Macros are just used to return a chunk of wikitext for further processing. They should not make modifications to tiddlers in the wiki store. The reason is that you cannott control when the macro is called; it may be called repeatedly as part of refresh processing. So it is important that macros do not have any other side effects beyond generating their text.</p></div>
 
 </div>
 

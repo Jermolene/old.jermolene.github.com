@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.10-beta" />
+<meta name="tiddlywiki-version" content="5.0.11-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -38,7 +38,7 @@ Editing Tiddlers with Emacs
 </div><div class='tw-subtitle'>
 <a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
 
-</a> 12 days ago
+</a> 22 days ago
 </div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
 
@@ -50,22 +50,8 @@ Editing Tiddlers with Emacs
 </span>
 </div>
 
-<div class='body'><p>This <a class='tw-tiddlylink-external' href='http://www.gnu.org/software/emacs/' target='_blank'>Emacs</a> function from Michael Fogleman simplifies editing tiddlers in <code>*.tid</code> files by automatically updating the <code>modified</code> field.</p><p>If you have Emacs, you can save this function somewhere (such as in your init file). When you finish editing a tiddler, you can call the function, and it will update the modified time.</p><blockquote><p>Help Wanted: Even better would be a <a class='tw-tiddlylink tw-tiddlylink-missing' href='TiddlyWiki-mode.html'>TiddlyWiki-mode</a> that used this function as a save-hook</p></blockquote><pre><code>(defun tid-time ()
-  &quot;If called in a tiddler file, this function updates the metadata to
-  reflect the modification time.&quot;
-  (interactive)
-  (when
-      (and
-       (&gt; (length (buffer-file-name)) 4)
-       (string-equal (substring (buffer-file-name) -4) &quot;.tid&quot;))
-      (save-excursion
-        (goto-char (point-min))
-
-        (search-forward &quot;modified: &quot;)
-        (beginning-of-line)
-
-        (kill-line)
-        (insert (format-time-string &quot;modified: %Y%m%d%H%M%S%3N&quot;)))))</code></pre></div>
+<div class='body'><p>Michael Fogleman has written an <a class='tw-tiddlylink-external' href='http://www.gnu.org/software/emacs/' target='_blank'>Emacs</a> major mode called <a class='tw-tiddlylink-external' href='https://github.com/mwfogleman/tid-mode' target='_blank'>tid-mode</a>, which is for editing <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> .tid files. It is derived from text-mode, uses the useful minor modes org-struct and subword, and updates the modified times when you save a .tid file.
+</p></div>
 
 </div>
 

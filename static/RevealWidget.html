@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.10-beta" />
+<meta name="tiddlywiki-version" content="5.0.11-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -38,7 +38,7 @@ RevealWidget
 </div><div class='tw-subtitle'>
 <a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
 
-</a> 2 months ago
+</a> 3 months ago
 </div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
 
@@ -50,26 +50,7 @@ RevealWidget
 </span>
 </div>
 
-<div class='body'><h1 class=''>Introduction</h1><p>The reveal widget hides or shows its content depending upon the value of a <a class='tw-tiddlylink tw-tiddlylink-missing' href='StateTiddlers.html'>state tiddler</a>. The type of the widget determines the condition for the content being displayed:</p><ul><li>type=<strong>match</strong>: the content is displayed if the state tiddler matches a specified value</li><li>type=<strong>nomatch</strong>: the content is displayed if the state tiddler doesn't match a specified value</li><li>type=<strong>popup</strong>: the content is displayed as a popup as described in the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='PopupMechanism.html'>PopupMechanism</a></li></ul><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$reveal&gt;</code> widget is displayed according to the rules given above.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>state</td><td align='left'>The title of the tiddler containing the state</td></tr><tr class='evenRow'><td align='left'>type</td><td align='left'>The type of matching performed: <strong>match</strong>, <strong>nomatch</strong> or <strong>popup</strong></td></tr><tr class='oddRow'><td align='left'>text</td><td align='left'>The text to match when the type is <strong>match</strong> and <strong>nomatch</strong></td></tr><tr class='evenRow'><td align='left'>position</td><td align='left'>The position used for the popup when the type is <strong>popup</strong>. Can be <strong>left</strong>, <strong>above</strong>, <strong>aboveright</strong>, <strong>right</strong>, <strong>belowleft</strong> or <strong>below</strong></td></tr><tr class='oddRow'><td align='left'>default</td><td align='left'>Default value to use when the state tiddler</td></tr><tr class='evenRow'><td align='left'>animate</td><td align='left'>Set to &quot;yes&quot; to animate opening and closure (defaults to &quot;no&quot;)</td></tr><tr class='oddRow'><td align='left'>retain</td><td>Set to &quot;yes&quot; to force the content to be retained even when hidden (defaults to &quot;no&quot;)</td></tr></tbody></table><p>Retaining the content when hidden can give poor performance since the hidden content requires refresh processing even though it is not displayed. On the other hand, the content can be revealed much more quickly. Note that setting <strong>animate=&quot;yes&quot;</strong> will also force <strong>retain=&quot;yes&quot;</strong>.</p><h1 class=''>Examples</h1><h2 class=''>Simple content reveal</h2><p>Here's a simple example of showing and hiding content with buttons:</p><pre><code>&lt;$button set=&quot;$:/SampleRevealState&quot; setTo=&quot;show&quot;&gt;Show me&lt;/$button&gt;
-&lt;$button set=&quot;$:/SampleRevealState&quot; setTo=&quot;hide&quot;&gt;Hide me&lt;/$button&gt;
-
-&lt;$reveal type=&quot;match&quot; state=&quot;$:/SampleRevealState&quot; text=&quot;show&quot;&gt;
-
-! This is the revealed content
-And this is some text
-
-&lt;/$reveal&gt;</code></pre><p>It renders as:</p><p><button class=''>Show me</button>
-<button class=''>Hide me</button></p><div class=' tw-reveal' hidden='true'></div><h2 class=''>Popup</h2><p>Here is a simple example of a popup built with the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='RevealWidget.html'>RevealWidget</a>:</p><pre><code>&lt;$button popup=&quot;$:/SamplePopupState&quot;&gt;Pop me up!&lt;/$button&gt;
-
-&lt;$reveal type=&quot;popup&quot; state=&quot;$:/SamplePopupState&quot;&gt;
-&lt;div class=&quot;tw-drop-down&quot;&gt;
-
-! This is the popup
-And this is some text
-
-&lt;/div&gt;
-&lt;/$reveal&gt;</code></pre><p>It renders as:</p><p><button class=''>Pop me up!</button></p><p><span class=' tw-reveal' hidden='true'></span>
-</p></div>
+<div class='body'><h1 class=''>Introduction</h1><p>The reveal widget hides or shows its content depending upon the value of a <a class='tw-tiddlylink tw-tiddlylink-missing' href='StateTiddlers.html'>state tiddler</a>. The type of the widget determines the condition for the content being displayed:</p><ul><li>type=<strong>match</strong>: the content is displayed if the state tiddler matches a specified value</li><li>type=<strong>nomatch</strong>: the content is displayed if the state tiddler doesn't match a specified value</li><li>type=<strong>popup</strong>: the content is displayed as a popup as described in the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='PopupMechanism.html'>PopupMechanism</a></li></ul><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$reveal&gt;</code> widget is displayed according to the rules given above.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>state</td><td align='left'>The title of the tiddler containing the state</td></tr><tr class='evenRow'><td align='left'>type</td><td align='left'>The type of matching performed: <strong>match</strong>, <strong>nomatch</strong> or <strong>popup</strong></td></tr><tr class='oddRow'><td align='left'>text</td><td align='left'>The text to match when the type is <strong>match</strong> and <strong>nomatch</strong></td></tr><tr class='evenRow'><td align='left'>position</td><td align='left'>The position used for the popup when the type is <strong>popup</strong>. Can be <strong>left</strong>, <strong>above</strong>, <strong>aboveright</strong>, <strong>right</strong>, <strong>belowleft</strong> or <strong>below</strong></td></tr><tr class='oddRow'><td align='left'>default</td><td align='left'>Default value to use when the state tiddler</td></tr><tr class='evenRow'><td align='left'>animate</td><td align='left'>Set to &quot;yes&quot; to animate opening and closure (defaults to &quot;no&quot;)</td></tr><tr class='oddRow'><td align='left'>retain</td><td>Set to &quot;yes&quot; to force the content to be retained even when hidden (defaults to &quot;no&quot;)</td></tr></tbody></table><p>Retaining the content when hidden can give poor performance since the hidden content requires refresh processing even though it is not displayed. On the other hand, the content can be revealed much more quickly. Note that setting <strong>animate=&quot;yes&quot;</strong> will also force <strong>retain=&quot;yes&quot;</strong>.</p><h1 class=''>Examples</h1><h2 class=''>Simple content reveal</h2><p>Here's a simple example of showing and hiding content with buttons:</p><h2 class=''>&quot;Slider&quot;</h2><p>A slider appears as a single button that can be used to toggle the display of the contained content.</p><h2 class=''>Popup</h2><p>Here is a simple example of a popup built with the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='RevealWidget.html'>RevealWidget</a>:</p></div>
 
 </div>
 

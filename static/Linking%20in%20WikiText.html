@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.10-beta" />
+<meta name="tiddlywiki-version" content="5.0.11-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -38,7 +38,7 @@ Linking in WikiText
 </div><div class='tw-subtitle'>
 <a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
 
-</a> 4 months ago
+</a> 12 months ago
 </div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
 
@@ -50,7 +50,13 @@ Linking in WikiText
 </span>
 </div>
 
-<div class='body'><p>A key capability of <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> is the ability to make links to other tiddlers or to external websites. There are several ways of doing this:</p><ul><li>To link to a tiddler by title: <code>[[Tiddler Title]]</code></li><li>To link to a tiddler and specify the text of the link: <code>[[Displayed Link Title|Tiddler Title]]</code></li><li>For tiddler titles that match the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='CamelCase.html'>CamelCase</a> rules, just typing the title will automatically create a link</li><li>To link to an external website, type the full URL of the site: <code>http://tiddlywiki.com/</code> or <code>[[TW5|http://tiddlywiki.com/]]</code></li></ul><p>You can suppress a link from being recognised by preceding it with <code>~</code>. For example:</p></div>
+<div class='body'><p>A key capability of <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> is the ability to make links to other tiddlers or to external websites. There are several ways of doing this:</p><p>Link to a tiddler by title:</p><pre><code>[[Tiddler Title]]</code></pre><p>To link to a tiddler and specify the text of the link:</p><pre><code>[[Displayed Link Title|Tiddler Title]]</code></pre><p>For tiddler titles that match the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='CamelCase.html'>CamelCase</a> rules, just typing the title will automatically create a link.</p><p>To link to an external website, type the full URL of the site:</p><pre><code>http://tiddlywiki.com/
+
+[[TW5|http://tiddlywiki.com/]]</code></pre><p>For this syntax to work, the URL has to be recognisable as an URL, including a protocol such as <code>http://</code> or <code>file://</code>. You can force an external link with the extended syntax:</p><pre><code>[ext[tiddlywiki.com]]
+
+[ext[caption for link|tiddlywiki.com]]
+
+[ext[Donate|bitcoin:1aabbdd....?amount=0.001]]</code></pre><p>You can suppress a link from being recognised by preceding it with <code>~</code>. For example:</p></div>
 
 </div>
 

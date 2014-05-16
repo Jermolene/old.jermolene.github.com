@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.10-beta" />
+<meta name="tiddlywiki-version" content="5.0.11-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -50,7 +50,8 @@ RenderTiddlersCommand
 </span>
 </div>
 
-<div class='body'><p>Render a set of tiddlers matching a filter to separate files of a specified <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> (defaults to <code>text/html</code>) and extension (defaults to <code>.html</code>).</p><pre><code>--rendertiddlers &lt;filter&gt; &lt;template&gt; &lt;pathname&gt; [&lt;type&gt;] [&lt;extension&gt;]</code></pre><p>For example:</p><pre><code>--rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html ./static text/plain</code></pre></div>
+<div class='body'><p>Render a set of tiddlers matching a filter to separate files of a specified <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> (defaults to <code>text/html</code>) and extension (defaults to <code>.html</code>).</p><pre><code>--rendertiddlers &lt;filter&gt; &lt;template&gt; &lt;pathname&gt; [&lt;type&gt;] [&lt;extension&gt;]</code></pre><p>For example:</p><pre><code>--rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html ./static text/plain</code></pre><p>By default, the pathname is resolved relative to the <code>output</code> subdirectory of the edition directory. The <code>--output</code> command can be used to direct output to a different directory.</p><p>Any files in the target directory are deleted. The target directory is recursively created if it is missing.
+</p></div>
 
 </div>
 

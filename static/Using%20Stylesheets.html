@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.10-beta" />
+<meta name="tiddlywiki-version" content="5.0.11-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -38,7 +38,7 @@ Using Stylesheets
 </div><div class='tw-subtitle'>
 <a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
 
-</a> 45 days ago
+</a> 21 days ago
 </div>
 <div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
 
@@ -50,7 +50,7 @@ Using Stylesheets
 </span>
 </div>
 
-<div class='body'><p>The usual way of modifying the appearance of a <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is to use one of the available themes, or to modify the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ColourPalettes.html'>colour palette</a>.</p><p>You can also use custom CSS stylesheets by tagging tiddlers with <code>$:/tags/stylsheet</code>. For example, create a tiddler with the tag <code>$:/tags/stylsheet</code> and the following content in order to change the page background colour to red:</p><pre><code>html body.tw-body {
+<div class='body'><p>The usual way of modifying the appearance of a <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is to use one of the available themes, or to modify the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ColourPalettes.html'>colour palette</a>.</p><p>You can also use custom CSS stylesheets by tagging tiddlers with <code>$:/tags/stylesheet</code>. For example, create a tiddler with the tag <code>$:/tags/stylesheet</code> and the following content in order to change the page background colour to red:</p><pre><code>html body.tw-body {
 	background: red;
 }</code></pre><h1 class=''>Overriding Theme Settings</h1><p>Note that custom stylesheets are applied independently to the theme stylesheets. This means that it is frequently necessary to use CSS specificity to reliably override settings within the theme. This means ensuring that the CSS rule in your custom stylesheet is more specific than the theme rule that you are overriding. &quot;More specific&quot; generally means using more CSS rules. So, <code>html body.tw-body</code> is more specific than <code>body.tw-body</code>.</p><h1 class=''>Stylesheet Types</h1><p>Usually it is best to use the type <code>text/css</code> for stylesheets. This treats them as plain stylesheets, and ensures that <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> doesn't apply any wiki processing to them.</p><p>If you wish to use macros and transclusions in your stylesheets you should instead use the default <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> type <code>text/vnd.tiddlywiki</code>. This allows full <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> processing to be performed. Here is an example:</p><pre><code>\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline
 
