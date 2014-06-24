@@ -914,11 +914,16 @@ table tfoot tr td {
 	white-space: nowrap;
 }
 
-.tw-tiddler-frame img, .tw-tiddler-frame svg, .tw-tiddler-frame canvas, .tw-tiddler-frame embed {
+.tw-tiddler-frame img,
+.tw-tiddler-frame svg,
+.tw-tiddler-frame canvas,
+.tw-tiddler-frame embed,
+.tw-tiddler-frame iframe {
 	max-width: 100%;
 }
 
-.tw-tiddler-frame embed {
+.tw-tiddler-frame embed,
+.tw-tiddler-frame iframe {
 	width: 100%;
 	height: 600px;
 }
@@ -1150,6 +1155,7 @@ a.tw-tiddlylink-external:hover {
 
 .sidebar-header {
 	color: #acacac;
+	fill: #acacac;
 }
 
 .sidebar-header .title a.tw-tiddlylink-resolves {
@@ -1293,6 +1299,13 @@ a.tw-tiddlylink-external:hover {
 	border: 1px solid #ffffff;
 }
 
+
+@media print {
+	.tw-tiddler-frame {
+		border: none;
+	}
+}
+
 .tw-tiddler-info {
 	padding: 14px 42px 14px 42px;
 	background-color: #f8f8f8;
@@ -1313,6 +1326,7 @@ a.tw-tiddlylink-external:hover {
 	width: 1%; /* Makes this column be as narrow as possible */
 	text-align: right;
 	font-style: italic;
+	font-weight: 200;
 }
 
 .tw-view-field-value {
@@ -1347,6 +1361,7 @@ a.tw-tiddlylink-external:hover {
 	font-size: 2.35em;
 	line-height: 1.2em;
 	color: #182955;
+	margin: 0;
 }
 
 .tw-system-title-prefix {
@@ -1657,6 +1672,11 @@ canvas.tw-edit-bitmapeditor  {
 	padding: 4px 14px 4px 14px;
 }
 
+.tw-block-dropdown .tw-dropdown-item {
+	padding: 4px 14px 4px 7px;
+	color: #bbb;
+}
+
 .tw-block-dropdown a:hover {
 	color: #ffffff;
 	background-color: #5778d8;
@@ -1666,6 +1686,16 @@ canvas.tw-edit-bitmapeditor  {
 /*
 ** Modals
 */
+
+.modal-wrapper {
+	position: fixed;
+	overflow: auto;
+	overflow-y: scroll;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
 
 .modal-backdrop {
 	position: fixed;
@@ -1699,11 +1729,9 @@ canvas.tw-edit-bitmapeditor  {
 
 @media (min-width: 55em) {
 	.modal {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		width: 560px;
-		margin: -180px 0 0 -280px;
+		position: relative;
+		width: 50%;
+		margin: 30px auto;
 	}
 }
 
@@ -1749,6 +1777,7 @@ canvas.tw-edit-bitmapeditor  {
 */
 
 .tw-tab-set.tw-vertical {
+	display: -webkit-flex;
 	display: flex;
 }
 
@@ -1767,6 +1796,7 @@ canvas.tw-edit-bitmapeditor  {
 	margin-bottom: inherit;
 	margin-right: -1px;
 	max-width: 33%;
+	-webkit-flex: 0 0 auto;
 	flex: 0 0 auto;
 }
 
@@ -1815,7 +1845,7 @@ canvas.tw-edit-bitmapeditor  {
 }
 
 .tw-tab-content {
-	padding-top: 14px;
+	margin-top: 14px;
 }
 
 .tw-tab-content.tw-vertical  {
@@ -1824,6 +1854,7 @@ canvas.tw-edit-bitmapeditor  {
 	padding-top: 0;
 	padding-left: 14px;
 	border-left: 1px solid #cccccc;
+	-webkit-flex: 0 0 70%;
 	flex: 0 0 70%;
 }
 
@@ -1994,7 +2025,62 @@ canvas.tw-edit-bitmapeditor  {
 	border: 1px solid #000;
 }
 
+/*
+** Table of contents
+*/
 
+.tw-sidebar-lists .tw-table-of-contents {
+	white-space: nowrap;
+}
+
+.tw-table-of-contents svg {
+	width: 0.7em;
+	height: 0.7em;
+	vertical-align: middle;
+}
+
+.tw-table-of-contents ol {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.tw-table-of-contents ol ol {
+	padding-left: 1em;
+}
+
+.tw-table-of-contents li {
+	font-size: 1.0em;
+	font-weight: bold;
+}
+
+.tw-table-of-contents li a {
+	font-weight: bold;
+}
+
+.tw-table-of-contents li li {
+	font-size: 0.95em;
+	font-weight: normal;
+	line-height: 1.4;
+}
+
+.tw-table-of-contents li li a {
+	font-weight: normal;
+}
+
+.tw-table-of-contents li li li {
+	font-size: 0.95em;
+	font-weight: 200;
+	line-height: 1.5;
+}
+
+.tw-table-of-contents li li li a {
+	font-weight: bold;
+}
+
+.tw-table-of-contents li li li li {
+	font-size: 0.95em;
+	font-weight: 200;
+}
 
 
 @media (min-width: 600px) {
