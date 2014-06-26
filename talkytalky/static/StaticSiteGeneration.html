@@ -13,8 +13,8 @@
 
 <section class="story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists  ' style='background-color: #d8d3e7;
-border-color: #d8d3e7;'><div class='tw-next' style='margin-left:-30px;margin-top:-30px;'><a class='tw-tiddlylink tw-tiddlylink-resolves' href='StaticSiteGeneration.html'><p><svg class='tw-image-down-arrow tw-image-button' height='22pt' viewBox='63 152 64 64' width='22pt'><path d='M 98.001786 212.81802 L 123.45763 187.36218 C 125.21499 185.60482 125.21499 182.75557 123.45763 180.99821 C 121.70027 179.24086 118.85103 179.24086 117.09367 180.99821 L 94.819805 203.27208 L 72.54594 180.99821 C 70.788582 179.24086 67.93934 179.24086 66.18198 180.99821 C 64.42462 182.75557 64.42462 185.60482 66.18198 187.36218 L 91.637825 212.81802 C 93.395184 214.57538 96.244426 214.57538 98.001786 212.81802 Z'></path></svg>
+<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists  ' style='background-color: #e7d3d8;
+border-color: #e7d3d8;'><div class='tw-next' style='margin-left:-30px;margin-top:-30px;'><a class='tw-tiddlylink tw-tiddlylink-resolves' href='ServerSync.html'><p><svg class='tw-image-down-arrow tw-image-button' height='22pt' viewBox='63 152 64 64' width='22pt'><path d='M 98.001786 212.81802 L 123.45763 187.36218 C 125.21499 185.60482 125.21499 182.75557 123.45763 180.99821 C 121.70027 179.24086 118.85103 179.24086 117.09367 180.99821 L 94.819805 203.27208 L 72.54594 180.99821 C 70.788582 179.24086 67.93934 179.24086 66.18198 180.99821 C 64.42462 182.75557 64.42462 185.60482 66.18198 187.36218 L 91.637825 212.81802 C 93.395184 214.57538 96.244426 214.57538 98.001786 212.81802 Z'></path></svg>
 </p></a></div>
 <div class='tw-tiddler-title'>
 <h2 class='titlebar'>
@@ -32,7 +32,7 @@ border-color: #d8d3e7;'><div class='tw-next' style='margin-left:-30px;margin-top
 
 
 <span class='title'>
-Node.js
+StaticSiteGeneration
 </span>
 
 </h2>
@@ -45,10 +45,11 @@ Node.js
 </div>
 <div class='tw-tags-wrapper'></div>
 
-<div class='body'><h1 class=''>Running TiddlyWiki Under Node.js</h1><h2 class=''>Creating a single file wiki</h2><pre><code>tiddlywiki mywiki --init tw5.com
-tiddlywiki mywiki --rendertiddler $:/core/save/all index.html text/plain</code></pre><p>See the template for <a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/blob/master/core/templates/tiddlywiki5.html.tid' target='_blank'>the HTML</a>, and for <a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/blob/master/themes/tiddlywiki/snowwhite/base.tid' target='_blank'>some of the CSS</a>.</p><h2 class=''>Serving a wiki over HTTP</h2><pre><code>tiddlywiki my2wiki --init server
-tiddlywiki my2wiki --server</code></pre><p>TiddlyWiki5 provides a TiddlyWeb-compatible API</p><h2 class=''>Other options</h2><p>PouchDB - from Jon Udell's Thali project - <a class='tw-tiddlylink-external' href='https://gist.github.com/judell/9744381' target='_blank'>https://gist.github.com/judell/9744381</a>
-</p></div>
+<div class='body'><h1 class=''>Static Site Generation</h1><pre><code>tiddlywiki ./myWiki \
+--rendertiddler $:/core/templates/static.template.html static.html text/plain \
+--rendertiddler $:/core/templates/alltiddlers.template.html alltiddlers.html text/plain \
+--rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html static text/plain \
+--rendertiddler $:/core/templates/static.template.css static/static.css text/plain</code></pre><p><a class='tw-tiddlylink-external' href='http://tiddlywiki.com/static.html' target='_blank'>static.html</a></p><p><a class='tw-tiddlylink-external' href='http://tiddlywiki.com/alltiddlers.html' target='_blank'>alltiddlers.html</a></p><p><a class='tw-tiddlylink-external' href='http://tiddlywiki.com/static/AllTiddlers.html' target='_blank'>static/AllTiddlers.html</a></p></div>
 
 </div>
 

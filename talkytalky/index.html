@@ -229,6 +229,8 @@ Error message and password prompt
 
 <li>SingleFilePattern.png</li>
 
+<li>StaticSiteGeneration</li>
+
 <li>TalkyTalky</li>
 
 <li>TaskManagementDemo</li>
@@ -4200,7 +4202,7 @@ End
 <div _canonical_uri="./images/%2524%253A%252Ffavicon.ico" title="$:/favicon.ico" type="image/x-icon">
 <pre></pre>
 </div>
-<div current-tiddler="TalkyTalky" modified="20140626214802391" title="$:/HistoryList" type="application/json">
+<div current-tiddler="TalkyTalky" modified="20140626215833159" title="$:/HistoryList" type="application/json">
 <pre>[
     {
         &quot;title&quot;: &quot;TalkyTalky&quot;
@@ -13565,6 +13567,25 @@ You're already in a demo of ~TiddlyWiki, but here's a quick run through of using
 </div>
 <div _canonical_uri="./images/SingleFilePattern.png" tags="picture" title="SingleFilePattern.png" type="image/png">
 <pre></pre>
+</div>
+<div background-color="#e7d3d8" title="StaticSiteGeneration">
+<pre>! Static Site Generation
+
+```
+tiddlywiki ./myWiki \
+--rendertiddler $:/core/templates/static.template.html static.html text/plain \
+--rendertiddler $:/core/templates/alltiddlers.template.html alltiddlers.html text/plain \
+--rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html static text/plain \
+--rendertiddler $:/core/templates/static.template.css static/static.css text/plain
+```
+
+[ext[static.html|http://tiddlywiki.com/static.html]]
+
+[ext[alltiddlers.html|http://tiddlywiki.com/alltiddlers.html]]
+
+[ext[static/AllTiddlers.html|http://tiddlywiki.com/static/AllTiddlers.html]]
+
+</pre>
 </div>
 <div background-color="#f7cece" created="20130825213100000" modified="20130825213100000" tags="talkytalky" title="TalkyTalky">
 <pre>! The Nature of ~TiddlyWiki
