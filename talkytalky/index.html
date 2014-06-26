@@ -4200,7 +4200,7 @@ End
 <div _canonical_uri="./images/%2524%253A%252Ffavicon.ico" title="$:/favicon.ico" type="image/x-icon">
 <pre></pre>
 </div>
-<div current-tiddler="TalkyTalky" modified="20140626211156710" title="$:/HistoryList" type="application/json">
+<div current-tiddler="TalkyTalky" modified="20140626214802391" title="$:/HistoryList" type="application/json">
 <pre>[
     {
         &quot;title&quot;: &quot;TalkyTalky&quot;
@@ -13338,7 +13338,7 @@ End
     }
 }</pre>
 </div>
-<div title="Customisation">
+<div background-color="#e7d3d8" title="Customisation">
 <pre>! Customisation via System Tags
 
 Demo of customising ~TiddlyWiki:
@@ -13375,15 +13375,14 @@ It's tiddlers, all the way down. The tiddler model is used for:
 * Configuration eg
 ** Settings [[$:/config/Navigation/UpdateAddressBar]]
 ** Editor type mappings [[$:/config/EditorTypeMappings/image/gif]]
-* Plugins package together shadow tiddlers:
+* Plugins:
+** Core code
 ** Themes
 ** Languages
 ** Plain plugins
 * Test specifications
 
 The boot kernel brings up enough of the infrastructure to load plugins. The core code itself is a plugin.
-
-TiddlyWiki is just an engine: one of the applications you can write with it is the TW UI, but also easy to build completely different UIs.
 </pre>
 </div>
 <div background-color="#e7d3d8" title="EverythingIsWikification">
@@ -13409,13 +13408,14 @@ The rendering pipeline does everything:
 * Works on pretty much any HTML5 browser
 * Built-in encryption
 * Multi-language support for the user interface and your content
-* Themes
+* (Responsive) themes
 * Colour palettes
 * Plugins for popular JS libraries:
 ** ~CodeMirror
 ** D3.js
 ** Highlight.js
 ** ~MarkDown
+* Pluggable navigation visualisations
 </pre>
 </div>
 <div background-color="#edbcf2" title="History">
@@ -13445,7 +13445,7 @@ The rendering pipeline does everything:
 <div _canonical_uri="./images/Motovun%2520Jack.svg" tags="picture" title="Motovun Jack.svg" type="image/svg+xml">
 <pre></pre>
 </div>
-<div background-color="#f7cece" title="Node.js">
+<div background-color="#d8d3e7" title="Node.js">
 <pre>! Running ~TiddlyWiki Under Node.js
 
 !! Creating a single file wiki
@@ -13485,7 +13485,7 @@ I've learned:
 * Being a software designer isn't enough. We need to design business models that are healthy for us, and in the best interests of our users. Something as personal and fundamental as my intellectual apparatus shouldn't be under the control of someone else
 </pre>
 </div>
-<div background-color="#d8d3e7" title="RenderingPipeline">
+<div background-color="#f7cece" title="RenderingPipeline">
 <pre>! ~TiddlyWiki Rendering Pipeline
 
 {{TiddlyWiki Architecture.svg}}
@@ -13520,16 +13520,12 @@ document.body.removeChild(link);
 
 Individual freedom on the Internet is threatened by the behaviour of corporations and the Governments that subvert them.
 
-Why that matters - all the single file decentralisation stuff
+How can we make an independent web? It's fundamentally asymmetrical; only brave homesteaders run their own servers, most people are happy to rent space from a central service.
 
-* Browsers are more powerful than servers. My mentor had a story about radio transmitters; turns out to be true of the web: the transmitters are simpler than the receivers.
-
-How can we make an independent web? It's fundamentally asymmetrical; only brave homesteaders run their own servers, most people are happy to rent space from a central service. The jump to running your own server is huge: it's a new cost for most people, and the benefit is intangible. It's one of those situations where the penalties for screwing up can be disproportionate: eg, failing to keep backups or to keep security software up to date.
-
-
-Browser-based web apps are cool, but the locus of control is wrong. The site decides when to update the app; the site decides whether or not the app is available at any particular time. The user can't save a webapp so that they can check it later, or take a snapshot of their data so that they can roll back to it if they don't like a later update.</pre>
+The jump to running your own server is huge: it's a new cost for most people, and the benefit is intangible. It's one of those situations where the penalties for screwing up can be disproportionate: eg, failing to keep backups or to keep security software up to date.
+</pre>
 </div>
-<div background-color="#edbcf2" title="ServerSync">
+<div background-color="#f7e2ce" title="ServerSync">
 <pre>! ~TiddlyWiki Server Synchronisation
 
 {{Server Architecture.svg}}
@@ -13585,7 +13581,7 @@ You're already in a demo of ~TiddlyWiki, but here's a quick run through of using
 
 !!! http://tiddlywiki.com/talkytalky</pre>
 </div>
-<div title="TaskManagementDemo">
+<div background-color="#d1caee" title="TaskManagementDemo">
 <pre>! Task Management Demo
 
 ```
