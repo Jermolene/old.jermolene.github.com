@@ -217,7 +217,7 @@ Error message and password prompt
 	}
 }
 
-@media (max-width: 770px) {
+@media (max-width: 960px) {
 	.tw-tiddler-frame {
 		`
   -webkit-box-shadow: none;
@@ -372,6 +372,14 @@ background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248
   -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
      -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
           box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+
+}
+
+.tw-plugin-info {
+	`
+  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+     -moz-box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+          box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 
 }
 
@@ -876,6 +884,10 @@ dl dt {
 	margin-top: 6px;
 }
 
+.tw-muted {
+	color: #bbb;
+}
+
 /*
 Markdown likes putting code elements inside pre elements
 */
@@ -969,17 +981,17 @@ a.tw-tiddlylink-missing {
 a.tw-tiddlylink-external {
 	text-decoration: underline;
 	color: #0000ee;
-	background-color: ;
+	background-color: inherit;
 }
 
 a.tw-tiddlylink-external:visited {
 	color: #0000aa;
-	background-color: ;
+	background-color: inherit;
 }
 
 a.tw-tiddlylink-external:hover {
-	color: ;
-	background-color: ;
+	color: inherit;
+	background-color: inherit;
 }
 
 /*
@@ -1031,6 +1043,10 @@ a.tw-tiddlylink-external:hover {
 ** Buttons
 */
 
+button svg, button img {
+	vertical-align: middle;
+}
+
 .btn-invisible {
 	padding: 0;
 	margin: 0;
@@ -1059,8 +1075,9 @@ a.tw-tiddlylink-external:hover {
 	color: #333333;
 }
 
-.tw-sidebar-lists button.btn {
+.tw-sidebar-lists button {
 	color: #333333;
+	fill: #333333;
 }
 
 .tw-sidebar-lists button.btn-mini {
@@ -1071,8 +1088,9 @@ a.tw-tiddlylink-external:hover {
 	color: #444444;
 }
 
-.tw-image-button {
+button svg.tw-image-button, button .tw-image-button img {
 	height: 1em;
+	width: 1em;
 }
 
 /*
@@ -1175,10 +1193,6 @@ a.tw-tiddlylink-external:hover {
 	width: 60%;
 }
 
-.tw-search {
-	padding-top: 14px;
-}
-
 .tw-search a svg {
 	height: 0.75em;
 }
@@ -1189,17 +1203,23 @@ a.tw-tiddlylink-external:hover {
 
 .tw-page-controls {
 	margin-top: 14px;
+	font-size: 1.5em;
+}
+
+.tw-page-controls button {
+	margin-right: 0.5em;
 }
 
 .tw-page-controls a.tw-tiddlylink:hover {
 	text-decoration: none;
 }
 
+.tw-page-controls img {
+	width: 1em;
+}
+
 .tw-page-controls svg {
-	height: 1.75em;
-	min-width: 1px;
-	padding-right: 0.5em;
-	fill: #ffffff;
+	fill: #aaaaaa;
 }
 
 .tw-page-controls button:hover svg, .tw-page-controls a:hover svg {
@@ -1235,7 +1255,7 @@ a.tw-tiddlylink-external:hover {
 	min-height: 100%;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 960px) {
 
 	.sidebar-header {
 		padding: 14px;
@@ -1248,7 +1268,7 @@ a.tw-tiddlylink-external:hover {
 	}
 }
 
-@media (min-width: 770px) {
+@media (min-width: 960px) {
 
 	.tw-message-box {
 		margin: 21px -21px 21px -21px;
@@ -1280,12 +1300,24 @@ a.tw-tiddlylink-external:hover {
 }
 
 @media print {
+
+	body.tw-body {
+		background-color: transparent;
+	}
+
 	.sidebar-header, .tw-topbar {
 		display: none;
 	}
 
 	.story-river {
-		margin-left: 14px;
+		margin: 0;
+		padding: 0;
+	}
+
+	.story-river .tw-tiddler-frame {
+		margin: 0;
+		border: none;
+		padding: 28px;
 	}
 }
 
@@ -1299,18 +1331,16 @@ a.tw-tiddlylink-external:hover {
 	border: 1px solid #ffffff;
 }
 
-
-@media print {
-	.tw-tiddler-frame {
-		border: none;
-	}
-}
-
 .tw-tiddler-info {
 	padding: 14px 42px 14px 42px;
 	background-color: #f8f8f8;
 	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
+}
+
+.tw-tiddler-info p {
+	margin-top: 3px;
+	margin-bottom: 3px;
 }
 
 .tw-tiddler-info .tw-tab-buttons button.tw-tab-selected {
@@ -1332,7 +1362,7 @@ a.tw-tiddlylink-external:hover {
 .tw-view-field-value {
 }
 
-@media (max-width: 770px) {
+@media (max-width: 960px) {
 	.tw-tiddler-frame {
 		padding: 14px 14px 14px 14px;
 	}
@@ -1342,7 +1372,7 @@ a.tw-tiddlylink-external:hover {
 	}
 }
 
-@media (min-width: 770px) {
+@media (min-width: 960px) {
 	.tw-tiddler-frame {
 		padding: 28px 42px 42px 42px;
 		width: 686px;
@@ -1387,12 +1417,15 @@ a.tw-tiddlylink-external:hover {
 	float: right;
 }
 
+.tw-tiddler-controls .tw-drop-down {
+	font-size: 0.6em;
+}
+
 .tw-tiddler-controls button {
-	margin: 0 0 0 5px;
 	vertical-align: baseline;
 }
 
-.tw-tiddler-controls button svg {
+.tw-tiddler-controls button svg, .tw-tiddler-controls button img {
 	height: 0.75em;
 	fill: #cccccc;
 }
@@ -1609,10 +1642,18 @@ canvas.tw-edit-bitmapeditor  {
 ** Dropdowns
 */
 
-.btn-dropdown svg {
+.btn-dropdown {
+	text-align: left;
+}
+
+.btn-dropdown svg, .btn-dropdown img {
 	height: 1em;
 	width: 1em;
 	fill: #bbb;
+}
+
+.tw-drop-down-wrapper {
+	position: relative;
 }
 
 .tw-drop-down {
@@ -1622,18 +1663,49 @@ canvas.tw-edit-bitmapeditor  {
 	padding: 7px 0 7px 0;
 	margin: 4px 0 0 0;
 	white-space: nowrap;
+	text-shadow: none;
+	line-height: 1.4;
+}
+
+.tw-drop-down button svg, .tw-drop-down a svg  {
+	fill: #333333;
+}
+
+.tw-drop-down button.btn-invisible:hover svg {
+	fill: #333333;
 }
 
 .tw-drop-down p {
 	padding: 0 14px 0 14px;
 }
 
-.tw-drop-down a {
-	display: block;
-	padding: 0 14px 0 14px;
+.tw-drop-down svg {
+	width: 1em;
+	height: 1em;
 }
 
-.tw-drop-down a:hover {
+.tw-drop-down img {
+	width: 1em;
+}
+
+.tw-drop-down a, .tw-drop-down button {
+	display: block;
+	padding: 0 14px 0 14px;
+	width: 100%;
+	text-align: left;
+	color: #333333;
+	line-height: 1.4;
+}
+
+.tw-drop-down .tw-file-input-wrapper {
+	width: 100%;
+}
+
+.tw-drop-down .tw-file-input-wrapper button {
+	color: #333333;
+}
+
+.tw-drop-down a:hover, .tw-drop-down button:hover, .tw-drop-down .tw-file-input-wrapper:hover button {
 	color: #ffffff;
 	background-color: #5778d8;
 	text-decoration: none;
@@ -1646,6 +1718,11 @@ canvas.tw-edit-bitmapeditor  {
 .tw-drop-down .tw-tab-buttons button.tw-tab-selected {
 	background-color: #fff;
 	border-bottom: 1px solid #fff;
+}
+
+.tw-drop-down-bullet {
+	display: inline-block;
+	width: 0.5em;
 }
 
 .tw-drop-down .tw-tab-contents a {
@@ -1672,6 +1749,7 @@ canvas.tw-edit-bitmapeditor  {
 	padding: 4px 14px 4px 14px;
 }
 
+.tw-drop-down .tw-dropdown-item,
 .tw-block-dropdown .tw-dropdown-item {
 	padding: 4px 14px 4px 7px;
 	color: #bbb;
@@ -1854,8 +1932,8 @@ canvas.tw-edit-bitmapeditor  {
 	padding-top: 0;
 	padding-left: 14px;
 	border-left: 1px solid #cccccc;
-	-webkit-flex: 0 0 70%;
-	flex: 0 0 70%;
+	-webkit-flex: 1 0 70%;
+	flex: 1 0 70%;
 }
 
 .tw-sidebar-lists .tw-tab-buttons button.tw-tab-selected {
@@ -1962,6 +2040,40 @@ canvas.tw-edit-bitmapeditor  {
 	width: 100%;
 }
 
+.tw-plugin-info {
+	display: block;
+	border: 1px solid #bbb;
+	background-colour: #ffffff;
+	margin: 1em 0 1em 0;
+	padding: 8px;
+}
+
+a.tw-tiddlylink.tw-plugin-info:hover {
+	text-decoration: none;
+	background-color: #5778d8;
+	color: #ffffff;
+}
+
+.tw-plugin-info-chunk {
+	display: inline-block;
+	vertical-align: middle;	
+}
+
+.tw-plugin-info img {
+	width: 3em;
+}
+
+.tw-plugin-info svg {
+	width: 3em;
+	height: 3em;
+}
+
+.tw-plugin-info-dropdown {
+	border: 1px solid #bbb;
+	padding: 1em;
+	margin-top: -1em;
+}
+
 /*
 ** Message boxes
 */
@@ -2033,10 +2145,15 @@ canvas.tw-edit-bitmapeditor  {
 	white-space: nowrap;
 }
 
+.tw-table-of-contents button {
+	color: #acacac;
+}
+
 .tw-table-of-contents svg {
 	width: 0.7em;
 	height: 0.7em;
 	vertical-align: middle;
+	fill: #acacac;
 }
 
 .tw-table-of-contents ol {
@@ -2082,20 +2199,59 @@ canvas.tw-edit-bitmapeditor  {
 	font-weight: 200;
 }
 
+/*
+** Dirty indicator
+*/
+
+body.tw-dirty span.tw-dirty-indicator, body.tw-dirty span.tw-dirty-indicator svg {
+	fill: #ff0000;
+	color: #ff0000;
+}
+
+/*
+** File inputs
+*/
+
+.tw-file-input-wrapper {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.tw-file-input-wrapper input[type=file] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 999px;
+	max-width: 100%;
+	max-height: 100%;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: pointer;
+	display: inline-block;
+}
+
 
 @media (min-width: 600px) {
 
 	.tw-link-info {
-		-moz-column-count: 2;
-		-moz-column-gap: 10px;
-		-webkit-column-count: 2;
-		-webkit-column-gap: 10px;
-		column-count: 2;
-		column-gap: 10px;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
 	}
 
 	.tw-link-info-item {
-		width: 100%;
+		max-width: 25em;
+		margin-right: 10px;
 	}
 
 }
