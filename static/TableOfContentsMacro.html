@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki — a non-linear personal web notebook</title>
+</head>
+<body class="tw-body">
+<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+</p>
+<section class="story-river">
+
+<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-macros'><div class='tw-tiddler-title'>
+<h2 class='titlebar'>
+<span class='tw-tiddler-controls'>
+<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='title'>
+TableOfContentsMacro
+</span>
+
+</h2>
+
+<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
+</div><div class='tw-subtitle'>
+<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+
+</a> 2 days ago
+</div>
+<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+
+<button class='btn-invisible tw-tag-label' style='background-color:#d67fbf;'>
+ macros
+</button>
+
+<span class=' tw-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='body'><p>The table of contents macro produces a hierarchical tree of tiddlers based on their tags.</p><p>The top level entries of the table of contents are defined by a root tag. The subentries under each of those entries are tagged with the title of the entry. Entries can be ordered using the <code>list</code> field as described in <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerTags.html'>TiddlerTags</a>.</p><p>There are several variants of the macro:</p><ul><li><code>&lt;&lt;toc&gt;&gt;</code> produces a simple hierarchical tree of links</li><li><code>&lt;&lt;toc-expandable&gt;&gt;</code> produces an expandable tree of links</li><li><code>&lt;&lt;toc-selective-expandable&gt;&gt;</code> produces an expandable tree of links where the expand/contract buttons are only shown for entries that possess child nodes</li></ul><h1 class=''>Parameters</h1><table><tbody><tr class='evenRow'><th align='left'>Position</th><th align='left'>Name</th><th align='left'>Description</th><th align='left'>Default</th></tr><tr class='oddRow'><td align='left'>1st</td><td align='left'>tag</td><td align='left'>The root tag that identifies the top level of the hierarchy</td><td align='center'></td></tr><tr class='evenRow'><td align='left'>2nd</td><td align='left'>sort</td><td align='left'>Optional sorting subfilter (eg <code>sort[title]</code>)</td><td align='center'></td></tr></tbody></table><p>The <strong>tag</strong> and <strong>sort</strong> parameters are combined to make a filter expression of the form:</p><pre><code>[tag[$tag$]$sort$]</code></pre><h1 class=''>Examples</h1><p><div class='tw-tab-set '>
+<div class='tw-tab-buttons '>
+
+<button class=''>
+Expandable
+</button>
+
+<button class=''>
+Selective Expandable
+</button>
+
+<button class=' tw-tab-selected'>
+Simple
+</button>
+
+<button class=''>
+Sorted Expandable
+</button>
+
+</div><div class='tw-tab-divider '></div><div class='tw-tab-content '>
+<div class=' tw-reveal' hidden='true'></div><div class=' tw-reveal' hidden='true'></div><div class=' tw-reveal'><h2 class=''>Simple Table of Contents</h2><pre><code>&lt;div class='tw-table-of-contents'&gt;
+&lt;&lt;toc 'Contents'&gt;&gt;
+&lt;/div&gt;
+</code></pre><p>Renders as:</p><p><div class='tw-table-of-contents'>
+<ol>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='First.html'>
+First
+</a>
+<ol>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='FirstOne.html'>
+FirstOne
+</a>
+<ol>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='FirstTwo.html'>
+FirstTwo
+</a>
+<ol>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='FirstThree.html'>
+FirstThree
+</a>
+<ol>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='Second.html'>
+Second
+</a>
+<ol>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='SecondOne.html'>
+SecondOne
+</a>
+<ol>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='SecondThree.html'>
+SecondThree
+</a>
+<ol>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='SecondThreeOne.html'>
+SecondThreeOne
+</a>
+<ol>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='SecondThreeTwo.html'>
+SecondThreeTwo
+</a>
+<ol>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='SecondThreeThree.html'>
+SecondThreeThree
+</a>
+<ol>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='SecondTwo.html'>
+SecondTwo
+</a>
+<ol>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='Third.html'>
+Third
+</a>
+<ol>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='ThirdOne.html'>
+ThirdOne
+</a>
+<ol>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='ThirdTwo.html'>
+ThirdTwo
+</a>
+<ol>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='ThirdThree.html'>
+ThirdThree
+</a>
+<ol>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+<li>
+<a class='tw-tiddlylink tw-tiddlylink-resolves' href='Fourth.html'>
+Fourth
+</a>
+<ol>
+
+</ol>
+</li>
+
+</ol>
+</div></p></div><div class=' tw-reveal' hidden='true'></div>
+</div>
+</div></p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>
