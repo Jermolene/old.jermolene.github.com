@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   '><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   '><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,23 +37,23 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 UsingSVG
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
 </a> 8 months ago
 </div>
-<div class='tw-tags-wrapper'></div>
+<div class='tc-tags-wrapper'></div>
 
-<div class='body'><p><a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> allows you to use SVG to display vector graphics in two ways:</p><ul><li>Tiddlers with the type <code>image/svg+xml</code> are interpreted as SVG images, and displayed and transcluded as self-contained <code>&lt;img&gt;</code> elements with the SVG embedded as a data URI in the <code>src</code> attribute.<ul><li>For examples of SVG images see <a class='tw-tiddlylink tw-tiddlylink-resolves' href='Motovun%2520Jack.svg.html'>Motovun Jack.svg</a> and <a class='tw-tiddlylink tw-tiddlylink-resolves' href='Tiddler%2520Fishes.svg.html'>Tiddler Fishes.svg</a></li></ul></li><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> can also include inline SVG elements directly. See below for an example.</li></ul><h1 class=''>Embedding SVG tiddlers</h1><p>You can embed an SVG image tiddler using the ordinary transclusion syntax:</p><pre><code>{{Motovun Jack.jpg}}</code></pre><p>You can also use <a class='tw-tiddlylink tw-tiddlylink-missing' href='TypedBlockWikiText.html'>TypedBlockWikiText</a> to embed an inline SVG tiddler.</p><p>The implications of the image being rendered within an <code>&lt;img&gt;</code> element are that it is sandboxed; it can't use CSS styles from the parent document, for example. Neither can the image use <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> features like transclusion.</p><h1 class=''>Embedding SVG elements</h1><p>The other way to use SVG is to embed the <code>&lt;svg&gt;</code> element directly. For example:</p><p><svg height='100' width='150'>
+<div class='tc-tiddler-body'><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> allows you to use SVG to display vector graphics in two ways:</p><ul><li>Tiddlers with the type <code>image/svg+xml</code> are interpreted as SVG images, and displayed and transcluded as self-contained <code>&lt;img&gt;</code> elements with the SVG embedded as a data URI in the <code>src</code> attribute.<ul><li>For examples of SVG images see <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Motovun%2520Jack.svg.html'>Motovun Jack.svg</a> and <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Tiddler%2520Fishes.svg.html'>Tiddler Fishes.svg</a></li></ul></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> can also include inline SVG elements directly. See below for an example.</li></ul><h1 class=''>Embedding SVG tiddlers</h1><p>You can embed an SVG image tiddler using the ordinary transclusion syntax:</p><pre><code>{{Motovun Jack.jpg}}</code></pre><p>You can also use <a class='tc-tiddlylink tc-tiddlylink-missing' href='TypedBlockWikiText.html'>TypedBlockWikiText</a> to embed an inline SVG tiddler.</p><p>The implications of the image being rendered within an <code>&lt;img&gt;</code> element are that it is sandboxed; it can't use CSS styles from the parent document, for example. Neither can the image use <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> features like transclusion.</p><h1 class=''>Embedding SVG elements</h1><p>The other way to use SVG is to embed the <code>&lt;svg&gt;</code> element directly. For example:</p><p><svg height='100' width='150'>
   <circle cx='100' cy='50' fill='red' r='40' stroke='black' stroke-width='2'></circle>
-</svg></p><p>Note that inline SVG elements don't need an <code>&lt;?xml version=&quot;1.0&quot;?&gt;</code> directive.</p><h1 class=''>Including HTML or <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> content in SVG images</h1><p>You can include simple text strings in SVG images using the <code>&lt;text&gt;</code> element:</p><p><svg height='30px' viewBox='0 0 1000 300' width='100px'><text font-family='Verdana' font-size='55' x='250' y='150'>Hello, out there</text><rect fill='none' height='298' stroke-width='2' width='998' x='1' y='1'></rect></svg></p><p>HTML or <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> content can be included within inline SVG images using the <code>&lt;foreignObject&gt;</code> element. For example:</p><p><svg height='260px' width='260px'><circle cx='150' cy='150' fill='blue' r='100' stoke='red'></circle><foreignObject height='180' width='150' x='70' y='110'><body>Here is some text that requires a word wrap, and includes a <a class='tw-tiddlylink tw-tiddlylink-resolves' href='HelloThere.html'>link to a tiddler</a>.</body></foreignObject></svg></p><h1 class=''>Transcluding SVG elements</h1><p>When embedding SVG elements you can also use <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> features like transclusion. For example, here is an SVG circle with the radius set to the value in the tiddler <a class='tw-tiddlylink tw-tiddlylink-resolves' href='%2524%253A%252FSVGExampleRadius.html'>$:/SVGExampleRadius</a>:</p><p><svg height='150' width='150'><circle cx='75' cy='75' fill='green' r='50' stroke='black' stroke-width='2'></circle></svg></p><p>You can edit the value of the radius here: <input value='50'>
+</svg></p><p>Note that inline SVG elements don't need an <code>&lt;?xml version=&quot;1.0&quot;?&gt;</code> directive.</p><h1 class=''>Including HTML or <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> content in SVG images</h1><p>You can include simple text strings in SVG images using the <code>&lt;text&gt;</code> element:</p><p><svg height='30px' viewBox='0 0 1000 300' width='100px'><text font-family='Verdana' font-size='55' x='250' y='150'>Hello, out there</text><rect fill='none' height='298' stroke-width='2' width='998' x='1' y='1'></rect></svg></p><p>HTML or <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> content can be included within inline SVG images using the <code>&lt;foreignObject&gt;</code> element. For example:</p><p><svg height='260px' width='260px'><circle cx='150' cy='150' fill='blue' r='100' stoke='red'></circle><foreignObject height='180' width='150' x='70' y='110'><body>Here is some text that requires a word wrap, and includes a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='HelloThere.html'>link to a tiddler</a>.</body></foreignObject></svg></p><h1 class=''>Transcluding SVG elements</h1><p>When embedding SVG elements you can also use <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> features like transclusion. For example, here is an SVG circle with the radius set to the value in the tiddler <a class='tc-tiddlylink tc-tiddlylink-resolves' href='%2524%253A%252FSVGExampleRadius.html'>$:/SVGExampleRadius</a>:</p><p><svg height='150' width='150'><circle cx='75' cy='75' fill='green' r='50' stroke='black' stroke-width='2'></circle></svg></p><p>You can edit the value of the radius here: <input value='50'>
 </p></div>
 
 

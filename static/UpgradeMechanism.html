@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-mechanism'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-mechanism'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,29 +37,29 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 UpgradeMechanism
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 40 days ago
+</a> 53 days ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#9fa3cb;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#9fa3cb;'>
  mechanism
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><ol><li>Open upgrade.html</li><li>Includes a data tiddler called <code>$:/UpgradeLibrary</code> that contains the latest compatible versions of all plugins in the library</li><li>Drag in old wiki file</li><li>Place tiddlers into a data tiddler <code>$:/Import</code> that is typed as a &quot;pending import&quot;</li><li>Kick off import processing for each tiddler<ol><li>Give each &quot;upgrader&quot; module a chance to inspect the incoming tiddlers</li><li>Upgrader modules can trigger actions for each tiddler:<ul><li>Display a warning message</li><li>Don't import</li><li>Replace with another tiddler from the upgrade library</li><li>Disable incompatible plugins</li></ul></li></ol></li><li>Display the newly created pending import tiddler through a new view template segment<ol><li>Displays the payload tiddlers as a list of titles and checkboxes, with a dropdown showing the full details of the tiddler</li><li>Perhaps we also suppress the usual JSON display for data tiddlers behind a reveal widget</li></ol></li><li>The user can adjust the selection checkboxes</li><li>Clicking &quot;done&quot; unpacks the selected tiddlers from the pending import tiddler</li><li>The pending import tiddler and the upgrade library tiddler are excluded from the subsequent save operation</li></ol><h1 class=''><a class='tw-tiddlylink tw-tiddlylink-missing' href='ToDo.html'>ToDo</a></h1><ul><li>Incoming tiddler preview</li><li><strike>Better display text for plugins</strike></li><li><strike>Better handling of encrypted upgrades</strike></li><li>Docs</li><li><strike>Add upgrade plugin containing instructions and one-shot UI</strike></li><li><strike>Suppressing $:/<a class='tw-tiddlylink tw-tiddlylink-missing' href='UpgradeLibrary.html'>UpgradeLibrary</a> and upgrade plugin from save</strike></li><li><strike>Checkboxes</strike></li><li><strike>Visual difference for suppressed tiddlers</strike></li><li>Translation of upgrade wizard</li></ul><h1 class=''><a class='tw-tiddlylink tw-tiddlylink-missing' href='NoToDo.html'>NoToDo</a></h1><ul><li>Grouping plugins - not possible without extending the core</li></ul></div>
+<div class='tc-tiddler-body'><ol><li>Open upgrade.html</li><li>Includes a data tiddler called <code>$:/UpgradeLibrary</code> that contains the latest compatible versions of all plugins in the library</li><li>Drag in old wiki file</li><li>Place tiddlers into a data tiddler <code>$:/Import</code> that is typed as a &quot;pending import&quot;</li><li>Kick off import processing for each tiddler<ol><li>Give each &quot;upgrader&quot; module a chance to inspect the incoming tiddlers</li><li>Upgrader modules can trigger actions for each tiddler:<ul><li>Display a warning message</li><li>Don't import</li><li>Replace with another tiddler from the upgrade library</li><li>Disable incompatible plugins</li></ul></li></ol></li><li>Display the newly created pending import tiddler through a new view template segment<ol><li>Displays the payload tiddlers as a list of titles and checkboxes, with a dropdown showing the full details of the tiddler</li><li>Perhaps we also suppress the usual JSON display for data tiddlers behind a reveal widget</li></ol></li><li>The user can adjust the selection checkboxes</li><li>Clicking &quot;done&quot; unpacks the selected tiddlers from the pending import tiddler</li><li>The pending import tiddler and the upgrade library tiddler are excluded from the subsequent save operation</li></ol><h1 class=''><a class='tc-tiddlylink tc-tiddlylink-missing' href='ToDo.html'>ToDo</a></h1><ul><li>Incoming tiddler preview</li><li><strike>Better display text for plugins</strike></li><li><strike>Better handling of encrypted upgrades</strike></li><li>Docs</li><li><strike>Add upgrade plugin containing instructions and one-shot UI</strike></li><li><strike>Suppressing $:/<a class='tc-tiddlylink tc-tiddlylink-missing' href='UpgradeLibrary.html'>UpgradeLibrary</a> and upgrade plugin from save</strike></li><li><strike>Checkboxes</strike></li><li><strike>Visual difference for suppressed tiddlers</strike></li><li>Translation of upgrade wizard</li></ul><h1 class=''><a class='tc-tiddlylink tc-tiddlylink-missing' href='NoToDo.html'>NoToDo</a></h1><ul><li>Grouping plugins - not possible without extending the core</li></ul></div>
 
 
 

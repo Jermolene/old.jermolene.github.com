@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-mechanism'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-mechanism'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,31 +37,31 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 StateMechanism
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 7 months ago
+</a> 8 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#9fa3cb;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#9fa3cb;'>
  mechanism
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><p>The <a class='tw-tiddlylink tw-tiddlylink-resolves' href='StateMechanism.html'>StateMechanism</a> in <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is at the heart of how complex user interfaces can be built from <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a>.</p><p>In the browser, the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> display is produced by dynamically rendering the tiddler <a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fui%252FPageTemplate.html'>$:/core/ui/PageTemplate</a>. Through various transclusions and other widgets it renders the entire user interface. The dynamic rendering is accomplished by a mechanism called &quot;binding&quot;: any changes to the tiddlers in the store are dynamically reflected in the browser display.</p><p>The stack of templates that make up the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> display are complex but we'll focus on the line that displays the main story column:</p><pre><code>&lt;$list filter=&quot;[list[$:/StoryList]]&quot; history=&quot;$:/HistoryList&quot; template=&quot;$:/core/ui/ViewTemplate&quot; editTemplate=&quot;$:/core/ui/EditTemplate&quot; storyview={{$:/view}} /&gt;</code></pre><p>Breaking down the attributes applied to the list widget:</p><ul><li><strong>filter</strong>: selects the list of tiddlers in the <code>list</code> field of the tiddler <a class='tw-tiddlylink tw-tiddlylink-resolves' href='%2524%253A%252FStoryList.html'>$:/StoryList</a>. If a tiddler is added or removed from that list then it is automatically reflected in the displayed list</li><li><strong>history</strong>: references the tiddler to be used to store the history stack (see the <a class='tw-tiddlylink tw-tiddlylink-missing' href='NavigationMechanism.html'>NavigationMechanism</a>)</li><li><strong>template</strong>: identifies a template tiddler to be used for rendering each tiddler in the list</li><li><strong>editTemplate</strong>: identifies a different template tiddler to be used for rendering tiddlers that are in <a class='tw-tiddlylink tw-tiddlylink-resolves' href='DraftMechanism.html'>draft mode</a></li><li><strong>storyview</strong>: specifies the story view to be used (eg classic, or zoomin)</li></ul><p>The <a class='tw-tiddlylink tw-tiddlylink-resolves' href='%2524%253A%252FStoryList.html'>$:/StoryList</a> tiddler is an example of a <a class='tw-tiddlylink tw-tiddlylink-missing' href='StateTiddler.html'>StateTiddler</a>: a tiddler that is used to hold the state of the user interface. Changes to the user interface are made indirectly, by changing the underlying state tiddlers, and letting <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> ripple the changes through the user interface.</p><p>Note how this approach makes the <strong>open</strong> tab in the sidebar very easy to implement: it is just another list widget referencing the same state tiddler, but with a different template:</p><pre><code>&lt;$list filter=&quot;[list[$:/StoryList]]&quot; history=&quot;$:/HistoryList&quot; storyview=&quot;pop&quot;&gt;
-&lt;$button message=&quot;tw-close-tiddler&quot; class=&quot;btn-invisible btn-mini&quot;&gt;&amp;times;&lt;/$button&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
-&lt;/$list&gt;</code></pre><p>Now consider the implementation of the info panel within the tiddler template. We want to be able to toggle the info panel open and closed, which means that we must track its current state in a tiddler.</p><p>However, we can't track the state in a tiddler called, say, <a class='tw-tiddlylink tw-tiddlylink-missing' href='%2524%253A%252FInfoPanelState.html'>$:/InfoPanelState</a> because every tiddler would share the same state; changing the value of the tiddler would affect all tiddlers displayed in the story.</p><p>The solution is to dynamically generate a unique title for each state tiddler that we need. We need to ensure that the same state tiddler title is generated each time a user interface element is rendered. To do that, we append together tokens representating each of the stack of transclusions that led to the current rendering location. Then that string of symbols is hashed to a simple numeric value.</p><p>The process of generating a state tiddler title is encapsulated in the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='QualifyMacro.html'>QualifyMacro</a>.</p></div>
+<div class='tc-tiddler-body'><p>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='StateMechanism.html'>StateMechanism</a> in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is at the heart of how complex user interfaces can be built from <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a>.</p><p>In the browser, the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> display is produced by dynamically rendering the tiddler <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fui%252FPageTemplate.html'>$:/core/ui/PageTemplate</a>. Through various transclusions and other widgets it renders the entire user interface. The dynamic rendering is accomplished by a mechanism called &quot;binding&quot;: any changes to the tiddlers in the store are dynamically reflected in the browser display.</p><p>The stack of templates that make up the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> display are complex but we'll focus on the line that displays the main story column:</p><pre><code>&lt;$list filter=&quot;[list[$:/StoryList]]&quot; history=&quot;$:/HistoryList&quot; template=&quot;$:/core/ui/ViewTemplate&quot; editTemplate=&quot;$:/core/ui/EditTemplate&quot; storyview={{$:/view}} /&gt;</code></pre><p>Breaking down the attributes applied to the list widget:</p><ul><li><strong>filter</strong>: selects the list of tiddlers in the <code>list</code> field of the tiddler <a class='tc-tiddlylink tc-tiddlylink-resolves' href='%2524%253A%252FStoryList.html'>$:/StoryList</a>. If a tiddler is added or removed from that list then it is automatically reflected in the displayed list</li><li><strong>history</strong>: references the tiddler to be used to store the history stack (see the <a class='tc-tiddlylink tc-tiddlylink-missing' href='NavigationMechanism.html'>NavigationMechanism</a>)</li><li><strong>template</strong>: identifies a template tiddler to be used for rendering each tiddler in the list</li><li><strong>editTemplate</strong>: identifies a different template tiddler to be used for rendering tiddlers that are in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DraftMechanism.html'>draft mode</a></li><li><strong>storyview</strong>: specifies the story view to be used (eg classic, or zoomin)</li></ul><p>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='%2524%253A%252FStoryList.html'>$:/StoryList</a> tiddler is an example of a <a class='tc-tiddlylink tc-tiddlylink-missing' href='StateTiddler.html'>StateTiddler</a>: a tiddler that is used to hold the state of the user interface. Changes to the user interface are made indirectly, by changing the underlying state tiddlers, and letting <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> ripple the changes through the user interface.</p><p>Note how this approach makes the <strong>open</strong> tab in the sidebar very easy to implement: it is just another list widget referencing the same state tiddler, but with a different template:</p><pre><code>&lt;$list filter=&quot;[list[$:/StoryList]]&quot; history=&quot;$:/HistoryList&quot; storyview=&quot;pop&quot;&gt;
+&lt;$button message=&quot;tm-close-tiddler&quot; class=&quot;tc-btn-invisible tc-btn-mini&quot;&gt;&amp;times;&lt;/$button&gt; &lt;$link to={{!!title}}&gt;&lt;$view field=&quot;title&quot;/&gt;&lt;/$link&gt;
+&lt;/$list&gt;</code></pre><p>Now consider the implementation of the info panel within the tiddler template. We want to be able to toggle the info panel open and closed, which means that we must track its current state in a tiddler.</p><p>However, we can't track the state in a tiddler called, say, <a class='tc-tiddlylink tc-tiddlylink-missing' href='%2524%253A%252FInfoPanelState.html'>$:/InfoPanelState</a> because every tiddler would share the same state; changing the value of the tiddler would affect all tiddlers displayed in the story.</p><p>The solution is to dynamically generate a unique title for each state tiddler that we need. We need to ensure that the same state tiddler title is generated each time a user interface element is rendered. To do that, we append together tokens representating each of the stack of transclusions that led to the current rendering location. Then that string of symbols is hashed to a simple numeric value.</p><p>The process of generating a state tiddler title is encapsulated in the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='QualifyMacro.html'>QualifyMacro</a>.</p></div>
 
 
 

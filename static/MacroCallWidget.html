@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-widget'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-widget'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,33 +37,33 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 MacroCallWidget
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 9 months ago
+</a> 10 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#6188da;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#6188da;'>
  widget
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><h1 class=''>Introduction</h1><p>The macro call widget provides an alternative syntax for invoking macros. The advantage of the widget form is that it allows macro parameters to be specified as widget attributes, thus allowing indirection and macro values to be set.</p><p>For example, a macro called <code>italicise</code> that takes a single parameter called <code>text</code> can be invoked in any of these ways:</p><pre><code>&lt;&lt;italicise &quot;Text to be made into italics&quot;&gt;&gt;
+<div class='tc-tiddler-body'><h1 class=''>Introduction</h1><p>The macro call widget provides an alternative syntax for invoking macros. The advantage of the widget form is that it allows macro parameters to be specified as widget attributes, thus allowing indirection and macro values to be set.</p><p>For example, a macro called <code>italicise</code> that takes a single parameter called <code>text</code> can be invoked in any of these ways:</p><pre><code>&lt;&lt;italicise &quot;Text to be made into italics&quot;&gt;&gt;
 &lt;&lt;italicise text:&quot;Text to be made into italics&quot;&gt;&gt;
 &lt;$macrocall $name=&quot;italicise&quot; text=&quot;Text to be made into italics&quot;/&gt;
 &lt;$macrocall $name=&quot;italicise&quot; text={{Title of tiddler containing text to be italicised}}/&gt;
-&lt;$macrocall $name=&quot;italicise&quot; text=&lt;&lt;textMaker &quot;Another macro to generate the text to be italicised&quot;&gt;&gt;/&gt;</code></pre><p>You can see several examples of the macro call widget within the core:</p><ul><li>Listing module information: <a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fsnippets%252Fmodules.html'>$:/snippets/modules</a></li><li>Listing field information: <a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fsnippets%252Fallfields.html'>$:/snippets/allfields</a></li><li>Generating <code>data:</code> URIs: <a class='tw-tiddlylink tw-tiddlylink-missing' href='%2524%253A%252Fthemes%252Ftiddlywiki%252Fstarlight%252Fstyles.tid.html'>$:/themes/tiddlywiki/starlight/styles.tid</a></li></ul><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$macrocall&gt;</code> widget is ignored.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>$name</td><td align='left'>Name of the macro to invoke</td></tr><tr class='evenRow'><td align='left'>$type</td><td align='left'><a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> with which the macro text should be parsed (defaults to <code>text/vnd.tiddlywiki</code>)</td></tr><tr class='oddRow'><td align='left'>$output</td><td align='left'><a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> for the output rendering (defaults to <code>text/html</code>, can also be <code>text/plain</code>)</td></tr><tr class='evenRow'><td align='left'><em>parameters</em></td><td align='left'>Macro parameters specified as attributes</td></tr></tbody></table></div>
+&lt;$macrocall $name=&quot;italicise&quot; text=&lt;&lt;textMaker &quot;Another macro to generate the text to be italicised&quot;&gt;&gt;/&gt;</code></pre><p>You can see several examples of the macro call widget within the core:</p><ul><li>Listing module information: <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fsnippets%252Fmodules.html'>$:/snippets/modules</a></li><li>Listing field information: <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fsnippets%252Fallfields.html'>$:/snippets/allfields</a></li><li>Generating <code>data:</code> URIs: <a class='tc-tiddlylink tc-tiddlylink-missing' href='%2524%253A%252Fthemes%252Ftiddlywiki%252Fstarlight%252Fstyles.tid.html'>$:/themes/tiddlywiki/starlight/styles.tid</a></li></ul><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$macrocall&gt;</code> widget is ignored.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>$name</td><td align='left'>Name of the macro to invoke</td></tr><tr class='evenRow'><td align='left'>$type</td><td align='left'><a class='tc-tiddlylink tc-tiddlylink-resolves' href='ContentType.html'>ContentType</a> with which the macro text should be parsed (defaults to <code>text/vnd.tiddlywiki</code>)</td></tr><tr class='oddRow'><td align='left'>$output</td><td align='left'><a class='tc-tiddlylink tc-tiddlylink-resolves' href='ContentType.html'>ContentType</a> for the output rendering (defaults to <code>text/html</code>, can also be <code>text/plain</code>)</td></tr><tr class='evenRow'><td align='left'><em>parameters</em></td><td align='left'>Macro parameters specified as attributes</td></tr></tbody></table></div>
 
 
 

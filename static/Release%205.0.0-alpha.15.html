@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-releasenote'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-releasenote'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,29 +37,29 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 Release 5.0.0-alpha.15
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
 </a> 9 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#9bbfdf;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#9bbfdf;'>
  releasenote
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><p><em><a class='tw-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.14...v5.0.0-alpha.15' target='_blank'>See GitHub for detailed change history of this release</a></em></p><h2 class=''>New Features</h2><ul><li>Added a dropdown to the edit template for setting the tiddler type</li><li>A saver module for Microsoft Internet Explorer version 10 and above. Clicking save in the sidebar causes the browser to pull up a bar at the bottom of the window where you can click <strong>save</strong>. You then get a new copy of your wiki in the downloads folder.</li><li>Support for new <code>tw-close-other-tiddlers</code> message (eg, <button class=''>close others</button>)</li><li>For <a class='tw-tiddlylink-external' href='http://five.tiddlywiki.com' target='_blank'>http://five.tiddlywiki.com</a>, add a tiddler info tab with a link to the static representation of the tiddler</li><li>Make more UI elements extensible via system tags:<ul><li><a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Ftags%252FViewToolbar.html'>$:/tags/ViewToolbar</a> for the view mode tiddler toolbar</li><li><a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Ftags%252FEditTemplate.html'>$:/tags/EditTemplate</a> for the edit template</li><li><a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Ftags%252FEditToolbar.html'>$:/tags/EditToolbar</a> for the edit mode tiddler toolbar</li><li><a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Ftags%252FPageControls.html'>$:/tags/PageControls</a> for the page control tools in the sidebar</li></ul></li></ul><h2 class=''>Improvements</h2><ul><li>Rename the <code>&lt;$setvariable&gt;</code> to <code>&lt;$set&gt;</code><ul><li><code>&lt;$setvariable&gt;</code> will temporarily remain as a synonym for <code>&lt;$set&gt;</code> for the next few releases</li></ul></li><li>Improve the popup mechanism so that the tiddler info panel doesn't close so easily</li><li>Various improvements for working with <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWeb.html'>TiddlyWeb</a>, including:<ul><li>Updated control panel</li></ul></li></ul><h2 class=''>Bug fixes</h2><ul><li>Fixed bug when creating a tiddler title starting or ending with a space</li><li>Fixed behaviour of tags editor dropdown when search box is empty</li><li>Fixed problem with interpretation of <code>fields</code> and <code>index</code> attributes of the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a></li><li>Fixed the module type names in the internal tab of the control panel</li><li>Improved styling for embedded PDFs</li><li>Fixed bug with second being omitted from serialised date formats</li></ul><p>Contributors to this release include @jermolene and @grayeul.
+<div class='tc-tiddler-body'><p><em><a class='tc-tiddlylink-external' href='https://github.com/Jermolene/TiddlyWiki5/compare/v5.0.0-alpha.14...v5.0.0-alpha.15' target='_blank'>See GitHub for detailed change history of this release</a></em></p><h2 class=''>New Features</h2><ul><li>Added a dropdown to the edit template for setting the tiddler type</li><li>A saver module for Microsoft Internet Explorer version 10 and above. Clicking save in the sidebar causes the browser to pull up a bar at the bottom of the window where you can click <strong>save</strong>. You then get a new copy of your wiki in the downloads folder.</li><li>Support for new <code>tw-close-other-tiddlers</code> message (eg, <button class=''>close others</button>)</li><li>For <a class='tc-tiddlylink-external' href='http://five.tiddlywiki.com' target='_blank'>http://five.tiddlywiki.com</a>, add a tiddler info tab with a link to the static representation of the tiddler</li><li>Make more UI elements extensible via system tags:<ul><li><a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Ftags%252FViewToolbar.html'>$:/tags/ViewToolbar</a> for the view mode tiddler toolbar</li><li><a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Ftags%252FEditTemplate.html'>$:/tags/EditTemplate</a> for the edit template</li><li><a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Ftags%252FEditToolbar.html'>$:/tags/EditToolbar</a> for the edit mode tiddler toolbar</li><li><a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Ftags%252FPageControls.html'>$:/tags/PageControls</a> for the page control tools in the sidebar</li></ul></li></ul><h2 class=''>Improvements</h2><ul><li>Rename the <code>&lt;$setvariable&gt;</code> to <code>&lt;$set&gt;</code><ul><li><code>&lt;$setvariable&gt;</code> will temporarily remain as a synonym for <code>&lt;$set&gt;</code> for the next few releases</li></ul></li><li>Improve the popup mechanism so that the tiddler info panel doesn't close so easily</li><li>Various improvements for working with <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWeb.html'>TiddlyWeb</a>, including:<ul><li>Updated control panel</li></ul></li></ul><h2 class=''>Bug fixes</h2><ul><li>Fixed bug when creating a tiddler title starting or ending with a space</li><li>Fixed behaviour of tags editor dropdown when search box is empty</li><li>Fixed problem with interpretation of <code>fields</code> and <code>index</code> attributes of the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a></li><li>Fixed the module type names in the internal tab of the control panel</li><li>Improved styling for embedded PDFs</li><li>Fixed bug with second being omitted from serialised date formats</li></ul><p>Contributors to this release include @jermolene and @grayeul.
 </p></div>
 
 

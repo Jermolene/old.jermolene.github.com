@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-howto'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-howto'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,29 +37,29 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 Notes for upgrading to 5.0.8-beta
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 5 months ago
+</a> 6 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#d96490;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#d96490;'>
  howto
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><p>Version 5.0.8-beta includes some changes that can break content from earlier releases of TiddlyWiki 5.</p><h1 class=''>Change to <a class='tw-tiddlylink tw-tiddlylink-shadow tw-tiddlylink-resolves' href='%2524%253A%252FSiteTitle.html'>$:/SiteTitle</a> and <a class='tw-tiddlylink tw-tiddlylink-shadow tw-tiddlylink-resolves' href='%2524%253A%252FSiteSubtitle.html'>$:/SiteSubtitle</a></h1><p>You should rename any existing <a class='tw-tiddlylink tw-tiddlylink-missing' href='SiteTitle.html'>SiteTitle</a> and <a class='tw-tiddlylink tw-tiddlylink-missing' href='SiteSubtitle.html'>SiteSubtitle</a> tiddlers to <a class='tw-tiddlylink tw-tiddlylink-shadow tw-tiddlylink-resolves' href='%2524%253A%252FSiteTitle.html'>$:/SiteTitle</a> and <a class='tw-tiddlylink tw-tiddlylink-shadow tw-tiddlylink-resolves' href='%2524%253A%252FSiteSubtitle.html'>$:/SiteSubtitle</a> respectively.</p><h1 class=''>Changed parsing rules for content of HTML elements</h1><p>Version 5.0.8-beta marks a change in the way that <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> determines whether to parse the content of an HTML element or widget in <em>block mode</em> or <em>inline mode</em>.</p><ul><li>In block mode, <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> parses text into paragraphs, creating <code>&lt;p&gt;</code> tags to wrap them. It also recognises block syntax like headings, lists and tables.</li><li>In inline mode, <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> ignores paragraph formatting, and just recognises character formatting, like bold and italic.</li></ul><p>It's important to be able to control which type of parsing is performed for different situations.</p><p>Prior to 5.0.8-beta, <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> parsed the content of an element in inline mode unless the opening tag of the element were immediately followed by a line break. This meant that much of the time element tags would be shunted together into a long line, hindering readability.</p><p>The new behaviour for 5.0.8-beta is to parse the content of an element in inline mode unless the opening tag is immediately followed by two line breaks.</p><p>To adjust existing content for 5.0.8-beta you will need to manually add the additional line break after the opening tag of elements and widgets whose content should be parsed in block mode.</p><p>The positive aspect of the change is that it removes the need to pack multiple HTML tags onto a single line, improving readability.</p><h2 class=''>Examples</h2><p>Consider the difference between these two examples. First, here's an HTML tag that starts with two line breaks:</p><pre><code>
+<div class='tc-tiddler-body'><p>Version 5.0.8-beta includes some changes that can break content from earlier releases of TiddlyWiki 5.</p><h1 class=''>Change to <a class='tc-tiddlylink tc-tiddlylink-shadow tc-tiddlylink-resolves' href='%2524%253A%252FSiteTitle.html'>$:/SiteTitle</a> and <a class='tc-tiddlylink tc-tiddlylink-shadow tc-tiddlylink-resolves' href='%2524%253A%252FSiteSubtitle.html'>$:/SiteSubtitle</a></h1><p>You should rename any existing <a class='tc-tiddlylink tc-tiddlylink-missing' href='SiteTitle.html'>SiteTitle</a> and <a class='tc-tiddlylink tc-tiddlylink-missing' href='SiteSubtitle.html'>SiteSubtitle</a> tiddlers to <a class='tc-tiddlylink tc-tiddlylink-shadow tc-tiddlylink-resolves' href='%2524%253A%252FSiteTitle.html'>$:/SiteTitle</a> and <a class='tc-tiddlylink tc-tiddlylink-shadow tc-tiddlylink-resolves' href='%2524%253A%252FSiteSubtitle.html'>$:/SiteSubtitle</a> respectively.</p><h1 class=''>Changed parsing rules for content of HTML elements</h1><p>Version 5.0.8-beta marks a change in the way that <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> determines whether to parse the content of an HTML element or widget in <em>block mode</em> or <em>inline mode</em>.</p><ul><li>In block mode, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> parses text into paragraphs, creating <code>&lt;p&gt;</code> tags to wrap them. It also recognises block syntax like headings, lists and tables.</li><li>In inline mode, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> ignores paragraph formatting, and just recognises character formatting, like bold and italic.</li></ul><p>It's important to be able to control which type of parsing is performed for different situations.</p><p>Prior to 5.0.8-beta, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> parsed the content of an element in inline mode unless the opening tag of the element were immediately followed by a line break. This meant that much of the time element tags would be shunted together into a long line, hindering readability.</p><p>The new behaviour for 5.0.8-beta is to parse the content of an element in inline mode unless the opening tag is immediately followed by two line breaks.</p><p>To adjust existing content for 5.0.8-beta you will need to manually add the additional line break after the opening tag of elements and widgets whose content should be parsed in block mode.</p><p>The positive aspect of the change is that it removes the need to pack multiple HTML tags onto a single line, improving readability.</p><h2 class=''>Examples</h2><p>Consider the difference between these two examples. First, here's an HTML tag that starts with two line breaks:</p><pre><code>
 &lt;blockquote&gt;
 
 ! This is a heading
@@ -82,7 +82,7 @@ And a paragraph of text.
 
 And a paragraph of text.
 &lt;/blockquote&gt;
-&lt;/p&gt;</pre><h1 class=''>Changed commands for <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki%2520on%2520Node.js.html'>TiddlyWiki on Node.js</a></h1><p>The handling of wiki folders has changed. Previously, if the <code>tiddlywiki</code> command was run against a wiki folder that didn't have the necessary <code>tiddlywiki.info</code> file then it would be automatically created. Now, the wiki folder must be initialised with the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='InitCommand.html'>InitCommand</a>.</p><p>This is how to create and start a new server-based wiki:</p><pre><code>tiddlywiki mywikifolder --init server
+&lt;/p&gt;</pre><h1 class=''>Changed commands for <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki%2520on%2520Node.js.html'>TiddlyWiki on Node.js</a></h1><p>The handling of wiki folders has changed. Previously, if the <code>tiddlywiki</code> command was run against a wiki folder that didn't have the necessary <code>tiddlywiki.info</code> file then it would be automatically created. Now, the wiki folder must be initialised with the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='InitCommand.html'>InitCommand</a>.</p><p>This is how to create and start a new server-based wiki:</p><pre><code>tiddlywiki mywikifolder --init server
 tiddlywiki mywikifolder --server</code></pre><p>Note that the name of the <strong>clientserver</strong> edition has changed to <strong>server</strong>.</p></div>
 
 

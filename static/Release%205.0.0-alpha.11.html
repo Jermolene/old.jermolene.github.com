@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-releasenote'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-releasenote'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,29 +37,29 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 Release 5.0.0-alpha.11
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
 </a> 9 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#9bbfdf;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#9bbfdf;'>
  releasenote
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><p>This release is the culmination of a large scale refactoring of the widget mechanism of <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a>. There are several changes to be aware of if upgrading from earlier versions:</p><ul><li>The following widgets have been removed:<ul><li><code>&lt;$setstyle&gt;</code> - use <code>&lt;div style=&lt;&lt;macroName Param&gt;&gt;&gt;</code> instead</li><li><code>&lt;$video&gt;</code> - will return in a later release</li><li><code>&lt;$datauri&gt;</code> - use the <code>&lt;&lt;makedatauri&gt;&gt;</code> built-in macro instead</li><li><code>&lt;$error&gt;</code> - may return in a later release</li><li><code>&lt;$import&gt;</code> - use the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='BrowseWidget.html'>BrowseWidget</a>, <a class='tw-tiddlylink tw-tiddlylink-resolves' href='DropzoneWidget.html'>DropzoneWidget</a> and <a class='tw-tiddlylink tw-tiddlylink-resolves' href='NavigatorWidget.html'>NavigatorWidget</a> instead</li><li><code>&lt;$info&gt;</code> - use the <code>&lt;&lt;changecount&gt;&gt;</code> built-in macro instead</li><li><code>&lt;$version&gt;</code> - use the <code>&lt;&lt;version&gt;&gt;</code> built-in macro instead</li></ul></li><li>The following widgets have had significant changes:<ul><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='EditWidget.html'>EditWidget</a></li><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='ListWidget.html'>ListWidget</a> - the list widget itself no longer generates HTML nodes, so you'll often need to wrap the template in a <code>&lt;div&gt;</code> or a <code>&lt;span&gt;</code> to be able to style the content</li><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='ViewWidget.html'>ViewWidget</a> - has several changes:<ul><li><code>&lt;$view format=&quot;link&quot;/&gt;</code> is no longer available; use an explicit <code>&lt;$link&gt;</code> widget instead</li><li><code>&lt;$view format=&quot;link&quot;/&gt;</code> is no longer available; use the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a> instead</li></ul></li></ul></li><li>The following new widgets have been added:<ul><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='BrowseWidget.html'>BrowseWidget</a></li><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='DropzoneWidget.html'>DropzoneWidget</a></li><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='EditTextWidget.html'>EditTextWidget</a> and <a class='tw-tiddlylink tw-tiddlylink-resolves' href='EditBitmapWidget.html'>EditBitmapWidget</a></li><li><a class='tw-tiddlylink tw-tiddlylink-resolves' href='SetVariableWidget.html'>SetVariableWidget</a></li></ul></li><li>Widget attribute names have been made more consistent. In particular, <code>tiddler</code> is used to reference a tiddler by title, not <code>title</code></li><li>It is no longer possible to import the macro definitions within another tiddler by transcluding that tiddler</li><li>The <code>body</code> element now has the class <code>tw-body</code>, which will need to be specified in any overrides<ul><li>This was done due to the new support for HTML foreign objects, which makes it possible to have multiple <code>&lt;body&gt;</code> elements in a document</li></ul></li></ul></div>
+<div class='tc-tiddler-body'><p>This release is the culmination of a large scale refactoring of the widget mechanism of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a>. There are several changes to be aware of if upgrading from earlier versions:</p><ul><li>The following widgets have been removed:<ul><li><code>&lt;$setstyle&gt;</code> - use <code>&lt;div style=&lt;&lt;macroName Param&gt;&gt;&gt;</code> instead</li><li><code>&lt;$video&gt;</code> - will return in a later release</li><li><code>&lt;$datauri&gt;</code> - use the <code>&lt;&lt;makedatauri&gt;&gt;</code> built-in macro instead</li><li><code>&lt;$error&gt;</code> - may return in a later release</li><li><code>&lt;$import&gt;</code> - use the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='BrowseWidget.html'>BrowseWidget</a>, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DropzoneWidget.html'>DropzoneWidget</a> and <a class='tc-tiddlylink tc-tiddlylink-resolves' href='NavigatorWidget.html'>NavigatorWidget</a> instead</li><li><code>&lt;$info&gt;</code> - use the <code>&lt;&lt;changecount&gt;&gt;</code> built-in macro instead</li><li><code>&lt;$version&gt;</code> - use the <code>&lt;&lt;version&gt;&gt;</code> built-in macro instead</li></ul></li><li>The following widgets have had significant changes:<ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='EditWidget.html'>EditWidget</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='ListWidget.html'>ListWidget</a> - the list widget itself no longer generates HTML nodes, so you'll often need to wrap the template in a <code>&lt;div&gt;</code> or a <code>&lt;span&gt;</code> to be able to style the content</li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='ViewWidget.html'>ViewWidget</a> - has several changes:<ul><li><code>&lt;$view format=&quot;link&quot;/&gt;</code> is no longer available; use an explicit <code>&lt;$link&gt;</code> widget instead</li><li><code>&lt;$view format=&quot;link&quot;/&gt;</code> is no longer available; use the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TranscludeWidget.html'>TranscludeWidget</a> instead</li></ul></li></ul></li><li>The following new widgets have been added:<ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='BrowseWidget.html'>BrowseWidget</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='DropzoneWidget.html'>DropzoneWidget</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='EditTextWidget.html'>EditTextWidget</a> and <a class='tc-tiddlylink tc-tiddlylink-resolves' href='EditBitmapWidget.html'>EditBitmapWidget</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='SetVariableWidget.html'>SetVariableWidget</a></li></ul></li><li>Widget attribute names have been made more consistent. In particular, <code>tiddler</code> is used to reference a tiddler by title, not <code>title</code></li><li>It is no longer possible to import the macro definitions within another tiddler by transcluding that tiddler</li><li>The <code>body</code> element now has the class <code>tw-body</code>, which will need to be specified in any overrides<ul><li>This was done due to the new support for HTML foreign objects, which makes it possible to have multiple <code>&lt;body&gt;</code> elements in a document</li></ul></li></ul></div>
 
 
 

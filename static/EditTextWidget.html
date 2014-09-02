@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-widget'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-widget'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,29 +37,29 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 EditTextWidget
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 26 days ago
+</a> 39 days ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#6188da;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#6188da;'>
  widget
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><h1 class=''>Introduction</h1><p>The edit text widget provides a user interface in the browser for editing text tiddler fields. The editing element is dynamically bound to the underlying tiddler value: changes to the tiddler are instantly reflected, and any edits are instantly propogated.</p><p>By default, the edit text widget generates a <code>&lt;textarea&gt;</code> as the HTML editing element when the <code>text</code> field is edited, and a <code>&lt;input type=&quot;text&quot;&gt;</code> element otherwise. This behaviour can be overridden with the <code>tag</code> and <code>type</code> attributes.</p><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$edit-text&gt;</code> widget is ignored.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The tiddler to edit (defaults to the <a class='tw-tiddlylink tw-tiddlylink-missing' href='WidgetVariable%253A%2520currentTiddler.html'>WidgetVariable: currentTiddler</a>)</td></tr><tr class='evenRow'><td align='left'>field</td><td align='left'>The field to edit (defaults to <code>text</code>). Takes precedence over the <code>index</code> attribute</td></tr><tr class='oddRow'><td align='left'>index</td><td align='left'>The index to edit</td></tr><tr class='evenRow'><td align='left'>default</td><td align='left'>The default text to be provided when the target tiddler doesn't exist</td></tr><tr class='oddRow'><td align='left'>class</td><td align='left'>A CSS class to be assigned to the generated HTML editing element</td></tr><tr class='evenRow'><td align='left'>placeholder</td><td align='left'>Placeholder text to be displayed when the edit field is empty</td></tr><tr class='oddRow'><td align='left'>focusPopup</td><td align='left'>Title of a state tiddler for a popup that is displayed when the editing element has focus</td></tr><tr class='evenRow'><td align='left'>tag</td><td align='left'>Overrides the generated HTML editing element tag</td></tr><tr class='oddRow'><td align='left'>size</td><td align='left'>The size of the input field (in characters)</td></tr><tr class='evenRow'><td align='left'>type</td><td align='left'>Overrides the generated HTML editing element <code>type</code> attribute</td></tr></tbody></table><h1 class=''>Notes</h1><p>One trap to be aware of is that the edit text widget cannot be used to edit a field of the tiddler that contains it. Each keypress results in the tiddler being re-rendered, which loses the cursor position within the text field.</p><p>Instead, place the edit text widget in a <a class='tw-tiddlylink tw-tiddlylink-missing' href='TiddlerTemplates.html'>template</a> that references the tiddler you want to modify.</p><p>For example, if you wanted to edit the value of the &quot;myconfig&quot; field of the tiddler &quot;<a class='tw-tiddlylink tw-tiddlylink-missing' href='AppSettings.html'>AppSettings</a>&quot;, you might do so by creating a separate tiddler &quot;<a class='tw-tiddlylink tw-tiddlylink-missing' href='ChangeAppSettings.html'>ChangeAppSettings</a>&quot; that contains the following:</p><pre><code>&lt;$edit-text tiddler=&quot;AppSettings&quot; field=&quot;myconfig&quot;/&gt;</code></pre></div>
+<div class='tc-tiddler-body'><h1 class=''>Introduction</h1><p>The edit text widget provides a user interface in the browser for editing text tiddler fields. The editing element is dynamically bound to the underlying tiddler value: changes to the tiddler are instantly reflected, and any edits are instantly propogated.</p><p>By default, the edit text widget generates a <code>&lt;textarea&gt;</code> as the HTML editing element when the <code>text</code> field is edited, and a <code>&lt;input type=&quot;text&quot;&gt;</code> element otherwise. This behaviour can be overridden with the <code>tag</code> and <code>type</code> attributes.</p><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$edit-text&gt;</code> widget is ignored.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The tiddler to edit (defaults to the <a class='tc-tiddlylink tc-tiddlylink-missing' href='WidgetVariable%253A%2520currentTiddler.html'>WidgetVariable: currentTiddler</a>)</td></tr><tr class='evenRow'><td align='left'>field</td><td align='left'>The field to edit (defaults to <code>text</code>). Takes precedence over the <code>index</code> attribute</td></tr><tr class='oddRow'><td align='left'>index</td><td align='left'>The index to edit</td></tr><tr class='evenRow'><td align='left'>default</td><td align='left'>The default text to be provided when the target tiddler doesn't exist</td></tr><tr class='oddRow'><td align='left'>class</td><td align='left'>A CSS class to be assigned to the generated HTML editing element</td></tr><tr class='evenRow'><td align='left'>placeholder</td><td align='left'>Placeholder text to be displayed when the edit field is empty</td></tr><tr class='oddRow'><td align='left'>focusPopup</td><td align='left'>Title of a state tiddler for a popup that is displayed when the editing element has focus</td></tr><tr class='evenRow'><td align='left'>tag</td><td align='left'>Overrides the generated HTML editing element tag</td></tr><tr class='oddRow'><td align='left'>size</td><td align='left'>The size of the input field (in characters)</td></tr><tr class='evenRow'><td align='left'>type</td><td align='left'>Overrides the generated HTML editing element <code>type</code> attribute</td></tr></tbody></table><h1 class=''>Notes</h1><p>One trap to be aware of is that the edit text widget cannot be used to edit a field of the tiddler that contains it. Each keypress results in the tiddler being re-rendered, which loses the cursor position within the text field.</p><p>Instead, place the edit text widget in a <a class='tc-tiddlylink tc-tiddlylink-missing' href='TiddlerTemplates.html'>template</a> that references the tiddler you want to modify.</p><p>For example, if you wanted to edit the value of the &quot;myconfig&quot; field of the tiddler &quot;<a class='tc-tiddlylink tc-tiddlylink-missing' href='AppSettings.html'>AppSettings</a>&quot;, you might do so by creating a separate tiddler &quot;<a class='tc-tiddlylink tc-tiddlylink-missing' href='ChangeAppSettings.html'>ChangeAppSettings</a>&quot; that contains the following:</p><pre><code>&lt;$edit-text tiddler=&quot;AppSettings&quot; field=&quot;myconfig&quot;/&gt;</code></pre></div>
 
 
 

@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-dev tw-tagged-mechanism'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-dev tc-tagged-mechanism'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,41 +37,41 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 TestingMechanism
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 8 months ago
+</a> 9 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#769ee1;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#769ee1;'>
  dev
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
-<span class='tw-tag-list-item'>
+<span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#9fa3cb;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#9fa3cb;'>
  mechanism
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><p><a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> incorporates the Jasmine <a class='tw-tiddlylink tw-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> testing framework (see <a class='tw-tiddlylink-external' href='http://pivotal.github.io/jasmine/' target='_blank'>http://pivotal.github.io/jasmine/</a>). It allows the same tests to be run both in the browser and under Node.js.</p><h1 class=''><a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> Testing Components</h1><p>There are two main elements to the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> testing mechanism:</p><ul><li>The plugin <code>tiddlywiki/jasmine</code> that wraps Jasmine up into a plugin along with some glue code</li><li>The <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> edition <code>test</code> that contains the core test specifications and includes the Jasmine plugin</li></ul><h1 class=''>Running the Tests in Node.js</h1><p>To run the tests under Node.js just load up the <code>test</code> wiki:</p><pre><code>node ./tiddlywiki.js \
+<div class='tc-tiddler-body'><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> incorporates the Jasmine <a class='tc-tiddlylink tc-tiddlylink-resolves' href='JavaScript.html'>JavaScript</a> testing framework (see <a class='tc-tiddlylink-external' href='http://pivotal.github.io/jasmine/' target='_blank'>http://pivotal.github.io/jasmine/</a>). It allows the same tests to be run both in the browser and under Node.js.</p><h1 class=''><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> Testing Components</h1><p>There are two main elements to the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> testing mechanism:</p><ul><li>The plugin <code>tiddlywiki/jasmine</code> that wraps Jasmine up into a plugin along with some glue code</li><li>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> edition <code>test</code> that contains the core test specifications and includes the Jasmine plugin</li></ul><h1 class=''>Running the Tests in Node.js</h1><p>To run the tests under Node.js just load up the <code>test</code> wiki:</p><pre><code>node ./tiddlywiki.js \
 	./editions/test \</code></pre><h1 class=''>Running the Tests in the Browser</h1><p>To generate a wiki containing the browser tests load up the <code>test</code> wiki and save it as an HTML file:</p><pre><code>node ./tiddlywiki.js \
 	./editions/test \
 	--verbose \
-	--rendertiddler $:/core/save/all $TW5_BUILD_OUTPUT/test.html text/plain \</code></pre><p>Then, open the <code>test.html</code> file in the browser to see the test results. There is a prebuilt version of <code>test.html</code> at:</p><p><a class='tw-tiddlylink-external' href='http://tiddlywiki.com/test.html' target='_blank'>http://tiddlywiki.com/test.html</a>
+	--rendertiddler $:/core/save/all $TW5_BUILD_OUTPUT/test.html text/plain \</code></pre><p>Then, open the <code>test.html</code> file in the browser to see the test results. There is a prebuilt version of <code>test.html</code> at:</p><p><a class='tc-tiddlylink-external' href='http://tiddlywiki.com/test.html' target='_blank'>http://tiddlywiki.com/test.html</a>
 </p></div>
 
 

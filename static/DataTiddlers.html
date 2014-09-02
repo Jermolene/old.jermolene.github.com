@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-concepts'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-concepts'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,29 +37,29 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 DataTiddlers
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 11 months ago
+</a> 12 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#FF8383;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#FF8383;'>
  concepts
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><p>Data tiddlers provide a way to access blocks of <a class='tw-tiddlylink tw-tiddlylink-missing' href='JSON.html'>JSON</a> data within the <code>text</code> field of a tiddler.</p><p><em>The implementation of data tiddlers is preliminary, with some intentional limitations.</em></p><h1 class=''>Data tiddler format</h1><p>A native data tiddler must have:</p><ul><li>The <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> field <code>type</code> set to <code>application/json</code></li><li>Valid JSON data in the <code>text</code> field </li></ul><p>For example, the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='%2524%253A%252FHistoryList.html'>history list</a> tiddler is a data tiddler.</p><p>Other tiddler types with alternative formats can also be parsed to yield a block of data that behaves like a data tiddler.</p><h2 class=''>Tiddler dictionary format</h2><p>The tiddler dictionary format is an alternative syntax for data tiddlers:</p><ul><li>The <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a> field <code>type</code> is set to <code>application/x-tiddler-dictionary</code></li><li>The <code>text</code> field consists of one or more lines of the form <code>&lt;name&gt;:&lt;value&gt;</code></li></ul><p>For example, palettes such as the <a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fpalettes%252FVanilla.html'>default Vanilla palette</a> are tiddler dictionaries.</p><h1 class=''>Accessing data within data tiddlers</h1><p>Currently, it is only possible to access the top level properties of the data using <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TextReference.html'>TextReference</a> syntax.</p><p>For example, given a <code>application/json</code> tiddler containing:</p><pre><code>{&quot;a&quot;:&quot;one&quot;,&quot;b&quot;:&quot;two&quot;,&quot;c&quot;:&quot;three&quot;}</code></pre><p>Or the equivalent tiddler dictionary of type <code>application/x-tiddler-dictionary</code>:</p><pre><code>a:one
+<div class='tc-tiddler-body'><p>Data tiddlers provide a way to access blocks of <a class='tc-tiddlylink tc-tiddlylink-missing' href='JSON.html'>JSON</a> data within the <code>text</code> field of a tiddler.</p><p><em>The implementation of data tiddlers is preliminary, with some intentional limitations.</em></p><h1 class=''>Data tiddler format</h1><p>A native data tiddler must have:</p><ul><li>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='ContentType.html'>ContentType</a> field <code>type</code> set to <code>application/json</code></li><li>Valid JSON data in the <code>text</code> field </li></ul><p>For example, the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='%2524%253A%252FHistoryList.html'>history list</a> tiddler is a data tiddler.</p><p>Other tiddler types with alternative formats can also be parsed to yield a block of data that behaves like a data tiddler.</p><h2 class=''>Tiddler dictionary format</h2><p>The tiddler dictionary format is an alternative syntax for data tiddlers:</p><ul><li>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='ContentType.html'>ContentType</a> field <code>type</code> is set to <code>application/x-tiddler-dictionary</code></li><li>The <code>text</code> field consists of one or more lines of the form <code>&lt;name&gt;:&lt;value&gt;</code></li></ul><p>For example, palettes such as the <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fpalettes%252FVanilla.html'>default Vanilla palette</a> are tiddler dictionaries.</p><h1 class=''>Accessing data within data tiddlers</h1><p>Currently, it is only possible to access the top level properties of the data using <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TextReference.html'>TextReference</a> syntax.</p><p>For example, given a <code>application/json</code> tiddler containing:</p><pre><code>{&quot;a&quot;:&quot;one&quot;,&quot;b&quot;:&quot;two&quot;,&quot;c&quot;:&quot;three&quot;}</code></pre><p>Or the equivalent tiddler dictionary of type <code>application/x-tiddler-dictionary</code>:</p><pre><code>a:one
 b:two
 c:three</code></pre><p>With either of those definitions <code>{{TiddlerTitle##b}}</code> would have the value <code>two</code>.
 </p></div>

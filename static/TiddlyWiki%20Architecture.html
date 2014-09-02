@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-dev'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-dev'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,35 +37,35 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 TiddlyWiki Architecture
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
 </a> 2 months ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#769ee1;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#769ee1;'>
  dev
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><p>The heart of <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is an extensible representation transformation engine for text and images. Given the text of a tiddler and its associated <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a>, the engine can produce a rendering of the tiddler in a new <a class='tw-tiddlylink tw-tiddlylink-resolves' href='ContentType.html'>ContentType</a>. Furthermore, it can efficiently selectively update the rendering to track any changes in the tiddler or its dependents.</p><h1 class=''>Overview</h1><img src='./images/TiddlyWiki%2520Architecture.svg'><p>The processing pipeline shows how <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> is parsed by a stack of parse rules into a parse tree. The parse tree is rendered as a tree of widgets, which is synchronised into the DOM via the <a class='tw-tiddlylink tw-tiddlylink-missing' href='RefreshMechanism.html'>RefreshMechanism</a>.</p><p>DOM events trigger actions on widgets which update the tiddler store. The updates trigger a change event which in turn triggers the refresh mechanism to update the DOM.</p><h1 class=''>Client/Server Architecture</h1><img src='./images/Server%2520Architecture.svg'><p>When programming <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> 5 plugins which make changes outside the scope of the included examples, you will need a more in-depth understanding of <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s internal architecture.</p><h1 class=''>Model</h1><p><a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s data model is a fairly simple key-value store.</p><ul><li>Each tiddler is simply an object with a <code>fields</code> member containing members such as <code>title</code>, <code>text</code>, <code>tags</code> and so on.</li><li>The core <code>Wiki</code> class defined in <code>boot/boot.js</code> implements simple associative array behaviours like insertion, deletion, iteration, listing keys, and get-by-key.</li><li>The code in <code>core/modules/wiki.js</code> then extends the <code>Wiki</code> class with functionality such as event dispatch and various cache-backed methods such as <code>getTiddlersWithTag</code>.</li></ul><p>The active tiddler store can be accessed via <code>$tw.wiki</code> as in this example:</p><pre><code>$tw.wiki.makeTiddlerIterator($tw.wiki.getTiddlersWithTag('timeline')
+<div class='tc-tiddler-body'><p>The heart of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is an extensible representation transformation engine for text and images. Given the text of a tiddler and its associated <a class='tc-tiddlylink tc-tiddlylink-resolves' href='ContentType.html'>ContentType</a>, the engine can produce a rendering of the tiddler in a new <a class='tc-tiddlylink tc-tiddlylink-resolves' href='ContentType.html'>ContentType</a>. Furthermore, it can efficiently selectively update the rendering to track any changes in the tiddler or its dependents.</p><h1 class=''>Overview</h1><img src='./images/TiddlyWiki%2520Architecture.svg'><p>The processing pipeline shows how <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> is parsed by a stack of parse rules into a parse tree. The parse tree is rendered as a tree of widgets, which is synchronised into the DOM via the <a class='tc-tiddlylink tc-tiddlylink-missing' href='RefreshMechanism.html'>RefreshMechanism</a>.</p><p>DOM events trigger actions on widgets which update the tiddler store. The updates trigger a change event which in turn triggers the refresh mechanism to update the DOM.</p><h1 class=''>Client/Server Architecture</h1><img src='./images/Server%2520Architecture.svg'><p>When programming <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> 5 plugins which make changes outside the scope of the included examples, you will need a more in-depth understanding of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s internal architecture.</p><h1 class=''>Model</h1><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s data model is a fairly simple key-value store.</p><ul><li>Each tiddler is simply an object with a <code>fields</code> member containing members such as <code>title</code>, <code>text</code>, <code>tags</code> and so on.</li><li>The core <code>Wiki</code> class defined in <code>boot/boot.js</code> implements simple associative array behaviours like insertion, deletion, iteration, listing keys, and get-by-key.</li><li>The code in <code>core/modules/wiki.js</code> then extends the <code>Wiki</code> class with functionality such as event dispatch and various cache-backed methods such as <code>getTiddlersWithTag</code>.</li></ul><p>The active tiddler store can be accessed via <code>$tw.wiki</code> as in this example:</p><pre><code>$tw.wiki.makeTiddlerIterator($tw.wiki.getTiddlersWithTag('timeline')
     )(function(tiddler, title) {
         // Skip templates
         if (tiddler.fields.tags.indexOf('templates') &gt;= 0) { return; }
 
         do_something(tiddler);
-});</code></pre><p>Data which should not be visible to end users under normal operation (eg. internal components, plugins, persisted state for GUI widgets) is stored in <a class='tw-tiddlylink tw-tiddlylink-resolves' href='SystemTiddlers.html'>system tiddlers</a> organized via a set of <a class='tw-tiddlylink tw-tiddlylink-resolves' href='Naming%2520of%2520System%2520Tiddlers.html'>namespaces</a>.</p><p>The similarity between filesystem paths and system tiddler names is intentional and will be used to provide a hierarchical browsing interface in a future <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> release.</p><h1 class=''>View</h1><p><a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s view layer has a <em>lot</em> in common with desktop widget toolkits and this is the part which is most likely to trip up newcomers. There are two facets to it:</p><h2 class=''>Role of the DOM</h2><p>Because <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> may re-render content, plugins should treat the DOM as write-only.</p><p>In other words, any state you store in the DOM could vanish at any instant and you need to use <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s internal <a class='tw-tiddlylink tw-tiddlylink-resolves' href='StateMechanism.html'>StateMechanism</a> instead.</p><p>In a desktop application, the base widget class defines a method such as <code>paint(canvas)</code> which is called in response to <code>expose</code> events or &quot;data has changed&quot; messages.</p><p>In <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>, the <code>Widget</code> class in <code>core/modules/widgets/widgets.js</code> defines a <code>render(parent, nextSibling)</code> method which <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> calls in response to various events such as changes in the model.</p><p>(The potential inefficiency of this approach is mitigated via a <code>refresh(changedTiddlers)</code> method which <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> calls to ask your widget whether its current rendering is stale.)</p><h2 class=''>Locus of Control</h2><p>While <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s extended <a class='tw-tiddlylink tw-tiddlylink-resolves' href='WikiText.html'>WikiText</a> is similar in design to HTML templating languages with logic constructs, you can't just ignore it and assemble all of your content in raw Javascript because it is used to define most of <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s UI.</p><p>In this respect, it's closer to a glue language like Qt Quick or Python with Javascript filling the &quot;create new components&quot; role of C/C++ in widget toolkits like Qt and GTK+.</p><p>To familiarize yourself with this, read <a class='tw-tiddlylink tw-tiddlylink-resolves' href='Widgets%2520in%2520WikiText.html'>Widgets in WikiText</a> and <a class='tw-tiddlylink tw-tiddlylink-resolves' href='Introduction%2520to%2520Filters.html'>Introduction to Filters</a>. then examine the internals for a tiddler like <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TaskManagementExample.html'>TaskManagementExample</a>.
+});</code></pre><p>Data which should not be visible to end users under normal operation (eg. internal components, plugins, persisted state for GUI widgets) is stored in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='SystemTiddlers.html'>system tiddlers</a> organized via a set of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Naming%2520of%2520System%2520Tiddlers.html'>namespaces</a>.</p><p>The similarity between filesystem paths and system tiddler names is intentional and will be used to provide a hierarchical browsing interface in a future <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> release.</p><h1 class=''>View</h1><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s view layer has a <em>lot</em> in common with desktop widget toolkits and this is the part which is most likely to trip up newcomers. There are two facets to it:</p><h2 class=''>Role of the DOM</h2><p>Because <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> may re-render content, plugins should treat the DOM as write-only.</p><p>In other words, any state you store in the DOM could vanish at any instant and you need to use <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s internal <a class='tc-tiddlylink tc-tiddlylink-resolves' href='StateMechanism.html'>StateMechanism</a> instead.</p><p>In a desktop application, the base widget class defines a method such as <code>paint(canvas)</code> which is called in response to <code>expose</code> events or &quot;data has changed&quot; messages.</p><p>In <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>, the <code>Widget</code> class in <code>core/modules/widgets/widgets.js</code> defines a <code>render(parent, nextSibling)</code> method which <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> calls in response to various events such as changes in the model.</p><p>(The potential inefficiency of this approach is mitigated via a <code>refresh(changedTiddlers)</code> method which <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> calls to ask your widget whether its current rendering is stale.)</p><h2 class=''>Locus of Control</h2><p>While <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s extended <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> is similar in design to HTML templating languages with logic constructs, you can't just ignore it and assemble all of your content in raw Javascript because it is used to define most of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>'s UI.</p><p>In this respect, it's closer to a glue language like Qt Quick or Python with Javascript filling the &quot;create new components&quot; role of C/C++ in widget toolkits like Qt and GTK+.</p><p>To familiarize yourself with this, read <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Widgets%2520in%2520WikiText.html'>Widgets in WikiText</a> and <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Introduction%2520to%2520Filters.html'>Introduction to Filters</a>. then examine the internals for a tiddler like <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TaskManagementExample.html'>TaskManagementExample</a>.
 </p></div>
 
 

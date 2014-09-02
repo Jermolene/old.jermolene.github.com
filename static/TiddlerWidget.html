@@ -3,29 +3,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.15-beta" />
+<meta name="tiddlywiki-version" content="5.0.16-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
 <title>TiddlyWiki — a non-linear personal web notebook</title>
 </head>
-<body class="tw-body">
-<p><div class='tw-static-alert'><div class='tw-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tw-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
 </p>
-<section class="story-river">
+<section class="tc-story-river">
 
-<p><div class='tw-tiddler-frame tw-tiddler-view-frame tw-tiddler-exists   tw-tagged-widget'><div class='tw-tiddler-title'>
-<h2 class='titlebar'>
-<span class='tw-tiddler-controls'>
-<span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='info' class='' title='Show information for this tiddler'>
-
-
-</button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='edit' class='' title='Edit this tiddler'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-widget'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
 
 
 </button>
-</span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal' hidden='true'></span><span class=' tw-reveal'><button aria-label='close' class='' title='Close this tiddler'>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
 
 
 </button></span>
@@ -37,32 +37,32 @@
 
 
 
-<span class='title'>
+<span class='tc-title'>
 TiddlerWidget
 </span>
 
 </h2>
 
-<div class='tw-tiddler-info tw-popup tw-reveal' hidden='true'></div>
-</div><div class='tw-subtitle'>
-<a class='tw-tiddlylink tw-tiddlylink-missing' href='.html'>
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 18 days ago
+</a> 31 days ago
 </div>
-<div class='tw-tags-wrapper'><span class='tw-tag-list-item'>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='btn-invisible tw-tag-label' style='background-color:#6188da;'>
+<button class='tc-btn-invisible tc-tag-label' style='background-color:#6188da;'>
  widget
 </button>
 
-<span class=' tw-reveal' hidden='true'></span>
+<span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='body'><h1 class=''>Introduction</h1><p>The <a class='tw-tiddlylink tw-tiddlylink-resolves' href='TiddlerWidget.html'>TiddlerWidget</a> sets the <a class='tw-tiddlylink tw-tiddlylink-resolves' href='CurrentTiddler.html'>CurrentTiddler</a> that applies for processing its content.</p><h1 class=''>Content and Attributes</h1><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The title of the tiddler to become the new <a class='tw-tiddlylink tw-tiddlylink-resolves' href='CurrentTiddler.html'>CurrentTiddler</a></td></tr><tr class='evenRow'><td align='left'>class</td><td align='left'>CSS classes to be added to the generated elements</td></tr></tbody></table><h1 class=''>CSS Class Variables</h1><p>The tiddler widget assigns several useful CSS classes to variables that it creates:</p><ul><li><strong>missingTiddlerClass</strong>: <strong>&quot;tw-tiddler-exists&quot;</strong> or <strong>&quot;tw-tiddler-missing&quot;</strong> depending upon whether the target tiddler exists</li><li><strong>shadowTiddlerClass</strong>: <strong>&quot;tw-tiddler-shadow&quot;</strong> if the tiddler is a shadow tiddler</li><li><strong>systemTiddlerClass</strong>: <strong>&quot;tw-tiddler-system&quot;</strong> if the tiddler is a system tiddler</li><li><strong>tiddlerTagClasses</strong>: A space separated list of CSS classes named <strong>&quot;tw-tagged-{tagname}&quot;</strong>. For example <strong>&quot;tw-tagged-introduction&quot;</strong>. Note that tag names are <a class='tw-tiddlylink tw-tiddlylink-missing' href='UrlEncoded.html'>UrlEncoded</a> which means that the tag <strong>$:/tags/Macro</strong> appears as the CSS class <strong>&quot;tw-tagged-%24%3A%2Ftags%2FMacro&quot;</strong></li></ul><p>You can use these variables like this:</p><pre><code>&lt;$tiddler tiddler=&quot;MyOtherTiddler&quot;&gt;
+<div class='tc-tiddler-body'><h1 class=''>Introduction</h1><p>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerWidget.html'>TiddlerWidget</a> sets the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='CurrentTiddler.html'>CurrentTiddler</a> that applies for processing its content.</p><h1 class=''>Content and Attributes</h1><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The title of the tiddler to become the new <a class='tc-tiddlylink tc-tiddlylink-resolves' href='CurrentTiddler.html'>CurrentTiddler</a></td></tr><tr class='evenRow'><td align='left'>class</td><td align='left'>CSS classes to be added to the generated elements</td></tr></tbody></table><h1 class=''>CSS Class Variables</h1><p>The tiddler widget assigns several useful CSS classes to variables that it creates:</p><ul><li><strong>missingTiddlerClass</strong>: <strong>&quot;tc-tiddler-exists&quot;</strong> or <strong>&quot;tc-tiddler-missing&quot;</strong> depending upon whether the target tiddler exists</li><li><strong>shadowTiddlerClass</strong>: <strong>&quot;tc-tiddler-shadow&quot;</strong> if the tiddler is a shadow tiddler</li><li><strong>systemTiddlerClass</strong>: <strong>&quot;tc-tiddler-system&quot;</strong> if the tiddler is a system tiddler</li><li><strong>tiddlerTagClasses</strong>: A space separated list of CSS classes named <strong>&quot;tc-tagged-{tagname}&quot;</strong>. For example <strong>&quot;tc-tagged-introduction&quot;</strong>. Note that tag names are <a class='tc-tiddlylink tc-tiddlylink-missing' href='UrlEncoded.html'>UrlEncoded</a> which means that the tag <strong>$:/tags/Macro</strong> appears as the CSS class <strong>&quot;tc-tagged-%24%3A%2Ftags%2FMacro&quot;</strong></li></ul><p>You can use these variables like this:</p><pre><code>&lt;$tiddler tiddler=&quot;MyOtherTiddler&quot;&gt;
 &lt;div class=&lt;&lt;missingTiddlerClass&gt;&gt;&gt;
 &lt;$transclude/&gt;
-&lt;/$tiddler&gt;</code></pre><p>See also <a class='tw-tiddlylink tw-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fui%252FViewTemplate.html'>$:/core/ui/ViewTemplate</a>.
+&lt;/$tiddler&gt;</code></pre><p>See also <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fui%252FViewTemplate.html'>$:/core/ui/ViewTemplate</a>.
 </p></div>
 
 
