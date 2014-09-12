@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.16-beta" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -14,7 +14,7 @@
 </p>
 <section class="tc-story-river">
 
-<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-macros'><div class='tc-tiddler-title'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-Macros'><div class='tc-tiddler-title'>
 <h2 class='tc-titlebar'>
 <span class='tc-tiddler-controls'>
 <span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
@@ -47,19 +47,19 @@ TableOfContentsMacro
 </div><div class='tc-subtitle'>
 <a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 5 days ago
+</a> 7 days ago
 </div>
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='tc-btn-invisible tc-tag-label' style='background-color:#d67fbf;'>
- macros
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ Macros
 </button>
 
 <span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='tc-tiddler-body'><p>The table of contents macro produces a hierarchical tree of tiddlers based on their tags.</p><p>The top level entries of the table of contents are defined by a root tag. The subentries under each of those entries are tagged with the title of the entry. Entries can be ordered using the <code>list</code> field as described in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerTags.html'>TiddlerTags</a>. The text for each entry is taken from the <strong>caption</strong> field if it is present, otherwise the <strong>title</strong> is used.</p><p>There are several variants of the macro:</p><ul><li><code>&lt;&lt;toc&gt;&gt;</code> produces a simple hierarchical tree of links</li><li><code>&lt;&lt;toc-expandable&gt;&gt;</code> produces an expandable tree of links</li><li><code>&lt;&lt;toc-selective-expandable&gt;&gt;</code> produces an expandable tree of links where the expand/contract buttons are only shown for entries that possess child nodes</li></ul><p>The macros all generate HTML ordered lists. The <code>&lt;ol&gt;</code> elements are given the class <code>tc-toc</code>, with the expandable variant also having the class <code>tc-toc-expandable</code> and the selective expandable variant also having the class <code>tc-toc-selective-expandable</code>.</p><h1 class=''>Parameters</h1><table><tbody><tr class='evenRow'><th align='left'>Position</th><th align='left'>Name</th><th align='left'>Description</th><th align='left'>Default</th></tr><tr class='oddRow'><td align='left'>1st</td><td align='left'>tag</td><td align='left'>The root tag that identifies the top level of the hierarchy</td><td align='center'></td></tr><tr class='evenRow'><td align='left'>2nd</td><td align='left'>sort</td><td align='left'>Optional sorting subfilter (eg <code>sort[title]</code>)</td><td align='center'></td></tr></tbody></table><p>The <strong>tag</strong> and <strong>sort</strong> parameters are combined to make a filter expression of the form:</p><pre><code>[tag[$tag$]$sort$]</code></pre><h1 class=''>Examples</h1><p><div class='tc-tab-set '>
+<div class='tc-tiddler-body'><p>The table of contents macro produces a hierarchical tree of tiddlers based on their tags.</p><p>The top level entries of the table of contents are defined by a root tag. The subentries under each of those entries are tagged with the title of the entry. Entries can be ordered using the <code>list</code> field of the tag tiddler as described in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerTags.html'>TiddlerTags</a>.</p><p>The text for each entry is taken from the <strong>caption</strong> field if it is present, otherwise the <strong>title</strong> is used.</p><p>Entries are rendered as a link to the corresponding tiddler unless the tiddler has the value <strong>no</strong> in the field <strong>toc-link</strong>. In the examples below, the entry <a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThree.html'>SecondThree</a> is set up in this way to not appear as a link.</p><p>There are several variants of the macro:</p><ul><li><code>&lt;&lt;toc&gt;&gt;</code> produces a simple hierarchical tree of links</li><li><code>&lt;&lt;toc-expandable&gt;&gt;</code> produces an expandable tree of links</li><li><code>&lt;&lt;toc-selective-expandable&gt;&gt;</code> produces an expandable tree of links where the expand/contract buttons are only shown for entries that possess child nodes</li></ul><p>The macros all generate HTML ordered lists. The <code>&lt;ol&gt;</code> elements are given the class <code>tc-toc</code>, with the expandable variant also having the class <code>tc-toc-expandable</code> and the selective expandable variant also having the class <code>tc-toc-selective-expandable</code>.</p><h1 class=''>Parameters</h1><table><tbody><tr class='evenRow'><th align='left'>Position</th><th align='left'>Name</th><th align='left'>Description</th><th align='left'>Default</th></tr><tr class='oddRow'><td align='left'>1st</td><td align='left'>tag</td><td align='left'>The root tag that identifies the top level of the hierarchy</td><td align='center'></td></tr><tr class='evenRow'><td align='left'>2nd</td><td align='left'>sort</td><td align='left'>Optional sorting subfilter (eg <code>sort[title]</code>)</td><td align='center'></td></tr></tbody></table><p>The <strong>tag</strong> and <strong>sort</strong> parameters are combined to make a filter expression of the form:</p><pre><code>[tag[$tag$]$sort$]</code></pre><h1 class=''>Examples</h1><p><div class='tc-tab-set '>
 <div class='tc-tab-buttons '>
 
 <button class=''>
@@ -86,41 +86,25 @@ Sorted Expandable
 <ol class='tc-toc'>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='First.html'>
-
-First
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='First.html'>First</a>
 <ol class='tc-toc'>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FirstOne.html'>
-
-FirstOne
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FirstOne.html'>FirstOne</a>
 <ol class='tc-toc'>
 
 </ol>
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FirstTwo.html'>
-
-FirstTwo
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FirstTwo.html'>FirstTwo</a>
 <ol class='tc-toc'>
 
 </ol>
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FirstThree.html'>
-
-FirstThree
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FirstThree.html'>FirstThree</a>
 <ol class='tc-toc'>
 
 </ol>
@@ -130,60 +114,40 @@ FirstThree
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Second.html'>
-
-Second
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Second.html'>Second</a>
 <ol class='tc-toc'>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondOne.html'>
-
-SecondOne
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondOne.html'>SecondOne</a>
 <ol class='tc-toc'>
 
 </ol>
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThree.html'>
+
 
 SecondThree
 
-</a>
+
 <ol class='tc-toc'>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThreeOne.html'>
-
-SecondThreeOne
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThreeOne.html'>SecondThreeOne</a>
 <ol class='tc-toc'>
 
 </ol>
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThreeTwo.html'>
-
-SecondThreeTwo
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThreeTwo.html'>SecondThreeTwo</a>
 <ol class='tc-toc'>
 
 </ol>
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThreeThree.html'>
-
-SecondThreeThree
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondThreeThree.html'>SecondThreeThree</a>
 <ol class='tc-toc'>
 
 </ol>
@@ -193,11 +157,7 @@ SecondThreeThree
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondTwo.html'>
-
-SecondTwo
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SecondTwo.html'>SecondTwo</a>
 <ol class='tc-toc'>
 
 </ol>
@@ -207,41 +167,25 @@ SecondTwo
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Third.html'>
-
-Third
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Third.html'>Third</a>
 <ol class='tc-toc'>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ThirdOne.html'>
-
-ThirdOne
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ThirdOne.html'>ThirdOne</a>
 <ol class='tc-toc'>
 
 </ol>
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ThirdTwo.html'>
-
-ThirdTwo
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ThirdTwo.html'>ThirdTwo</a>
 <ol class='tc-toc'>
 
 </ol>
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ThirdThree.html'>
-
-ThirdThree
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ThirdThree.html'>ThirdThree</a>
 <ol class='tc-toc'>
 
 </ol>
@@ -251,11 +195,7 @@ ThirdThree
 </li>
 
 <li>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Fourth.html'>
-
-Fourth
-
-</a>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Fourth.html'>Fourth</a>
 <ol class='tc-toc'>
 
 </ol>

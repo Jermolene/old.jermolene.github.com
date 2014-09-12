@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Tiddler as Basic Element
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 59 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>By managing nearly every part of the application as tiddlers, the application is only needed to provide some basic functionality to manage the individual tiddlers, load and persist them, render them to HTML output and provide a way to register for the changes made to tiddlers.
+This way the whole wiki application can be build from these simple concepts.
+Plug-ins can be used to add new functionality to the existing modules or even to replace individual tiddlers/modules,
+enabling developers to build whole new applications on the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> base system.</p><p>A tiddler is the smallest unit of the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> system. It can contain any data like plain text, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> markup, <a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript.html'>JavaScript</a> code (module tiddler), JSON structures (JSON structures might even contain additional tiddlers. Plug-ins are implemented this way to pack multiple tiddlers in a single plug-in tiddler), images in SVG format or even binary images encoded with base64.
+Internally Tiddlers are immutable objects containing a bunch of key:value pairs called fields. The only required field of a tiddler is the title field. The Standard fields of a tiddler are listed below. Nearly everything in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is loaded as tiddlers. Plug-ins for example are a bunch of tiddlers that are distributed as a single JSON tiddler. The only exception is the microkernel which isn't a tiddler.</p><p><dl>
+<dt>created</dt> <dd>Timestamp number of milliseconds since 01.01.1970.</dd>
+<dt>modified</dt> <dd>Timestamp number of milliseconds since 01.01.1970.</dd>
+<dt>tags</dt> <dd>list of tags seperated by whitespace. Tags which contain whitespaces are wrapped by <a class='tc-tiddlylink tc-tiddlylink-missing' href='%2520.html'> </a>, e.g. <a class='tc-tiddlylink tc-tiddlylink-missing' href='example%2520Tag.html'>example Tag</a>.</dd>
+<dt>type</dt> <dd>Type of the Tiddler, e.g. text/plain or text/vnd.tiddlywiki .</dd>
+<dt>title</dt> <dd>Title of the Tiddler</dd>
+<dt>list</dt> <dd>An ordered list of tiddler titles associated with a tiddler</dd>
+</dl></p><p>Tiddlers are used in multiple roles and on different levels. A developer uses tiddlers as the basic element containing application code, configuration values and even as a form of variable to save the current UI state.
+On a different level, a tiddler is also the basic unit of work for the wiki user, e.g. the individual wiki pages are implemented as tiddlers.
+This makes sense for multiple reasons:
+Because the UI of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is build from tiddlers, the wiki user is able to edit the interface of his own <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> just by editing a wiki page.
+For example to add a list of tiddler links to the sidebar, the user just needs to create a new tiddler, put the links into this tiddler and tag this tiddler with <code>$:/tags/SideBar</code>.
+This way the user can customize his work environment just by using mechanisms he already uses to manage his wiki pages.
+Tiddlers consist of fields. When using a tiddler as wiki page, the user can use these fields to store meta information, like tags.</p><p>Because fields for metadata and especially tags are an easy way for the user to organize his wiki pages, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> provides a special filter mechanism to choose tiddlers using their metadata.
+A filter string like <code>[tag[learncard]topic[math]!tag[successful]]</code> would filter all tiddlers tagged with &quot;learncard&quot;, with the value &quot;math&quot; in the topic-field and are not tagged with &quot;successful&quot;.
+A user could use this filter together with the <code>&lt;$list&gt;</code> widget to display a list of all math learncards which are not yet answered successfully in a wiki page.</p><p>Another example which shows how the &quot;anything is a tiddler&quot; concept leads to an environment where a single feature brings great benefit is the drag and drop feature.
+HTML5 standard comes with a native drag and drop feature. <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> uses this feature and makes it possible to drag and drop a tiddler from one instance to another.
+And because anything is a tiddler, this brings the ability to drag and drop individual wiki pages, <a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript.html'>JavaScript</a> modules, UI components and whole plug-ins between <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> instances.</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

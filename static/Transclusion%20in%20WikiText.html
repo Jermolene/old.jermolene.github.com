@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.16-beta" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -14,7 +14,7 @@
 </p>
 <section class="tc-story-river">
 
-<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-wikitext'><div class='tc-tiddler-title'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-WikiText'><div class='tc-tiddler-title'>
 <h2 class='tc-titlebar'>
 <span class='tc-tiddler-controls'>
 <span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
@@ -52,14 +52,14 @@ Transclusion in WikiText
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
 <button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
- wikitext
+ WikiText
 </button>
 
 <span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='tc-tiddler-body'><p>You can incorporate the content of one tiddler within another using the transclusion notation:</p><ul><li><code>{{MyTiddler}}</code> transcludes a single tiddler</li><li><code>{{MyTiddler||TemplateTitle}}</code> displays the tiddler through a specified <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TemplateTiddlers.html'>TemplateTiddler</a></li><li><code>{{||TemplateTitle}}</code> displays the specified template tiddler without altering the <a class='tc-tiddlylink tc-tiddlylink-missing' href='WidgetVariable%253A%2520currentTiddler.html'>current tiddler</a></li></ul><p>You can also use a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TextReference.html'>TextReference</a> instead of a tiddler title:</p><ul><li><code>{{MyTiddler!!field}}</code> transcludes a specified field of a tiddler</li><li><code>{{!!field}}</code> transcludes a specified field of the current tiddler</li><li><code>{{MyTiddler##index}}</code> transcludes a specified indexed property of a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a></li><li><code>{{##index}}</code> transcludes a specified indexed property of the current <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a></li></ul><p>A similar syntax can be used to transclude a list of tiddlers matching a specified <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFilters.html'>TiddlerFilter</a>:</p><pre><code>{{{ [tag[mechanism]] }}}
+<div class='tc-tiddler-body'><p>You can incorporate the content of one tiddler within another using the transclusion notation:</p><ul><li><code>{{MyTiddler}}</code> transcludes a single tiddler</li><li><code>{{MyTiddler||TemplateTitle}}</code> displays the tiddler through a specified <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TemplateTiddlers.html'>TemplateTiddler</a></li><li><code>{{||TemplateTitle}}</code> displays the specified template tiddler without altering the <a class='tc-tiddlylink tc-tiddlylink-missing' href='WidgetVariable%253A%2520currentTiddler.html'>current tiddler</a></li></ul><p>You can also use a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TextReference.html'>TextReference</a> instead of a tiddler title:</p><ul><li><code>{{MyTiddler!!field}}</code> transcludes a specified field of a tiddler</li><li><code>{{!!field}}</code> transcludes a specified field of the current tiddler</li><li><code>{{MyTiddler##index}}</code> transcludes a specified indexed property of a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a></li><li><code>{{##index}}</code> transcludes a specified indexed property of the current <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a></li></ul><p>A similar syntax can be used to transclude a list of tiddlers matching a specified <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Filters.html'>filter</a>:</p><pre><code>{{{ [tag[mechanism]] }}}
 {{{ [tag[mechanism]] ||TemplateTitle}}}</code></pre></div>
 
 

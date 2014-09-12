@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Tags and Filter Mechanism
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 56 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><h3 class=''>Tags</h3><p>The core plug-in extends the store by a simple mechanism to tag a tiddler.
+This provides the functionality to</p><ul><li>retrieve tiddlers with a specific tag</li><li>retreive a hashmap of <code>{ tag: [tiddler1, tiddler3, tiddler3] }</code></li><li>list or iterate tiddlers not tagged with a specific tag</li></ul><p>The tags are stored directly in the tiddler. Each tiddler can have a field named &quot;tag&quot;, which contains an array of its tags.
+The above functions use this field to calculate their results and cache them in a global cache.</p><p>Organising information with tags is easy, intuitive and is common throughout the web.
+In most cases the functions mentioned above are not enough and a more sophisticated way of querying is needed.
+But instead of focusing only on tags <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> introduces a querying system that isn't bound to tags or single tiddlers.</p><h3 class=''>Filter mechanism</h3><p>This filter mechanism is build on the idea of a pipeline of single filter operators.
+Filters are noted as strings and can look like</p><pre><code>[tag[task]!tag[done]interesting[very]]</code></pre><p>This example would (implicitly) put all available tiddlers into the pipe.
+The first operator <code>tag[task]</code> would only pass tiddlers which are tagged with &quot;task&quot;.
+The <code>!tag[done]</code> operator is negated and only passes tiddlers which are not tagged with &quot;done&quot;.
+The last filter operator passes only tiddlers with a field &quot;interesting&quot; set to &quot;very&quot;.
+So as a result this filter would be used to obtain all tiddlers which are marked as task, aren't already done and are very interesting.</p><p>There are many filter operators already build into the core plug-in including the mentioned tag- and field operators, filter operators to sort the tiddlerlist by a specified field, etc.
+But more sophisticated operators are possible, too.
+An example would be the search-operator. This filter operator looks for the searched string in the text and in the tags of the tiddlers.
+If the provided filter operators are not enough, a developer can add new filters by adding a module with the <code>filteroperator</code> type.</p><h3 class=''>System Tags</h3><p>Tags and the filter mechanism are used throughout the core plug-in for internal puproses.
+Tags which start with <code>$:/</code> are normally hidden from the casual user, similar to <a class='tc-tiddlylink tc-tiddlylink-resolves' href='System%2520Tiddlers.html'>System Tiddlers</a></p><p>The filter mechanism is added to the wiki store with the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='wikimethod%2520module%2520type.html'>wikimethod module type</a>.
+</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

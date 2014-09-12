@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki — a non-linear personal web notebook</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/' target='_blank'>http://tiddlywiki.com/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-Filters'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+FilterOperator: regexp
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 3 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ Filters
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>The <strong>regexp</strong> filter operator filters tiddlers that match a regular expression.</p><p>Regular expressions are a way of encoding complex string matching criteria. The format is defined fully in <a class='tc-tiddlylink-external' href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions' target='_blank'>this Mozilla reference</a>.</p><p>The regexp filter operator takes a fieldname as the optional suffix (defaulting to <code>title</code>).</p><p>The regular expression itself can start or end with an optional string to specify flags in the format <code>(?flags)</code> where flags can be &quot;g&quot;, &quot;m&quot; or &quot;i&quot;. Only the &quot;i&quot; flag is generally useful: it forces the match to be case-insensitive (ie upper and lower case letters are considered the same).</p><p>For example:</p><table><tbody><tr class='evenRow'><th align='left'>Filter String</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'><code>[all[tiddlers]regexp[EggCup]]</code></td><td align='left'>Selects all tiddlers that have the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='CamelCase.html'>CamelCase</a> string &quot;<a class='tc-tiddlylink tc-tiddlylink-missing' href='EggCup.html'>EggCup</a>&quot; in their title</td></tr><tr class='evenRow'><td align='left'><code>[all[tiddlers]regexp[eggcup(?i)]]</code></td><td align='left'>Selects all tiddlers that have the string &quot;eggcup&quot; in their title (ignoring case)</td></tr><tr class='oddRow'><td align='left'><code>[all[tiddlers]regexp[(?i)\.jpe?g$]]</code></td><td align='left'>Selects all tiddlers with titles ending in &quot;.jpg&quot; or &quot;.jpeg&quot; (ignoring case)</td></tr><tr class='evenRow'><td align='left'><code>[all[tiddlers]regexp:modified[^2014]]</code></td><td align='left'>Selects all tiddlers whose modified field starts with the string &quot;2014&quot;</td></tr></tbody></table><h1 class=''>Regular Expressions with Square Brackets</h1><p>Note that the filter syntax doesn't allow you to directly enter regular expressions that include square brackets. Instead, you should use a variable to store the filter string. For example, the following regular expression matches all titles that contain any combination the letters &quot;a&quot;, &quot;b&quot; and &quot;c&quot; (with no other characters present).</p><pre><code>&lt;$set name=&quot;myfilter&quot; value=&quot;^[abc]*$&quot;&gt;
+&lt;$list filter=&quot;[regexp:title&lt;myfilter&gt;]&quot;&gt;
+&lt;div&gt;
+&lt;$view field=&quot;title&quot;/&gt;
+&lt;/div&gt;
+&lt;/$list&gt;
+&lt;/$set&gt;</code></pre></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

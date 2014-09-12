@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.16-beta" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -14,7 +14,7 @@
 </p>
 <section class="tc-story-river">
 
-<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-concepts'><div class='tc-tiddler-title'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-Concepts'><div class='tc-tiddler-title'>
 <h2 class='tc-titlebar'>
 <span class='tc-tiddler-controls'>
 <span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
@@ -52,14 +52,14 @@ TextReference
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
 <button class='tc-btn-invisible tc-tag-label' style='background-color:#FF8383;'>
- concepts
+ Concepts
 </button>
 
 <span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='tc-tiddler-body'><p>A <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TextReference.html'>TextReference</a> identifies a chunk of text from a tiddler that can be retrieved or modified depending on the context.</p><p>Text references are made up of several parts, most of which can be optional:</p><ul><li><code>&lt;tiddler title&gt;</code> - the text <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFields.html'>field</a> of the specified tiddler</li><li><code>&lt;tiddler title&gt;!!&lt;metadata field&gt;</code> - a tiddler metadata <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFields.html'>field</a> (eg, <code>modified</code>, <code>modifier</code>, <code>type</code> etc)</li><li><code>!!&lt;metadata field&gt;</code> - a metadata <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFields.html'>field</a> of the current tiddler</li><li><code>&lt;tiddler title&gt;##&lt;property index&gt;</code> - extracts a named property from <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddlers</a></li></ul><p>Text references can be used in several places:</p><ul><li>As <a class='tc-tiddlylink tc-tiddlylink-missing' href='IndirectOperands.html'>IndirectOperands</a> within <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFilters.html'>TiddlerFilters</a> (eg, <code>&lt;$list filter=&quot;[tag{MyTag!!name}]&quot;/&gt;</code>)</li><li>As <a class='tc-tiddlylink tc-tiddlylink-missing' href='IndirectAttributes.html'>IndirectAttributes</a> of an element or widget (eg, <code>&lt;$widget attrib={{Title!!description}}/&gt;</code>)</li><li>As the operand of a shortcut transclusion (eg, <code>{{MyTiddler!!title}}</code>)</li><li>As the <code>state</code> attribute of the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='RevealWidget.html'>RevealWidget</a> and the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='LinkCatcherWidget.html'>LinkCatcherWidget</a></li></ul></div>
+<div class='tc-tiddler-body'><p>A <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TextReference.html'>TextReference</a> identifies a chunk of text from a tiddler that can be retrieved or modified depending on the context.</p><p>Text references are made up of several parts, most of which can be optional:</p><ul><li><code>&lt;tiddler title&gt;</code> - the text <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFields.html'>field</a> of the specified tiddler</li><li><code>&lt;tiddler title&gt;!!&lt;metadata field&gt;</code> - a tiddler metadata <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFields.html'>field</a> (eg, <code>modified</code>, <code>modifier</code>, <code>type</code> etc)</li><li><code>!!&lt;metadata field&gt;</code> - a metadata <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerFields.html'>field</a> of the current tiddler</li><li><code>&lt;tiddler title&gt;##&lt;property index&gt;</code> - extracts a named property from <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddlers</a></li></ul><p>Text references can be used in several places:</p><ul><li>As <a class='tc-tiddlylink tc-tiddlylink-missing' href='IndirectOperands.html'>IndirectOperands</a> within <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Filters.html'>Filters</a> (eg, <code>&lt;$list filter=&quot;[tag{MyTag!!name}]&quot;/&gt;</code>)</li><li>As <a class='tc-tiddlylink tc-tiddlylink-missing' href='IndirectAttributes.html'>IndirectAttributes</a> of an element or widget (eg, <code>&lt;$widget attrib={{Title!!description}}/&gt;</code>)</li><li>As the operand of a shortcut transclusion (eg, <code>{{MyTiddler!!title}}</code>)</li><li>As the <code>state</code> attribute of the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='RevealWidget.html'>RevealWidget</a> and the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='LinkCatcherWidget.html'>LinkCatcherWidget</a></li></ul></div>
 
 
 

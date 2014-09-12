@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Data-Storage
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 2 months ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>TW has two approaches to save the user data. These approaches depends on way you use TW. either you use node.js as a server for TW its saves the tiddlers as plain text in different files or you use TW as standalone in a browser it persists the data within the HTML-File in two Div-Areas depending on whether the encryption of the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is activated or not. If the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is not encrypted the data is stored in the Div-Area called &quot;StoreArea&quot;. Every created Tiddler is stored in a own Div-area with a few custom values. An example of a saved Tiddler is shown below (\prettyref{lst:data-div}). </p><pre><code>&lt;div created=&quot;20140611153703343&quot; modified=&quot;20140611153734589&quot; tags=&quot;testTag&quot; testfield=&quot;testvalue&quot; title=&quot;TestTiddler&quot; type=&quot;text/plain&quot;&gt;
+	&lt;pre&gt;testText&lt;/pre&gt;
+&lt;/div&gt;</code></pre><p>The Div-Area has the same attributes like the standard tillder fields, listed in  (\prettyref{list:<a class='tc-tiddlylink tc-tiddlylink-missing' href='TiddlerFields.html'>TiddlerFields</a>}), all attributes which are not in this list are parsed as a custom field. The only required attribute is the name attribute, all other attributes are optional.\\
+With a activated encryption the data is stored in a special Div-Area called &quot;encryptedStoreArea&quot;. <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> uses the Standford <a class='tc-tiddlylink-external' href='http://bitwiseshiftleft.github.io/sjcl/' target='_blank'>JavaScript Crypto Libary</a>. The encrypted Tiddlers are saved in a JSON string within this Div-Area.</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

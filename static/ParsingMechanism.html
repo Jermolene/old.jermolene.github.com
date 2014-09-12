@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.16-beta" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -14,7 +14,7 @@
 </p>
 <section class="tc-story-river">
 
-<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-mechanism tc-tagged-dev'><div class='tc-tiddler-title'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-Mechanisms'><div class='tc-tiddler-title'>
 <h2 class='tc-titlebar'>
 <span class='tc-tiddler-controls'>
 <span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
@@ -51,23 +51,15 @@ ParsingMechanism
 </div>
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<button class='tc-btn-invisible tc-tag-label' style='background-color:#769ee1;'>
- dev
-</button>
-
-<span class=' tc-reveal' hidden='true'></span>
-</span>
-<span class='tc-tag-list-item'>
-
 <button class='tc-btn-invisible tc-tag-label' style='background-color:#9fa3cb;'>
- mechanism
+ Mechanisms
 </button>
 
 <span class=' tc-reveal' hidden='true'></span>
 </span>
 </div>
 
-<div class='tc-tiddler-body'><h1 class=''>Introduction</h1><p>The parsing mechanism analyses the text of a tiddler against a set of parsing rules, producing a tree representing the structure of the text. The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='RenderingMechanism.html'>RenderingMechanism</a> is used to transform parse trees into render trees of widget nodes.</p><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> includes <a class='tc-tiddlylink tc-tiddlylink-missing' href='ParserModules.html'>ParserModules</a> for several types of tiddler:</p><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a></li><li>Raw HTML</li><li>Plain text</li><li>Images (bitmap, SVG and PDF)</li></ul><p>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> parser is the most complex, comprising separate individual <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiRuleModules.html'>WikiRuleModules</a> encapsulating each parsing rule.</p><h1 class=''>Parse Trees</h1><p>The output of parsing a tiddler is an object containing a tree of parse nodes corresponding to the original text. For example:</p><pre><code>&gt; JSON.stringify($tw.wiki.parseText(&quot;text/vnd.tiddlywiki&quot;,&quot;Some //italics// and a {{Transclusion}}.&quot;).tree)
+<div class='tc-tiddler-body'><h1 class=''>Introduction</h1><p>The parsing mechanism analyses the text of a tiddler against a set of parsing rules, producing a tree representing the structure of the text. The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='RenderingMechanism.html'>RenderingMechanism</a> is used to transform parse trees into render trees of widget nodes.</p><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> includes <a class='tc-tiddlylink tc-tiddlylink-missing' href='ParserModules.html'>ParserModules</a> for several types of tiddler:</p><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a></li><li>Raw HTML</li><li>Plain text</li><li>Images (bitmap, SVG and PDF)</li></ul><p>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> parser is the most complex, comprising separate individual <a class='tc-tiddlylink tc-tiddlylink-missing' href='WikiRuleModules.html'>WikiRuleModules</a> encapsulating each parsing rule.</p><h1 class=''>Parse Trees</h1><p>The output of parsing a tiddler is an object containing a tree of parse nodes corresponding to the original text. For example:</p><pre><code>&gt; JSON.stringify($tw.wiki.parseText(&quot;text/vnd.tiddlywiki&quot;,&quot;Some //italics// and a {{Transclusion}}.&quot;).tree)
 
 [
 	{type: &quot;element&quot;, tag: &quot;p&quot;, children: [

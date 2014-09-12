@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.16-beta" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -14,7 +14,7 @@
 </p>
 <section class="tc-story-river">
 
-<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   '><div class='tc-tiddler-title'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-TiddlyWiki%20on%20Node.js'><div class='tc-tiddler-title'>
 <h2 class='tc-titlebar'>
 <span class='tc-tiddler-controls'>
 <span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
@@ -47,11 +47,19 @@ Environment Variables on Node.js
 </div><div class='tc-subtitle'>
 <a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 2 months ago
+</a> 2 hours ago
 </div>
-<div class='tc-tags-wrapper'></div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
-<div class='tc-tiddler-body'><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki%2520on%2520Node.js.html'>TiddlyWiki on Node.js</a> supports the following OS environment variables for specifying a colon-delimited list of paths to search for plugins and editions:</p><ul><li><code>TIDDLYWIKI_PLUGIN_PATH</code> - Search path for ordinary plugins</li><li><code>TIDDLYWIKI_THEME_PATH</code> - Search path for themes</li><li><code>TIDDLYWIKI_LANGUAGE_PATH</code> - Search path for languages</li><li><code>TIDDLYWIKI_EDITION_PATH</code> - Search path for editions (used by the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='InitCommand.html'>InitCommand</a>)</li></ul><p>The additional paths should each point to folders structured like the equivalent directories in the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> <a class='tc-tiddlylink tc-tiddlylink-missing' href='GitHub.html'>GitHub</a> repository: the plugin, theme and language directories contain <code>publisher/pluginname/&lt;files&gt;</code> while the edition directories contain <code>editionname/&lt;files&gt;</code></p><p>For example:</p><pre><code>TIDDLYWIKI_PLUGIN_PATH=~/MyPluginStore
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ TiddlyWiki on Node.js
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki%2520on%2520Node.js.html'>TiddlyWiki on Node.js</a> supports the following OS environment variables for specifying a colon-delimited list of paths to search for plugins and editions:</p><ul><li><code>TIDDLYWIKI_PLUGIN_PATH</code> - Search path for ordinary plugins</li><li><code>TIDDLYWIKI_THEME_PATH</code> - Search path for themes</li><li><code>TIDDLYWIKI_LANGUAGE_PATH</code> - Search path for languages</li><li><code>TIDDLYWIKI_EDITION_PATH</code> - Search path for editions (used by the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='InitCommand.html'>InitCommand</a>)</li></ul><p>The additional paths should each point to folders structured like the equivalent directories in the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki5.html'>TiddlyWiki5</a> <a class='tc-tiddlylink tc-tiddlylink-resolves' href='GitHub.html'>GitHub</a> repository: the plugin, theme and language directories contain <code>publisher/pluginname/&lt;files&gt;</code> while the edition directories contain <code>editionname/&lt;files&gt;</code></p><p>For example:</p><pre><code>TIDDLYWIKI_PLUGIN_PATH=~/MyPluginStore
 tiddlywiki mywiki --build index</code></pre></div>
 
 

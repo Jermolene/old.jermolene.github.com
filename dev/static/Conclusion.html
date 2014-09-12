@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-section tc-tagged-doc'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Conclusion
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 56 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+<span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ section
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> consists in its heart only of a basic microkernel providing bare tiddlerstore and module system.
+It is written in JavaScript and suited to run in a browser or as node.js application.
+The core plug-in extends the microkernel with powerful functions from a central event system to a sophisticated widget system transforming <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> to dynamic HTML.
+Because of it's microkernel architecture the application is highly customizable. The plug-in system not only allows to add new modules but also to override existing modules. Most of the components don't refer directly to modules but load them by type, allowing developers to inject additional modules including new saver implementations, widgets or even rules for the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> parser.
+The user interface of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is written in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> and can be customized with the same language, a user normally uses when just writing wiki entries.</p><p>A drawback of the core plug-in is it's high complexity. While the microkernel provides just the bare some bare functions and structures, the core plug-in adds a whole bunch of components at once.
+It can be challenging to decompose the core architecture and understand the connections between the components. This documentation could only cover the most important parts.
+This gives a developer the choice of building a whole new application on the microkernel or building the application on the core plug-in, including all modules and UI tiddlers.</p><p>In conclusion, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> is a interesting piece of software.
+The focus on tiddlers, the functionality provided in the core and the fact that the core comes with a full blown wiki application puts <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> into a personal information management domain, especially when using <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> as a single file application storing code and data in a single HTML file.
+But the highly customizable nature makes <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> perfect for this exact domain. A casual user can organize information with tags and metadata and customize the UI to a grade, that he is able to implement and test his own workflows just by using <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a>.
+JavaScript developers can add whole new features and create completely new single page applications by building on the microkernel or customizing the core plug-in.</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc tc-tagged-new tc-tagged-Microkernel%20Architecture'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Datamodel
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 59 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+<span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ Microkernel Architecture
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+<span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ new
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>The micro-kernel creates a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> specific data-structure called tiddler. Here you have to separate the different definition of tiddlers. In the architectural view a tiddler is a <a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript.html'>JavaScript</a> object holding some data. In the overall concept a tiddler is similar to a wiki page in a normal wiki application like wikipedia. In this section we describe the architectural view of a tiddler. The listing below shows the JSON representation of a tiddler object. During the runtime of the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> everything is saved an object like this. Without any plug-in the architecture is not able to persist any kind of data. All the data is stored in a store. This store is a <a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript.html'>JavaScript</a> object. This store is constructed like a Map with a bunch of key value pairs. Every tiddler has its name as the key in the map and the <a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript.html'>JavaScript</a>-Object as the value. The tiddler concept is the main data-model within <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a>, everything from data up to plug-ins is stored as a tiddler.</p><pre><code>{&quot;fields&quot;:{
+   &quot;text&quot;:&quot;example Text&quot;,
+   &quot;title&quot;:&quot;Infrastruktur&quot;,
+   &quot;tags&quot;:[&quot;vs&quot;],
+   &quot;modified&quot;:&quot;2014-07-01T16:25:01.230Z&quot;,
+   &quot;myField&quot;:&quot;myFieldValue&quot;,
+   &quot;created&quot;:&quot;2014-07-01T16:22:10.673Z&quot;
+   }
+}</code></pre></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

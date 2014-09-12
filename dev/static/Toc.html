@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Toc
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 59 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Introduction.html'>Introduction</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki%2520-%2520A%2520quick%2520Overview.html'>TiddlyWiki - A quick Overview</a><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki%2520as%2520Single%2520Page%2520Application.html'>TiddlyWiki as Single Page Application</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Microkernel.html'>Microkernel</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Data%2520Persistence.html'>Data Persistence</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='The%2520User%2520Interface.html'>The User Interface</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Modularization.html'>Modularization</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Tiddler%2520as%2520Basic%2520Element.html'>Tiddler as Basic Element</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText%2520Markup.html'>WikiText Markup</a></li></ul></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Microkernel%2520Architecture.html'>Microkernel Architecture</a><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Microkernel%2520Description.html'>Microkernel</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Datamodel.html'> Datamodel </a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Module%2520System.html'>Module System</a></li></ul></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki%2520Core%2520Application.html'>TiddlyWiki Core Application</a><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Startup%2520Process.html'>Startup Process</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Extending%2520the%2520Store.html'>Extending the Store</a><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Event%2520Mechanism.html'>Event Mechanism</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Caching.html'>Caching</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='System%2520Tiddlers.html'>System Tiddlers</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Tags%2520and%2520Filter%2520Mechanism.html'>Tags and Filter Mechanism</a></li></ul></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Extended%2520Persistence.html'>Extended Persistence</a><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Deserializer.html'>Deserializer</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Saver.html'>Saver</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Syncadaptor.html'>Syncadaptor</a></li></ul></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='UI%2520and%2520Rendering%2520Pipeline.html'>UI and Rendering Pipeline</a><ul><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='Wikitext.html'>Wikitext</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Parser.html'>Parser</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Widgets.html'>Widgets</a><ul><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Messages.html'>Messages</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Selective%2520Update.html'>Selective Update</a></li></ul></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Transclusion%2520and%2520TextReference.html'>Transclusion and TextReference</a></li><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='RooTiddlyWikiidget%2520and%2520Rendering%2520Startup.html'>RooTiddlyWikiidget and Rendering Startup</a></li><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='Navigator%2520Widget.html'>Navigator Widget</a></li><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='Draft%2520Mechanism.html'>Draft Mechanism</a></li></ul></li></ul></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='Conclusion.html'>Conclusion</a></li></ul></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

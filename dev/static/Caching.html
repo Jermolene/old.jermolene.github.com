@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc tc-tagged-new'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Caching
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 56 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+<span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ new
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>The core plug-in adds two caches to the wiki store.
+A global cache and a cache for each tiddler.
+While the global cache is cleared whenever any tiddler changes, the tiddler cache is only cleared when the associated tiddler changes.
+The idea of the tiddler cache is, that sometimes we want to calculate information from a tiddler but don't want to recalculate every time we need this information.
+Imagine a tiddler which contains links to other tiddlers and at one point we want to have a list of the linked tiddlers (<a class='tc-tiddlylink tc-tiddlylink-missing' href='LinksFilter.html'>LinksFilter</a>).
+With the tiddler cache we can parse the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a>, extract the linked tiddlers and put this list in the cache.
+Until the tiddler is changed, the cache can be used to access this information in the next requests.</p><p>The same idea holds for the global cache. For example when a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Tags%2520and%2520Filter%2520Mechanism.html'>filter</a> string is parsed and a list of matching tiddlers is constructed.
+This list can be put in the global cache for later reuse until something changes in the store.</p><p>Like the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Event%2520Mechanism.html'>Event Mechanism</a>, the cache needs hook functions in the microkernel.
+The microkernel calls <code>clearGlobalCache()</code> and <code>clearCache(tiddlertitle)</code> when a tiddler changes.
+The core's cache mechanism overwrites this functions.
+The functions providing the cache system are added via the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='wikimethod%2520module%2520type.html'>wikimethod module type</a>.</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

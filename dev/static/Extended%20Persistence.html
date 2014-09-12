@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Extended Persistence
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 56 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>The microkernel only contains a bare store and some deserializers to load tiddlers from JSON files or from the DOM of the current HTML file.
+The core plug-in adds some more deserializers and a new mechanism for persisting and synchronising tiddlers.</p><p>This mechanism is provided as a global module in <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fmodules%252Fsyncer.js.html'>$:/core/modules/syncer.js</a>.
+The saver module has three responsibilities:</p><ol><li>Save the whole wiki.</li><li>Provide the ability to download single tiddlers as files.</li><li>Synchronise the local wiki store with a remote wiki store, i.e. running in Node.js</li></ol><p>The syncer module is connected mainly to two other modules.
+For one it registers to changes at the wiki store (<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Event%2520Mechanism.html'>Event Mechanism</a>) and if any changes occur they are synced to the remote store.
+Then it provides a function <code>saveWiki(options)</code>. This function can be used by other modules. For example the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='RootWidget%2520and%2520Rendering%2520Startup.html'>RootWidget</a> uses this function to save the whole wiki or start downloading single tiddlers.</p><p>The syncer itself does not provide a concrete implementation of saving, downloading or syncing the tiddlers.
+Instead it loads modules of type <code>saver</code> and <code>syncadaptor</code> and manages the saving/syncing process.</p><h2 class=''>Deserializer</h2><p>Modules with <code>module-type: tiddlerdeserializer</code> can provide functions to create tiddlers out of any textual representation. Each function must be associated with a type like <code>application/json</code> or <code>text/html</code>.
+They get the textual representation of the tiddlers, some default field values and the type of the text block as arguments. They return an array of <a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript.html'>JavaScript</a> objects representing the resulting tiddlers.</p><p>Deserializers are not managed by the syncer module. Instead the concept of deserializers is in fact part of the microkernel.
+This is necessary because the microkernel needs a way of loading tiddlers before it can load the core plug-in and execute it's startup modules.
+(Due to the fact that the core plug-in and it's modules are represented as tiddlers.)</p><p>The <code>load-modules</code> startup module loads additional deserializers and pushes them into the store.
+The core plug-in for example contains a few deserializers which can read a whole <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> 5 or classic HTML file and load the individual tiddlers into the store.</p><h2 class=''>Saver</h2><p>Modules with <code>module-type: saver</code> provide functionality to save the whole wiki. There are three methods a saver can support:</p><p><dl>
+<dt>save</dt> <dd>This method is used, when the user requests a save, for example by clicking the save button in the sidebar.</dd>
+<dt>autosave</dt> <dd>This method is used automatically by TW when tiddlers are changed, created or deleted by the user.</dd>
+<dt>download</dt> <dd>This message is used when the wiki or a single tiddler should explicitly be downloaded. The control panel for example uses this method to provide a button which saves the wiki as a static HTML file.</dd>
+</dl></p><p>A saver module has to export two functions. <code>canSave(wiki)</code> returning true if this module is capable of working and <code>create(wiki}</code> returning an instance of a saver object.
+This saver object has to provide an <code>info</code> property containing a name, a priority, an array of methods it supports and a method <code>save(text,method,callback)</code>. This method is called from TW with the actual text which should be saved, the method which is used and a callback function to report errors: <code>callback(&quot;Error while saving&quot;)</code> or to notify that saving went well: <code>callback(&quot;Saving went well :)&quot;)</code>. If the saver method successfully saved the file it has to return true, or false otherwise.
+Saves are triggered by messages from the UI. The syncer module uses the saver with the highest priority capable of the requested method to save the file.</p><p>The core plug-in contains a saver capable of saving the current state of the wiki to the local hard drive by using a special Firefox extension called Tiddlyfox. If this extension is not available, the savers <code>canSave</code> method would return false. A saver with a lower priority would then ask the user to save the current state as a new HTML file.</p><h2 class=''>Syncadaptor</h2><p>A module with <code>module-type: syncadaptor</code> provides functionality to get a list of tiddlers (this list is provided as SkinnyTiddlers, which are normal tiddlers without the text field) and to load, save and delete single tiddlers. A syncadaptor can also provide functions to login and logout so that syncadaptor modules can be used to synchronize tiddlers with a remote server.</p><p>The syncer module only uses one syncadaptor and honours a special <a class='tc-tiddlylink tc-tiddlylink-resolves' href='System%2520Tiddlers.html'>system tiddler</a> <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fconfig%252FSyncFilter.html'>$:/config/SyncFilter</a> containing a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Tags%2520and%2520Filter%2520Mechanism.html'>filter string</a>. Tiddlers matching this filter string are not synced with a syncadapter.</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Parser
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 56 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>The first stage of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> processing is the parser.
+A Parser is provided by a module with <code>module-type: parser</code> and is responsible to transform block of text to a parse-tree.
+The parse-tree consists of nested nodes like</p><pre><code>{type: &quot;element&quot;, tag: &lt;string&gt;, attributes: {}, children: []} - an HTML element
+{type: &quot;text&quot;, text: &lt;string&gt;} - a text node
+{type: &quot;entity&quot;, value: &lt;string&gt;} - an HTML entity like &amp;copy; for a copyright symbol
+{type: &quot;raw&quot;, html: &lt;string&gt;} - raw HTML</code></pre><p>The core plug-in provides a recursive descent <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> parser which loads it's individual rules from individual modules.
+Thus a developer can provide additional rules by using <code>module-type: wikirule</code>. Each rule can produce a list of parse-tree nodes.
+A simple example for a wikirule producing a <code>&lt;hr&gt;</code> from <code>---</code> can be found in <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fmodules%252Fparsers%252Fwikiparser%252Frules%252Fhorizrule.js.html'>horizrule.js</a></p><p>HTML tags can be embedded into <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> because of the <a class='tc-tiddlylink tc-tiddlylink-shadow' href='%2524%253A%252Fcore%252Fmodules%252Fparsers%252Fwikiparser%252Frules%252Fhtml.js.html'>html rule</a>.
+This rule matches HTML tag syntax and creates <code>type: &quot;element&quot;</code> nodes.
+But the html-rule has another special purpose. By parsing the HTML tag syntax it implicitly parses <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> widgets.
+It the recognises them by the $ character at the beginning of the tag name and instead of producing &quot;element&quot; nodes 
+it uses the tag name for the type:</p><pre><code>{type: &quot;list&quot;, tag: &quot;$list&quot;, attributes: {}, children: []} - a list element</code></pre><p>The <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Widgets.html'>Widgets</a> part will reveal why this makes sense and how each node is transformed into a widget.
+Another special characteristic of the html-rule or the parse nodes in general is the attributes property.
+Attributes in the parse-tree are not stored as simple strings but they are nodes of its own to make indirect text references available as attributes as described in <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Widgets.html'>Widgets</a>:</p><pre><code>{type: &quot;string&quot;, value: &lt;string&gt;} - literal string
+{type: &quot;indirect&quot;, textReference: &lt;textReference&gt;} - indirect through a text reference</code></pre></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

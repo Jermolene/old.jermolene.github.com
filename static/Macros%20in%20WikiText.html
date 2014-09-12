@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.16-beta" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -14,7 +14,7 @@
 </p>
 <section class="tc-story-river">
 
-<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-wikitext'><div class='tc-tiddler-title'>
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-WikiText'><div class='tc-tiddler-title'>
 <h2 class='tc-titlebar'>
 <span class='tc-tiddler-controls'>
 <span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
@@ -52,7 +52,7 @@ Macros in WikiText
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
 <button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
- wikitext
+ WikiText
 </button>
 
 <span class=' tc-reveal' hidden='true'></span>
@@ -61,7 +61,7 @@ Macros in WikiText
 
 <div class='tc-tiddler-body'><h1 class=''>Defining Macros</h1><p>Macros are snippets of text that can be inserted with a concise shortcut.</p><p>Multi-line macros are defined like this:</p><pre><code>\define mysamplemacro(name:&quot;Bugs Bunny&quot;,address:&quot;Rabbit Hole Hill&quot;)
 Hi, I'm $name$ and I live in $address$
-\end</code></pre><p>The first line of the definition specifies the macro name and any parameters. Parameters are named and can optionally have default values that are used if the parameter isn't specified at the time of calling. The body of the macro definition follows, terminated with <code>\end</code>. The macro can include parameters using the <code>$name$</code> construction.</p><p>Single-line macros can omit the <code>\end</code> marker like this:</p><pre><code>\define mysamplemacro(name:&quot;Bugs Bunny&quot;) Hi, I'm $name$</code></pre><p>Macro definitions must be placed at the top of a tiddler. Macros are available to the tiddler that defines them, plus any tiddlers that it transcludes.</p><p>Global macros can be defined in any tiddler with the tag <a class='tc-tiddlylink tc-tiddlylink-missing' href='%2524%253A%252Ftags%252FMacro.html'>$:/tags/Macro</a>. They are then available within all tiddlers.</p><p>Macros can be imported from other tiddlers with the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='ImportVariablesWidget.html'>ImportVariablesWidget</a>.</p><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='JavaScript%2520Macros.html'>JavaScript Macros</a> can also be used for more flexibility.</p><h1 class=''>Using Macros</h1><p>Macros are used like this:</p><pre><code>&lt;&lt;mysamplemacro&gt;&gt;
+\end</code></pre><p>The first line of the definition specifies the macro name and any parameters. Parameters are named and can optionally have default values that are used if the parameter isn't specified at the time of calling. The body of the macro definition follows, terminated with <code>\end</code>. The macro can include parameters using the <code>$name$</code> construction.</p><p>Single-line macros can omit the <code>\end</code> marker like this:</p><pre><code>\define mysamplemacro(name:&quot;Bugs Bunny&quot;) Hi, I'm $name$</code></pre><p>Macro definitions must be placed at the top of a tiddler. Macros are available to the tiddler that defines them, plus any tiddlers that it transcludes.</p><p>Global macros can be defined in any tiddler with the tag <a class='tc-tiddlylink tc-tiddlylink-missing' href='%2524%253A%252Ftags%252FMacro.html'>$:/tags/Macro</a>. They are then available within all tiddlers.</p><p>Macros can be imported from other tiddlers with the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='ImportVariablesWidget.html'>ImportVariablesWidget</a>.</p><p><a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript%2520Macros.html'>JavaScript Macros</a> can also be used for more flexibility.</p><h1 class=''>Using Macros</h1><p>Macros are used like this:</p><pre><code>&lt;&lt;mysamplemacro&gt;&gt;
 &lt;&lt;mysamplemacro &quot;Donald Duck&quot;&gt;&gt;
 &lt;&lt;mysamplemacro &quot;Mickey Mouse&quot; &quot;Mouse House&quot;&gt;&gt;</code></pre><p>Resulting in:</p><pre><code>Hi I'm Bugs Bunny and I live in Rabbit Hole Hill
 Hi I'm Donald Duck and I live in Rabbit Hole Hill

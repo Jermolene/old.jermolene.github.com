@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>TiddlyWiki/Dev — documentation for developers</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>This page is part of a static HTML representation of the TiddlyWiki at <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/dev/' target='_blank'>http://tiddlywiki.com/dev/</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-doc tc-tagged-Microkernel%20Architecture'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Show information for this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='edit' class='tc-btn-invisible' title='Edit this tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='close' class='tc-btn-invisible' title='Close this tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Module System
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
+
+</a> 59 days ago
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ doc
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+<span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ Microkernel Architecture
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>After the boot kernel provides the functions used to load tiddlers, the rest of the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> application is loaded as modules.
+A module is a tiddler which has the type <code>application/javascript</code> and contains <a class='tc-tiddlylink tc-tiddlylink-missing' href='CommonJS.html'>CommonJS</a> compatible <a class='tc-tiddlylink tc-tiddlylink-missing' href='JavaScript.html'>JavaScript</a> code. This means a single module provides its public structures and functions in a variable called <code>export</code>. Other modules can obtain these structures and functions by using a global <code>require</code> function.</p><pre><code>var Widget = require(&quot;$:/core/modules/widgets/widget.js&quot;).widget;
+// ...
+ButtonWidget.prototype = new Widget();</code></pre><p>In most cases these module tiddlers are packed into a plug-in.
+Following the &quot;everything is a tiddler&quot; concept, a plug-in is a tiddler, which contains a bunch of other tiddlers. These tiddlers are first converted into a JSON structure which then becomes the body of the plug-in tiddler.
+This is not restricted to module tiddlers. A plug-in can contain any tiddlers. This way a developer can put for example simple modules, widgets, UI parts written with <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a>, even new filter operators or extensions to the <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> parser into a plug-in tiddler. In fact the whole TW core is provided as a single plug-in. Tiddlers provided in a plug-in are called shadow tiddlers and can not be edited. Instead, when trying to edit a shadow tiddler, a new tiddler with the same name is created which then &quot;overrides&quot; the shadow tiddler.</p><p>Instead of requiring a specific module directly, a module developer can specify the type of the module he is developing by setting the field &quot;module-type&quot; of the containing tiddler.
+For example, by providing a module-type of &quot;saver&quot;, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> knows that this module implements a way of saving the whole wiki and when the user clicks on the save button, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> automaticly considers the provided module to save the current state.</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>
