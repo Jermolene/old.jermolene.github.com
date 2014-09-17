@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.17-beta" />
+<meta name="tiddlywiki-version" content="5.0.18-beta" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -59,7 +59,189 @@ Widgets in WikiText
 </span>
 </div>
 
-<div class='tc-tiddler-body'><p>Widgets provide rich functionality within <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a>. They have the same syntax as <a class='tc-tiddlylink tc-tiddlylink-resolves' href='HTML%2520in%2520WikiText.html'>HTML elements</a>, but the tag name always starts with <code>$</code>. For example:</p><pre><code>&lt;$button message=&quot;tm-close-tiddler&quot;&gt;Close Me!&lt;/$button&gt;</code></pre><p>Note that widgets inherit all the features of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='HTML%2520in%2520WikiText.html'>HTML in WikiText</a>:</p><ul><li>Widget attributes can be specified as:<ul><li>Unquoted strings (that cannot contain spaces)</li><li>Strings quoted with single or double quotes</li><li>Strings quoted with triple-double quotes</li><li>Macro invocations (eg <code>attr=&lt;&lt;myMacro&gt;&gt;</code>)</li><li>Transclusions (eg, <code>attr={{MyTiddler!!field}}</code>)</li></ul></li><li>The content of a widget is parsed in inline mode unless the opening tag is followed by two linebreaks, which forces block mode<ul><li>'Inline mode' means that 'block mode' parse rules like headings, tables and lists are not recognised</li></ul></li></ul><p>See <a class='tc-tiddlylink tc-tiddlylink-resolves' href='HTML%2520in%2520WikiText.html'>HTML in WikiText</a> for more details.</p><p>The available widgets include:</p></div>
+<div class='tc-tiddler-body'><p>Widgets provide rich functionality within <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a>. They have the same syntax as <a class='tc-tiddlylink tc-tiddlylink-resolves' href='HTML%2520in%2520WikiText.html'>HTML elements</a>, but the tag name always starts with <code>$</code>. For example:</p><pre><code>&lt;$button message=&quot;tm-close-tiddler&quot;&gt;Close Me!&lt;/$button&gt;</code></pre><p>Note that widgets inherit all the features of <a class='tc-tiddlylink tc-tiddlylink-resolves' href='HTML%2520in%2520WikiText.html'>HTML in WikiText</a>:</p><ul><li>Widget attributes can be specified as:<ul><li>Unquoted strings (that cannot contain spaces)</li><li>Strings quoted with single or double quotes</li><li>Strings quoted with triple-double quotes</li><li>Macro invocations (eg <code>attr=&lt;&lt;myMacro&gt;&gt;</code>)</li><li>Transclusions (eg, <code>attr={{MyTiddler!!field}}</code>)</li></ul></li><li>The content of a widget is parsed in inline mode unless the opening tag is followed by two linebreaks, which forces block mode<ul><li>'Inline mode' means that 'block mode' parse rules like headings, tables and lists are not recognised</li></ul></li></ul><p>See <a class='tc-tiddlylink tc-tiddlylink-resolves' href='HTML%2520in%2520WikiText.html'>HTML in WikiText</a> for more details.</p><p>The available widgets include:</p><p><ul>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='BrowseWidget.html'>
+BrowseWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ButtonWidget.html'>
+ButtonWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='CheckboxWidget.html'>
+CheckboxWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='CountWidget.html'>
+CountWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='DropzoneWidget.html'>
+DropzoneWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EditBitmapWidget.html'>
+EditBitmapWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EditTextWidget.html'>
+EditTextWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EditWidget.html'>
+EditWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EncryptWidget.html'>
+EncryptWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FieldManglerWidget.html'>
+FieldManglerWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='FieldsWidget.html'>
+FieldsWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ImageWidget.html'>
+ImageWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ImportVariablesWidget.html'>
+ImportVariablesWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='KeyboardWidget.html'>
+KeyboardWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='LinkCatcherWidget.html'>
+LinkCatcherWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='LinkWidget.html'>
+LinkWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ListWidget.html'>
+ListWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='MacroCallWidget.html'>
+MacroCallWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='NavigatorWidget.html'>
+NavigatorWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='PasswordWidget.html'>
+PasswordWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='RadioWidget.html'>
+RadioWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='RevealWidget.html'>
+RevealWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ScrollableWidget.html'>
+ScrollableWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SelectWidget.html'>
+SelectWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SetVariableWidget.html'>
+SetVariableWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='SetWidget.html'>
+SetWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='TextWidget.html'>
+TextWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlerWidget.html'>
+TiddlerWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='TranscludeWidget.html'>
+TranscludeWidget
+</a>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ViewWidget.html'>
+ViewWidget
+</a>
+</li>
+
+</ul></p></div>
 
 
 
