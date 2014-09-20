@@ -1,0 +1,1844 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.0" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<title>Mein TiddlyWiki
+ — ein persönliches nicht-lineares Web-Notizbuch
+</title>
+<div id="styleArea">
+<style data-tiddler-title="$:/boot/boot.css" data-tiddler-type="text/css" type="text/css">/*
+Basic styles used before we boot up the parsing engine
+*/
+
+/*
+Error message and password prompt
+*/
+
+.tc-password-wrapper, .tc-error-form {
+    font-family: sans-serif;
+	z-index: 20000;
+	position: fixed;
+	text-align: center;
+	width: 200px;
+	top: 4em;
+    left: 50%;
+    margin-left: -144px; /* - width/2 - paddingHorz/2 - border */
+	padding: 16px 16px 16px 16px;
+	border-radius: 8px;
+}
+
+.tc-error-form {
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+	background-color: rgb(255, 75, 75);
+	border: 8px solid rgb(255, 0, 0);
+	width: 480px;
+    margin-left: -244px; /* - width/2 - paddingHorz/2 - border */
+}
+
+.tc-error-form div {
+	padding-bottom: 1em;
+}
+
+.tc-error-prompt {
+	color: #000;
+	text-shadow: none;
+}
+
+.tc-password-wrapper {
+	color: #000;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	background-color: rgb(197, 235, 183);
+	border: 8px solid rgb(164, 197, 152);
+}
+
+.tc-password-wrapper form {
+	text-align: left;
+}
+
+.tc-password-wrapper h1 {
+	font-size: 16px;
+	line-height: 20px;
+	padding-bottom: 16px;
+}
+
+.tc-password-wrapper input {
+	width: 100%;
+}
+</style>
+</div>
+<style type="text/css">
+
+/* Left will inherit from right (so we don't need to duplicate code */
+.github-fork-ribbon {
+  /* The right and left lasses determine the side we attach our banner to */
+  position: absolute;/* Add a bit of padding to give some substance outside the "stitching" */
+  padding: 2px 0;/* Set the base colour */
+  background-color: #a00;/* Set a gradient: transparent black at the top to almost-transparent black at the bottom */
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.00)), to(rgba(0, 0, 0, 0.15)));
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  background-image: linear-gradient(top, rgba(0, 0, 0, 0.00), rgba(0, 0, 0, 0.15));
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#000000', EndColorStr='#000000');/* Add a drop shadow */
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);z-index: 999;
+  pointer-events: auto;
+}.github-fork-ribbon a, .github-fork-ribbon a.tc-tiddlylink,
+.github-fork-ribbon a:hover, .github-fork-ribbon a.tc-tiddlylink:hover  {
+  /* Set the font */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;/* Set the text properties */
+  text-decoration: none;
+  text-shadow: 0 -1px rgba(0,0,0,0.5);
+  text-align: center;/* Set the geometry. If you fiddle with these you'll also need to tweak the top and right values in #github-fork-ribbon. */
+  width: 200px;
+  line-height: 20px;/* Set the layout properties */
+  display: inline-block;
+  padding: 2px 0;/* Add "stitching" effect */
+  border-width: 1px 0;
+  border-style: dotted;
+  border-color: rgba(255,255,255,0.7);
+}.github-fork-ribbon-wrapper {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  z-index: 999;
+  pointer-events: none;
+}.github-fork-ribbon-wrapper.fixed {
+  position: fixed;
+}.github-fork-ribbon-wrapper.left {
+  left: 0;
+}.github-fork-ribbon-wrapper.right {
+  right: 0;
+}.github-fork-ribbon-wrapper.left-bottom {
+  position: fixed;
+  top: inherit;
+  bottom: 0;
+  left: 0;
+}.github-fork-ribbon-wrapper.right-bottom {
+  position: fixed;
+  top: inherit;
+  bottom: 0;
+  right: 0;
+}.github-fork-ribbon-wrapper.right .github-fork-ribbon {
+  top: 42px;
+  right: -43px;/* Rotate the banner 45 degrees */
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}.github-fork-ribbon-wrapper.left .github-fork-ribbon {
+  top: 42px;
+  left: -43px;/* Rotate the banner -45 degrees */
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}.github-fork-ribbon-wrapper.left-bottom .github-fork-ribbon {
+  top: 80px;
+  left: -43px;/* Rotate the banner -45 degrees */
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}.github-fork-ribbon-wrapper.right-bottom .github-fork-ribbon {
+  top: 80px;
+  right: -43px;/* Rotate the banner -45 degrees */
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+
+.tc-sidebar-header {
+	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+}.tc-tiddler-info {
+	`
+  -webkit-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+     -moz-box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+          box-shadow: inset 1px 2px 3px rgba(0,0,0,0.1);
+
+}@media screen {
+	.tc-tiddler-frame {
+		`
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+     -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+
+	}
+}@media (max-width: 960px) {
+	.tc-tiddler-frame {
+		`
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+
+	}
+}.tc-page-controls button svg, .tc-tiddler-controls button svg, .tc-topbar button svg {
+	`
+  -webkit-transition: fill 150ms ease-in-out;
+     -moz-transition: fill 150ms ease-in-out;
+          transition: fill 150ms ease-in-out;
+
+}.tc-tiddler-controls button.tc-selected svg {
+	`
+  -webkit-filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
+     -moz-filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
+          filter: drop-shadow(0px -1px 2px rgba(0,0,0,0.25));
+
+}.tc-tiddler-frame input.tc-edit-texteditor {
+	`
+  -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+     -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+
+}.tc-edit-tags {
+	`
+  -webkit-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+     -moz-box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+          box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.15);
+
+}.tc-tiddler-frame .tc-edit-tags input.tc-edit-texteditor {
+	`
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+
+	border: none;
+	outline: none;
+}canvas.tc-edit-bitmapeditor  {
+	`
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+
+}.tc-drop-down {
+	border-radius: 4px;
+	`
+  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+
+}.tc-block-dropdown {
+	border-radius: 4px;
+	`
+  -webkit-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+
+}.tc-modal-displayed {
+	-webkit-filter: blur(4px);
+}.tc-modal {
+	border-radius: 6px;
+	`
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+          box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+
+}.tc-modal-footer {
+	border-radius: 0 0 6px 6px;
+	`
+  -webkit-box-shadow: inset 0 1px 0 #fff;
+     -moz-box-shadow: inset 0 1px 0 #fff;
+          box-shadow: inset 0 1px 0 #fff;
+;
+}.tc-alert {
+	border-radius: 6px;
+	`
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.6);
+     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.6);
+          box-shadow: 0 3px 7px rgba(0,0,0,0.6);
+
+}.tc-notification {
+	border-radius: 6px;
+	`
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+     -moz-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+          box-shadow: 0 3px 7px rgba(0,0,0,0.3);
+
+	text-shadow: 0 1px 0 rgba(255,255,255, 0.8);
+}.tc-sidebar-lists .tc-tab-divider {
+	`
+background-image: linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -o-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -moz-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -webkit-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+background-image: -ms-linear-gradient(left, rgb(216,216,216) 0%, rgb(236,236,236) 250px);
+
+}.tc-more-sidebar .tc-tab-buttons button {
+	`
+background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(224,224,224) 100%);
+
+}.tc-more-sidebar .tc-tab-buttons button.tc-tab-selected {
+	`
+background-image: linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -o-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -moz-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -webkit-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+background-image: -ms-linear-gradient(left, rgb(236,236,236) 0%, rgb(248,248,248) 100%);
+
+}.tc-message-box img {
+	`
+  -webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+     -moz-box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+          box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+
+}.tc-plugin-info {
+	`
+  -webkit-box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+     -moz-box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+          box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+
+}
+
+
+/*
+** Start with the normalize CSS reset, and then belay some of its effects
+*//*! normalize.css v3.0.0 | MIT License | git.io/normalize */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+  background: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10.
+ */
+
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8+, and Opera
+ * Correct `select` style inheritance in Firefox.
+ */
+
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+*, input[type="search"] {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}html button {
+	line-height: 1.2;
+}/*
+** Basic element styles
+*/html {
+	font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	text-rendering: optimizeLegibility; /* Enables kerning and ligatures etc. */	
+}html:-webkit-full-screen {
+	background-color: #ececec;
+}body.tc-body {
+	font-size: 14px;
+	line-height: 20px;
+	color: #333333;
+	background-color: #ececec;
+	word-wrap: break-word;
+}h1, h2, h3, h4, h5, h6 {
+	line-height: 1.2;
+	font-weight: 300;
+}pre {
+	display: block;
+	padding: 14px;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	word-break: normal;
+	word-wrap: break-word;
+	white-space: pre;
+	white-space: pre-wrap;
+	background-color: #f5f5f5;
+	border: 1px solid #cccccc;
+	padding: 0 3px 2px;
+	border-radius: 3px;
+}code {
+	color: #dd1144;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+    white-space: pre-wrap;
+	padding: 0 3px 2px;
+	border-radius: 3px;
+}blockquote {
+	border-left: 5px solid #bbb;
+	margin-left: 25px;
+	padding-left: 10px;
+}dl dt {
+	font-weight: bold;
+	margin-top: 6px;
+}.tc-muted {
+	color: #bbb;
+}/*
+Markdown likes putting code elements inside pre elements
+*/
+pre > code {
+	padding: 0;
+	border: none;
+	background-color: inherit;
+	color: inherit;
+}table {
+	border: 1px solid #dddddd;
+	width: auto;
+	max-width: 100%;
+	caption-side: bottom;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}table th, table td {
+	padding: 0 7px 0 7px;
+	border-top: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+}table thead tr td, table th {
+	background-color: #f0f0f0;
+	font-weight: bold;
+}table tfoot tr td {
+	background-color: #a8a8a8;
+}.tc-csv-table {
+	white-space: nowrap;
+}.tc-tiddler-frame img,
+.tc-tiddler-frame svg,
+.tc-tiddler-frame canvas,
+.tc-tiddler-frame embed,
+.tc-tiddler-frame iframe {
+	max-width: 100%;
+}.tc-tiddler-body > embed,
+.tc-tiddler-body > iframe {
+	width: 100%;
+	height: 600px;
+}/*
+** Links
+*/a.tc-tiddlylink {
+	text-decoration: none;
+	font-weight: normal;
+	color: #5778d8;
+	-webkit-user-select: inherit; /* Otherwise the draggable attribute makes links impossible to select */
+}.tc-sidebar-lists a.tc-tiddlylink {
+	color: #999999;
+}.tc-sidebar-lists a.tc-tiddlylink:hover {
+	color: #444444;
+}a.tc-tiddlylink:hover {
+	text-decoration: underline;
+}a.tc-tiddlylink-resolves {
+}a.tc-tiddlylink-shadow {
+	font-weight: bold;
+}a.tc-tiddlylink-shadow.tc-tiddlylink-resolves {
+	font-weight: normal;
+}a.tc-tiddlylink-missing {
+	font-style: italic;
+}a.tc-tiddlylink-external {
+	text-decoration: underline;
+	color: #0000ee;
+	background-color: inherit;
+}a.tc-tiddlylink-external:visited {
+	color: #0000aa;
+	background-color: inherit;
+}a.tc-tiddlylink-external:hover {
+	color: inherit;
+	background-color: inherit;
+}/*
+** Drag and drop styles
+*/.tc-tiddler-dragger {
+	position: relative;
+	z-index: -10000;
+}.tc-tiddler-dragger-inner {
+	position: absolute;
+	display: inline-block;
+	padding: 8px 20px;
+	font-size: 16.9px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #ffffff;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #333333;
+	border-radius: 20px;
+}.tc-tiddler-dragger-cover {
+	position: absolute;
+	background-color: #ececec;
+}.tc-dropzone {
+	position: relative;
+}.tc-dropzone.tc-dragover:before {
+	z-index: 10000;
+	display: block;
+	position: absolute;
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -o-sticky;
+	position: -ms-sticky;
+	position: sticky;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0,200,0,0.7);
+	text-align: center;
+	content: "Hierher ziehen (oder Escape um abzubrechen)";
+}/*
+** Buttons
+*/button svg, button img {
+	vertical-align: middle;
+}.tc-btn-invisible {
+	padding: 0;
+	margin: 0;
+	background: none;
+	border: none;
+}.tc-btn-icon svg {
+	height: 1em;
+	width: 1em;
+	fill: #bbb;
+}.tc-btn-big-green {
+	padding: 8px;
+	margin: 4px 8px 4px 8px;
+	background: #34c734;
+	color: #ffffff;
+	fill: #ffffff;
+	border: none;
+	font-size: 1.2em;
+	line-height: 1.4em;
+}.tc-sidebar-lists input {
+	color: #333333;
+}.tc-sidebar-lists button {
+	color: #333333;
+	fill: #333333;
+}.tc-sidebar-lists button.tc-btn-mini {
+	color: #c0c0c0;
+}.tc-sidebar-lists button.tc-btn-mini:hover {
+	color: #444444;
+}button svg.tc-image-button, button .tc-image-button img {
+	height: 1em;
+	width: 1em;
+}/*
+** Tags and missing tiddlers
+*/.tc-tag-list-item {
+	position: relative;
+	display: inline-block;
+	margin-right: 7px;
+}.tc-tags-wrapper {
+	margin: 4px 0 14px 0;
+}.tc-missing-tiddler-label {
+	font-style: italic;
+	font-weight: normal;
+	display: inline-block;
+	font-size: 11.844px;
+	line-height: 14px;
+	white-space: nowrap;
+	vertical-align: baseline;
+}button.tc-tag-label, span.tc-tag-label {
+	display: inline-block;
+	padding: 2px 9px;
+	font-size: 0.9em;
+	font-weight: 300;
+	line-height: 1.2em;
+	color: #ffffff;
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #d5ad34;
+	border-radius: 8px;
+}.tc-untagged-label {
+	background-color: #999999;
+}.tc-tag-label svg, .tc-tag-label img {
+	height: 1em;
+	width: 1em;
+	fill: #ffffff;
+}/*
+** Page layout
+*/.tc-topbar {
+	position: fixed;
+	z-index: 1200;
+}.tc-topbar-left {
+	left: 29px;
+	top: 5px;
+}.tc-topbar-right {
+	top: 5px;
+	right: 29px;
+}.tc-topbar button {
+	padding: 8px;
+}.tc-topbar svg {
+	fill: #bbb;
+}.tc-topbar button:hover svg {
+	fill: #333333;
+}.tc-sidebar-header {
+	color: #acacac;
+	fill: #acacac;
+}.tc-sidebar-header .tc-title a.tc-tiddlylink-resolves {
+	font-weight: 300;
+}.tc-sidebar-header .tc-sidebar-lists p {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}.tc-sidebar-header .tc-missing-tiddler-label {
+	color: #acacac;
+}.tc-advanced-search input {
+	width: 60%;
+}.tc-search a svg {
+	height: 0.75em;
+}.tc-search-results {
+	padding-top: 14px;
+}.tc-page-controls {
+	margin-top: 14px;
+	font-size: 1.5em;
+}.tc-page-controls button {
+	margin-right: 0.5em;
+}.tc-page-controls a.tc-tiddlylink:hover {
+	text-decoration: none;
+}.tc-page-controls img {
+	width: 1em;
+}.tc-page-controls svg {
+	fill: #aaaaaa;
+}.tc-page-controls button:hover svg, .tc-page-controls a:hover svg {
+	fill: #000000;
+}.tc-menu-list-item {
+	white-space: nowrap;
+}.tc-menu-list-count {
+	font-weight: bold;
+}.tc-menu-list-subitem {
+	padding-left: 7px;
+}.tc-story-river {
+	position: relative;
+}@media (max-width: 960px) {.tc-sidebar-header {
+		padding: 14px;
+		min-height: 32px;
+	}.tc-story-river {
+		position: relative;
+		padding: 0;
+	}
+}@media (min-width: 960px) {.tc-message-box {
+		margin: 21px -21px 21px -21px;
+	}.tc-sidebar-scrollable {
+		position: fixed;
+		top: 0px;
+		left: 770px;
+		bottom: 0;
+		right: 0;
+		overflow-y: auto;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		margin: 0 0 0 -42px;
+		padding: 71px 0 28px 42px;
+	}.tc-story-river {
+		position: relative;
+		left: 0px;
+		top: 0px;
+		width: 770px;
+		padding: 42px 42px 42px 42px;
+	}}@media print {body.tc-body {
+		background-color: transparent;
+	}.tc-sidebar-header, .tc-topbar {
+		display: none;
+	}.tc-story-river {
+		margin: 0;
+		padding: 0;
+	}.tc-story-river .tc-tiddler-frame {
+		margin: 0;
+		border: none;
+		padding: 28px;
+	}
+}/*
+** Tiddler styles
+*/.tc-tiddler-frame {
+	margin-bottom: 28px;
+	background-color: #ffffff;
+	border: 1px solid #ffffff;
+}.tc-tiddler-info {
+	padding: 14px 42px 14px 42px;
+	background-color: #f8f8f8;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}.tc-tiddler-info p {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}.tc-tiddler-info .tc-tab-buttons button.tc-tab-selected {
+	background-color: #f8f8f8;
+	border-bottom: 1px solid #f8f8f8;
+}.tc-view-field-table {
+	width: 100%;
+}.tc-view-field-name {
+	width: 1%; /* Makes this column be as narrow as possible */
+	text-align: right;
+	font-style: italic;
+	font-weight: 200;
+}.tc-view-field-value {
+}@media (max-width: 960px) {
+	.tc-tiddler-frame {
+		padding: 14px 14px 14px 14px;
+	}.tc-tiddler-info {
+		margin: 0 -14px 0 -14px;
+	}
+}@media (min-width: 960px) {
+	.tc-tiddler-frame {
+		padding: 28px 42px 42px 42px;
+		width: 686px;
+	}.tc-tiddler-info {
+		margin: 0 -42px 0 -42px;
+	}
+}.tc-site-title,
+.tc-titlebar {
+	font-weight: 300;
+	font-size: 2.35em;
+	line-height: 1.2em;
+	color: #182955;
+	margin: 0;
+}.tc-system-title-prefix {
+	color: #bbb;
+}.tc-titlebar img {
+	height: 1em;
+}.tc-subtitle {
+	font-size: 0.9em;
+	color: #c0c0c0;
+	font-weight: 300;
+}.tc-tiddler-missing .tc-title {
+  font-style: italic;
+  font-weight: normal;
+}.tc-tiddler-frame .tc-tiddler-controls {
+	float: right;
+}.tc-tiddler-controls .tc-drop-down {
+	font-size: 0.6em;
+}.tc-tiddler-controls button {
+	vertical-align: baseline;
+}.tc-tiddler-controls button svg, .tc-tiddler-controls button img {
+	height: 0.75em;
+	fill: #cccccc;
+}.tc-tiddler-controls button.tc-selected svg {
+	fill: #444444;
+}.tc-tiddler-controls button.tc-btn-invisible:hover svg {
+	fill: #888888;
+}@media print {
+	.tc-tiddler-controls {
+		display: none;
+	}
+}.tc-tiddler-help { /* Help prompts within tiddler template */
+	color: #bbb;
+	margin-top: 14px;
+}.tc-tiddler-help a.tc-tiddlylink {
+	color: #888888;
+}.tc-tiddler-frame input.tc-edit-texteditor, .tc-tiddler-frame textarea.tc-edit-texteditor {
+	width: 100%;
+	padding: 3px 3px 3px 3px;
+	border: 1px solid #cccccc;
+	line-height: 1.3em;
+	-webkit-appearance: none;
+	margin: 4px 0 4px 0;
+}.tc-tiddler-frame .tc-binary-warning {
+	width: 100%;
+	height: 5em;
+	text-align: center;
+	padding: 3em 3em 6em 3em;
+	background: #ffe476;
+	border: 1px solid #b99e2f;
+}.tc-tiddler-frame input.tc-edit-texteditor {
+	background-color: #f8f8f8;
+}canvas.tc-edit-bitmapeditor  {
+	border: 6px solid #ffffff;
+	cursor: crosshair;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}.tc-edit-bitmapeditor-width {
+	display: block;
+}.tc-edit-bitmapeditor-height {
+	display: block;
+}.tc-tiddler-frame .tc-tiddler-body {
+	font-size: 15px;
+	line-height: 22px;
+}/*
+** Toolbar buttons
+*/.tc-page-controls svg.tc-image-new-button {
+  fill: ;
+}.tc-page-controls svg.tc-image-options-button {
+  fill: ;
+}.tc-page-controls svg.tc-image-save-button {
+  fill: ;
+}.tc-tiddler-controls button svg.tc-image-info-button {
+  fill: ;
+}.tc-tiddler-controls button svg.tc-image-edit-button {
+  fill: ;
+}.tc-tiddler-controls button svg.tc-image-close-button {
+  fill: ;
+}.tc-tiddler-controls button svg.tc-image-delete-button {
+  fill: ;
+}.tc-tiddler-controls button svg.tc-image-cancel-button {
+  fill: ;
+}.tc-tiddler-controls button svg.tc-image-done-button {
+  fill: ;
+}/*
+** Tiddler edit mode
+*/.tc-tiddler-edit-frame em.tc-edit {
+	color: #bbb;
+	font-style: normal;
+}.tc-edit-type-dropdown a.tc-tiddlylink-missing {
+	font-style: normal;
+}.tc-edit-tags {
+	border: 1px solid #cccccc;
+	padding: 4px 8px 4px 8px;
+}.tc-edit-add-tag {
+	display: inline-block;
+}.tc-edit-add-tag .tc-add-tag-name input {
+	width: 50%;
+}.tc-edit-tags .tc-tag-label {
+	display: inline-block;
+}.tc-edit-tags-list {
+	margin: 14px 0 14px 0;
+}.tc-remove-tag-button {
+	padding-left: 4px;
+}.tc-tiddler-preview {
+	overflow: auto;
+}.tc-tiddler-preview-preview {
+	float: right;
+	width: 48%;
+	border: 1px solid #cccccc;
+	margin: 4px 3px 3px 3px;
+	padding: 3px 3px 3px 3px;
+}.tc-tiddler-preview-edit {
+	width: 48%;
+}.tc-edit-fields {
+	width: 100%;
+}.tc-edit-fields table, .tc-edit-fields tr, .tc-edit-fields td {
+	border: none;
+	padding: 4px;
+}.tc-edit-fields > tbody > .tc-edit-field:nth-child(odd) {
+	background-color: #f0f4f0;
+}.tc-edit-fields > tbody > .tc-edit-field:nth-child(even) {
+	background-color: #e0e8e0;
+}.tc-edit-field-name {
+	text-align: right;
+}.tc-edit-field-value input {
+	width: 100%;
+}.tc-edit-field-remove {
+}.tc-edit-field-remove svg {
+	height: 1em;
+	width: 1em;
+	fill: #bbb;
+	vertical-align: middle;
+}.tc-edit-field-add-name {
+	display: inline-block;
+	width: 15%;
+}.tc-edit-field-add-button {
+	display: inline-block;
+	width: 10%;
+}/*
+** Dropdowns
+*/.tc-btn-dropdown {
+	text-align: left;
+}.tc-btn-dropdown svg, .tc-btn-dropdown img {
+	height: 1em;
+	width: 1em;
+	fill: #bbb;
+}.tc-drop-down-wrapper {
+	position: relative;
+}.tc-drop-down {
+	min-width: 280px;
+	border: 1px solid #bbb;
+	background-color: #ffffff;
+	padding: 7px 0 7px 0;
+	margin: 4px 0 0 0;
+	white-space: nowrap;
+	text-shadow: none;
+	line-height: 1.4;
+}.tc-drop-down button svg, .tc-drop-down a svg  {
+	fill: #333333;
+}.tc-drop-down button.tc-btn-invisible:hover svg {
+	fill: #333333;
+}.tc-drop-down p {
+	padding: 0 14px 0 14px;
+}.tc-drop-down svg {
+	width: 1em;
+	height: 1em;
+}.tc-drop-down img {
+	width: 1em;
+}.tc-drop-down a, .tc-drop-down button {
+	display: block;
+	padding: 0 14px 0 14px;
+	width: 100%;
+	text-align: left;
+	color: #333333;
+	line-height: 1.4;
+}.tc-drop-down .tc-file-input-wrapper {
+	width: 100%;
+}.tc-drop-down .tc-file-input-wrapper button {
+	color: #333333;
+}.tc-drop-down a:hover, .tc-drop-down button:hover, .tc-drop-down .tc-file-input-wrapper:hover button {
+	color: #ffffff;
+	background-color: #5778d8;
+	text-decoration: none;
+}.tc-drop-down .tc-tab-buttons button {
+	background-color: #ececec;
+}.tc-drop-down .tc-tab-buttons button.tc-tab-selected {
+	background-color: #fff;
+	border-bottom: 1px solid #fff;
+}.tc-drop-down-bullet {
+	display: inline-block;
+	width: 0.5em;
+}.tc-drop-down .tc-tab-contents a {
+	padding: 0 0.5em 0 0.5em;
+}.tc-block-dropdown-wrapper {
+	position: relative;
+}.tc-block-dropdown {
+	position: absolute;
+	min-width: 280px;
+	border: 1px solid #bbb;
+	background-color: #ffffff;
+	padding: 7px 0;
+	margin: 4px 0 0 0;
+	white-space: nowrap;
+	z-index: 1000;
+}.tc-block-dropdown a {
+	display: block;
+	padding: 4px 14px 4px 14px;
+}.tc-drop-down .tc-dropdown-item,
+.tc-block-dropdown .tc-dropdown-item {
+	padding: 4px 14px 4px 7px;
+	color: #bbb;
+}.tc-block-dropdown a:hover {
+	color: #ffffff;
+	background-color: #5778d8;
+	text-decoration: none;
+}/*
+** Modals
+*/.tc-modal-wrapper {
+	position: fixed;
+	overflow: auto;
+	overflow-y: scroll;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}.tc-modal-backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: #333333;
+}.tc-modal {
+	z-index: 1100;
+	background-color: #ffffff;
+	border: 1px solid #999999;
+}@media (max-width: 55em) {
+	.tc-modal {
+		position: fixed;
+		top: 1em;
+		left: 1em;
+		right: 1em;
+	}.tc-modal-body {
+		overflow-y: auto;
+		max-height: 400px;
+	}
+}@media (min-width: 55em) {
+	.tc-modal {
+		position: relative;
+		width: 50%;
+		margin: 30px auto;
+	}
+}.tc-modal-header {
+	padding: 9px 15px;
+	border-bottom: 1px solid #eeeeee;
+}.tc-modal-header h3 {
+	margin: 0;
+	line-height: 30px;
+}.tc-modal-body {
+	padding: 15px;
+}.tc-modal-footer {
+	padding: 14px 15px 15px;
+	margin-bottom: 0;
+	text-align: right;
+	background-color: #f5f5f5;
+	border-top: 1px solid #dddddd;
+}/*
+** Notifications
+*/.tc-notification {
+	position: fixed;
+	top: 14px;
+	right: 42px;
+	z-index: 1000;
+	max-width: 280px;
+	padding: 0 14px 0 14px;
+	background-color: #ffffdd;
+	border: 1px solid #999999;
+}/*
+** Tabs
+*/.tc-tab-set.tc-vertical {
+	display: -webkit-flex;
+	display: flex;
+}.tc-tab-buttons {
+	font-size: 0.85em;
+	padding-top: 1em;
+	margin-bottom: -1px;
+}.tc-tab-buttons.tc-vertical  {
+	z-index: 100;
+	display: block;
+	padding-top: 14px;
+	vertical-align: top;
+	text-align: right;
+	margin-bottom: inherit;
+	margin-right: -1px;
+	max-width: 33%;
+	-webkit-flex: 0 0 auto;
+	flex: 0 0 auto;
+}.tc-tab-buttons button.tc-tab-selected {
+	color: #666666;
+	background-color: #ffffff;
+	border-left: 1px solid #d8d8d8;
+	border-top: 1px solid #d8d8d8;
+	border-right: 1px solid #d8d8d8;
+}.tc-tab-buttons button {
+	color: #666666;
+	padding: 3px 5px 3px 5px;
+	font-weight: 300;
+	border: none;
+	background: inherit;
+	background-color: #d8d8d8;
+	border-left: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+}.tc-tab-buttons.tc-vertical button {
+	display: block;
+	width: 100%;
+	margin-top: 3px;
+	text-align: right;
+	background-color: #d8d8d8;
+	border-left: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	border-right: none;
+}.tc-tab-buttons.tc-vertical button.tc-tab-selected {
+	background-color: #ffffff;
+	border-right: 1px solid #ffffff;
+}.tc-tab-divider {
+	border-top: 1px solid #d8d8d8;
+}.tc-tab-divider.tc-vertical  {
+	display: none;
+}.tc-tab-content {
+	margin-top: 14px;
+}.tc-tab-content.tc-vertical  {
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 0;
+	padding-left: 14px;
+	border-left: 1px solid #cccccc;
+	-webkit-flex: 1 0 70%;
+	flex: 1 0 70%;
+}.tc-sidebar-lists .tc-tab-buttons button.tc-tab-selected {
+	background-color: #ececec;
+	color: ;
+	border-left: 1px solid #d8d8d8;
+	border-top: 1px solid #d8d8d8;
+	border-right: 1px solid #d8d8d8;
+}.tc-sidebar-lists .tc-tab-buttons button {
+	background-color: #d8d8d8;
+	color: #666666;
+	border-left: 1px solid #cccccc;
+	border-top: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+}.tc-sidebar-lists .tc-tab-divider {
+	border-top: 1px solid #e4e4e4;
+}.tc-more-sidebar .tc-tab-buttons button {
+	background-color: #d8d8d8;
+	border-top: none;
+	border-left: none;
+	border-bottom: none;
+	border-right: 1px solid #ccc;
+	margin-bottom: inherit;
+}.tc-more-sidebar .tc-tab-buttons button.tc-tab-selected {
+	background-color: #ececec;
+	border: none;
+}/*
+** Alerts
+*/.tc-alerts {
+	position: fixed;
+	top: 0;
+	left: 0;
+	max-width: 500px;
+	z-index: 20000;
+}.tc-alert {
+	position: relative;
+	margin: 28px;
+	padding: 14px 14px 14px 14px;
+	border: 2px solid #b99e2f;
+	background-color: #ffe476;
+}.tc-alert-toolbar {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+}.tc-alert-toolbar svg {
+	fill: #b99e2f;
+}.tc-alert-subtitle {
+	color: #b99e2f;
+	font-weight: bold;
+}.tc-alert-highlight {
+	color: #881122;	
+}.tc-static-alert {
+	position: relative;
+}.tc-static-alert-inner {
+	padding: 0 2px 2px 42px;
+	color: #aaaaaa;
+	position: absolute;
+}/*
+** Control panel
+*/.tc-control-panel td {
+	padding: 4px;
+}.tc-control-panel table, .tc-control-panel table input, .tc-control-panel table textarea {
+	width: 100%;
+}.tc-plugin-info {
+	display: block;
+	border: 1px solid #bbb;
+	background-colour: #ffffff;
+	margin: 1em 0 1em 0;
+	padding: 8px;
+}.tc-plugin-info-disabled {
+	background: -webkit-repeating-linear-gradient(45deg, #ff0, #ff0 10px, #eee 10px, #eee 20px);
+	background: repeating-linear-gradient(45deg, #ff0, #ff0 10px, #eee 10px, #eee 20px);
+}.tc-plugin-info-disabled:hover {
+	background: -webkit-repeating-linear-gradient(45deg, #aa0, #aa0 10px, #888 10px, #888 20px);
+	background: repeating-linear-gradient(45deg, #aa0, #aa0 10px, #888 10px, #888 20px);
+}a.tc-tiddlylink.tc-plugin-info:hover {
+	text-decoration: none;
+	background-color: #5778d8;
+	color: #ffffff;
+}.tc-plugin-info-chunk {
+	display: inline-block;
+	vertical-align: middle;	
+}.tc-plugin-info img {
+	width: 3em;
+}.tc-plugin-info svg {
+	width: 3em;
+	height: 3em;
+}.tc-plugin-info-dropdown {
+	border: 1px solid #bbb;
+	padding: 1em 1em 1em 1em;
+	margin-top: -1em;
+}/*
+** Message boxes
+*/.tc-message-box {
+	border: 1px solid #cfd6e6;
+	background: #ecf2ff;
+	padding: 0px 21px 0px 21px;
+	font-size: 12px;
+	line-height: 18px;
+	color: #547599;
+}/*
+** Pictures
+*/.tc-bordered-image {
+	border: 1px solid #bbb;
+	padding: 5px;
+	margin: 5px;
+}/*
+** Floats
+*/.tc-float-right {
+	float: right;
+}/*
+** Chooser
+*/.tc-chooser {
+	border: 1px solid #dddddd;
+}.tc-chooser-item {
+	border: 8px;
+}.tc-chooser-item a.tc-tiddlylink {
+	display: block;
+	text-decoration: none;
+	color: #5778d8;
+	background-color: #ffffff;
+	margin: 4px;
+}.tc-chooser-item a.tc-tiddlylink:hover {
+	text-decoration: none;
+	color: #ffffff;
+	background-color: #5778d8;
+}/*
+** Palette swatches
+*/.tc-swatches-horiz {
+}.tc-swatches-horiz .tc-swatch {
+	display: inline-block;
+}.tc-swatch {
+	width: 2em;
+	height: 2em;
+	margin: 4px;
+	border: 1px solid #000;
+}/*
+** Table of contents
+*/.tc-sidebar-lists .tc-table-of-contents {
+	white-space: nowrap;
+}.tc-table-of-contents button {
+	color: #acacac;
+}.tc-table-of-contents svg {
+	width: 0.7em;
+	height: 0.7em;
+	vertical-align: middle;
+	fill: #acacac;
+}.tc-table-of-contents ol {
+	list-style-type: none;
+	padding-left: 0;
+}.tc-table-of-contents ol ol {
+	padding-left: 1em;
+}.tc-table-of-contents li {
+	font-size: 1.0em;
+	font-weight: bold;
+}.tc-table-of-contents li a {
+	font-weight: bold;
+}.tc-table-of-contents li li {
+	font-size: 0.95em;
+	font-weight: normal;
+	line-height: 1.4;
+}.tc-table-of-contents li li a {
+	font-weight: normal;
+}.tc-table-of-contents li li li {
+	font-size: 0.95em;
+	font-weight: 200;
+	line-height: 1.5;
+}.tc-table-of-contents li li li a {
+	font-weight: bold;
+}.tc-table-of-contents li li li li {
+	font-size: 0.95em;
+	font-weight: 200;
+}/*
+** Dirty indicator
+*/body.tc-dirty span.tc-dirty-indicator, body.tc-dirty span.tc-dirty-indicator svg {
+	fill: #ff0000;
+	color: #ff0000;
+}/*
+** File inputs
+*/.tc-file-input-wrapper {
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}.tc-file-input-wrapper input[type=file] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 999px;
+	max-width: 100%;
+	max-height: 100%;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	outline: none;
+	background: white;
+	cursor: pointer;
+	display: inline-block;
+}
+
+
+
+</style>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>Diese Seite ist Teil der &quot;reinen&quot; HTML Version von TiddlyWiki auf <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/languages/de-DE' target='_blank'>http://tiddlywiki.com/languages/de-DE</a></div></div>
+</p>
+<div class='tc-page-container tc-page-view-classic tc-language-de-DE'><div class='tc-dropzone'><div class='tc-sidebar-scrollable'><div><div class='tc-sidebar-header'><div class=' tc-reveal'><h1 class='tc-site-title'>Mein TiddlyWiki
+</h1><div class='tc-site-subtitle'>ein persönliches nicht-lineares Web-Notizbuch
+</div><p><div class='tc-page-controls'>
+
+<span class=' tc-reveal'>
+<button aria-label='home' class='tc-btn-invisible' title='Öffnen der standard (default) Tiddler'>
+
+<svg class='tc-image-home-button tc-image-button' height='22pt' viewBox='81 513 64 54' width='22pt'><g><path d='M 97.04536 522.62083 L 81.364685 531.49067 L 87.85863 531.49067 L 87.85863 566.9699 L 107.49902 566.9699 L 107.49902 552.99265 L 117.95268 552.99265 L 117.95268 566.9699 L 137.59307 566.9699 L 137.59307 531.49067 L 144.086885 531.49067 L 112.72591 513.751 L 107.49902 516.70758 L 107.49902 513.751 L 97.04536 513.751 Z M 94.669443 534.17844 L 103.222493 534.17844 L 103.222493 545.19854 L 94.669443 545.19854 Z M 108.449266 534.17844 L 117.002435 534.17844 L 117.002435 545.19854 L 108.449266 545.19854 Z M 122.387575 534.17844 L 130.9405 534.17844 L 130.9405 545.19854 L 122.387575 545.19854 Z'></path></g></svg>
+
+
+
+</button>
+
+</span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal'>
+<button aria-label='neuer Tiddler' class='tc-btn-invisible' title='Erstelle einen neuen Tiddler'>
+
+<svg class='tc-image-new-button tc-image-button' height='22pt' viewBox='83 81 50 50' width='22pt'><path d='M 101.25 112.5 L 101.25 127.5 C 101.25 127.5 101.25 127.5 101.25 127.5 L 101.25 127.5 C 101.25 129.156855 102.593146 130.5 104.25 130.5 L 111.75 130.5 C 113.406854 130.5 114.75 129.156854 114.75 127.5 L 114.75 112.5 L 129.75 112.5 C 131.406854 112.5 132.75 111.156854 132.75 109.5 L 132.75 102 C 132.75 100.343146 131.406854 99 129.75 99 L 114.75 99 L 114.75 84 C 114.75 82.343146 113.406854 81 111.75 81 L 104.25 81 C 104.25 81 104.25 81 104.25 81 C 102.593146 81 101.25 82.343146 101.25 84 L 101.25 99 L 86.25 99 C 86.25 99 86.25 99 86.25 99 C 84.593146 99 83.25 100.343146 83.25 102 L 83.25 109.5 C 83.25 109.5 83.25 109.5 83.25 109.5 L 83.25 109.5 C 83.25 111.156855 84.593146 112.5 86.25 112.5 Z'></path></svg>
+
+
+
+</button>
+
+</span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal'>
+<button aria-label='Control Panel' class='tc-btn-invisible' title='Öffne das &quot;Control Panel&quot;'>
+
+<svg class='tc-image-options-button tc-image-button' height='22pt' viewBox='434 218 68 68' width='22pt'><path d='M 478.39696 232.53705 L 478.39696 232.53705 C 477.11453 231.85132 475.77877 231.30146 474.4106 230.88735 L 474.4106 218.24993 L 461.58944 218.24993 L 461.58944 230.88735 C 460.22126 231.30146 458.8855 231.85132 457.60308 232.53705 L 448.66825 223.60214 L 439.6022 232.66814 L 448.53716 241.60304 C 447.8515 242.88541 447.30158 244.22116 446.88747 245.58935 L 434.25 245.58935 L 434.25 258.41052 L 446.88747 258.41052 C 447.30158 259.7787 447.8515 261.11446 448.53716 262.39689 L 439.6022 271.33173 L 448.66825 280.39779 L 457.60308 271.46281 C 458.8855 272.14862 460.22126 272.69847 461.58944 273.11251 L 461.58944 285.74986 L 474.4106 285.74986 L 474.4106 273.11251 C 475.77877 272.69847 477.11453 272.14862 478.39696 271.46281 L 487.3318 280.39779 L 496.3977 271.33173 L 487.46287 262.39689 C 488.14854 261.11446 488.6984 259.7787 489.11257 258.41052 L 501.7499 258.41052 L 501.7499 245.58935 L 489.11257 245.58935 C 488.6984 244.22116 488.14854 242.88541 487.46287 241.60304 L 496.3977 232.66814 L 487.3318 223.60214 Z M 475.3328 244.66714 C 479.38253 248.71698 479.38253 255.2829 475.3328 259.33273 C 471.28297 263.3826 464.71706 263.3826 460.66723 259.33273 C 456.61737 255.2829 456.61737 248.71698 460.66723 244.66714 C 464.71706 240.61734 471.28297 240.61734 475.3328 244.66714'></path></svg>
+
+
+
+</button>
+
+</span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal'>
+<button aria-label='Sprache' class='tc-btn-invisible' title='Auswahl Dialog für die System Sprache'>
+
+<span class='tc-image-button'>
+
+<img src='data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22UTF-8%22%20standalone%3D%22no%22%3F%3E%0A%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%0A%09%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221000%22%20height%3D%22600%22%20viewBox%3D%220%200%205%203%22%3E%0A%09%3Cdesc%3EFlag%20of%20Germany%3C%2Fdesc%3E%0A%09%3Crect%20id%3D%22black_stripe%22%20width%3D%225%22%20height%3D%223%22%20y%3D%220%22%20x%3D%220%22%20fill%3D%22%23000%22%2F%3E%0A%09%3Crect%20id%3D%22red_stripe%22%20width%3D%225%22%20height%3D%222%22%20y%3D%221%22%20x%3D%220%22%20fill%3D%22%23D00%22%2F%3E%0A%09%3Crect%20id%3D%22gold_stripe%22%20width%3D%225%22%20height%3D%221%22%20y%3D%222%22%20x%3D%220%22%20fill%3D%22%23FFCE00%22%2F%3E%0A%3C%2Fsvg%3E%0A'>
+
+</span>
+
+
+</button>
+<span class=' tc-reveal' hidden='true'></span>
+
+</span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal'>
+<button aria-label='Speichern' class='tc-btn-invisible' title='Das Wiki speichern'>
+<span class='tc-dirty-indicator'>
+
+<svg class='tc-image-save-button tc-image-button' height='21pt' viewBox='4 512 64 60' width='22pt'><path d='M 13.5 537.75 L 11.5 537.75 C 11.5 537.75 11.5 537.75 11.5 537.75 C 7.6340064 537.75 4.4999994 540.884 4.5 544.75 L 4.5 564.5 L 4.5 564.5 C 4.5 564.5 4.5 564.5 4.5 564.5 L 4.5 564.5 C 4.5000006 568.366 7.634007 571.5 11.5 571.5 L 60.5 571.5 C 64.365993 571.5 67.5 568.366 67.5 564.5 L 67.5 544.75 C 67.5 540.884 64.365993 537.75 60.5 537.75 L 58.5 537.75 L 49.5 546.75 L 50 546.75 C 52.20914 546.75 54 548.54086 54 550.75 L 54 556.25 C 54 558.45914 52.20914 560.25 50 560.25 L 36 560.25 L 22 560.25 C 19.790861 560.25 18 558.45914 18 556.25 L 18 556.25 C 18 556.25 18 556.25 18 556.25 L 18 550.75 C 18 548.54086 19.790861 546.75 22 546.75 C 22 546.75 22 546.75 22 546.75 L 22.5 546.75 Z'></path><path d='M 16.37132 533.87132 L 33.87868 551.37868 C 35.050253 552.55025 36.949747 552.55025 38.12132 551.37868 L 55.62868 533.87132 C 56.800252 532.69975 56.800252 530.80025 55.62868 529.62868 C 55.06607 529.06607 54.30301 528.75 53.50736 528.75 L 48 528.75 C 46.343146 528.75 45 527.40685 45 525.75 L 45 516 C 45 514.34315 43.656854 513 42 513 L 30 513 C 28.343146 513 27 514.34315 27 516 L 27 525.75 C 27 527.40685 25.656854 528.75 24 528.75 L 18.492641 528.75 C 16.835786 528.75 15.492641 530.09315 15.492641 531.75 C 15.492641 532.54565 15.808711 533.3087 16.37132 533.87132 Z'></path></svg>
+
+
+
+</span>
+</button>
+</span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal' hidden='true'></span>
+
+<span class=' tc-reveal'>
+<div class='github-fork-ribbon-wrapper right' style='true'><div class='github-fork-ribbon' style='background-color:#DF4848;'><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/TiddlyWiki%2520Speichern.html'>5.1.0</a></div></div>
+
+
+</span>
+
+</div></p><div class='tc-sidebar-lists'><p><div class='tc-search'>
+<input type='search' value=''>
+<span class=' tc-reveal' hidden='true'></span>
+<span class=' tc-reveal'> <a aria-label='erweiterte suche' class='tc-btn-invisible tc-tiddlylink tc-tiddlylink-shadow' href='static/%2524%253A%252FAdvancedSearch.html' title='Erweiterte Suche'>…</a>
+</span>
+</div></p><div class=' tc-reveal' hidden='true'></div><div class=' tc-reveal'><p><div class='tc-tab-set '>
+<div class='tc-tab-buttons '>
+
+<button class=' tc-tab-selected'>
+Offen
+</button>
+
+<button class=''>
+Inhalt
+</button>
+
+<button class=''>
+Zuletzt
+</button>
+
+<button class=''>
+Tools
+</button>
+
+<button class=''>
+Mehr
+</button>
+
+</div><div class='tc-tab-divider '></div><div class='tc-tab-content '>
+<div class=' tc-reveal'><p><button aria-label='schließen' class='tc-btn-invisible tc-btn-mini' title='Schließe diesen Tiddler'>×</button> <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Willkommen!.html'>Willkommen!</a></p><p><button class='tc-btn-invisible tc-btn-mini'>alle schließen</button>
+</p></div><div class=' tc-reveal' hidden='true'></div><div class=' tc-reveal' hidden='true'></div><div class=' tc-reveal' hidden='true'></div><div class=' tc-reveal' hidden='true'></div>
+</div>
+</div></p></div></div>
+</div></div></div></div><section class='tc-story-river'><section class='story-backdrop'></section><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-InhaltsVerzeichnis tc-tagged-Intro'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Informationen zu diesem Tiddler anzeigen'>
+
+<svg class='tc-image-info-button tc-image-button' height='22pt' viewBox='294 150 58 58' width='22pt'><path d='M 342.76236 158.98764 C 331.77887 148.0041 313.97113 148.0041 302.98764 158.98764 C 292.0041 169.97113 292.0041 187.77887 302.98764 198.76236 C 313.97113 209.7459 331.77887 209.7459 342.76236 198.76236 C 353.7459 187.77887 353.7459 169.97113 342.76236 158.98764 M 326.5425 157.5 L 326.5425 157.5 C 327.72545 157.5 328.72201 157.91022 329.5337 158.73088 C 330.34465 159.55157 330.75 160.54402 330.75 161.7075 C 330.75 162.87172 330.33979 163.86316 329.51911 164.68385 C 328.69842 165.5045 327.70674 165.91501 326.5425 165.91501 C 325.39801 165.91501 324.4153 165.5045 323.5946 164.68385 C 322.77393 163.86316 322.36372 162.87172 322.36372 161.7075 C 322.36372 160.54402 322.76906 159.55157 323.58 158.73088 C 324.39171 157.91022 325.3793 157.5 326.5425 157.5 Z M 327.80211 190.47259 C 324.91945 195.49132 321.85778 198 318.61462 198 C 317.37452 198 316.38691 197.65158 315.65186 196.9555 C 314.9176 196.25866 314.54943 195.37617 314.54943 194.30782 C 314.54943 193.60202 314.71223 192.70572 315.03629 191.61813 L 319.0151 177.93651 C 319.39685 176.61922 319.58735 175.62754 319.58735 174.95991 C 319.58735 174.53996 319.40582 174.16692 319.04356 173.84286 C 318.68052 173.51905 318.18469 173.35701 317.55527 173.35701 C 317.26861 173.35701 316.92506 173.36677 316.5246 173.38548 L 316.89661 172.2407 L 326.59967 170.66627 L 328.31744 170.66627 L 322.44986 191.01638 C 322.12503 192.18064 321.963 192.94337 321.963 193.30666 C 321.963 193.51588 322.04862 193.71121 322.2204 193.89273 C 322.39218 194.07425 322.5737 194.16554 322.7642 194.16477 C 323.08903 194.16554 323.4131 194.02221 323.73792 193.73559 C 324.59605 193.02976 325.6267 191.75142 326.82838 189.90008 Z'></path></svg>
+
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='bearbeiten' class='tc-btn-invisible' title='Bearbeite diesen Tiddler'>
+
+<svg class='tc-image-edit-button tc-image-button' height='22pt' viewBox='244 193 20 22' width='20pt'><path d='M 257.33334 196.80951 L 245.90476 207.2857 L 244 212.0476 L 248.7619 210.14284 L 260.19048 199.66665 Z M 259.2381 194.90475 L 258.28566 195.85716 L 261.14284 198.71428 L 262.09522 197.76187 Z M 261.14286 193 L 260.19042 193.95241 L 263.04762 196.80953 L 264 195.85714 Z M 244 213.72882 C 244 213.72882 247.4281 215.43353 250.8572 213.7288 C 254.28599 212.02405 261.14284 214.86531 261.14284 214.86531 L 261.14284 213.72884 C 261.14284 213.72884 254.28577 210.88755 250.8572 212.5923 C 247.42858 214.29712 244 212.59228 244 212.59228 Z'></path></svg>
+
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='schließen' class='tc-btn-invisible' title='Schließe diesen Tiddler'>
+
+<svg class='tc-image-close-button tc-image-button' height='22pt' viewBox='222 150 56 56' width='22pt'><path d='M 249.56668 185.88827 L 267.06757 203.38916 C 269.26427 205.58586 272.82582 205.58586 275.02252 203.38916 L 275.02252 203.38916 C 277.21922 201.19246 277.21922 197.63091 275.02252 195.43421 L 257.52163 177.93332 L 275.38916 160.06579 C 277.58586 157.86909 277.58586 154.30754 275.38916 152.11084 C 273.19246 149.91414 269.63091 149.91414 267.43421 152.11084 L 249.56668 169.97837 L 232.06579 152.47748 L 232.06579 152.47748 C 232.06579 152.47748 232.06579 152.47748 232.06579 152.47748 C 229.86909 150.28078 226.30754 150.28078 224.11084 152.47748 L 224.11084 152.47748 C 221.91414 154.674175 221.91414 158.23573 224.11084 160.43243 L 241.61173 177.93332 L 224.47748 195.06757 L 224.47748 195.06757 L 224.47748 195.06757 C 224.47748 195.06757 224.47748 195.06757 224.47748 195.06757 C 222.28078 197.26427 222.28078 200.82583 224.47748 203.02252 L 224.47748 203.02252 C 226.67418 205.21922 230.23573 205.21922 232.43243 203.02252 Z'></path></svg>
+
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Willkommen!
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/pmario.html'>
+pmario
+</a> vor 2 Tagen
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ InhaltsVerzeichnis
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+<span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ Intro
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>TiddlyWiki ist eine Web-Applikation, die sie frei herunterladen können. Sie können sie speichern, wo sie wollen:</p><ul><li>Auf ihrem Laufwerk,</li><li>USB-Wechselspeicher</li><li>oder ihrem &quot;Cloud Speicher&quot;</li></ul><p>Sie sind der Herr über ihre Daten!</p><p>Sie können TiddlyWiki verwenden um Ihre Notizen zu erstellen / organisieren / oder mit Freunden zu teilen, in einer Weise, die kein anderes Textverarbeitungsprogramm vermag. TiddlyWiki speichert ihre Texte in einer &quot;nicht-linearen&quot; Form, mit Hilfe von <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Tags.html'>Tags</a>, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Hyperlinks.html'>Hyperlinks</a> und vielen weiteren Möglichkeiten. So können sie Ihre Notizen strukturieren, in einer 
+Weise, die mehr dem entspricht, &quot;wie wir denken&quot;, nicht in einem vom Entwickler vorgegebenen starren Korsett. </p><p>Sie können <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/TiddlyWiki.html'>TiddlyWiki</a> als eine einzige Datei speichern, die sie mit dem Web-Browser, online oder offline, verwenden können. Für geübte Benutzer kann TiddlyWiki als <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Node.js.html'>Node.js Applikation</a> verwendet werden, die jeden <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Tiddler.html'>Tiddler</a> als einzelne Datei behandelt und dabei als zentrales Archiv fungiert.</p><h3 class=''>Wie können sie TiddlyWiki nun für sich nutzen?</h3><ul><li>Im Anschluss sind einige Links aufgeführt, mit denen sie starten sollten, oder sie können jederzeit das <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/InhaltsVerzeichnis.html'>InhaltsVerzeichnis</a> verwenden.</li><li>Das InhaltsVerzeichnis kann auch über den Reiter &quot;Inhalt&quot; auf der rechten Seite aufgerufen werden.</li><li><strong>Starten Sie jetzt mit &quot;<a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/ErsteSchritte.html'>ErsteSchritte</a>&quot;.</strong> Viel Spaß!</li></ul><h3 class=''>Weitere Links</h3><ul><li><strong><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/ErsteSchritte.html'>ErsteSchritte</a></strong></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/WikiText.html'>TiddlyWiki Syntax</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Liste%2520aller%2520HowTo's.html'>Liste aller HowTo's</a></li><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='static/Was%2520kann%2520TiddlyWiki.html'>Was kann TiddlyWiki</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='static/WikiText%2520mehr%2520Beispiele.html'>WikiText mehr Beispiele</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Was%2520geschah%2520mit%2520dem%2520alten%2520TiddlyWiki.html'>Was geschah mit dem alten TiddlyWiki?</a></li></ul></div>
+
+
+
+</div>
+
+<section class='story-frontdrop'></section></section><div class='tc-alerts'></div><span class='tc-topbar tc-topbar-left'></span><span class='tc-topbar tc-topbar-right'><span class=' tc-reveal'>
+<button aria-label='Sidebar ausblenden' class='tc-btn-invisible' title='Sidebar ausblenden'><svg class='tc-image-chevron-right tc-image-button' height='22pt' viewBox='0 0 128 128' width='22pt'>
+    <g>
+        <path d='M97.7982405,98.1688105 L152.184015,43.4979042 C155.938662,39.7236635 155.938662,33.6043964 152.184015,29.8301557 C148.429583,26.0559364 142.342116,26.0559364 138.587684,29.8301557 L91.0000107,77.667222 L43.4123803,29.8301557 C39.6578195,26.0559364 33.5704813,26.0559364 29.8159206,29.8301557 C26.0613598,33.6043964 26.0613598,39.7236635 29.8159206,43.4979042 L84.2017595,98.1688105 C87.9563202,101.943051 94.0436798,101.943051 97.7982405,98.1688126 L97.7982405,98.1688105 Z' transform='translate(91.000000, 63.999491) rotate(-90.000000) translate(-91.000000, -63.999491) '></path>
+        <path d='M43.7982405,98.1688105 L98.1840153,43.4979042 C101.938662,39.7236635 101.938662,33.6043964 98.1840153,29.8301557 C94.4295828,26.0559364 88.3421164,26.0559364 84.5876838,29.8301557 L37.0000107,77.667222 L-10.5876197,29.8301557 C-14.3421805,26.0559364 -20.4295187,26.0559364 -24.1840794,29.8301557 C-27.9386402,33.6043964 -27.9386402,39.7236635 -24.1840794,43.4979042 L30.2017595,98.1688105 C33.9563202,101.943051 40.0436798,101.943051 43.7982405,98.1688126 L43.7982405,98.1688105 Z' transform='translate(37.000000, 63.999491) rotate(-90.000000) translate(-37.000000, -63.999491) '></path>
+    </g>
+</svg></button>
+</span>
+<span class=' tc-reveal' hidden='true'></span>
+</span></div></div>
+</body>
+</html>

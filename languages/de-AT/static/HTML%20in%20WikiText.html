@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.0" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>Mein TiddlyWiki
+ — ein persönliches nicht-lineares Web-Notizbuch
+</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>Diese Seite ist Teil der &quot;reinen&quot; HTML Version von TiddlyWiki auf <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/languages/de-AT' target='_blank'>http://tiddlywiki.com/languages/de-AT</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-WikiText'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Informationen zu diesem Tiddler anzeigen'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='bearbeiten' class='tc-btn-invisible' title='Bearbeite diesen Tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='schließen' class='tc-btn-invisible' title='Schließe diesen Tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+HTML in WikiText
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='pmario.html'>
+pmario
+</a> vor 6 Tagen
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ WikiText
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p><strong>Für geübte Anwender!</strong> Neue Besucher bitte <a class='tc-tiddlylink tc-tiddlylink-missing' href='Transclusion%2520in%2520WikiText.html'>Transclusion in WikiText</a> und <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Makros%2520in%2520WikiText.html'>Makros in WikiText</a> zuerst lesen!</p><p>HTML Elemente und Kommentare können direkt in WikiText verwendet werden. Beispiel:</p><pre><code>&lt;article class=&quot;hello&quot;&gt;
+Dies ist ein einfacher Block Text: Hallo! 
+&lt;!-- Dieser Kommentar wird in der Ausgabe nicht enthalten sein! --&gt;
+&lt;/article&gt;</code></pre><p>Dargestellt als: </p><p><article class='hello'>
+Dies ist ein einfacher Block Text: Hallo! 
+
+</article></p><h2 class=''>Attribute</h2><p>Attribute in HTML können als <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Transklusion.html'>Transklusion</a> oder als <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Makro.html'>Makro</a> eingebunden werden. Zum Beispiel, wird hier das <code>href</code> Attribut als Wert des Tiddlers &quot;<a class='tc-tiddlylink tc-tiddlylink-missing' href='MeinLinkZiel.html'>MeinLinkZiel</a>&quot; verwendet: </p><pre><code>&lt;a href={{MeinLinkZiel}}&gt;link&lt;/a&gt;</code></pre><p>Hier wird das Attribut über einen Makro Aufruf definiert:</p><pre><code>&lt;a href=&lt;&lt;MeinMakro &quot;Brian&quot;&gt;&gt;&gt;link&lt;/a&gt;</code></pre><p>Text Attribute können Zeilenumbrüche enthalten. In der Ausgabe werden diese jedoch wie in HTML üblich ignoriert! Folgendes Beispiel erzeugt ein unsichtbares <code>html div element</code> das nur mit Entwickler Werkzeugen sichtbar ist. </p><pre><code>&lt;div data-address=&quot;Mouse House,
+Mouse Lane,
+Rodentville,
+Ratland.&quot;/&gt;</code></pre><p>Wenn sie 3 doppelte Anführungszeichen am Beginn verwenden, dann kann der Text einfache Anführungszeichen enthalten.</p><pre><code>&lt;div data-address=&quot;&quot;&quot;Mouse House,
+&quot;Mouse&quot; Lane,
+Rodentville,
+Ratland.&quot;&quot;&quot;/&gt;</code></pre><h2 class=''>HTML Code Verarbeitung</h2><p>Der Inhalt von HTML Elementen wird im &quot;Inline&quot; Modus verarbeitet. <br>
+Außer, wenn auf das Eröffnungselement 2 Zeilenumbrüche folgen, dann ist der Block Modus aktiv.</p><dl><dt>Inline Modus </dt><dd>Es weden nur Zeichen Formatierungen wie: fett, hochgestellt usw. erkannt. Der Inhalt von Block Elementen, wie zB: Tabellen, Listen und Überschriften wird nicht korrekt übersetzt.</dd></dl></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

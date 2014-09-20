@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.0" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>Mein TiddlyWiki
+ — ein persönliches nicht-lineares Web-Notizbuch
+</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>Diese Seite ist Teil der &quot;reinen&quot; HTML Version von TiddlyWiki auf <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/languages/de-DE' target='_blank'>http://tiddlywiki.com/languages/de-DE</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-WikiText'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Informationen zu diesem Tiddler anzeigen'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='bearbeiten' class='tc-btn-invisible' title='Bearbeite diesen Tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='schließen' class='tc-btn-invisible' title='Schließe diesen Tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Typisierte Blöcke in WikiText
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='pmario.html'>
+pmario
+</a> vor 6 Tagen
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ WikiText
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a> kann Textblöcke direkt darstelle, wenn ihr Inhalts-Typ (<a class='tc-tiddlylink tc-tiddlylink-resolves' href='MIME-Type.html'>MIME-Type</a>) bekannt ist:</p><pre><code>$$$image/svg+xml
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;150&quot; height=&quot;100&quot;&gt;
+  &lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;green&quot; /&gt;
+&lt;/svg&gt;
+$$$</code></pre><p>Dargestellt als:</p><img src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22100%22%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20fill%3D%22green%22%20%2F%3E%0A%3C%2Fsvg%3E'><p>Es ist ebenfalls möglich den Type über die Datei Erweiterung zu definieren:</p><pre><code>$$$.svg
+&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;150&quot; height=&quot;100&quot;&gt;
+  &lt;circle cx=&quot;100&quot; cy=&quot;50&quot; r=&quot;40&quot; stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;red&quot; /&gt;
+&lt;/svg&gt;
+$$$</code></pre><p>Dargestellt als:</p><img src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22100%22%3E%0A%20%20%3Ccircle%20cx%3D%22100%22%20cy%3D%2250%22%20r%3D%2240%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%20fill%3D%22red%22%20%2F%3E%0A%3C%2Fsvg%3E'><p>Unbekannte Typen werden als Text dargestellt:</p><pre><code>$$$text/unknown
+Einfacher Text, der nicht //formatiert// wird.
+$$$</code></pre><p>Dargestellt als:</p><pre><code>Einfacher Text, der nicht //formatiert// wird.</code></pre><p>Zudem kann auch der auszugebende &quot;Ziel-Typ&quot; festgelegt werden. zB:</p><pre><code>1)
+
+$$$text/vnd.tiddlywiki&gt;text/html
+Hier steht ''fett formatierter'' WikiText.
+$$$
+
+2)
+
+$$$text/vnd.tiddlywiki&gt;text/plain
+Hier steht ''fett formatierter'' WikiText.
+$$$
+
+3)
+
+$$$text/vnd.tiddlywiki
+Hier steht ''fett formatierter'' WikiText.
+$$$</code></pre><p>Dargestellt als:</p><p>1)</p><pre>&lt;p&gt;Hier steht &lt;strong&gt;fett formatierter&lt;/strong&gt; &lt;a class='tc-tiddlylink tc-tiddlylink-resolves' href='#WikiText'&gt;WikiText&lt;/a&gt;.&lt;/p&gt;</pre><p>2)</p><pre>Hier steht fett formatierter WikiText.</pre><p>3)</p><p>Hier steht <strong>fett formatierter</strong> <a class='tc-tiddlylink tc-tiddlylink-resolves' href='WikiText.html'>WikiText</a>.</p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

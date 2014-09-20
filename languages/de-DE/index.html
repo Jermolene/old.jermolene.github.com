@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.0.18-beta" />
+<meta name="tiddlywiki-version" content="5.1.0" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -123,11 +123,15 @@ Error message and password prompt
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/language</li>
 
+<li>$:/config/PageControlButtons/Visibility/$:/editions/tw5.com/github-fork-ribbon</li>
+
 <li>$:/core</li>
 
 <li>$:/DefaultTiddlers</li>
 
 <li>$:/editions/de-AT-DE/download-empty</li>
+
+<li>$:/editions/de-AT-DE/github-fork-ribbon</li>
 
 <li>$:/editions/de-AT-DE/snippets/download-empty-button</li>
 
@@ -146,6 +150,10 @@ Error message and password prompt
 <li>$:/plugins/tiddlywiki/browser-sniff</li>
 
 <li>$:/plugins/tiddlywiki/github-fork-ribbon</li>
+
+<li>$:/state/tab/sidebar--1835078512</li>
+
+<li>$:/StaticBanner</li>
 
 <li>$:/StoryList</li>
 
@@ -167,6 +175,8 @@ Error message and password prompt
 
 <li>AndTidWiki</li>
 
+<li>Bilder</li>
+
 <li>Bilder in WikiText</li>
 
 <li>Code Block in WikiText</li>
@@ -176,6 +186,8 @@ Error message and password prompt
 <li>DataTiddlers</li>
 
 <li>Definitionen in WikiText</li>
+
+<li>Einführung</li>
 
 <li>ErsteSchritte</li>
 
@@ -205,6 +217,8 @@ Error message and password prompt
 
 <li>Halbgeviertstrich</li>
 
+<li>howto</li>
+
 <li>HTML in WikiText</li>
 
 <li>Hyperlinks</li>
@@ -213,15 +227,27 @@ Error message and password prompt
 
 <li>ImportVariablesWidget</li>
 
+<li>InhaltsVerzeichnis</li>
+
 <li>Installation</li>
 
 <li>Installation von TiddlyWiki mit Node.js</li>
 
 <li>JeremyRuston</li>
 
+<li>Konzept</li>
+
+<li>Lexikon</li>
+
 <li>LinkWidget</li>
 
+<li>Liste aller HowTo's</li>
+
+<li>Liste aller Tiddler</li>
+
 <li>Listen in WikiText</li>
+
+<li>Lizenzen</li>
 
 <li>Makro</li>
 
@@ -234,6 +260,10 @@ Error message and password prompt
 <li>Motovun Jack.jpg</li>
 
 <li>Node.js</li>
+
+<li>pmario</li>
+
+<li>Referenz</li>
 
 <li>Speichern auf TiddlySpot</li>
 
@@ -293,6 +323,8 @@ Error message and password prompt
 
 <li>Trennlinie in WikiText</li>
 
+<li>TWclassic</li>
+
 <li>Typisierte Blöcke in WikiText</li>
 
 <li>UnaMesa</li>
@@ -301,7 +333,13 @@ Error message and password prompt
 
 <li>Verknüpfungen in WikiText</li>
 
+<li>Video</li>
+
 <li>Was geschah mit dem alten TiddlyWiki</li>
+
+<li>Wer pflegt diese Edition?</li>
+
+<li>Widgets</li>
 
 <li>Widgets in WikiText</li>
 
@@ -333,7 +371,10 @@ Error message and password prompt
 <div created="20140909193620416" modified="20140912115601698" modifier="pmario" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/language" type="text/vnd.tiddlywiki">
 <pre>show</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core plugin" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.0.18-beta">
+<div created="20140918071202599" modified="20140918071201447" modifier="pmario" title="$:/config/PageControlButtons/Visibility/$:/editions/tw5.com/github-fork-ribbon" type="text/vnd.tiddlywiki">
+<pre>show</pre>
+</div>
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core plugin" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/Acknowledgements&quot;: {
@@ -976,6 +1017,10 @@ Error message and password prompt
         &quot;$:/language/ControlPanel/Saving/TiddlySpot/Backups&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Saving/TiddlySpot/Backups&quot;,
             &quot;text&quot;: &quot;Backups&quot;
+        },
+        &quot;$:/language/ControlPanel/Saving/TiddlySpot/Description&quot;: {
+            &quot;title&quot;: &quot;$:/language/ControlPanel/Saving/TiddlySpot/Description&quot;,
+            &quot;text&quot;: &quot;These settings are only used when saving to http://tiddlyspot.com or a compatible remote server&quot;
         },
         &quot;$:/language/ControlPanel/Saving/TiddlySpot/Filename&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Saving/TiddlySpot/Filename&quot;,
@@ -1937,7 +1982,7 @@ Error message and password prompt
         &quot;$:/language/Help/setfield&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/setfield&quot;,
             &quot;description&quot;: &quot;Prepares external tiddlers for use&quot;,
-            &quot;text&quot;: &quot;//Note that this command is experimental and may change or be replaced during the TiddlyWiki version 5 beta//\n\nSets the specified field of a group of tiddlers to the result of wikifying a template tiddler with the `currentTiddler` variable set to the tiddler.\n\n```\n--setfield &lt;filter&gt; &lt;fieldname&gt; &lt;templatetitle&gt; &lt;rendertype&gt;\n```\n\nThe parameters are:\n\n* ''filter'' - filter identifying the tiddlers to be affected\n* ''fieldname'' - the field to modify (defaults to \&quot;text\&quot;)\n* ''templatetitle'' - the tiddler to wikify into the specified field. If blank or missing then the specified field is deleted\n* ''type'' - the text type to render (defaults to \&quot;text/plain\&quot;; \&quot;text/html\&quot; can be used to include HTML tags)\n\n&quot;
+            &quot;text&quot;: &quot;//Note that this command is experimental and may change or be replaced before being finalised//\n\nSets the specified field of a group of tiddlers to the result of wikifying a template tiddler with the `currentTiddler` variable set to the tiddler.\n\n```\n--setfield &lt;filter&gt; &lt;fieldname&gt; &lt;templatetitle&gt; &lt;rendertype&gt;\n```\n\nThe parameters are:\n\n* ''filter'' - filter identifying the tiddlers to be affected\n* ''fieldname'' - the field to modify (defaults to \&quot;text\&quot;)\n* ''templatetitle'' - the tiddler to wikify into the specified field. If blank or missing then the specified field is deleted\n* ''type'' - the text type to render (defaults to \&quot;text/plain\&quot;; \&quot;text/html\&quot; can be used to include HTML tags)\n\n&quot;
         },
         &quot;$:/language/Help/verbose&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/verbose&quot;,
@@ -3629,7 +3674,7 @@ Error message and password prompt
             &quot;module-type&quot;: &quot;widget&quot;
         },
         &quot;$:/core/modules/widgets/widget.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/widgets/widget.js\ntype: application/javascript\nmodule-type: widget\n\nWidget base class\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nCreate a widget object for a parse tree node\n\tparseTreeNode: reference to the parse tree node to be rendered\n\toptions: see below\nOptions include:\n\twiki: mandatory reference to wiki associated with this render tree\n\tparentWidget: optional reference to a parent renderer node for the context chain\n\tdocument: optional document object to use instead of global document\n*/\nvar Widget = function(parseTreeNode,options) {\n\tif(arguments.length &gt; 0) {\n\t\tthis.initialise(parseTreeNode,options);\n\t}\n};\n\n/*\nInitialise widget properties. These steps are pulled out of the constructor so that we can reuse them in subclasses\n*/\nWidget.prototype.initialise = function(parseTreeNode,options) {\n\toptions = options || {};\n\t// Save widget info\n\tthis.parseTreeNode = parseTreeNode;\n\tthis.wiki = options.wiki;\n\tthis.parentWidget = options.parentWidget;\n\tthis.variablesConstructor = function() {};\n\tthis.variablesConstructor.prototype = this.parentWidget ? this.parentWidget.variables : {};\n\tthis.variables = new this.variablesConstructor();\n\tthis.document = options.document;\n\tthis.attributes = {};\n\tthis.children = [];\n\tthis.domNodes = [];\n\tthis.eventListeners = {};\n\t// Hashmap of the widget classes\n\tif(!this.widgetClasses) {\n\t\tWidget.prototype.widgetClasses = $tw.modules.applyMethods(\&quot;widget\&quot;);\n\t}\n};\n\n/*\nRender this widget into the DOM\n*/\nWidget.prototype.render = function(parent,nextSibling) {\n\tthis.parentDomNode = parent;\n\tthis.execute();\n\tthis.renderChildren(parent,nextSibling);\n};\n\n/*\nCompute the internal state of the widget\n*/\nWidget.prototype.execute = function() {\n\tthis.makeChildWidgets();\n};\n\n/*\nSet the value of a context variable\nname: name of the variable\nvalue: value of the variable\nparams: array of {name:, default:} for each parameter\n*/\nWidget.prototype.setVariable = function(name,value,params) {\n\tthis.variables[name] = {value: value, params: params};\n};\n\n/*\nGet the prevailing value of a context variable\nname: name of variable\noptions: see below\nOptions include\nparams: array of {name:, value:} for each parameter\ndefaultValue: default value if the variable is not defined\n*/\nWidget.prototype.getVariable = function(name,options) {\n\toptions = options || {};\n\tvar actualParams = options.params || [],\n\t\tparentWidget = this.parentWidget;\n\t// Check for the variable defined in the parent widget (or an ancestor in the prototype chain)\n\tif(parentWidget &amp;&amp; name in parentWidget.variables) {\n\t\tvar variable = parentWidget.variables[name],\n\t\t\tvalue = variable.value;\n\t\t// Substitute any parameters specified in the definition\n\t\tvalue = this.substituteVariableParameters(value,variable.params,actualParams);\n\t\tvalue = this.substituteVariableReferences(value);\n\t\treturn value;\n\t}\n\t// If the variable doesn't exist in the parent widget then look for a macro module\n\treturn this.evaluateMacroModule(name,actualParams,options.defaultValue);\n};\n\nWidget.prototype.substituteVariableParameters = function(text,formalParams,actualParams) {\n\tif(formalParams) {\n\t\tvar nextAnonParameter = 0, // Next candidate anonymous parameter in macro call\n\t\t\tparamInfo, paramValue;\n\t\t// Step through each of the parameters in the macro definition\n\t\tfor(var p=0; p&lt;formalParams.length; p++) {\n\t\t\t// Check if we've got a macro call parameter with the same name\n\t\t\tparamInfo = formalParams[p];\n\t\t\tparamValue = undefined;\n\t\t\tfor(var m=0; m&lt;actualParams.length; m++) {\n\t\t\t\tif(actualParams[m].name === paramInfo.name) {\n\t\t\t\t\tparamValue = actualParams[m].value;\n\t\t\t\t}\n\t\t\t}\n\t\t\t// If not, use the next available anonymous macro call parameter\n\t\t\twhile(nextAnonParameter &lt; actualParams.length &amp;&amp; actualParams[nextAnonParameter].name) {\n\t\t\t\tnextAnonParameter++;\n\t\t\t}\n\t\t\tif(paramValue === undefined &amp;&amp; nextAnonParameter &lt; actualParams.length) {\n\t\t\t\tparamValue = actualParams[nextAnonParameter++].value;\n\t\t\t}\n\t\t\t// If we've still not got a value, use the default, if any\n\t\t\tparamValue = paramValue || paramInfo[\&quot;default\&quot;] || \&quot;\&quot;;\n\t\t\t// Replace any instances of this parameter\n\t\t\ttext = text.replace(new RegExp(\&quot;\\\\$\&quot; + $tw.utils.escapeRegExp(paramInfo.name) + \&quot;\\\\$\&quot;,\&quot;mg\&quot;),paramValue);\n\t\t}\n\t}\n\treturn text;\n};\n\nWidget.prototype.substituteVariableReferences = function(text) {\n\tvar self = this;\n\treturn (text || \&quot;\&quot;).replace(/\\$\\(([^\\)\\$]+)\\)\\$/g,function(match,p1,offset,string) {\n\t\treturn self.getVariable(p1,{defaultValue: \&quot;\&quot;});\n\t});\n};\n\nWidget.prototype.evaluateMacroModule = function(name,actualParams,defaultValue) {\n\tif($tw.utils.hop($tw.macros,name)) {\n\t\tvar macro = $tw.macros[name],\n\t\t\targs = [];\n\t\tif(macro.params.length &gt; 0) {\n\t\t\tvar nextAnonParameter = 0, // Next candidate anonymous parameter in macro call\n\t\t\t\tparamInfo, paramValue;\n\t\t\t// Step through each of the parameters in the macro definition\n\t\t\tfor(var p=0; p&lt;macro.params.length; p++) {\n\t\t\t\t// Check if we've got a macro call parameter with the same name\n\t\t\t\tparamInfo = macro.params[p];\n\t\t\t\tparamValue = undefined;\n\t\t\t\tfor(var m=0; m&lt;actualParams.length; m++) {\n\t\t\t\t\tif(actualParams[m].name === paramInfo.name) {\n\t\t\t\t\t\tparamValue = actualParams[m].value;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t// If not, use the next available anonymous macro call parameter\n\t\t\t\twhile(nextAnonParameter &lt; actualParams.length &amp;&amp; actualParams[nextAnonParameter].name) {\n\t\t\t\t\tnextAnonParameter++;\n\t\t\t\t}\n\t\t\t\tif(paramValue === undefined &amp;&amp; nextAnonParameter &lt; actualParams.length) {\n\t\t\t\t\tparamValue = actualParams[nextAnonParameter++].value;\n\t\t\t\t}\n\t\t\t\t// If we've still not got a value, use the default, if any\n\t\t\t\tparamValue = paramValue || paramInfo[\&quot;default\&quot;] || \&quot;\&quot;;\n\t\t\t\t// Save the parameter\n\t\t\t\targs.push(paramValue);\n\t\t\t}\n\t\t}\n\t\telse for(var i=0; i&lt;actualParams.length; ++i) {\n\t\t\targs.push(actualParams[i].value);\n\t\t}\n\t\treturn macro.run.apply(this,args);\n\t} else {\n\t\treturn defaultValue;\n\t}\n};\n\n/*\nCheck whether a given context variable value exists in the parent chain\n*/\nWidget.prototype.hasVariable = function(name,value) {\n\tvar node = this;\n\twhile(node) {\n\t\tif($tw.utils.hop(node.variables,name) &amp;&amp; node.variables[name].value === value) {\n\t\t\treturn true;\n\t\t}\n\t\tnode = node.parentWidget;\n\t}\n\treturn false;\n};\n\n/*\nConstruct a qualifying string based on a hash of concatenating the values of a given variable in the parent chain\n*/\nWidget.prototype.getStateQualifier = function(name) {\n\tname = name || \&quot;transclusion\&quot;;\n\tvar output = [],\n\t\tnode = this;\n\twhile(node &amp;&amp; node.parentWidget) {\n\t\tif($tw.utils.hop(node.parentWidget.variables,name)) {\n\t\t\toutput.push(node.getVariable(name));\n\t\t}\n\t\tnode = node.parentWidget;\n\t}\n\treturn \&quot;{\&quot; + $tw.utils.hashString(output.join(\&quot;\&quot;)) + \&quot;}\&quot;;\n};\n\n/*\nCompute the current values of the attributes of the widget. Returns a hashmap of the names of the attributes that have changed\n*/\nWidget.prototype.computeAttributes = function() {\n\tvar changedAttributes = {},\n\t\tself = this,\n\t\tvalue;\n\t$tw.utils.each(this.parseTreeNode.attributes,function(attribute,name) {\n\t\tif(attribute.type === \&quot;indirect\&quot;) {\n\t\t\tvalue = self.wiki.getTextReference(attribute.textReference,\&quot;\&quot;,self.getVariable(\&quot;currentTiddler\&quot;));\n\t\t} else if(attribute.type === \&quot;macro\&quot;) {\n\t\t\tvalue = self.getVariable(attribute.value.name,{params: attribute.value.params});\n\t\t} else { // String attribute\n\t\t\tvalue = attribute.value;\n\t\t}\n\t\t// Check whether the attribute has changed\n\t\tif(self.attributes[name] !== value) {\n\t\t\tself.attributes[name] = value;\n\t\t\tchangedAttributes[name] = true;\n\t\t}\n\t});\n\treturn changedAttributes;\n};\n\n/*\nCheck for the presence of an attribute\n*/\nWidget.prototype.hasAttribute = function(name) {\n\treturn $tw.utils.hop(this.attributes,name);\n};\n\n/*\nGet the value of an attribute\n*/\nWidget.prototype.getAttribute = function(name,defaultText) {\n\tif($tw.utils.hop(this.attributes,name)) {\n\t\treturn this.attributes[name];\n\t} else {\n\t\treturn defaultText;\n\t}\n};\n\n/*\nAssign the computed attributes of the widget to a domNode\noptions include:\nexcludeEventAttributes: ignores attributes whose name begins with \&quot;on\&quot;\n*/\nWidget.prototype.assignAttributes = function(domNode,options) {\n\toptions = options || {};\n\tvar self = this;\n\t$tw.utils.each(this.attributes,function(v,a) {\n\t\t// Check exclusions\n\t\tif(options.excludeEventAttributes &amp;&amp; a.substr(0,2) === \&quot;on\&quot;) {\n\t\t\tv = undefined;\n\t\t}\n\t\tif(v !== undefined) {\n\t\t\tvar b = a.split(\&quot;:\&quot;);\n\t\t\t// Setting certain attributes can cause a DOM error (eg xmlns on the svg element)\n\t\t\ttry {\n\t\t\t\tif (b.length == 2 &amp;&amp; b[0] == \&quot;xlink\&quot;){\n\t\t\t\t\tdomNode.setAttributeNS(\&quot;http://www.w3.org/1999/xlink\&quot;,b[1],v);\n\t\t\t\t} else {\n\t\t\t\t\tdomNode.setAttributeNS(null,a,v);\n\t\t\t\t}\n\t\t\t} catch(e) {\n\t\t\t}\n\t\t}\n\t});\n};\n\n/*\nMake child widgets correspondng to specified parseTreeNodes\n*/\nWidget.prototype.makeChildWidgets = function(parseTreeNodes) {\n\tthis.children = [];\n\tvar self = this;\n\t$tw.utils.each(parseTreeNodes || (this.parseTreeNode &amp;&amp; this.parseTreeNode.children),function(childNode) {\n\t\tself.children.push(self.makeChildWidget(childNode));\n\t});\n};\n\n/*\nConstruct the widget object for a parse tree node\n*/\nWidget.prototype.makeChildWidget = function(parseTreeNode) {\n\tvar WidgetClass = this.widgetClasses[parseTreeNode.type];\n\tif(!WidgetClass) {\n\t\tWidgetClass = this.widgetClasses.text;\n\t\tparseTreeNode = {type: \&quot;text\&quot;, text: \&quot;Undefined widget '\&quot; + parseTreeNode.type + \&quot;'\&quot;};\n\t}\n\treturn new WidgetClass(parseTreeNode,{\n\t\twiki: this.wiki,\n\t\tvariables: {},\n\t\tparentWidget: this,\n\t\tdocument: this.document\n\t});\n};\n\n/*\nGet the next sibling of this widget\n*/\nWidget.prototype.nextSibling = function() {\n\tif(this.parentWidget) {\n\t\tvar index = this.parentWidget.children.indexOf(this);\n\t\tif(index !== -1 &amp;&amp; index &lt; this.parentWidget.children.length-1) {\n\t\t\treturn this.parentWidget.children[index+1];\n\t\t}\n\t}\n\treturn null;\n};\n\n/*\nGet the previous sibling of this widget\n*/\nWidget.prototype.previousSibling = function() {\n\tif(this.parentWidget) {\n\t\tvar index = this.parentWidget.children.indexOf(this);\n\t\tif(index !== -1 &amp;&amp; index &gt; 0) {\n\t\t\treturn this.parentWidget.children[index-1];\n\t\t}\n\t}\n\treturn null;\n};\n\n/*\nRender the children of this widget into the DOM\n*/\nWidget.prototype.renderChildren = function(parent,nextSibling) {\n\t$tw.utils.each(this.children,function(childWidget) {\n\t\tchildWidget.render(parent,nextSibling);\n\t});\n};\n\n/*\nAdd a list of event listeners from an array [{type:,handler:},...]\n*/\nWidget.prototype.addEventListeners = function(listeners) {\n\tvar self = this;\n\t$tw.utils.each(listeners,function(listenerInfo) {\n\t\tself.addEventListener(listenerInfo.type,listenerInfo.handler);\n\t});\n};\n\n/*\nAdd an event listener\n*/\nWidget.prototype.addEventListener = function(type,handler) {\n\tvar self = this;\n\tif(typeof handler === \&quot;string\&quot;) { // The handler is a method name on this widget\n\t\tthis.eventListeners[type] = function(event) {\n\t\t\treturn self[handler].call(self,event);\n\t\t};\n\t} else { // The handler is a function\n\t\tthis.eventListeners[type] = function(event) {\n\t\t\treturn handler.call(self,event);\n\t\t};\n\t}\n};\n\n/*\nDispatch an event to a widget. If the widget doesn't handle the event then it is also dispatched to the parent widget\n*/\nWidget.prototype.dispatchEvent = function(event) {\n\t// Dispatch the event if this widget handles it\n\tvar listener = this.eventListeners[event.type];\n\tif(listener) {\n\t\t// Don't propagate the event if the listener returned false\n\t\tif(!listener(event)) {\n\t\t\treturn false;\n\t\t}\n\t}\n\t// Dispatch the event to the parent widget\n\tif(this.parentWidget) {\n\t\treturn this.parentWidget.dispatchEvent(event);\n\t}\n\treturn true;\n};\n\n/*\nSelectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering\n*/\nWidget.prototype.refresh = function(changedTiddlers) {\n\treturn this.refreshChildren(changedTiddlers);\n};\n\n/*\nRebuild a previously rendered widget\n*/\nWidget.prototype.refreshSelf = function() {\n\tvar nextSibling = this.findNextSiblingDomNode();\n\tthis.removeChildDomNodes();\n\tthis.render(this.parentDomNode,nextSibling);\n};\n\n/*\nRefresh all the children of a widget\n*/\nWidget.prototype.refreshChildren = function(changedTiddlers) {\n\tvar self = this,\n\t\trefreshed = false;\n\t$tw.utils.each(this.children,function(childWidget) {\n\t\trefreshed = childWidget.refresh(changedTiddlers) || refreshed;\n\t});\n\treturn refreshed;\n};\n\n/*\nFind the next sibling in the DOM to this widget. This is done by scanning the widget tree through all next siblings and their descendents that share the same parent DOM node\n*/\nWidget.prototype.findNextSiblingDomNode = function(startIndex) {\n\t// Refer to this widget by its index within its parents children\n\tvar parent = this.parentWidget,\n\t\tindex = startIndex !== undefined ? startIndex : parent.children.indexOf(this);\nif(index === -1) {\n\tthrow \&quot;node not found in parents children\&quot;;\n}\n\t// Look for a DOM node in the later siblings\n\twhile(++index &lt; parent.children.length) {\n\t\tvar domNode = parent.children[index].findFirstDomNode();\n\t\tif(domNode) {\n\t\t\treturn domNode;\n\t\t}\n\t}\n\t// Go back and look for later siblings of our parent if it has the same parent dom node\n\tvar grandParent = parent.parentWidget;\n\tif(grandParent &amp;&amp; parent.parentDomNode === this.parentDomNode) {\n\t\tindex = grandParent.children.indexOf(parent);\n\t\treturn parent.findNextSiblingDomNode(index);\n\t}\n\treturn null;\n};\n\n/*\nFind the first DOM node generated by a widget or its children\n*/\nWidget.prototype.findFirstDomNode = function() {\n\t// Return the first dom node of this widget, if we've got one\n\tif(this.domNodes.length &gt; 0) {\n\t\treturn this.domNodes[0];\n\t}\n\t// Otherwise, recursively call our children\n\tfor(var t=0; t&lt;this.children.length; t++) {\n\t\tvar domNode = this.children[t].findFirstDomNode();\n\t\tif(domNode) {\n\t\t\treturn domNode;\n\t\t}\n\t}\n\treturn null;\n};\n\n/*\nRemove any DOM nodes created by this widget or its children\n*/\nWidget.prototype.removeChildDomNodes = function() {\n\t// If this widget has directly created DOM nodes, delete them and exit. This assumes that any child widgets are contained within the created DOM nodes, which would normally be the case\n\tif(this.domNodes.length &gt; 0) {\n\t\t$tw.utils.each(this.domNodes,function(domNode) {\n\t\t\tdomNode.parentNode.removeChild(domNode);\n\t\t});\n\t\tthis.domNodes = [];\n\t} else {\n\t\t// Otherwise, ask the child widgets to delete their DOM nodes\n\t\t$tw.utils.each(this.children,function(childWidget) {\n\t\t\tchildWidget.removeChildDomNodes();\n\t\t});\n\t}\n};\n\nexports.widget = Widget;\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/widgets/widget.js\ntype: application/javascript\nmodule-type: widget\n\nWidget base class\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\n/*\nCreate a widget object for a parse tree node\n\tparseTreeNode: reference to the parse tree node to be rendered\n\toptions: see below\nOptions include:\n\twiki: mandatory reference to wiki associated with this render tree\n\tparentWidget: optional reference to a parent renderer node for the context chain\n\tdocument: optional document object to use instead of global document\n*/\nvar Widget = function(parseTreeNode,options) {\n\tif(arguments.length &gt; 0) {\n\t\tthis.initialise(parseTreeNode,options);\n\t}\n};\n\n/*\nInitialise widget properties. These steps are pulled out of the constructor so that we can reuse them in subclasses\n*/\nWidget.prototype.initialise = function(parseTreeNode,options) {\n\toptions = options || {};\n\t// Save widget info\n\tthis.parseTreeNode = parseTreeNode;\n\tthis.wiki = options.wiki;\n\tthis.parentWidget = options.parentWidget;\n\tthis.variablesConstructor = function() {};\n\tthis.variablesConstructor.prototype = this.parentWidget ? this.parentWidget.variables : {};\n\tthis.variables = new this.variablesConstructor();\n\tthis.document = options.document;\n\tthis.attributes = {};\n\tthis.children = [];\n\tthis.domNodes = [];\n\tthis.eventListeners = {};\n\t// Hashmap of the widget classes\n\tif(!this.widgetClasses) {\n\t\tWidget.prototype.widgetClasses = $tw.modules.applyMethods(\&quot;widget\&quot;);\n\t}\n};\n\n/*\nRender this widget into the DOM\n*/\nWidget.prototype.render = function(parent,nextSibling) {\n\tthis.parentDomNode = parent;\n\tthis.execute();\n\tthis.renderChildren(parent,nextSibling);\n};\n\n/*\nCompute the internal state of the widget\n*/\nWidget.prototype.execute = function() {\n\tthis.makeChildWidgets();\n};\n\n/*\nSet the value of a context variable\nname: name of the variable\nvalue: value of the variable\nparams: array of {name:, default:} for each parameter\n*/\nWidget.prototype.setVariable = function(name,value,params) {\n\tthis.variables[name] = {value: value, params: params};\n};\n\n/*\nGet the prevailing value of a context variable\nname: name of variable\noptions: see below\nOptions include\nparams: array of {name:, value:} for each parameter\ndefaultValue: default value if the variable is not defined\n*/\nWidget.prototype.getVariable = function(name,options) {\n\toptions = options || {};\n\tvar actualParams = options.params || [],\n\t\tparentWidget = this.parentWidget;\n\t// Check for the variable defined in the parent widget (or an ancestor in the prototype chain)\n\tif(parentWidget &amp;&amp; name in parentWidget.variables) {\n\t\tvar variable = parentWidget.variables[name],\n\t\t\tvalue = variable.value;\n\t\t// Substitute any parameters specified in the definition\n\t\tvalue = this.substituteVariableParameters(value,variable.params,actualParams);\n\t\tvalue = this.substituteVariableReferences(value);\n\t\treturn value;\n\t}\n\t// If the variable doesn't exist in the parent widget then look for a macro module\n\treturn this.evaluateMacroModule(name,actualParams,options.defaultValue);\n};\n\nWidget.prototype.substituteVariableParameters = function(text,formalParams,actualParams) {\n\tif(formalParams) {\n\t\tvar nextAnonParameter = 0, // Next candidate anonymous parameter in macro call\n\t\t\tparamInfo, paramValue;\n\t\t// Step through each of the parameters in the macro definition\n\t\tfor(var p=0; p&lt;formalParams.length; p++) {\n\t\t\t// Check if we've got a macro call parameter with the same name\n\t\t\tparamInfo = formalParams[p];\n\t\t\tparamValue = undefined;\n\t\t\tfor(var m=0; m&lt;actualParams.length; m++) {\n\t\t\t\tif(actualParams[m].name === paramInfo.name) {\n\t\t\t\t\tparamValue = actualParams[m].value;\n\t\t\t\t}\n\t\t\t}\n\t\t\t// If not, use the next available anonymous macro call parameter\n\t\t\twhile(nextAnonParameter &lt; actualParams.length &amp;&amp; actualParams[nextAnonParameter].name) {\n\t\t\t\tnextAnonParameter++;\n\t\t\t}\n\t\t\tif(paramValue === undefined &amp;&amp; nextAnonParameter &lt; actualParams.length) {\n\t\t\t\tparamValue = actualParams[nextAnonParameter++].value;\n\t\t\t}\n\t\t\t// If we've still not got a value, use the default, if any\n\t\t\tparamValue = paramValue || paramInfo[\&quot;default\&quot;] || \&quot;\&quot;;\n\t\t\t// Replace any instances of this parameter\n\t\t\ttext = text.replace(new RegExp(\&quot;\\\\$\&quot; + $tw.utils.escapeRegExp(paramInfo.name) + \&quot;\\\\$\&quot;,\&quot;mg\&quot;),paramValue);\n\t\t}\n\t}\n\treturn text;\n};\n\nWidget.prototype.substituteVariableReferences = function(text) {\n\tvar self = this;\n\treturn (text || \&quot;\&quot;).replace(/\\$\\(([^\\)\\$]+)\\)\\$/g,function(match,p1,offset,string) {\n\t\treturn self.getVariable(p1,{defaultValue: \&quot;\&quot;});\n\t});\n};\n\nWidget.prototype.evaluateMacroModule = function(name,actualParams,defaultValue) {\n\tif($tw.utils.hop($tw.macros,name)) {\n\t\tvar macro = $tw.macros[name],\n\t\t\targs = [];\n\t\tif(macro.params.length &gt; 0) {\n\t\t\tvar nextAnonParameter = 0, // Next candidate anonymous parameter in macro call\n\t\t\t\tparamInfo, paramValue;\n\t\t\t// Step through each of the parameters in the macro definition\n\t\t\tfor(var p=0; p&lt;macro.params.length; p++) {\n\t\t\t\t// Check if we've got a macro call parameter with the same name\n\t\t\t\tparamInfo = macro.params[p];\n\t\t\t\tparamValue = undefined;\n\t\t\t\tfor(var m=0; m&lt;actualParams.length; m++) {\n\t\t\t\t\tif(actualParams[m].name === paramInfo.name) {\n\t\t\t\t\t\tparamValue = actualParams[m].value;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\t// If not, use the next available anonymous macro call parameter\n\t\t\t\twhile(nextAnonParameter &lt; actualParams.length &amp;&amp; actualParams[nextAnonParameter].name) {\n\t\t\t\t\tnextAnonParameter++;\n\t\t\t\t}\n\t\t\t\tif(paramValue === undefined &amp;&amp; nextAnonParameter &lt; actualParams.length) {\n\t\t\t\t\tparamValue = actualParams[nextAnonParameter++].value;\n\t\t\t\t}\n\t\t\t\t// If we've still not got a value, use the default, if any\n\t\t\t\tparamValue = paramValue || paramInfo[\&quot;default\&quot;] || \&quot;\&quot;;\n\t\t\t\t// Save the parameter\n\t\t\t\targs.push(paramValue);\n\t\t\t}\n\t\t}\n\t\telse for(var i=0; i&lt;actualParams.length; ++i) {\n\t\t\targs.push(actualParams[i].value);\n\t\t}\n\t\treturn macro.run.apply(this,args);\n\t} else {\n\t\treturn defaultValue;\n\t}\n};\n\n/*\nCheck whether a given context variable value exists in the parent chain\n*/\nWidget.prototype.hasVariable = function(name,value) {\n\tvar node = this;\n\twhile(node) {\n\t\tif($tw.utils.hop(node.variables,name) &amp;&amp; node.variables[name].value === value) {\n\t\t\treturn true;\n\t\t}\n\t\tnode = node.parentWidget;\n\t}\n\treturn false;\n};\n\n/*\nConstruct a qualifying string based on a hash of concatenating the values of a given variable in the parent chain\n*/\nWidget.prototype.getStateQualifier = function(name) {\n\tname = name || \&quot;transclusion\&quot;;\n\tvar output = [],\n\t\tnode = this;\n\twhile(node &amp;&amp; node.parentWidget) {\n\t\tif($tw.utils.hop(node.parentWidget.variables,name)) {\n\t\t\toutput.push(node.getVariable(name));\n\t\t}\n\t\tnode = node.parentWidget;\n\t}\n\treturn $tw.utils.hashString(output.join(\&quot;\&quot;));\n};\n\n/*\nCompute the current values of the attributes of the widget. Returns a hashmap of the names of the attributes that have changed\n*/\nWidget.prototype.computeAttributes = function() {\n\tvar changedAttributes = {},\n\t\tself = this,\n\t\tvalue;\n\t$tw.utils.each(this.parseTreeNode.attributes,function(attribute,name) {\n\t\tif(attribute.type === \&quot;indirect\&quot;) {\n\t\t\tvalue = self.wiki.getTextReference(attribute.textReference,\&quot;\&quot;,self.getVariable(\&quot;currentTiddler\&quot;));\n\t\t} else if(attribute.type === \&quot;macro\&quot;) {\n\t\t\tvalue = self.getVariable(attribute.value.name,{params: attribute.value.params});\n\t\t} else { // String attribute\n\t\t\tvalue = attribute.value;\n\t\t}\n\t\t// Check whether the attribute has changed\n\t\tif(self.attributes[name] !== value) {\n\t\t\tself.attributes[name] = value;\n\t\t\tchangedAttributes[name] = true;\n\t\t}\n\t});\n\treturn changedAttributes;\n};\n\n/*\nCheck for the presence of an attribute\n*/\nWidget.prototype.hasAttribute = function(name) {\n\treturn $tw.utils.hop(this.attributes,name);\n};\n\n/*\nGet the value of an attribute\n*/\nWidget.prototype.getAttribute = function(name,defaultText) {\n\tif($tw.utils.hop(this.attributes,name)) {\n\t\treturn this.attributes[name];\n\t} else {\n\t\treturn defaultText;\n\t}\n};\n\n/*\nAssign the computed attributes of the widget to a domNode\noptions include:\nexcludeEventAttributes: ignores attributes whose name begins with \&quot;on\&quot;\n*/\nWidget.prototype.assignAttributes = function(domNode,options) {\n\toptions = options || {};\n\tvar self = this;\n\t$tw.utils.each(this.attributes,function(v,a) {\n\t\t// Check exclusions\n\t\tif(options.excludeEventAttributes &amp;&amp; a.substr(0,2) === \&quot;on\&quot;) {\n\t\t\tv = undefined;\n\t\t}\n\t\tif(v !== undefined) {\n\t\t\tvar b = a.split(\&quot;:\&quot;);\n\t\t\t// Setting certain attributes can cause a DOM error (eg xmlns on the svg element)\n\t\t\ttry {\n\t\t\t\tif (b.length == 2 &amp;&amp; b[0] == \&quot;xlink\&quot;){\n\t\t\t\t\tdomNode.setAttributeNS(\&quot;http://www.w3.org/1999/xlink\&quot;,b[1],v);\n\t\t\t\t} else {\n\t\t\t\t\tdomNode.setAttributeNS(null,a,v);\n\t\t\t\t}\n\t\t\t} catch(e) {\n\t\t\t}\n\t\t}\n\t});\n};\n\n/*\nMake child widgets correspondng to specified parseTreeNodes\n*/\nWidget.prototype.makeChildWidgets = function(parseTreeNodes) {\n\tthis.children = [];\n\tvar self = this;\n\t$tw.utils.each(parseTreeNodes || (this.parseTreeNode &amp;&amp; this.parseTreeNode.children),function(childNode) {\n\t\tself.children.push(self.makeChildWidget(childNode));\n\t});\n};\n\n/*\nConstruct the widget object for a parse tree node\n*/\nWidget.prototype.makeChildWidget = function(parseTreeNode) {\n\tvar WidgetClass = this.widgetClasses[parseTreeNode.type];\n\tif(!WidgetClass) {\n\t\tWidgetClass = this.widgetClasses.text;\n\t\tparseTreeNode = {type: \&quot;text\&quot;, text: \&quot;Undefined widget '\&quot; + parseTreeNode.type + \&quot;'\&quot;};\n\t}\n\treturn new WidgetClass(parseTreeNode,{\n\t\twiki: this.wiki,\n\t\tvariables: {},\n\t\tparentWidget: this,\n\t\tdocument: this.document\n\t});\n};\n\n/*\nGet the next sibling of this widget\n*/\nWidget.prototype.nextSibling = function() {\n\tif(this.parentWidget) {\n\t\tvar index = this.parentWidget.children.indexOf(this);\n\t\tif(index !== -1 &amp;&amp; index &lt; this.parentWidget.children.length-1) {\n\t\t\treturn this.parentWidget.children[index+1];\n\t\t}\n\t}\n\treturn null;\n};\n\n/*\nGet the previous sibling of this widget\n*/\nWidget.prototype.previousSibling = function() {\n\tif(this.parentWidget) {\n\t\tvar index = this.parentWidget.children.indexOf(this);\n\t\tif(index !== -1 &amp;&amp; index &gt; 0) {\n\t\t\treturn this.parentWidget.children[index-1];\n\t\t}\n\t}\n\treturn null;\n};\n\n/*\nRender the children of this widget into the DOM\n*/\nWidget.prototype.renderChildren = function(parent,nextSibling) {\n\t$tw.utils.each(this.children,function(childWidget) {\n\t\tchildWidget.render(parent,nextSibling);\n\t});\n};\n\n/*\nAdd a list of event listeners from an array [{type:,handler:},...]\n*/\nWidget.prototype.addEventListeners = function(listeners) {\n\tvar self = this;\n\t$tw.utils.each(listeners,function(listenerInfo) {\n\t\tself.addEventListener(listenerInfo.type,listenerInfo.handler);\n\t});\n};\n\n/*\nAdd an event listener\n*/\nWidget.prototype.addEventListener = function(type,handler) {\n\tvar self = this;\n\tif(typeof handler === \&quot;string\&quot;) { // The handler is a method name on this widget\n\t\tthis.eventListeners[type] = function(event) {\n\t\t\treturn self[handler].call(self,event);\n\t\t};\n\t} else { // The handler is a function\n\t\tthis.eventListeners[type] = function(event) {\n\t\t\treturn handler.call(self,event);\n\t\t};\n\t}\n};\n\n/*\nDispatch an event to a widget. If the widget doesn't handle the event then it is also dispatched to the parent widget\n*/\nWidget.prototype.dispatchEvent = function(event) {\n\t// Dispatch the event if this widget handles it\n\tvar listener = this.eventListeners[event.type];\n\tif(listener) {\n\t\t// Don't propagate the event if the listener returned false\n\t\tif(!listener(event)) {\n\t\t\treturn false;\n\t\t}\n\t}\n\t// Dispatch the event to the parent widget\n\tif(this.parentWidget) {\n\t\treturn this.parentWidget.dispatchEvent(event);\n\t}\n\treturn true;\n};\n\n/*\nSelectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering\n*/\nWidget.prototype.refresh = function(changedTiddlers) {\n\treturn this.refreshChildren(changedTiddlers);\n};\n\n/*\nRebuild a previously rendered widget\n*/\nWidget.prototype.refreshSelf = function() {\n\tvar nextSibling = this.findNextSiblingDomNode();\n\tthis.removeChildDomNodes();\n\tthis.render(this.parentDomNode,nextSibling);\n};\n\n/*\nRefresh all the children of a widget\n*/\nWidget.prototype.refreshChildren = function(changedTiddlers) {\n\tvar self = this,\n\t\trefreshed = false;\n\t$tw.utils.each(this.children,function(childWidget) {\n\t\trefreshed = childWidget.refresh(changedTiddlers) || refreshed;\n\t});\n\treturn refreshed;\n};\n\n/*\nFind the next sibling in the DOM to this widget. This is done by scanning the widget tree through all next siblings and their descendents that share the same parent DOM node\n*/\nWidget.prototype.findNextSiblingDomNode = function(startIndex) {\n\t// Refer to this widget by its index within its parents children\n\tvar parent = this.parentWidget,\n\t\tindex = startIndex !== undefined ? startIndex : parent.children.indexOf(this);\nif(index === -1) {\n\tthrow \&quot;node not found in parents children\&quot;;\n}\n\t// Look for a DOM node in the later siblings\n\twhile(++index &lt; parent.children.length) {\n\t\tvar domNode = parent.children[index].findFirstDomNode();\n\t\tif(domNode) {\n\t\t\treturn domNode;\n\t\t}\n\t}\n\t// Go back and look for later siblings of our parent if it has the same parent dom node\n\tvar grandParent = parent.parentWidget;\n\tif(grandParent &amp;&amp; parent.parentDomNode === this.parentDomNode) {\n\t\tindex = grandParent.children.indexOf(parent);\n\t\treturn parent.findNextSiblingDomNode(index);\n\t}\n\treturn null;\n};\n\n/*\nFind the first DOM node generated by a widget or its children\n*/\nWidget.prototype.findFirstDomNode = function() {\n\t// Return the first dom node of this widget, if we've got one\n\tif(this.domNodes.length &gt; 0) {\n\t\treturn this.domNodes[0];\n\t}\n\t// Otherwise, recursively call our children\n\tfor(var t=0; t&lt;this.children.length; t++) {\n\t\tvar domNode = this.children[t].findFirstDomNode();\n\t\tif(domNode) {\n\t\t\treturn domNode;\n\t\t}\n\t}\n\treturn null;\n};\n\n/*\nRemove any DOM nodes created by this widget or its children\n*/\nWidget.prototype.removeChildDomNodes = function() {\n\t// If this widget has directly created DOM nodes, delete them and exit. This assumes that any child widgets are contained within the created DOM nodes, which would normally be the case\n\tif(this.domNodes.length &gt; 0) {\n\t\t$tw.utils.each(this.domNodes,function(domNode) {\n\t\t\tdomNode.parentNode.removeChild(domNode);\n\t\t});\n\t\tthis.domNodes = [];\n\t} else {\n\t\t// Otherwise, ask the child widgets to delete their DOM nodes\n\t\t$tw.utils.each(this.children,function(childWidget) {\n\t\t\tchildWidget.removeChildDomNodes();\n\t\t});\n\t}\n};\n\nexports.widget = Widget;\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/widgets/widget.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;widget&quot;
@@ -3887,7 +3932,7 @@ Error message and password prompt
             &quot;title&quot;: &quot;$:/core/ui/ControlPanel/Saving&quot;,
             &quot;tags&quot;: &quot;$:/tags/ControlPanel&quot;,
             &quot;caption&quot;: &quot;{{$:/language/ControlPanel/Saving/Caption}}&quot;,
-            &quot;text&quot;: &quot;\\define lingo-base() $:/language/ControlPanel/Saving/\n\\define backupURL()\nhttp://$(userName)$.tiddlyspot.com/backup/\n\\end\n\\define backupLink()\n&lt;$reveal type=\&quot;nomatch\&quot; state=\&quot;$:/UploadName\&quot; text=\&quot;\&quot;&gt;\n&lt;$set name=\&quot;userName\&quot; value={{$:/UploadName}}&gt;\n&lt;a href=&lt;&lt;backupURL&gt;&gt;&gt;&lt;$macrocall $name=\&quot;backupURL\&quot; $type=\&quot;text/plain\&quot; $output=\&quot;text/plain\&quot;/&gt;&lt;/a&gt;\n&lt;/$set&gt;\n&lt;/$reveal&gt;\n\\end\n! &lt;&lt;lingo TiddlySpot/Heading&gt;&gt;\n\n|&lt;&lt;lingo TiddlySpot/UserName&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadName\&quot; default=\&quot;\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/Password&gt;&gt; |&lt;$password name=\&quot;upload\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/Backups&gt;&gt; |&lt;&lt;backupLink&gt;&gt; |\n\n!! &lt;&lt;lingo TiddlySpot/Advanced/Heading&gt;&gt;\n\n|&lt;&lt;lingo TiddlySpot/ServerURL&gt;&gt;  |&lt;$edit-text tiddler=\&quot;$:/UploadURL\&quot; default=\&quot;\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/Filename&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadFilename\&quot; default=\&quot;index.html\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/UploadDir&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadDir\&quot; default=\&quot;.\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/BackupDir&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadBackupDir\&quot; default=\&quot;.\&quot; tag=\&quot;input\&quot;/&gt; |\n\n&lt;&lt;lingo TiddlySpot/Hint&gt;&gt;\n\n&quot;
+            &quot;text&quot;: &quot;\\define lingo-base() $:/language/ControlPanel/Saving/\n\\define backupURL()\nhttp://$(userName)$.tiddlyspot.com/backup/\n\\end\n\\define backupLink()\n&lt;$reveal type=\&quot;nomatch\&quot; state=\&quot;$:/UploadName\&quot; text=\&quot;\&quot;&gt;\n&lt;$set name=\&quot;userName\&quot; value={{$:/UploadName}}&gt;\n&lt;a href=&lt;&lt;backupURL&gt;&gt;&gt;&lt;$macrocall $name=\&quot;backupURL\&quot; $type=\&quot;text/plain\&quot; $output=\&quot;text/plain\&quot;/&gt;&lt;/a&gt;\n&lt;/$set&gt;\n&lt;/$reveal&gt;\n\\end\n! &lt;&lt;lingo TiddlySpot/Heading&gt;&gt;\n\n&lt;&lt;lingo TiddlySpot/Description&gt;&gt;\n\n|&lt;&lt;lingo TiddlySpot/UserName&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadName\&quot; default=\&quot;\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/Password&gt;&gt; |&lt;$password name=\&quot;upload\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/Backups&gt;&gt; |&lt;&lt;backupLink&gt;&gt; |\n\n''&lt;&lt;lingo TiddlySpot/Advanced/Heading&gt;&gt;''\n\n|&lt;&lt;lingo TiddlySpot/ServerURL&gt;&gt;  |&lt;$edit-text tiddler=\&quot;$:/UploadURL\&quot; default=\&quot;\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/Filename&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadFilename\&quot; default=\&quot;index.html\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/UploadDir&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadDir\&quot; default=\&quot;.\&quot; tag=\&quot;input\&quot;/&gt; |\n|&lt;&lt;lingo TiddlySpot/BackupDir&gt;&gt; |&lt;$edit-text tiddler=\&quot;$:/UploadBackupDir\&quot; default=\&quot;.\&quot; tag=\&quot;input\&quot;/&gt; |\n\n&lt;&lt;lingo TiddlySpot/Hint&gt;&gt;\n\n&quot;
         },
         &quot;$:/core/ui/ControlPanel/Settings/AutoSave&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/ControlPanel/Settings/AutoSave&quot;,
@@ -4103,7 +4148,7 @@ Error message and password prompt
         },
         &quot;$:/core/ui/ImportListing&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/ImportListing&quot;,
-            &quot;text&quot;: &quot;\\define lingo-base() $:/language/Import/\n\\define messageField()\nmessage-$(payloadTiddler)$\n\\end\n\\define selectionField()\nselection-$(payloadTiddler)$\n\\end\n\\define previewPopupState()\n!!popup-$(payloadTiddler)$\n\\end\n&lt;table&gt;\n&lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Select/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Title/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Status/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;/tr&gt;\n&lt;$list filter=\&quot;[all[current]plugintiddlers[]sort[title]]\&quot; variable=\&quot;payloadTiddler\&quot;&gt;\n&lt;tr&gt;\n&lt;td&gt;\n&lt;$checkbox field=&lt;&lt;selectionField&gt;&gt; checked=\&quot;checked\&quot; unchecked=\&quot;unchecked\&quot; default=\&quot;checked\&quot;/&gt;\n&lt;/td&gt;\n&lt;td&gt;\n&lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;previewPopupState&gt;&gt; text=\&quot;yes\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-btn-dropdown\&quot; set=&lt;&lt;previewPopupState&gt;&gt; setTo=\&quot;yes\&quot;&gt;\n{{$:/core/images/right-arrow}}&amp;nbsp;&lt;$text text=&lt;&lt;payloadTiddler&gt;&gt;/&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;previewPopupState&gt;&gt; text=\&quot;yes\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-btn-dropdown\&quot; set=&lt;&lt;previewPopupState&gt;&gt; setTo=\&quot;no\&quot;&gt;\n{{$:/core/images/down-arrow}}&amp;nbsp;&lt;$text text=&lt;&lt;payloadTiddler&gt;&gt;/&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;/td&gt;\n&lt;td&gt;\n&lt;$view field=&lt;&lt;messageField&gt;&gt;/&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td colspan=\&quot;3\&quot;&gt;\n&lt;$reveal type=\&quot;match\&quot; text=\&quot;yes\&quot; state=&lt;&lt;previewPopupState&gt;&gt;&gt;\n&lt;$transclude subtiddler=&lt;&lt;payloadTiddler&gt;&gt; mode=\&quot;block\&quot;/&gt;\n&lt;/$reveal&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/$list&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;\n&quot;
+            &quot;text&quot;: &quot;\\define lingo-base() $:/language/Import/\n\\define messageField()\nmessage-$(payloadTiddler)$\n\\end\n\\define selectionField()\nselection-$(payloadTiddler)$\n\\end\n\\define previewPopupState()\n$(currentTiddler)$!!popup-$(payloadTiddler)$\n\\end\n&lt;table&gt;\n&lt;tbody&gt;\n&lt;tr&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Select/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Title/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;th&gt;\n&lt;&lt;lingo Listing/Status/Caption&gt;&gt;\n&lt;/th&gt;\n&lt;/tr&gt;\n&lt;$list filter=\&quot;[all[current]plugintiddlers[]sort[title]]\&quot; variable=\&quot;payloadTiddler\&quot;&gt;\n&lt;tr&gt;\n&lt;td&gt;\n&lt;$checkbox field=&lt;&lt;selectionField&gt;&gt; checked=\&quot;checked\&quot; unchecked=\&quot;unchecked\&quot; default=\&quot;checked\&quot;/&gt;\n&lt;/td&gt;\n&lt;td&gt;\n&lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;previewPopupState&gt;&gt; text=\&quot;yes\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-btn-dropdown\&quot; set=&lt;&lt;previewPopupState&gt;&gt; setTo=\&quot;yes\&quot;&gt;\n{{$:/core/images/right-arrow}}&amp;nbsp;&lt;$text text=&lt;&lt;payloadTiddler&gt;&gt;/&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;previewPopupState&gt;&gt; text=\&quot;yes\&quot;&gt;\n&lt;$button class=\&quot;tc-btn-invisible tc-btn-dropdown\&quot; set=&lt;&lt;previewPopupState&gt;&gt; setTo=\&quot;no\&quot;&gt;\n{{$:/core/images/down-arrow}}&amp;nbsp;&lt;$text text=&lt;&lt;payloadTiddler&gt;&gt;/&gt;\n&lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;/td&gt;\n&lt;td&gt;\n&lt;$view field=&lt;&lt;messageField&gt;&gt;/&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;tr&gt;\n&lt;td colspan=\&quot;3\&quot;&gt;\n&lt;$reveal type=\&quot;match\&quot; text=\&quot;yes\&quot; state=&lt;&lt;previewPopupState&gt;&gt;&gt;\n&lt;$transclude subtiddler=&lt;&lt;payloadTiddler&gt;&gt; mode=\&quot;block\&quot;/&gt;\n&lt;/$reveal&gt;\n&lt;/td&gt;\n&lt;/tr&gt;\n&lt;/$list&gt;\n&lt;/tbody&gt;\n&lt;/table&gt;\n&quot;
         },
         &quot;$:/core/ui/ListItemTemplate&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/ListItemTemplate&quot;,
@@ -4866,12 +4911,17 @@ Error message and password prompt
 </div>
 <div created="20140909074606881" modified="20140909075251840" title="$:/editions/de-AT-DE/download-empty" type="text/vnd.tiddlywiki">
 <pre>\define saveTiddlerFilter()
-[[$:/core]] [[$:/isEncrypted]] [[$:/themes/tiddlywiki/snowwhite]] [[$:/themes/tiddlywiki/vanilla]] [[$:/languages/de-DE]] [[$:/languages/de-AT]] [[$:/language]]  -[[$:/boot/boot.css]] -[type[application/javascript]library[yes]] -[[$:/boot/boot.js]] -[[$:/boot/bootprefix.js]] +[sort[title]]
+[[$:/core]] [[$:/isEncrypted]] [[$:/themes/tiddlywiki/snowwhite]] [[$:/themes/tiddlywiki/vanilla]] [[$:/languages/de-DE]] [[$:/languages/de-AT]] [[$:/language]] -[[$:/boot/boot.css]] -[type[application/javascript]library[yes]] -[[$:/boot/boot.js]] -[[$:/boot/bootprefix.js]] +[sort[title]]
 \end
 \define savingEmpty()
 yes
 \end
 {{$:/core/templates/tiddlywiki5.html}}</pre>
+</div>
+<div caption="Banner" created="20140918070509363" creator="pmario" description="Banner für de-AT-DE" modified="20140918072656549" modifier="pmario" tags="$:/tags/PageControls" title="$:/editions/de-AT-DE/github-fork-ribbon" type="text/vnd.tiddlywiki">
+<pre>&lt;div class=&quot;github-fork-ribbon-wrapper right&quot; style&gt;&lt;div class=&quot;github-fork-ribbon&quot; style=&quot;background-color:#DF4848;&quot;&gt;&lt;$link to=&quot;TiddlyWiki Speichern&quot;&gt;&lt;&lt;version&gt;&gt;&lt;/$link&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;!-- TODO: Change link to &quot;Releases&quot; before full release --&gt;</pre>
 </div>
 <div created="20140909074234434" modified="20140909075544956" title="$:/editions/de-AT-DE/snippets/download-empty-button" type="text/vnd.tiddlywiki">
 <pre>&lt;$button message=&quot;tm-download-file&quot; param=&quot;$:/editions/de-AT-DE/download-empty&quot; class=&quot;tc-btn-big-green&quot;&gt;Leeres Dokument Speichern {{$:/core/images/save-button}}&lt;/$button&gt;</pre>
@@ -4912,10 +4962,10 @@ $src$
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div created="20140908134120325" modified="20140912115626745" modifier="pmario" title="$:/language" type="text/vnd.tiddlywiki">
+<div created="20140908134120325" modified="20140918073707524" modifier="pmario" title="$:/language" type="text/vnd.tiddlywiki">
 <pre>$:/languages/de-DE</pre>
 </div>
-<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="$:/languages/de-DE" description="Deutsch (Österreich)" name="de-AT" plugin-priority="110" plugin-type="language" title="$:/languages/de-AT" type="application/json" version="5.0.18-beta">
+<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="$:/languages/de-DE" description="Deutsch (Österreich)" name="de-AT" plugin-priority="110" plugin-type="language" title="$:/languages/de-AT" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/core/de-AT/readme&quot;: {
@@ -4930,7 +4980,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="" description="Deutsch (Deutschland)" name="de-DE" plugin-priority="100" plugin-type="language" title="$:/languages/de-DE" type="application/json" version="5.0.18-beta">
+<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="" description="Deutsch (Deutschland)" name="de-DE" plugin-priority="100" plugin-type="language" title="$:/languages/de-DE" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/language/Buttons/AdvancedSearch/Caption&quot;: {
@@ -5207,11 +5257,11 @@ $src$
         },
         &quot;$:/language/ControlPanel/Basics/OverriddenShadowTiddlers/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/OverriddenShadowTiddlers/Prompt&quot;,
-            &quot;text&quot;: &quot;Anzahl überschriebener ~Schatten-Tiddler:&quot;
+            &quot;text&quot;: &quot;Anzahl überschriebener Schatten-Tiddler:&quot;
         },
         &quot;$:/language/ControlPanel/Basics/ShadowTiddlers/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/ShadowTiddlers/Prompt&quot;,
-            &quot;text&quot;: &quot;Anzahl ~Schatten-Tiddler:&quot;
+            &quot;text&quot;: &quot;Anzahl Schatten-Tiddler:&quot;
         },
         &quot;$:/language/ControlPanel/Basics/Subtitle/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/Subtitle/Prompt&quot;,
@@ -5219,7 +5269,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/Basics/SystemTiddlers/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/SystemTiddlers/Prompt&quot;,
-            &quot;text&quot;: &quot;Anzahl ~System-Tiddler:&quot;
+            &quot;text&quot;: &quot;Anzahl System-Tiddler:&quot;
         },
         &quot;$:/language/ControlPanel/Basics/Tags/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/Tags/Prompt&quot;,
@@ -5271,7 +5321,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/LoadedModules/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/LoadedModules/Hint&quot;,
-            &quot;text&quot;: &quot;Hier weden die geladenen Module und ihre Quelltext Komponenten angezeigt. Mit \&quot;italic\&quot; hervorgehobene Tiddler wurden während des ~Boot-Prozesses erstellt. Diese Tiddler haben keinen Quelltext.&quot;
+            &quot;text&quot;: &quot;Hier weden die geladenen Module und ihre Quelltext Komponenten angezeigt. Mit \&quot;italic\&quot; hervorgehobene Tiddler wurden während des Boot-Prozesses erstellt. Diese Tiddler haben keinen Quelltext.&quot;
         },
         &quot;$:/language/ControlPanel/Palette/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Palette/Caption&quot;,
@@ -5283,11 +5333,11 @@ $src$
         },
         &quot;$:/language/ControlPanel/Palette/Editor/Clone/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Palette/Editor/Clone/Prompt&quot;,
-            &quot;text&quot;: &quot;Es wird empfohlen, dass sie diese ~Schatten-Palette klonen, bevor sie sie bearbeiten. Der Name der Palette wird im Tiddler Feld \&quot;description\&quot; eingestellt.&quot;
+            &quot;text&quot;: &quot;Es wird empfohlen, dass sie diese Schatten-Palette klonen, bevor sie sie bearbeiten. Der Name der Palette wird im Tiddler Feld \&quot;description\&quot; eingestellt.&quot;
         },
         &quot;$:/language/ControlPanel/Palette/Editor/Prompt/Modified&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Palette/Editor/Prompt/Modified&quot;,
-            &quot;text&quot;: &quot;Diese ~Schatten-Palette wurde bearbeitet.&quot;
+            &quot;text&quot;: &quot;Diese Schatten-Palette wurde bearbeitet.&quot;
         },
         &quot;$:/language/ControlPanel/Palette/Editor/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Palette/Editor/Prompt&quot;,
@@ -5495,7 +5545,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/TiddlerFields/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/TiddlerFields/Hint&quot;,
-            &quot;text&quot;: &quot;Hier finden sie alle [[Felder|TiddlerFields]], die in diesem Wiki verwendet werden. Inklusive der Felder aus System-, exclusive ~Schatten-Tiddler. &quot;
+            &quot;text&quot;: &quot;Hier finden sie alle [[Felder|TiddlerFields]], die in diesem Wiki verwendet werden. Inklusive der Felder aus System-, exclusive Schatten-Tiddler. &quot;
         },
         &quot;$:/language/ControlPanel/Toolbars/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Toolbars/Caption&quot;,
@@ -6091,7 +6141,7 @@ $src$
         },
         &quot;$:/language/Docs/Fields/caption&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/Fields/caption&quot;,
-            &quot;text&quot;: &quot;Der Text, der auf \&quot;~Tab-Buttons\&quot; angezeigt wird.&quot;
+            &quot;text&quot;: &quot;Der Text, der auf \&quot;Tab-Buttons\&quot; angezeigt wird.&quot;
         },
         &quot;$:/language/Docs/Fields/color&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/Fields/color&quot;,
@@ -6215,7 +6265,7 @@ $src$
         },
         &quot;$:/language/Filters/AllTiddlers&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/AllTiddlers&quot;,
-            &quot;text&quot;: &quot;Alle Tiddler außer ~System-Tiddler&quot;
+            &quot;text&quot;: &quot;Alle Tiddler außer System-Tiddler&quot;
         },
         &quot;$:/language/Filters/RecentTiddlers&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/RecentTiddlers&quot;,
@@ -6223,7 +6273,7 @@ $src$
         },
         &quot;$:/language/Filters/AllTags&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/AllTags&quot;,
-            &quot;text&quot;: &quot;Alle Tags außer ~System-Tags&quot;
+            &quot;text&quot;: &quot;Alle Tags außer System-Tags&quot;
         },
         &quot;$:/language/Filters/Missing&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/Missing&quot;,
@@ -6239,23 +6289,23 @@ $src$
         },
         &quot;$:/language/Filters/SystemTiddlers&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/SystemTiddlers&quot;,
-            &quot;text&quot;: &quot;~System-Tiddler&quot;
+            &quot;text&quot;: &quot;System-Tiddler&quot;
         },
         &quot;$:/language/Filters/ShadowTiddlers&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/ShadowTiddlers&quot;,
-            &quot;text&quot;: &quot;~Schatten-Tiddler&quot;
+            &quot;text&quot;: &quot;Schatten-Tiddler&quot;
         },
         &quot;$:/language/Filters/OverriddenShadowTiddlers&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/OverriddenShadowTiddlers&quot;,
-            &quot;text&quot;: &quot;Überschriebene ~Schatten-Tiddler&quot;
+            &quot;text&quot;: &quot;Überschriebene Schatten-Tiddler&quot;
         },
         &quot;$:/language/Filters/SystemTags&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/SystemTags&quot;,
-            &quot;text&quot;: &quot;~System-Tags&quot;
+            &quot;text&quot;: &quot;System-Tags&quot;
         },
         &quot;GettingStarted&quot;: {
             &quot;title&quot;: &quot;GettingStarted&quot;,
-            &quot;text&quot;: &quot;Willkommen bei TiddlyWiki, einem persönlichen nicht-linearen Web-Notizbuch.\n\nVor dem Start, vergewissern sie sich, dass sie dieses Wiki auch wirklich speichern können. Weitere Informationen können sie unter: http://tiddlywiki.com/ finden. &lt;!-- TODO Link zur deutschen Edition --&gt;\n\nErste Schritte:\n\n* Erstellen sie einen neuen Tiddler mit dem \&quot;Plus-Button\&quot; in der rechten Navigationsleiste.\n* Einstellungen können im [[Control Panel|$:/ControlPanel]] vorgenommen werden. Siehe: \&quot;Zahnrad-Button\&quot; \n** Das Anzeigen dieses Tiddlers können sie verhindern, indem sie die \&quot;~DefaultTiddlers\&quot; im ''Basis-Tab'' verändern.\n* Speichern wird mit dem \&quot;Speichern-Button\&quot; in der ~Navi-Leiste ausgelöst. \n* Weitere Informationen, siehe: [[WikiText|http://tiddlywiki.com/static/WikiText.html]]\n&quot;
+            &quot;text&quot;: &quot;Willkommen bei TiddlyWiki, einem persönlichen nicht-linearen Web-Notizbuch.\n\nVor dem Start, vergewissern sie sich, dass sie dieses Wiki auch wirklich speichern können. Weitere Informationen finden sie für:\n\n* Österreich: http://tiddlywiki.com/languages/de-AT\n* Deutschland: http://tiddlywiki.com/languages/de-DE\n* Allgemein (englisch): http://tiddlywiki.com finden.\n\nErste Schritte:\n\n* Erstellen sie einen neuen Tiddler mit dem \&quot;Plus-Button\&quot; in der rechten Navigationsleiste.\n* Einstellungen können im [[Kontrollpanel|$:/ControlPanel]] vorgenommen werden. Siehe: \&quot;Zahnrad-Button\&quot; \n** Das Anzeigen dieses Tiddlers können sie verhindern, indem sie die \&quot;~DefaultTiddlers\&quot; im ''Basis-Tab'' verändern.\n* Speichern wird mit dem \&quot;Speichern-Button\&quot; in der Navigationsleiste ausgelöst. \n* [[Weitere Informationen zu WikiText|http://tiddlywiki.com/languages/de-AT/index.html#WikiText]]\n&quot;
         },
         &quot;$:/language/Help/build&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/build&quot;,
@@ -6671,7 +6721,7 @@ $src$
         },
         &quot;$:/language/TiddlerInfo/Advanced/PluginInfo/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Advanced/PluginInfo/Hint&quot;,
-            &quot;text&quot;: &quot;Dieses Plugin enthält folgende ~Schatten-Tiddler:&quot;
+            &quot;text&quot;: &quot;Dieses Plugin enthält folgende Schatten-Tiddler:&quot;
         },
         &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/Heading&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/Heading&quot;,
@@ -6679,11 +6729,11 @@ $src$
         },
         &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/NotShadow/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/NotShadow/Hint&quot;,
-            &quot;text&quot;: &quot;Der Tiddler: &lt;$link to=&lt;&lt;infoTiddler&gt;&gt;&gt;&lt;$text text=&lt;&lt;infoTiddler&gt;&gt;/&gt;&lt;/$link&gt; ist kein ~Schatten-Tiddler.&quot;
+            &quot;text&quot;: &quot;Der Tiddler: &lt;$link to=&lt;&lt;infoTiddler&gt;&gt;&gt;&lt;$text text=&lt;&lt;infoTiddler&gt;&gt;/&gt;&lt;/$link&gt; ist kein Schatten-Tiddler.&quot;
         },
         &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/Shadow/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/Shadow/Hint&quot;,
-            &quot;text&quot;: &quot;Der Tiddler: &lt;$link to=&lt;&lt;infoTiddler&gt;&gt;&gt;&lt;$text text=&lt;&lt;infoTiddler&gt;&gt;/&gt;&lt;/$link&gt; ist ein ~Schatten-Tiddler.&quot;
+            &quot;text&quot;: &quot;Der Tiddler: &lt;$link to=&lt;&lt;infoTiddler&gt;&gt;&gt;&lt;$text text=&lt;&lt;infoTiddler&gt;&gt;/&gt;&lt;/$link&gt; ist ein Schatten-Tiddler.&quot;
         },
         &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/Shadow/Source&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/Shadow/Source&quot;,
@@ -6691,7 +6741,7 @@ $src$
         },
         &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/OverriddenShadow/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Advanced/ShadowInfo/OverriddenShadow/Hint&quot;,
-            &quot;text&quot;: &quot;Der originale ~Schatten-Tiddler wurde durch diesen Tiddler überschrieben. Wenn sie diesen Tiddler löschen, wird der originale ~Schatten-Tiddler wieder aktiv. Vorher eventuell eine Sicherungskopie erstellen!&quot;
+            &quot;text&quot;: &quot;Der originale Schatten-Tiddler wurde durch diesen Tiddler überschrieben. Wenn sie diesen Tiddler löschen, wird der originale Schatten-Tiddler wieder aktiv. Vorher eventuell eine Sicherungskopie erstellen!&quot;
         },
         &quot;$:/language/TiddlerInfo/Fields/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Fields/Caption&quot;,
@@ -6819,7 +6869,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="Browser sniffing for TiddlyWiki" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/browser-sniff" type="application/json" version="5.0.18-beta">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="Browser sniffing for TiddlyWiki" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/browser-sniff" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tiddlywiki/browser-sniff/sniff.js&quot;: {
@@ -6841,7 +6891,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="Simon Whitaker, adapted for TiddlyWiki by JeremyRuston" dependents="" description="GitHub-style ribbon in pure CSS" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/github-fork-ribbon" type="application/json" version="5.0.18-beta">
+<div author="Simon Whitaker, adapted for TiddlyWiki by JeremyRuston" dependents="" description="GitHub-style ribbon in pure CSS" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/github-fork-ribbon" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tiddlywiki/github-fork-ribbon/readme&quot;: {
@@ -6855,6 +6905,13 @@ $src$
         }
     }
 }</pre>
+</div>
+<div title="$:/state/tab/sidebar--1835078512">
+<pre>InhaltsVerzeichnis</pre>
+</div>
+<div title="$:/StaticBanner">
+<pre>&lt;div class=&quot;tc-static-alert&quot;&gt;&lt;div class=&quot;tc-static-alert-inner&quot;&gt;Diese Seite ist Teil der &quot;reinen&quot; HTML Version von ~TiddlyWiki auf http://tiddlywiki.com/languages/de-DE&lt;/div&gt;&lt;/div&gt;
+</pre>
 </div>
 <div list="Willkommen!" title="$:/StoryList">
 <pre></pre>
@@ -6873,7 +6930,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.0.18-beta">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/centralised/styles.tid&quot;: {
@@ -6884,7 +6941,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.0.18-beta">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/readonly/styles.tid&quot;: {
@@ -6895,7 +6952,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.0.18-beta">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/snowwhite/base&quot;: {
@@ -6906,7 +6963,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.0.18-beta">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/starlight/arvo.woff&quot;: {
@@ -6933,7 +6990,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.0.18-beta">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.1.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/vanilla/themetweaks&quot;: {
@@ -7015,6 +7072,9 @@ Für Situationen, wo ein &quot;harter&quot; Zeilenumbruch benötigt wird sehen s
 </div>
 <div created="20140909112410178" modified="20140909112426943" tags="Lexikon" title="AndTidWiki" type="text/vnd.tiddlywiki">
 <pre>Siehe: [[Speichern mit Android]]</pre>
+</div>
+<div created="20140918095343387" creator="pmario" modified="20140918095343388" modifier="pmario" tags="InhaltsVerzeichnis" title="Bilder" type="text/vnd.tiddlywiki">
+<pre></pre>
 </div>
 <div caption="Bilder" created="20131205160221762" creator="pmario" modified="20140913185848258" modifier="pmario" tags="WikiText" title="Bilder in WikiText" type="text/vnd.tiddlywiki">
 <pre>!! Bild Formatierung
@@ -7119,7 +7179,10 @@ TODO some short videos, and upload my own Keyboard settings
 &quot;&gt;&gt;
 </pre>
 </div>
-<div created="20140908135232028" creator="pmario" modified="20140910063214798" modifier="pmario" tags="Einführung Intro" title="ErsteSchritte" type="text/vnd.tiddlywiki">
+<div created="20140918095353295" creator="pmario" modified="20140918095353295" modifier="pmario" tags="InhaltsVerzeichnis" title="Einführung" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20140908135232028" creator="pmario" modified="20140918100341288" modifier="pmario" tags="Intro InhaltsVerzeichnis" title="ErsteSchritte" type="text/vnd.tiddlywiki">
 <pre>\define default-platform()
 ErsteSchritte - $(browser-name)$
 \end
@@ -7129,6 +7192,7 @@ ErsteSchritte - $(browser-name)$
 
 !!! Weitere Links:
 
+* [[Liste aller HowTo's]]: Diese Liste ist vor allem dann wichtig, wenn sie über &quot;statische&quot; Seiten hier her kommen. 
 * [[Speichern mit Verschlüsselung]]: ~TiddlyWiki kann verschlüsselt gespeichert werden. Wichtig: Vergessen sie das Passwort nicht!
 * [[Speichern auf TiddlySpot]]: TiddlySpot ist ein freier Service, mit dem sie Ihr Wiki online stellen können.
 * [[TiddlyWiki und TiddlyDesktop]]: TiddlyDesktop ist eine &quot;echte&quot; Applikation mit der sie mehrere Wikis verwalten und speichern können. 
@@ -7211,6 +7275,9 @@ Der Geviertstrich (—) ist in der Typografie ein waagerechter Strich, der ein G
 Der Halbgeviertstrich (–) ist in der Typografie ein waagerechter Strich, der ein Halbgeviert lang ist. Er wird als Gedankenstrich, Bis-Strich und Streckenstrich sowie bei Geldbeträgen verwendet. Andere waagerechte Striche sind das Minuszeichen, der Viertelgeviertstrich, der [[Geviertstrich]] und der Doppelgeviertstrich.
 &lt;&lt;&lt; Wikipedia siehe: http://de.wikipedia.org/wiki/Halbgeviertstrich</pre>
 </div>
+<div created="20140918095621180" creator="pmario" modified="20140918095621180" modifier="pmario" tags="InhaltsVerzeichnis" title="howto" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
 <div caption="HTML" created="20131205160816081" creator="pmario" modified="20140913190036237" modifier="pmario" tags="WikiText" title="HTML in WikiText" type="text/vnd.tiddlywiki">
 <pre>''Für geübte Anwender!'' Neue Besucher bitte [[Transclusion in WikiText]] und [[Makros in WikiText]] zuerst lesen!
 
@@ -7270,11 +7337,12 @@ Außer, wenn auf das Eröffnungselement 2 Zeilenumbrüche folgen, dann ist der B
 : Es weden nur Zeichen Formatierungen wie: fett, hochgestellt usw. erkannt. Der Inhalt von Block Elementen, wie zB: Tabellen, Listen und Überschriften wird nicht korrekt übersetzt.
 </pre>
 </div>
-<div created="20140908131026578" creator="pmario" modified="20140908131245219" modifier="pmario" tags="Lexikon" title="Hyperlinks" type="text/vnd.tiddlywiki">
+<div created="20140908131026578" creator="pmario" modified="20140918125436840" modifier="pmario" tags="Lexikon" title="Hyperlinks" type="text/vnd.tiddlywiki">
 <pre>Als Hyperlinks werden Verknüpfungen bezeichnet, die zu anderen Tiddlern oder externen Seiten führen, und diese öffnen.
 
 * Tiddler werden direkt in TiddlyWiki geöffnet.
-* Externe Seiten, laden je nach Browser Einstellung einen neuen Tab oder ein neue Seite im selben Tab.
+* Externe Seiten, laden je nach Browser Einstellung einen neuen Tab oder ein neue Seite im selben Tab. 
+*Siehe auch: &lt;&lt;list-links filter:&quot;[tag[Hyperlinks]]&quot; type:&quot;ol&quot;&gt;&gt;
 </pre>
 </div>
 <div created="20140913185748692" creator="pmario" modified="20140913185818163" modifier="pmario" tags="Widgets" title="ImageWidget" type="text/vnd.tiddlywiki">
@@ -7282,6 +7350,14 @@ Außer, wenn auf das Eröffnungselement 2 Zeilenumbrüche folgen, dann ist der B
 </div>
 <div created="20140913190644927" creator="pmario" modified="20140913190657497" modifier="pmario" tags="Widgets Lexikon" title="ImportVariablesWidget" type="text/vnd.tiddlywiki">
 <pre>Siehe: http://tiddlywiki.com/#ImportVariablesWidget</pre>
+</div>
+<div caption="{{$:/language/SideBar/Contents/Caption}}" created="20140918100037381" creator="pmario" list="Willkommen! ErsteSchritte WikiText" list-after="$:/core/ui/SideBar/Open" modified="20140918100252116" modifier="pmario" tags="$:/tags/SideBar" title="InhaltsVerzeichnis" type="text/vnd.tiddlywiki">
+<pre>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+
+&lt;&lt;toc-selective-expandable 'InhaltsVerzeichnis'&gt;&gt;
+
+&lt;/div&gt;
+</pre>
 </div>
 <div created="20131119194500000" creator="pmario" modified="20140913190536786" modifier="pmario" tags="howto" title="Installation" type="text/vnd.tiddlywiki">
 <pre>Herunterladen einer Datei Version: &lt;&lt;version&gt;&gt; von ~TiddlyWiki: 
@@ -7306,8 +7382,24 @@ I'm the inventor of ~TiddlyWiki. I am available through my company ''~Federatial
 Dort können sie mehr erfahren!
 </pre>
 </div>
+<div created="20140918095538951" creator="pmario" modified="20140918095538951" modifier="pmario" tags="InhaltsVerzeichnis" title="Konzept" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20140918095531114" creator="pmario" modified="20140918095531114" modifier="pmario" tags="InhaltsVerzeichnis" title="Lexikon" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
 <div created="20140913133329379" creator="pmario" modified="20140913133404164" modifier="pmario" tags="Lexikon" title="LinkWidget" type="text/vnd.tiddlywiki">
 <pre>Siehe: http://tiddlywiki.com/#LinkWidget</pre>
+</div>
+<div created="20140918094051245" creator="pmario" modified="20140918094948642" modifier="pmario" tags="Referenz" title="Liste aller HowTo's" type="text/vnd.tiddlywiki">
+<pre>Hier finden sie eine Auflistung aller HowTo's
+
+&lt;&lt;list-links &quot;[tag[howto]]&quot;&gt;&gt;</pre>
+</div>
+<div created="20140918094631105" creator="pmario" modified="20140918100533574" modifier="pmario" tags="howto Referenz" title="Liste aller Tiddler" type="text/vnd.tiddlywiki">
+<pre>Eine Liste aller Tiddler: 
+
+&lt;&lt;list-links &quot;[!is[system]sort[title]]&quot;&gt;&gt;</pre>
 </div>
 <div caption="Lists" created="20131205160257619" creator="pmario" modified="20140913134840699" modifier="pmario" tags="WikiText" title="Listen in WikiText" type="text/vnd.tiddlywiki">
 <pre>!! Ungeordnete Listen
@@ -7358,6 +7450,13 @@ Hinweis: [[Zitate|Zitate in WikiText]] und Listen lassen sich hervorragend gemei
 * Element 3
 &quot;&gt;&gt;
 </pre>
+</div>
+<div created="20140918110713554" creator="pmario" modified="20140918111046621" modifier="pmario" tags="Referenz" title="Lizenzen" type="text/vnd.tiddlywiki">
+<pre>* ~TiddlyWiki Kern
+** https://github.com/Jermolene/TiddlyWiki5/blob/master/licenses/copyright.md
+* ~TiddlyWiki Editionen 
+** https://github.com/Jermolene/TiddlyWiki5/blob/master/licenses/cla-individual.md
+** https://github.com/Jermolene/TiddlyWiki5/blob/master/licenses/cla-entity.md</pre>
 </div>
 <div created="20140913122428303" creator="pmario" modified="20140913122443990" modifier="pmario" tags="Lexikon" title="Makro" type="text/vnd.tiddlywiki">
 <pre>&lt;&lt;&lt;
@@ -7495,14 +7594,21 @@ Markdown ist eine vereinfachte Auszeichnungssprache, die von John Gruber und Aar
 <div created="20140908134245442" creator="pmario" modified="20140908134252042" modifier="pmario" tags="Lexikon" title="Node.js" type="text/vnd.tiddlywiki">
 <pre>Siehe: http://tiddlywiki.com/#Node.js</pre>
 </div>
-<div created="20130825213500000" creator="pmario" modified="20140909202145674" tags="howto" title="Speichern auf TiddlySpot" type="text/vnd.tiddlywiki">
+<div about="Mario Pietsch" created="20140918103040215" creator="pmario" modified="20140918110702263" modifier="pmario" tags="maintainer" title="pmario" type="text/vnd.tiddlywiki">
+<pre>Hallo, Ich bin {{!!about}}, Ich pflege momentan die deutsche Version von ~TiddlyWiki und würde mich über Hilfe sehr freuen. Wer helfen möchte, soll bitte [[Kontakt aufnehmen|Wer pflegt diese Edition?]]!</pre>
+</div>
+<div created="20140918095524720" creator="pmario" modified="20140918095524720" modifier="pmario" tags="InhaltsVerzeichnis" title="Referenz" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20130825213500000" creator="pmario" modified="20140918075315960" modifier="pmario" tags="howto" title="Speichern auf TiddlySpot" type="text/vnd.tiddlywiki">
 <pre>TiddlySpot ist ein freier Hosting Service von Simon und Daniel Baird. Es ist beinahe genau so lange in Betrieb wie es TiddlyWiki gibt.
 
 ~TiddlyWiki5 wird momentan noch nicht als Standard Wiki angeboten, sie können aber folgende Schritte verwenden um ~TiddlyWiki auf ~TiddlySpot zu speichern.
 
 # Erstellen sie ein Wiki auf http://tiddlyspot.com/ und merken sie sich den Namen und ihr Passwort!
-# Öffnen sie http://tiddlywiki.com/empty.html in ihrem Browser. TODO deutsche version
-# Wählen sie im [[Control Panel|$:/ControlPanel]], den &quot;Speichern&quot; Tab und trage sie im &quot;~TiddlySpot&quot; Bereich, den Wiki Namen und das Passwort ein.
+# Für Österreich, öffnen sie http://tiddlywiki.com/languages/de-AT/empty.html in ihrem Browser.
+#* Für Deutschland: http://tiddlywiki.com/languages/de-DE/empty.html
+# Wählen sie im [[Control Panel|$:/ControlPanel]], den &quot;Speichern&quot; Tab und tragen sie im &quot;~TiddlySpot&quot; Bereich, den Wiki Namen und das Passwort ein.
 # Klicken sie den &quot;Speichern&quot; button. Nach einiger Zeit, bekommen sie rechts oben die Mitteilung &quot;Wiki gespeichert&quot;. Das Speichern kann je nach Internetverbindung und Wiki Größe einige Sekunden dauern. 
 #* //Das Erstellen eines neuen Wikis funktioniert nicht mit Firefox, da die Sicherheitseinstellungen diese Vorgehensweise nicht erlauben. Google Chrome kann verwendet werden. Ein späteres editieren von tiddlyspot.com ist auch mit Firefox möglich!//
 # Gehen sie nun zu ihrem Wiki: ~http://{wikiname}.tiddlyspot.com/
@@ -7523,12 +7629,12 @@ Die ''AndTidWiki'' App für Android macht es möglich, dass ~TiddlyWiki Änderun
 !!! ~TiddlyFox für Android
 Siehe: [[Speichern mit TiddlyFox - Android]]</pre>
 </div>
-<div created="20131129092604900" creator="pmario" modified="20140909085517511" tags="howto" title="Speichern mit Chrome" type="text/vnd.tiddlywiki">
+<div created="20131129092604900" creator="pmario" modified="20140918102122537" modifier="pmario" tags="howto" title="Speichern mit Chrome" type="text/vnd.tiddlywiki">
 <pre>Diese Methode ist etwas umständlich, da man Einstellungen immer wieder manuell vornehmen muss. Der Vorteil ist, dass diese Methode jedoch mit fast allen Desktop und vielen mobilen Browsern funktioniert.
 
 # Speichern sie eine leere Datei der deutschen Version.
 #&gt; {{$:/editions/de-AT-DE/snippets/download-empty-button}}
-#&gt; Wenn der Button nicht funktioniert, dann klicken sie den link mit der rechten Maustaste und wählen: &quot;Ziel Speichern unter ...&quot;  http://tiddlywiki.com/empty.html ... TODO (de-AT-DE-empty.html)
+#&gt; Wenn der Button nicht funktioniert, dann klicken sie den link mit der rechten Maustaste und wählen: &quot;Ziel Speichern unter ...&quot;  http://tiddlywiki.com/languages/de-AT/empty.html oder http://tiddlywiki.com/languages/de-DE/empty.html
 #&gt; Je nach Browser folgen sie den Dialogen!
 # Suchen sie die eben geladene Datei im Datei Manager.
 #* Geben sie der Datei einen vernünftigen Namen und stellen sie sicher, dass die Endung `.html` oder `.htm` ist.
@@ -7543,7 +7649,7 @@ Siehe: [[Speichern mit TiddlyFox - Android]]</pre>
 ''Tip'': Die meisten Browser haben eine Einstellung, dass der &quot;Datei Speichern&quot; Dialog immer angezeigt wird. Das ermöglicht ihnen, die bestehenden Datei auszuwählen und zu überschreiben. 
 </pre>
 </div>
-<div created="20131129101027725" creator="pmario" modified="20140909103924542" tags="howto" title="Speichern mit iPad/iPhone" type="text/vnd.tiddlywiki">
+<div created="20131129101027725" creator="pmario" modified="20140918102218367" modifier="pmario" tags="howto" title="Speichern mit iPad/iPhone" type="text/vnd.tiddlywiki">
 <pre>Für das iPad/iPhone gibt es eine kostengünstige Applikation: ''TWEdit'', die es ermöglicht, mit ~TiddlyWiki &quot;online&quot; und &quot;offline&quot; zu arbeiten. 
 
 Verwendung von TWEdit:
@@ -7552,7 +7658,7 @@ Verwendung von TWEdit:
 # Öffnen sie TWEdit.
 # Tippen sie den Titel in der Mitte des &quot;Toolbars&quot;.
 #* Eine Text Box sollte sich öffnen, in der sie die URL eingeben können.
-# Verwenden sie URL `http://tiddlywiki.com/empty.html`  TODO german version
+# Verwenden sie URL `http://tiddlywiki.com/languages/de-AT/empty.html` oder `http://tiddlywiki.com/languages/de-DE/empty.html`
 # Wenn die leere Version geladen wurde, dann tippen sie &quot;save&quot; (Das zweite &quot;icon&quot; oben rechts)
 #* Ein Hinweis Dialog sollte erscheinen, wo sie den lokalen Namen eingeben können.
 # Geben sie den neuen Dateinamen ein. Die Endung `.html` nicht vergessen!
@@ -7626,13 +7732,14 @@ Verwendung von TWEdit:
 # Laden sie die Seite neu und überprüfen sie, ob die Daten richtig gespeichert wurden.
 </pre>
 </div>
-<div created="20131211220000000" creator="pmario" modified="20140909090900579" tags="howto" title="Speichern mit TiddlyIE" type="text/vnd.tiddlywiki">
+<div created="20131211220000000" creator="pmario" modified="20140918102257399" modifier="pmario" tags="howto" title="Speichern mit TiddlyIE" type="text/vnd.tiddlywiki">
 <pre># Installieren sie TiddlyIE AddOn von:
 #* https://github.com/davidjade/TiddlyIE/releases
 # Starten sie Internet Explorer neu. IE wird beim Start einen Dialog anzeigen, mit dem sie das AddOn freischalten können.
 #&gt; Es ist möglich, dass sie aufgefordert werden das //Microsoft Script Runtime// zu erlauben. Tun sie das!
 #  Klicken sie den folgenden Link mit der rechten Maustaste und wählen: &quot;Ziel Speichern unter ...&quot;
-#&gt; http://tiddlywiki.com/empty.html  ... TODO (de-AT-DE-empty.html)
+#&gt; http://tiddlywiki.com/languages/de-AT/empty.html oder
+#&gt; http://tiddlywiki.com/languages/de-DE/empty.html
 # Suchen sie die eben geladene Datei im Datei Manager.
 #* Geben sie der Datei einen vernünftigen Namen und stellen sie sicher, dass die Endung `.html` oder `.htm` ist.
 # Öffnen sie die Datei mit dem Internet Explorer
@@ -7797,10 +7904,22 @@ Renders as:
 |Fußzeile|Fußzeile|f
 </pre>
 </div>
-<div created="20140908130640417" creator="pmario" modified="20140908131007409" modifier="pmario" tags="Lexikon" title="Tags" type="text/vnd.tiddlywiki">
-<pre>Als Tags werden Markierungen bezeichnet, die verwendet werden können um einzeln Tiddler zu filtern.
+<div created="20140908130640417" creator="pmario" modified="20140918124555159" modifier="pmario" tags="Lexikon" title="Tags" type="text/vnd.tiddlywiki">
+<pre>Als Tags werden Markierungen bezeichnet, die verwendet werden können um einzelne Tiddler, später, zu filtern.
 
-Zum Beispiel ist dieser Tiddler mit ''Lexikon'' getaggt.</pre>
+Zum Beispiel ist dieser Tiddler mit ''Lexikon'' &quot;getaggt&quot;. Es gibt &lt;$count filter=&quot;[tag[Lexikon]]&quot;/&gt; weitere Tiddler mit diesem Tag.
+
+Eine gekürzte Liste wird hier angezeigt mit: 
+
+```
+&lt;&lt;list-links filter:&quot;[tag[Lexikon]limit[4]]&quot;&gt;&gt;
+```
+
+&lt;&lt;list-links filter:&quot;[tag[Lexikon]limit[4]]&quot;&gt;&gt;
+
+Eine komplette liste können sie im rechten Menü unter ''Mehr: Tags&quot; sehen.
+
+</pre>
 </div>
 <div created="20140913190116721" creator="pmario" modified="20140913190124716" modifier="pmario" tags="Lexikon" title="TextReferenz" type="text/vnd.tiddlywiki">
 <pre>Siehe: http://tiddlywiki.com/#TextReference</pre>
@@ -7824,7 +7943,7 @@ Weitere Informationen finden sie unter: http://tiddlywiki.com/#TiddlerFields </p
 <pre>TiddlyDesktop ist eine Applikation für Windows, Mac OS X und Linux, mit der sie TiddlyWiki Dateien bearbeiten können.
 Siehe auch: [[TiddlyWiki und TiddlyDesktop]]</pre>
 </div>
-<div created="20130825161100000" creator="pmario" modified="20140909073807763" modifier="pmario" tags="Lexikon" title="TiddlyFox" type="text/vnd.tiddlywiki">
+<div created="20130825161100000" creator="pmario" modified="20140918102434055" modifier="pmario" tags="Lexikon InhaltsVerzeichnis" title="TiddlyFox" type="text/vnd.tiddlywiki">
 <pre>~TiddlyFox ist eine Firefox Erweiterung,  die es ihnen erlaubt, dass TiddlyWiki direkt auf ihr Laufwerk speichern kann. ~TiddlyFox funktioniert mit der Desktop- und Smartphone-version von Firefox. 
 
 ~TiddlyFox können sie von der Mozilla AddOn Seite direkt installieren:
@@ -7832,8 +7951,7 @@ Siehe auch: [[TiddlyWiki und TiddlyDesktop]]</pre>
 * https://addons.mozilla.org/en-US/firefox/addon/tiddlyfox/
 
 Siehe auch: 
-TODO!! `&lt;&lt;tagging TiddlyFox&gt;&gt;`
-
+&lt;&lt;list-links &quot;[tag[TiddlyFox]]&quot;&gt;&gt;
 
 &lt;&lt;&lt;
 Die Entwickler Version von ~TiddlyFox finden sie auf GitHub:
@@ -7875,15 +7993,17 @@ Nähere Informationen und auch die jeweils aktuellste Fassung von ~TiddlyWiki fi
 <div created="20140913190301529" creator="pmario" modified="20140913190306933" modifier="pmario" tags="Lexikon" title="TiddlyWiki on node-webkit" type="text/vnd.tiddlywiki">
 <pre>Siehe: http://tiddlywiki.com/#node-webkit</pre>
 </div>
-<div created="20140909075632780" creator="pmario" modified="20140913185205429" modifier="pmario" tags="Konzept" title="TiddlyWiki Speichern" type="text/vnd.tiddlywiki">
+<div created="20140909075632780" creator="pmario" modified="20140918100607559" modifier="pmario" tags="howto" title="TiddlyWiki Speichern" type="text/vnd.tiddlywiki">
 <pre>!! Ein leeres Dokument speichern
 
-|{{$:/editions/de-AT-DE/snippets/download-empty-button}}|Nur TiddlyWiki und die deutschen Sprachdateien für Deutschland und Österreich werden gespeichert. Die Standardeinstellung wird auf &quot;de-DE&quot; für Deuschland gestellt. Die Sprache kann mit dem ''[[Control Panel|$:/ControlPanel]]: Info - Tab''  geändert werden. |
+|{{$:/editions/de-AT-DE/snippets/download-empty-button}}|Nur TiddlyWiki und die deutschen Sprachdateien für Deutschland und Österreich werden gespeichert. Die Sprache kann nachträglich mit dem ''[[Control Panel|$:/ControlPanel]]: Info - Tab''  geändert und gespeichert werden. |
 
 !! Dieses Dokument speichern
 |{{$:/snippets/download-wiki-button}}|Dieses Tiddlywiki und alle enthaltenen Tiddler werden gespeichert. Die selbe Funktion kann über den  {{$:/core/images/save-button}} ''speichern'' Button im rechten Menü ausgelöst werden. |
 
-----
+!!! Hinweis
+Momentan sind die deutsche und österreichische Version absolut ident. Außer der Flagge natürlich ;)
+
 
 Weitere Informationen zum Umgang mit ~TiddlyWiki und unterschiedlichen Browsern finden sie unter: ErsteSchritte
 </pre>
@@ -7938,6 +8058,9 @@ TODO .. Beispiele</pre>
 ---
 &quot;&gt;&gt;
 </pre>
+</div>
+<div created="20140918095509663" creator="pmario" modified="20140918095509663" modifier="pmario" tags="InhaltsVerzeichnis" title="TWclassic" type="text/vnd.tiddlywiki">
+<pre></pre>
 </div>
 <div caption="Typisierte Blöcke" created="20131205161051792" creator="pmario" modified="20140913181935141" modifier="pmario" tags="WikiText" title="Typisierte Blöcke in WikiText" type="text/vnd.tiddlywiki">
 <pre>WikiText kann Textblöcke direkt darstelle, wenn ihr Inhalts-Typ ([[MIME-Type]]) bekannt ist:
@@ -8041,7 +8164,7 @@ $$$
 Ein Uniform Resource Locator (Abk. URL; englisch für einheitlicher Quellenanzeiger) identifiziert und lokalisiert eine Ressource, wie z. B. eine Website über die zu verwendende Zugriffsmethode (z. B. das verwendete Netzwerkprotokoll wie HTTP oder FTP) und den Ort (engl. location) der Ressource in Computernetzwerken.
 &lt;&lt;&lt;Wikipedia: http://de.wikipedia.org/wiki/Uniform_Resource_Locator</pre>
 </div>
-<div caption="Verknüpfungen" created="20131205155230596" creator="pmario" modified="20140913133752516" modifier="pmario" tags="WikiText" title="Verknüpfungen in WikiText" type="text/vnd.tiddlywiki">
+<div caption="Verknüpfungen" created="20131205155230596" creator="pmario" modified="20140918125129325" modifier="pmario" tags="WikiText Hyperlinks" title="Verknüpfungen in WikiText" type="text/vnd.tiddlywiki">
 <pre>Eine Schlüssel Fähigkeit von WikiText ist die einfache Möglichkeit Verknüfungen zu anderen Tiddlern oder externen Seiten herzustellen. 
 
 !! Manuelle Verknüpfungen
@@ -8117,8 +8240,41 @@ Siehe LinkWidget für eine genauere Beschreibung. Dieser Link zeigt auf die engl
 
 </pre>
 </div>
-<div created="20140913190325625" creator="pmario" modified="20140913190429017" modifier="pmario" tags="TWclassic" title="Was geschah mit dem alten TiddlyWiki" type="text/vnd.tiddlywiki">
+<div created="20140918095450079" creator="pmario" modified="20140918100439625" modifier="pmario" tags="InhaltsVerzeichnis" title="Video" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20140913190325625" creator="pmario" modified="20140913190429017" modifier="pmario" tags="TWclassic Lexikon" title="Was geschah mit dem alten TiddlyWiki" type="text/vnd.tiddlywiki">
 <pre>TiddlyWiki-classic kann unter http://classic.tiddlywiki.com gefunden werden. </pre>
+</div>
+<div created="20140918103106541" creator="pmario" modified="20140918105518082" modifier="pmario" tags="Referenz" title="Wer pflegt diese Edition?" type="text/vnd.tiddlywiki">
+<pre>\define list-about(filter,type:&quot;ul&quot;,subtype:&quot;li&quot;)
+&lt;$type$&gt;
+&lt;$list filter=&quot;$filter$&quot;&gt;
+&lt;$subtype$&gt;
+&lt;$link to={{!!title}}&gt;
+&lt;$view field=&quot;about&quot;/&gt;
+&lt;/$link&gt;
+&lt;/$subtype$&gt;
+&lt;/$list&gt;
+&lt;/$type$&gt;
+\end
+
+!! Maintainer
+
+&lt;&lt;list-about filter:&quot;[tag[maintainer]has[about]]&quot; &gt;&gt;
+
+!! GitHub
+
+siehe: https://github.com/Jermolene/TiddlyWiki5/tree/master/languages
+
+!! Feedback
+
+Konstruktives Feedback ist wichtig, um die Dokumentation zu verbessern! ... Kein Feedback ... keine Änderungen :) 
+
+Bitte unter: https://groups.google.com/forum/#!forum/tiddlywiki</pre>
+</div>
+<div created="20140918095112165" creator="pmario" modified="20140918095443085" modifier="pmario" tags="InhaltsVerzeichnis" title="Widgets" type="text/vnd.tiddlywiki">
+<pre>Es gibt momentan 30 Widgets. Siehe: http://tiddlywiki.com/#Widgets</pre>
 </div>
 <div caption="Widgets" created="20131205160840915" creator="pmario" modified="20140913183907225" modifier="pmario" tags="WikiText" title="Widgets in WikiText" type="text/vnd.tiddlywiki">
 <pre>Widgets sind die Grundbausteine von ~TiddlyWiki. Sie haben ein sehr ähnliche Syntax wie [[HTML Elemente|HTML in WikiText]] aber ihre &quot;Tag Namen&quot; beginnen immer mit einem `$`. zB:
@@ -8146,7 +8302,7 @@ Siehe auch: [[HTML in WikiText]] für mehr Informationen.
 Alle möglichen Widgets werden auf der TiddlyWiki Seite aufgelistet: [ext[http://tiddlywiki.com/#Widgets in WikiText]]
 </pre>
 </div>
-<div created="20131205155227468" creator="pmario" list="[[Formatierungen in WikiText]] [[Überschriften in WikiText]] [[Listen in WikiText]] [[Zitate in WikiText]] [[Verknüpfungen in WikiText]] [[Trennlinie in WikiText]] [[Paragraphs in WikiText]] [[Bilder in WikiText]] [[Code Block in WikiText]] [[Definitionen in WikiText]] [[Tabellen in WikiText]] [[Zeilenumbruch in WikiText]] [[Typisierte Blöcke in WikiText]]" modified="20140913185022598" modifier="pmario" tags="Konzept Referenz" title="WikiText" type="text/vnd.tiddlywiki">
+<div created="20131205155227468" creator="pmario" list="[[Formatierungen in WikiText]] [[Überschriften in WikiText]] [[Listen in WikiText]] [[Zitate in WikiText]] [[Verknüpfungen in WikiText]] [[Trennlinie in WikiText]] [[Paragraphs in WikiText]] [[Bilder in WikiText]] [[Code Block in WikiText]] [[Definitionen in WikiText]] [[Tabellen in WikiText]] [[Zeilenumbruch in WikiText]] [[Typisierte Blöcke in WikiText]]" modified="20140918095433441" modifier="pmario" tags="Konzept Referenz InhaltsVerzeichnis" title="WikiText" type="text/vnd.tiddlywiki">
 <pre>~WikiText ist eine Auszeichnungs-sprache, die es erlaubt auf einfache Weise Texte und ihre Formatierung in Textform einzugeben. Das erlaubt es ihnen, sich auf das Schreiben zu konzentrieren und nicht auf eine komplexe Oberfläche, die vom Wesentlichen ablenkt. Für Anwender, die bereits MarkDown kennen sollte es relativ leicht sein, sich in ~WikiText einzuarbeiten. WikiText biete mehr Möglichkeiten zum Verlinken und zur Erstellung von interaktiven Inhalten. 
 
 Die folgenden Elemente sind im TW Kern enthalten:
@@ -8154,7 +8310,7 @@ Die folgenden Elemente sind im TW Kern enthalten:
 &lt;&lt;list-links &quot;[tag[WikiText]]&quot;&gt;&gt;
 </pre>
 </div>
-<div created="20140908125600000" creator="pmario" modified="20140913185334231" modifier="pmario" tags="InhaltsVerzeichnis Intro" title="Willkommen!" type="text/vnd.tiddlywiki">
+<div created="20140908125600000" creator="pmario" modified="20140918094303293" modifier="pmario" tags="InhaltsVerzeichnis Intro" title="Willkommen!" type="text/vnd.tiddlywiki">
 <pre>~TiddlyWiki ist eine Web-Applikation, die sie frei herunterladen können. Sie können sie speichern, wo sie wollen:
 
 * Auf ihrem Laufwerk,
@@ -8180,6 +8336,7 @@ Sie können TiddlyWiki als eine einzige Datei speichern, die sie mit dem Web-Bro
 
 * ''ErsteSchritte''
 * [[TiddlyWiki Syntax|WikiText]] 
+* [[Liste aller HowTo's]]
 * [[Was kann TiddlyWiki]] 
 * [[WikiText mehr Beispiele]] 
 * [[Was geschah mit dem alten TiddlyWiki?|Was geschah mit dem alten TiddlyWiki]]

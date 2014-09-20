@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.0" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>Mein TiddlyWiki
+ — ein persönliches nicht-lineares Web-Notizbuch
+</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>Diese Seite ist Teil der &quot;reinen&quot; HTML Version von TiddlyWiki auf <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/languages/de-AT' target='_blank'>http://tiddlywiki.com/languages/de-AT</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-WikiText'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Informationen zu diesem Tiddler anzeigen'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='bearbeiten' class='tc-btn-invisible' title='Bearbeite diesen Tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='schließen' class='tc-btn-invisible' title='Schließe diesen Tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+Tabellen in WikiText
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='pmario.html'>
+pmario
+</a> vor 6 Tagen
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ WikiText
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><h2 class=''>Basis Info</h2><p><a class='tc-tiddlylink tc-tiddlylink-resolves' href='TiddlyWiki.html'>TiddlyWiki</a> formatiert Tabellen mit dem &quot;Pipe&quot; <code>|</code> Zeichen:</p><pre><code>|Zelle 1 |Zelle 2|h
+|Zelle 2 |Zelle 4|
+
+|Zelle 1 |!Zelle 2|
+|Zelle 2 |Zelle 4|</code></pre><p>Der <code>h</code> Parameter nach der ersten Zeile definiert die Reihe als Kopfzeile.
+Alternativ können einzelne Zellen mit einem Rufzeichen <code>!</code> hervorgehoben werden.</p><table><thead><tr class='evenRow'><td align='left'>Zelle 1</td><td>Zelle 2</td></tr></thead><tbody><tr class='oddRow'><td align='left'>Zelle 2</td><td>Zelle 4</td></tr></tbody></table><table><tbody><tr class='evenRow'><td align='left'>Zelle 1</td><th>Zelle 2</th></tr><tr class='oddRow'><td align='left'>Zelle 2</td><td>Zelle 4</td></tr></tbody></table><h2 class=''>Horizontale Ausrichtung der Zellen</h2><p>Die Zellausrichtung kann mit Leerzeichen vor oder nach dem &quot;Pipe&quot; Zeichen definiert werden: </p><pre><code>|Text ist links ausgerichtet |
+| Text wird rechts ausgerichtet|
+| Text ist zentriert |
+|+++ Ein etwas längerer Text, damit die Ausrichtung besser sichtbar wird.+++|</code></pre><p>Dargestellt als:</p><table><tbody><tr class='evenRow'><td align='left'>Text ist links ausgerichtet</td></tr><tr class='oddRow'><td align='right'>Text wird rechts ausgerichtet</td></tr><tr class='evenRow'><td align='center'>Text ist zentriert</td></tr><tr class='oddRow'><td>+++ Ein etwas längerer Text, damit die Ausrichtung sichtbar wird.+++</td></tr></tbody></table><h2 class=''>Vertikale Ausrichtung</h2><p>Die Vertikale Ausrichtung kann mit <code>^</code> für oben und <code>,</code> für unten als erstes Zeichen in der Zelle festgelegt werden:
+Eine horizontale Ausrichtung ist zusätzlich möglich.</p><pre><code>|^oben links |^ oben mitte |^ oben rechts|
+|mitte links | mittig | mitte rechts|
+|,unten links |, unten mitte |, unten rechts|</code></pre><p>Dargestellt als (der &quot;Rahmen&quot; ist nötig, um die Ausrichtung mit wenig Text sichtbar zu machen):</p><table><tbody><tr class='evenRow'><td align='center'>::</td><td align='center'>:::::::::::::::::::::::::::</td><td align='center'>:::::::::::::::::::::::::::</td><td align='center'>:::::::::::::::::::::::::::</td><td align='center'>::</td></tr><tr class='oddRow'><td align='center'>::<br>::</td><td align='left' valign='top'>oben links</td><td align='center' valign='top'>oben mitte</td><td align='right' valign='top'>oben rechts</td><td align='center'>::<br>::</td></tr><tr class='evenRow'><td align='center'>::<br>::</td><td align='left'>mitte links</td><td align='center'>mittig</td><td align='right'>mitte rechts</td><td align='center'>::<br>::</td></tr><tr class='oddRow'><td align='center'>::<br>::</td><td align='left' valign='bottom'>unten links</td><td align='center' valign='bottom'>unten mitte</td><td align='right' valign='bottom'>unten rechts</td><td align='center'>::<br>::</td></tr><tr class='evenRow'><td align='center'>::</td><td align='center'>:::::::::::::::::::::::::::</td><td align='center'>:::::::::::::::::::::::::::</td><td align='center'>:::::::::::::::::::::::::::</td><td align='center'>::</td></tr></tbody></table><p>Wenn sie die Zeichen <code>^</code> und <code>,</code> als erste Zeichen benötigen, dann können sie &quot;HTML escaping&quot; verwenden.</p><table><tbody><tr class='evenRow'><td align='center'><code>^</code></td><td align='center'>&amp;#94;</td></tr><tr class='oddRow'><td align='center'><code>,</code></td><td align='center'>&amp;#44;</td></tr></tbody></table><h2 class=''>Zellen zusammenfügen</h2><p>Mit <code>~</code>, <code>&lt;</code> und <code>&gt;</code> können Zellen zusammengefügt werden.</p><ul><li>Um eine Zelle mit der darüber liegenden zu vereinen verwenden sie: <code>~</code> </li><li>Um eine Zelle mit der links liegenden zu vereinen verwenden sie: <code>&lt;</code></li><li>Um eine Zelle mit der rechts liegenden zu vereinen verwenden sie: <code>&gt;</code></li></ul><pre><code>|Zelle 1 |Zelle 2 |Zelle  3|Zelle  4|
+|Zelle 5|Zelle 6| Zelle 7 |&lt;|
+|Zelle 8|~|Zelle  9|Zelle 10|
+|&gt;| Zelle 11 |Zelle 12|Zelle 13|</code></pre><p>Dargestellt als:</p><table><tbody><tr class='evenRow'><td align='left'>Zelle 1</td><td align='left'>Zelle 2</td><td>Zelle  3</td><td>Zelle  4</td></tr><tr class='oddRow'><td>Zelle 5</td><td rowspan='2' valign='center'>Zelle 6</td><td align='center' colspan='2'>Zelle 7</td></tr><tr class='evenRow'><td>Zelle 8</td><td>Zelle  9</td><td>Zelle 10</td></tr><tr class='oddRow'><td align='center' colspan='2'>Zelle 11</td><td>Zelle 12</td><td>Zelle 13</td></tr></tbody></table><h2 class=''>Tabellen Klassen, Beschriftung, Kopfzeile und Fußzeile</h2><p>Tabellen CSS Klassen, Beschriftung, Kopfzeile und Fußzeile können als &quot;Pseudo Zeilen&quot; dargestellt werden. Die Position der Zeilen ist dabei nicht wichtig:</p><pre><code>|meineKlasse anderKlasse|k
+| Das die Tabellen Beschriftung |c
+|--- Kopfzeile ---|--- Kopfzeile ---|h
+|Zelle 1|Zelle 2|
+| Zelle 3 | Zelle 4|
+|Fußzeile|Fußzeile|f</code></pre><p>Renders as:</p><table class='meineKlasse anderKlasse'><caption> Das die Tabellen Beschriftung </caption><thead><tr class='evenRow'><td>— Kopfzeile —</td><td>— Kopfzeile —</td></tr></thead><tbody><tr class='oddRow'><td>Zelle 1</td><td>Zelle 2</td></tr><tr class='evenRow'><td align='center'>Zelle 3</td><td align='right'>Zelle 4</td></tr></tbody><tfoot><tr class='oddRow'><td>Fußzeile</td><td>Fußzeile</td></tr></tfoot></table></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>
