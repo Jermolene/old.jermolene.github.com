@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="application-name" content="TiddlyWiki" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.1.0" />
+<meta name="tiddlywiki-version" content="5.1.1" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -374,7 +374,7 @@ Error message and password prompt
 <div created="20140918071202599" modified="20140918071201447" modifier="pmario" title="$:/config/PageControlButtons/Visibility/$:/editions/tw5.com/github-fork-ribbon" type="text/vnd.tiddlywiki">
 <pre>show</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core plugin" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.0">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core plugin" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/Acknowledgements&quot;: {
@@ -3476,7 +3476,7 @@ Error message and password prompt
             &quot;module-type&quot;: &quot;widget&quot;
         },
         &quot;$:/core/modules/widgets/button.js&quot;: {
-            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/widgets/button.js\ntype: application/javascript\nmodule-type: widget\n\nButton widget\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar Widget = require(\&quot;$:/core/modules/widgets/widget.js\&quot;).widget;\n\nvar ButtonWidget = function(parseTreeNode,options) {\n\tthis.initialise(parseTreeNode,options);\n};\n\n/*\nInherit from the base widget class\n*/\nButtonWidget.prototype = new Widget();\n\n/*\nRender this widget into the DOM\n*/\nButtonWidget.prototype.render = function(parent,nextSibling) {\n\tvar self = this;\n\t// Remember parent\n\tthis.parentDomNode = parent;\n\t// Compute attributes and execute state\n\tthis.computeAttributes();\n\tthis.execute();\n\t// Create element\n\tvar domNode = this.document.createElement(\&quot;button\&quot;);\n\t// Assign classes\n\tvar classes = this[\&quot;class\&quot;].split(\&quot; \&quot;) || [];\n\tif(this.selectedClass) {\n\t\tif(this.set &amp;&amp; this.setTo &amp;&amp; this.isSelected()) {\n\t\t\t$tw.utils.pushTop(classes,this.selectedClass.split(\&quot; \&quot;));\n\t\t}\n\t\tif(this.popup &amp;&amp; this.isPoppedUp()) {\n\t\t\t$tw.utils.pushTop(classes,this.selectedClass.split(\&quot; \&quot;));\n\t\t}\n\t}\n\tdomNode.className = classes.join(\&quot; \&quot;);\n\t// Assign other attributes\n\tif(this.style) {\n\t\tdomNode.setAttribute(\&quot;style\&quot;,this.style);\n\t}\n\tif(this.tooltip) {\n\t\tdomNode.setAttribute(\&quot;title\&quot;,this.tooltip);\n\t}\n\tif(this[\&quot;aria-label\&quot;]) {\n\t\tdomNode.setAttribute(\&quot;aria-label\&quot;,this[\&quot;aria-label\&quot;]);\n\t}\n\t// Add a click event handler\n\tdomNode.addEventListener(\&quot;click\&quot;,function (event) {\n\t\tvar handled = false;\n\t\tif(self.to) {\n\t\t\tself.navigateTo(event);\n\t\t\thandled = true;\n\t\t}\n\t\tif(self.message) {\n\t\t\tself.dispatchMessage(event);\n\t\t\thandled = true;\n\t\t}\n\t\tif(self.popup) {\n\t\t\tself.triggerPopup(event);\n\t\t\thandled = true;\n\t\t}\n\t\tif(self.set) {\n\t\t\tself.setTiddler();\n\t\t\thandled = true;\n\t\t}\n\t\tif(handled) {\n\t\t\tevent.preventDefault();\n\t\t\tevent.stopPropagation();\n\t\t}\n\t\treturn handled;\n\t},false);\n\t// Insert element\n\tparent.insertBefore(domNode,nextSibling);\n\tthis.renderChildren(domNode,null);\n\tthis.domNodes.push(domNode);\n};\n\nButtonWidget.prototype.isSelected = function() {\n\tvar tiddler = this.wiki.getTiddler(this.set);\n\treturn tiddler ? tiddler.fields.text === this.setTo : this.defaultSetValue === this.setTo;\n};\n\nButtonWidget.prototype.isPoppedUp = function() {\n\tvar tiddler = this.wiki.getTiddler(this.popup);\n\tvar result = tiddler &amp;&amp; tiddler.fields.text ? $tw.popup.readPopupState(this.popup,tiddler.fields.text) : false;\n\treturn result;\n};\n\nButtonWidget.prototype.navigateTo = function(event) {\n\tvar bounds = this.domNodes[0].getBoundingClientRect();\n\tthis.dispatchEvent({\n\t\ttype: \&quot;tm-navigate\&quot;,\n\t\tnavigateTo: this.to,\n\t\tnavigateFromTitle: this.getVariable(\&quot;storyTiddler\&quot;),\n\t\tnavigateFromNode: this,\n\t\tnavigateFromClientRect: { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height\n\t\t},\n\t\tnavigateSuppressNavigation: event.metaKey || event.ctrlKey || (event.button === 1)\n\t});\n};\n\nButtonWidget.prototype.dispatchMessage = function(event) {\n\tthis.dispatchEvent({type: this.message, param: this.param, tiddlerTitle: this.getVariable(\&quot;currentTiddler\&quot;)});\n};\n\nButtonWidget.prototype.triggerPopup = function(event) {\n\t$tw.popup.triggerPopup({\n\t\tdomNode: this.domNodes[0],\n\t\ttitle: this.popup,\n\t\twiki: this.wiki\n\t});\n};\n\nButtonWidget.prototype.setTiddler = function() {\n\tthis.wiki.setTextReference(this.set,this.setTo,this.getVariable(\&quot;currentTiddler\&quot;));\n};\n\n/*\nCompute the internal state of the widget\n*/\nButtonWidget.prototype.execute = function() {\n\t// Get attributes\n\tthis.to = this.getAttribute(\&quot;to\&quot;);\n\tthis.message = this.getAttribute(\&quot;message\&quot;);\n\tthis.param = this.getAttribute(\&quot;param\&quot;);\n\tthis.set = this.getAttribute(\&quot;set\&quot;);\n\tthis.setTo = this.getAttribute(\&quot;setTo\&quot;);\n\tthis.popup = this.getAttribute(\&quot;popup\&quot;);\n\tthis.hover = this.getAttribute(\&quot;hover\&quot;);\n\tthis[\&quot;class\&quot;] = this.getAttribute(\&quot;class\&quot;,\&quot;\&quot;);\n\tthis[\&quot;aria-label\&quot;] = this.getAttribute(\&quot;aria-label\&quot;);\n\tthis.tooltip = this.getAttribute(\&quot;tooltip\&quot;);\n// DEPRECATION WARNING\nvar title = this.getAttribute(\&quot;title\&quot;);\nif(title) {\n\tconsole.log(\&quot;WARNING: attribute 'title' on button widget should be replaced with 'tooltip'\&quot;);\n\tthis.tooltip = title;\n}\n\n\tthis.style = this.getAttribute(\&quot;style\&quot;);\n\tthis.selectedClass = this.getAttribute(\&quot;selectedClass\&quot;);\n\tthis.defaultSetValue = this.getAttribute(\&quot;default\&quot;);\n\t// Make child widgets\n\tthis.makeChildWidgets();\n};\n\n/*\nSelectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering\n*/\nButtonWidget.prototype.refresh = function(changedTiddlers) {\n\tvar changedAttributes = this.computeAttributes();\n\tif(changedAttributes.to || changedAttributes.message || changedAttributes.param || changedAttributes.set || changedAttributes.setTo || changedAttributes.popup || changedAttributes.hover || changedAttributes[\&quot;class\&quot;] || changedAttributes.selectedClass || changedAttributes.style || (this.set &amp;&amp; changedTiddlers[this.set]) || (this.popup &amp;&amp; changedTiddlers[this.popup])) {\n\t\tthis.refreshSelf();\n\t\treturn true;\n\t}\n\treturn this.refreshChildren(changedTiddlers);\n};\n\nexports.button = ButtonWidget;\n\n})();\n&quot;,
+            &quot;text&quot;: &quot;/*\\\ntitle: $:/core/modules/widgets/button.js\ntype: application/javascript\nmodule-type: widget\n\nButton widget\n\n\\*/\n(function(){\n\n/*jslint node: true, browser: true */\n/*global $tw: false */\n\&quot;use strict\&quot;;\n\nvar Widget = require(\&quot;$:/core/modules/widgets/widget.js\&quot;).widget;\n\nvar ButtonWidget = function(parseTreeNode,options) {\n\tthis.initialise(parseTreeNode,options);\n};\n\n/*\nInherit from the base widget class\n*/\nButtonWidget.prototype = new Widget();\n\n/*\nRender this widget into the DOM\n*/\nButtonWidget.prototype.render = function(parent,nextSibling) {\n\tvar self = this;\n\t// Remember parent\n\tthis.parentDomNode = parent;\n\t// Compute attributes and execute state\n\tthis.computeAttributes();\n\tthis.execute();\n\t// Create element\n\tvar domNode = this.document.createElement(\&quot;button\&quot;);\n\t// Assign classes\n\tvar classes = this[\&quot;class\&quot;].split(\&quot; \&quot;) || [];\n\tif(this.selectedClass) {\n\t\tif(this.set &amp;&amp; this.setTo &amp;&amp; this.isSelected()) {\n\t\t\t$tw.utils.pushTop(classes,this.selectedClass.split(\&quot; \&quot;));\n\t\t}\n\t\tif(this.popup &amp;&amp; this.isPoppedUp()) {\n\t\t\t$tw.utils.pushTop(classes,this.selectedClass.split(\&quot; \&quot;));\n\t\t}\n\t}\n\tdomNode.className = classes.join(\&quot; \&quot;);\n\t// Assign other attributes\n\tif(this.style) {\n\t\tdomNode.setAttribute(\&quot;style\&quot;,this.style);\n\t}\n\tif(this.tooltip) {\n\t\tdomNode.setAttribute(\&quot;title\&quot;,this.tooltip);\n\t}\n\tif(this[\&quot;aria-label\&quot;]) {\n\t\tdomNode.setAttribute(\&quot;aria-label\&quot;,this[\&quot;aria-label\&quot;]);\n\t}\n\t// Add a click event handler\n\tdomNode.addEventListener(\&quot;click\&quot;,function (event) {\n\t\tvar handled = false;\n\t\tif(self.to) {\n\t\t\tself.navigateTo(event);\n\t\t\thandled = true;\n\t\t}\n\t\tif(self.message) {\n\t\t\tself.dispatchMessage(event);\n\t\t\thandled = true;\n\t\t}\n\t\tif(self.popup) {\n\t\t\tself.triggerPopup(event);\n\t\t\thandled = true;\n\t\t}\n\t\tif(self.set) {\n\t\t\tself.setTiddler();\n\t\t\thandled = true;\n\t\t}\n\t\tif(handled) {\n\t\t\tevent.preventDefault();\n\t\t\tevent.stopPropagation();\n\t\t}\n\t\treturn handled;\n\t},false);\n\t// Insert element\n\tparent.insertBefore(domNode,nextSibling);\n\tthis.renderChildren(domNode,null);\n\tthis.domNodes.push(domNode);\n};\n\nButtonWidget.prototype.isSelected = function() {\n\tvar tiddler = this.wiki.getTiddler(this.set);\n\treturn tiddler ? tiddler.fields.text === this.setTo : this.defaultSetValue === this.setTo;\n};\n\nButtonWidget.prototype.isPoppedUp = function() {\n\tvar tiddler = this.wiki.getTiddler(this.popup);\n\tvar result = tiddler &amp;&amp; tiddler.fields.text ? $tw.popup.readPopupState(this.popup,tiddler.fields.text) : false;\n\treturn result;\n};\n\nButtonWidget.prototype.navigateTo = function(event) {\n\tvar bounds = this.domNodes[0].getBoundingClientRect();\n\tthis.dispatchEvent({\n\t\ttype: \&quot;tm-navigate\&quot;,\n\t\tnavigateTo: this.to,\n\t\tnavigateFromTitle: this.getVariable(\&quot;storyTiddler\&quot;),\n\t\tnavigateFromNode: this,\n\t\tnavigateFromClientRect: { top: bounds.top, left: bounds.left, width: bounds.width, right: bounds.right, bottom: bounds.bottom, height: bounds.height\n\t\t},\n\t\tnavigateSuppressNavigation: event.metaKey || event.ctrlKey || (event.button === 1)\n\t});\n};\n\nButtonWidget.prototype.dispatchMessage = function(event) {\n\tthis.dispatchEvent({type: this.message, param: this.param, tiddlerTitle: this.getVariable(\&quot;currentTiddler\&quot;)});\n};\n\nButtonWidget.prototype.triggerPopup = function(event) {\n\t$tw.popup.triggerPopup({\n\t\tdomNode: this.domNodes[0],\n\t\ttitle: this.popup,\n\t\twiki: this.wiki\n\t});\n};\n\nButtonWidget.prototype.setTiddler = function() {\n\tthis.wiki.setTextReference(this.set,this.setTo,this.getVariable(\&quot;currentTiddler\&quot;));\n};\n\n/*\nCompute the internal state of the widget\n*/\nButtonWidget.prototype.execute = function() {\n\t// Get attributes\n\tthis.to = this.getAttribute(\&quot;to\&quot;);\n\tthis.message = this.getAttribute(\&quot;message\&quot;);\n\tthis.param = this.getAttribute(\&quot;param\&quot;);\n\tthis.set = this.getAttribute(\&quot;set\&quot;);\n\tthis.setTo = this.getAttribute(\&quot;setTo\&quot;);\n\tthis.popup = this.getAttribute(\&quot;popup\&quot;);\n\tthis.hover = this.getAttribute(\&quot;hover\&quot;);\n\tthis[\&quot;class\&quot;] = this.getAttribute(\&quot;class\&quot;,\&quot;\&quot;);\n\tthis[\&quot;aria-label\&quot;] = this.getAttribute(\&quot;aria-label\&quot;);\n\tthis.tooltip = this.getAttribute(\&quot;tooltip\&quot;);\n\tthis.style = this.getAttribute(\&quot;style\&quot;);\n\tthis.selectedClass = this.getAttribute(\&quot;selectedClass\&quot;);\n\tthis.defaultSetValue = this.getAttribute(\&quot;default\&quot;);\n\t// Make child widgets\n\tthis.makeChildWidgets();\n};\n\n/*\nSelectively refreshes the widget if needed. Returns true if the widget or any of its children needed re-rendering\n*/\nButtonWidget.prototype.refresh = function(changedTiddlers) {\n\tvar changedAttributes = this.computeAttributes();\n\tif(changedAttributes.to || changedAttributes.message || changedAttributes.param || changedAttributes.set || changedAttributes.setTo || changedAttributes.popup || changedAttributes.hover || changedAttributes[\&quot;class\&quot;] || changedAttributes.selectedClass || changedAttributes.style || (this.set &amp;&amp; changedTiddlers[this.set]) || (this.popup &amp;&amp; changedTiddlers[this.popup])) {\n\t\tthis.refreshSelf();\n\t\treturn true;\n\t}\n\treturn this.refreshChildren(changedTiddlers);\n};\n\nexports.button = ButtonWidget;\n\n})();\n&quot;,
             &quot;title&quot;: &quot;$:/core/modules/widgets/button.js&quot;,
             &quot;type&quot;: &quot;application/javascript&quot;,
             &quot;module-type&quot;: &quot;widget&quot;
@@ -4312,7 +4312,7 @@ Error message and password prompt
         },
         &quot;$:/core/ui/PageStylesheet&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/PageStylesheet&quot;,
-            &quot;text&quot;: &quot;&lt;$importvariables filter=\&quot;[[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]\&quot;&gt;\n\n&lt;!-- DEPRECATION WARNING --&gt;&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/stylesheet]!has[draft.of]]\&quot;&gt;\n&lt;$transclude mode=\&quot;block\&quot;/&gt;\n&lt;/$list&gt;\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/Stylesheet]!has[draft.of]]\&quot;&gt;\n&lt;$transclude mode=\&quot;block\&quot;/&gt;\n&lt;/$list&gt;\n\n&lt;/$importvariables&gt;\n&quot;
+            &quot;text&quot;: &quot;&lt;$importvariables filter=\&quot;[[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]\&quot;&gt;\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/Stylesheet]!has[draft.of]]\&quot;&gt;\n&lt;$transclude mode=\&quot;block\&quot;/&gt;\n&lt;/$list&gt;\n\n&lt;/$importvariables&gt;\n&quot;
         },
         &quot;$:/core/ui/PageTemplate/alerts&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/PageTemplate/alerts&quot;,
@@ -4327,7 +4327,7 @@ Error message and password prompt
         &quot;$:/core/ui/PageTemplate/story&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/PageTemplate/story&quot;,
             &quot;tags&quot;: &quot;$:/tags/PageTemplate&quot;,
-            &quot;text&quot;: &quot;&lt;section class=\&quot;tc-story-river\&quot;&gt;\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/stylesheet]!has[draft.of]]\&quot;&gt;\n\n&lt;!-- DEPRECATION WARNING --&gt;WARNING: tag \&quot;$:/tags/stylesheet\&quot; on &lt;$link&gt;&lt;$view field=\&quot;title\&quot;/&gt;&lt;/$link&gt; should be replaced with \&quot;$:/tags/Stylesheet\&quot;\n\n&lt;/$list&gt;\n\n&lt;section class=\&quot;story-backdrop\&quot;&gt;\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]\&quot;&gt;\n\n&lt;$transclude/&gt;\n\n&lt;/$list&gt;\n\n&lt;/section&gt;\n\n&lt;$list filter=\&quot;[list[$:/StoryList]]\&quot; history=\&quot;$:/HistoryList\&quot; template=\&quot;$:/core/ui/ViewTemplate\&quot; editTemplate=\&quot;$:/core/ui/EditTemplate\&quot; storyview={{$:/view}} /&gt;\n\n&lt;section class=\&quot;story-frontdrop\&quot;&gt;\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]\&quot;&gt;\n\n&lt;$transclude/&gt;\n\n&lt;/$list&gt;\n\n&lt;/section&gt;\n\n&lt;/section&gt;\n&quot;
+            &quot;text&quot;: &quot;&lt;section class=\&quot;tc-story-river\&quot;&gt;\n\n&lt;section class=\&quot;story-backdrop\&quot;&gt;\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]\&quot;&gt;\n\n&lt;$transclude/&gt;\n\n&lt;/$list&gt;\n\n&lt;/section&gt;\n\n&lt;$list filter=\&quot;[list[$:/StoryList]]\&quot; history=\&quot;$:/HistoryList\&quot; template=\&quot;$:/core/ui/ViewTemplate\&quot; editTemplate=\&quot;$:/core/ui/EditTemplate\&quot; storyview={{$:/view}} /&gt;\n\n&lt;section class=\&quot;story-frontdrop\&quot;&gt;\n\n&lt;$list filter=\&quot;[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]\&quot;&gt;\n\n&lt;$transclude/&gt;\n\n&lt;/$list&gt;\n\n&lt;/section&gt;\n\n&lt;/section&gt;\n&quot;
         },
         &quot;$:/core/ui/PageTemplate/topleftbar&quot;: {
             &quot;title&quot;: &quot;$:/core/ui/PageTemplate/topleftbar&quot;,
@@ -4965,7 +4965,7 @@ $src$
 <div created="20140908134120325" modified="20140919142241960" modifier="pmario" title="$:/language" type="text/vnd.tiddlywiki">
 <pre>$:/languages/de-AT</pre>
 </div>
-<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="$:/languages/de-DE" description="Deutsch (Österreich)" name="de-AT" plugin-priority="110" plugin-type="language" title="$:/languages/de-AT" type="application/json" version="5.1.0">
+<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="$:/languages/de-DE" description="Deutsch (Österreich)" name="de-AT" plugin-priority="110" plugin-type="language" title="$:/languages/de-AT" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/core/de-AT/readme&quot;: {
@@ -4980,7 +4980,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="" description="Deutsch (Deutschland)" name="de-DE" plugin-priority="100" plugin-type="language" title="$:/languages/de-DE" type="application/json" version="5.1.0">
+<div author="MarioPietsch aka pmario" core-version="&gt;=5.0.0" dependents="" description="Deutsch (Deutschland)" name="de-DE" plugin-priority="100" plugin-type="language" title="$:/languages/de-DE" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/language/Buttons/AdvancedSearch/Caption&quot;: {
@@ -5065,7 +5065,7 @@ $src$
         },
         &quot;$:/language/Buttons/Encryption/ClearPassword/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Encryption/ClearPassword/Caption&quot;,
-            &quot;text&quot;: &quot;lösche Passwort&quot;
+            &quot;text&quot;: &quot;Verschlüsselung deaktivieren&quot;
         },
         &quot;$:/language/Buttons/Encryption/ClearPassword/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Encryption/ClearPassword/Hint&quot;,
@@ -5073,7 +5073,7 @@ $src$
         },
         &quot;$:/language/Buttons/Encryption/SetPassword/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Encryption/SetPassword/Caption&quot;,
-            &quot;text&quot;: &quot;ativiere Passwort&quot;
+            &quot;text&quot;: &quot;verschlüsseln&quot;
         },
         &quot;$:/language/Buttons/Encryption/SetPassword/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Encryption/SetPassword/Hint&quot;,
@@ -5085,7 +5085,7 @@ $src$
         },
         &quot;$:/language/Buttons/FullScreen/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/FullScreen/Hint&quot;,
-            &quot;text&quot;: &quot;Aktivieren oder deaktivieren des Vollbild modus&quot;
+            &quot;text&quot;: &quot;Aktivieren oder deaktivieren des Vollbild-modus&quot;
         },
         &quot;$:/language/Buttons/Import/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Import/Caption&quot;,
@@ -5141,7 +5141,7 @@ $src$
         },
         &quot;$:/language/Buttons/Permalink/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Permalink/Hint&quot;,
-            &quot;text&quot;: &quot;Die Browser Address Leiste enthält einen Link zu diesem Tiddler&quot;
+            &quot;text&quot;: &quot;Die Browser Adressleiste enthält einen Link zu diesem Tiddler&quot;
         },
         &quot;$:/language/Buttons/Permaview/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Permaview/Caption&quot;,
@@ -5149,7 +5149,7 @@ $src$
         },
         &quot;$:/language/Buttons/Permaview/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Permaview/Hint&quot;,
-            &quot;text&quot;: &quot;Die Browser Address Leiste enthält einen Link zu allen offenen Tiddlern in dieser \&quot;Story\&quot;&quot;
+            &quot;text&quot;: &quot;Die Browser Adressleiste enthält einen Link zu allen offenen Tiddlern in dieser \&quot;Story\&quot;&quot;
         },
         &quot;$:/language/Buttons/Refresh/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/Refresh/Caption&quot;,
@@ -5197,7 +5197,7 @@ $src$
         },
         &quot;$:/language/Buttons/ShowSideBar/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/ShowSideBar/Hint&quot;,
-            &quot;text&quot;: &quot;Sidebar eiblenden&quot;
+            &quot;text&quot;: &quot;Sidebar einblenden&quot;
         },
         &quot;$:/language/Buttons/TagManager/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/Buttons/TagManager/Caption&quot;,
@@ -5241,7 +5241,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/Basics/DefaultTiddlers/BottomHint&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/DefaultTiddlers/BottomHint&quot;,
-            &quot;text&quot;: &quot;Verwenden sie &amp;#91;&amp;#91;doppelte eckige Klammern&amp;#93;&amp;#93; für Titel mit Lehrzeichen oder wählen sie &lt;$button set=\&quot;$:/DefaultTiddlers\&quot; setTo=\&quot;[list[$:/StoryList]]\&quot;&gt;Offene Tiddler beim Laden wiederherstellen.&lt;/$button&gt;&quot;
+            &quot;text&quot;: &quot;Verwenden sie &amp;#91;&amp;#91;doppelte eckige Klammern&amp;#93;&amp;#93; für Titel mit Leerzeichen oder wählen sie &lt;$button set=\&quot;$:/DefaultTiddlers\&quot; setTo=\&quot;[list[$:/StoryList]]\&quot;&gt;Offene Tiddler beim Laden wiederherstellen.&lt;/$button&gt;&quot;
         },
         &quot;$:/language/ControlPanel/Basics/DefaultTiddlers/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/DefaultTiddlers/Prompt&quot;,
@@ -5265,7 +5265,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/Basics/Subtitle/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/Subtitle/Prompt&quot;,
-            &quot;text&quot;: &quot;Untertietel:&quot;
+            &quot;text&quot;: &quot;Untertitel:&quot;
         },
         &quot;$:/language/ControlPanel/Basics/SystemTiddlers/Prompt&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Basics/SystemTiddlers/Prompt&quot;,
@@ -5301,7 +5301,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/EditorTypes/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/EditorTypes/Hint&quot;,
-            &quot;text&quot;: &quot;Diese Tiddler definieren, welcher Editor für bestimmte Tiddler Typen (MIME-Type) verwendet werden sollen.&quot;
+            &quot;text&quot;: &quot;Diese Tiddler definieren, welcher Editor für bestimmte Tiddler Typen (MIME-Type) verwendet werden soll.&quot;
         },
         &quot;$:/language/ControlPanel/EditorTypes/Type/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/EditorTypes/Type/Caption&quot;,
@@ -5321,7 +5321,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/LoadedModules/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/LoadedModules/Hint&quot;,
-            &quot;text&quot;: &quot;Hier weden die geladenen Module und ihre Quelltext Komponenten angezeigt. Mit \&quot;italic\&quot; hervorgehobene Tiddler wurden während des Boot-Prozesses erstellt. Diese Tiddler haben keinen Quelltext.&quot;
+            &quot;text&quot;: &quot;Hier werden die geladenen Module und ihre Quelltext Komponenten angezeigt. Mit \&quot;italic\&quot; hervorgehobene Tiddler wurden während des Boot-Prozesses erstellt. Diese Tiddler haben keinen Quelltext.&quot;
         },
         &quot;$:/language/ControlPanel/Palette/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Palette/Caption&quot;,
@@ -5545,7 +5545,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/TiddlerFields/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/TiddlerFields/Hint&quot;,
-            &quot;text&quot;: &quot;Hier finden sie alle [[Felder|TiddlerFields]], die in diesem Wiki verwendet werden. Inklusive der Felder aus System-, exclusive Schatten-Tiddler. &quot;
+            &quot;text&quot;: &quot;Hier finden sie alle [[Felder|TiddlerFields]], die in diesem Wiki verwendet werden. Inklusive der Felder aus System-, exklusive Schatten-Tiddler. &quot;
         },
         &quot;$:/language/ControlPanel/Toolbars/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Toolbars/Caption&quot;,
@@ -5569,7 +5569,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/Toolbars/PageControls/Hint&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Toolbars/PageControls/Hint&quot;,
-            &quot;text&quot;: &quot;Ausweählen, welche Buttons im Hauptmenü angezeigt werden:&quot;
+            &quot;text&quot;: &quot;Auswählen, welche Buttons im Hauptmenü angezeigt werden:&quot;
         },
         &quot;$:/language/ControlPanel/Toolbars/ViewToolbar/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Toolbars/ViewToolbar/Caption&quot;,
@@ -5589,7 +5589,7 @@ $src$
         },
         &quot;$:/language/ControlPanel/Tools/Export/AllAsStaticHTML/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Tools/Export/AllAsStaticHTML/Caption&quot;,
-            &quot;text&quot;: &quot;Alle Tiddler als \&quot;statische HTML\&quot; Datein speichern. &quot;
+            &quot;text&quot;: &quot;Alle Tiddler als \&quot;statische HTML\&quot; Dateien speichern. &quot;
         },
         &quot;$:/language/ControlPanel/Tools/Export/Heading&quot;: {
             &quot;title&quot;: &quot;$:/language/ControlPanel/Tools/Export/Heading&quot;,
@@ -5893,7 +5893,7 @@ $src$
         },
         &quot;$:/language/Docs/PaletteColours/sidebar-tab-foreground-selected&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/sidebar-tab-foreground-selected&quot;,
-            &quot;text&quot;: &quot;Seitenleiste Reier Vordergrund für selectierte Reiter&quot;
+            &quot;text&quot;: &quot;Seitenleiste Reiter Vordergrund für selectierte Reiter&quot;
         },
         &quot;$:/language/Docs/PaletteColours/sidebar-tab-foreground&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/sidebar-tab-foreground&quot;,
@@ -5913,7 +5913,7 @@ $src$
         },
         &quot;$:/language/Docs/PaletteColours/tab-background-selected&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tab-background-selected&quot;,
-            &quot;text&quot;: &quot;Reier Hintergrund für selektierte Reiter&quot;
+            &quot;text&quot;: &quot;Reiter Hintergrund für selektierte Reiter&quot;
         },
         &quot;$:/language/Docs/PaletteColours/tab-background&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tab-background&quot;,
@@ -5921,7 +5921,7 @@ $src$
         },
         &quot;$:/language/Docs/PaletteColours/tab-border-selected&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tab-border-selected&quot;,
-            &quot;text&quot;: &quot;Reiter Rahmen für selectierte Reiter&quot;
+            &quot;text&quot;: &quot;Reiter Rahmen für selektierte Reiter&quot;
         },
         &quot;$:/language/Docs/PaletteColours/tab-border&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tab-border&quot;,
@@ -5993,11 +5993,11 @@ $src$
         },
         &quot;$:/language/Docs/PaletteColours/tiddler-editor-fields-even&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tiddler-editor-fields-even&quot;,
-            &quot;text&quot;: &quot;Tiddler Editor Hintergrund geradzahlinge Felder in Tabelle&quot;
+            &quot;text&quot;: &quot;Tiddler Editor Hintergrund geradzahlige Felder in Tabelle&quot;
         },
         &quot;$:/language/Docs/PaletteColours/tiddler-editor-fields-odd&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tiddler-editor-fields-odd&quot;,
-            &quot;text&quot;: &quot;Tiddler Editor Hintergrund un-geradzahlinge Felder in Tabelle&quot;
+            &quot;text&quot;: &quot;Tiddler Editor Hintergrund un-geradzahlige Felder in Tabelle&quot;
         },
         &quot;$:/language/Docs/PaletteColours/tiddler-info-background&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tiddler-info-background&quot;,
@@ -6009,7 +6009,7 @@ $src$
         },
         &quot;$:/language/Docs/PaletteColours/tiddler-info-tab-background&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tiddler-info-tab-background&quot;,
-            &quot;text&quot;: &quot;Tiddler Info Breich Reiter Hintergrund&quot;
+            &quot;text&quot;: &quot;Tiddler Info Bereich Reiter Hintergrund&quot;
         },
         &quot;$:/language/Docs/PaletteColours/tiddler-link-background&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/PaletteColours/tiddler-link-background&quot;,
@@ -6109,11 +6109,11 @@ $src$
         },
         &quot;$:/language/EditTemplate/Shadow/Warning&quot;: {
             &quot;title&quot;: &quot;$:/language/EditTemplate/Shadow/Warning&quot;,
-            &quot;text&quot;: &quot;Dies ist ein Schatten-Tiddler. Jede Änderung überschreibt die \&quot;standard\&quot; Version.&quot;
+            &quot;text&quot;: &quot;Dies ist ein Schatten-Tiddler. Jede Änderung überschreibt die Standardversion.&quot;
         },
         &quot;$:/language/EditTemplate/Shadow/OverriddenWarning&quot;: {
             &quot;title&quot;: &quot;$:/language/EditTemplate/Shadow/OverriddenWarning&quot;,
-            &quot;text&quot;: &quot;Dies ist ein veränderter Tiddler. Um zur \&quot;standard\&quot; Version zurück zu kehren, löschen sie diesen Tiddler.&quot;
+            &quot;text&quot;: &quot;Dies ist ein veränderter Tiddler. Um zur Standardversion zurück zu kehren, löschen sie diesen Tiddler.&quot;
         },
         &quot;$:/language/EditTemplate/Tags/Add/Button&quot;: {
             &quot;title&quot;: &quot;$:/language/EditTemplate/Tags/Add/Button&quot;,
@@ -6177,7 +6177,7 @@ $src$
         },
         &quot;$:/language/Docs/Fields/draft.title&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/Fields/draft.title&quot;,
-            &quot;text&quot;: &quot;Entwurd Titel - enthält den neuen Titel, wenn der Entwurf-Tiddler gespeichert wird. &quot;
+            &quot;text&quot;: &quot;Entwurf Titel - enthält den neuen Titel, wenn der Entwurf-Tiddler gespeichert wird. &quot;
         },
         &quot;$:/language/Docs/Fields/footer&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/Fields/footer&quot;,
@@ -6213,7 +6213,7 @@ $src$
         },
         &quot;$:/language/Docs/Fields/modifier&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/Fields/modifier&quot;,
-            &quot;text&quot;: &quot;Name der Person, die den Tiddler zuletzt veränder hat.&quot;
+            &quot;text&quot;: &quot;Name der Person, die den Tiddler zuletzt verändert hat.&quot;
         },
         &quot;$:/language/Docs/Fields/name&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/Fields/name&quot;,
@@ -6261,7 +6261,7 @@ $src$
         },
         &quot;$:/language/Docs/Fields/version&quot;: {
             &quot;title&quot;: &quot;$:/language/Docs/Fields/version&quot;,
-            &quot;text&quot;: &quot;Versions Information eines \&quot;plugins\&quot;.&quot;
+            &quot;text&quot;: &quot;Versions-Information eines \&quot;plugins\&quot;.&quot;
         },
         &quot;$:/language/Filters/AllTiddlers&quot;: {
             &quot;title&quot;: &quot;$:/language/Filters/AllTiddlers&quot;,
@@ -6339,7 +6339,7 @@ $src$
         &quot;$:/language/Help/makelibrary&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/makelibrary&quot;,
             &quot;description&quot;: &quot;Erstellt die \&quot;Upgrade Bibliothek\&quot;, die vom upgrade Prozess benötigt wird&quot;,
-            &quot;text&quot;: &quot;Erstellt den tiddler: `$:/UpgradeLibrary`, der vom upgrade Prozess benötigt wird.\n\nDie \&quot;Upgrade Bibliothek\&quot; ist ein \&quot;normales\&quot; Plugin, vom Typ: `library`. Es enthält eine Kopie jedes Plugins, Themas und Sprachpacketes, das im TiddlyWiki5 Archiv enthalten ist.\n\nDieser Befehl ist ein \&quot;interner\&quot; Befehl! Er ist nur relevant für Benutzer, die einen spezifischen \&quot;Upgrade Prezess\&quot; erstellen müssen. zB: Umwandeln von einem Tiddler in mehrere Tiddler, um Inkompatibilitäten zu vermeiden.\n\n```\n--makelibrary &lt;title&gt;\n```\n\nDas \&quot;title\&quot; Argument ist standardmäßig: `$:/UpgradeLibrary`.\n&quot;
+            &quot;text&quot;: &quot;Erstellt den tiddler: `$:/UpgradeLibrary`, der vom upgrade Prozess benötigt wird.\n\nDie \&quot;Upgrade Bibliothek\&quot; ist ein \&quot;normales\&quot; Plugin, vom Typ: `library`. Es enthält eine Kopie jedes Plugins, Themas und Sprachpacketes, das im TiddlyWiki Archiv enthalten ist.\n\nDieser Befehl ist ein \&quot;interner\&quot; Befehl! Er ist nur relevant für Benutzer, die einen spezifischen \&quot;Upgrade Prezess\&quot; erstellen müssen. zB: Umwandeln von einem Tiddler in mehrere Tiddler, um Inkompatibilitäten zu vermeiden.\n\n```\n--makelibrary &lt;title&gt;\n```\n\nDas \&quot;title\&quot; Argument ist standardmäßig: `$:/UpgradeLibrary`.\n&quot;
         },
         &quot;$:/language/Help/notfound&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/notfound&quot;,
@@ -6348,7 +6348,7 @@ $src$
         &quot;$:/language/Help/output&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/output&quot;,
             &quot;description&quot;: &quot;Setzt das Basis Ausgabeverzeichnis für die folgenden Befehle.&quot;,
-            &quot;text&quot;: &quot;Setzt das Basis Ausgabeverzeichnis für die folgenden Befehle. Das Standard Verzeichnis heißt: `output` und ist ein Unterverzeichnis des `edition` Verzeichnisses.\n\n```\n--output &lt;pathname&gt;\n```\n\nIst das spezifizierte Verzeichnis \&quot;relative\&quot;, dann wird es relativ zum bestehenden Arbeitsverzeichnis angelegt. \n&quot;
+            &quot;text&quot;: &quot;Setzt das Basis Ausgabeverzeichnis für die folgenden Befehle. Das Standard Verzeichnis heißt: `output` und ist ein Unterverzeichnis des `edition` Verzeichnisses.\n\n```\n--output &lt;pathname&gt;\n```\n\nIst das spezifizierte Verzeichnis \&quot;relativ\&quot;, dann wird es relativ zum bestehenden Arbeitsverzeichnis angelegt. \n&quot;
         },
         &quot;$:/language/Help/password&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/password&quot;,
@@ -6363,7 +6363,7 @@ $src$
         &quot;$:/language/Help/rendertiddlers&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/rendertiddlers&quot;,
             &quot;description&quot;: &quot;Gefilterte Ausgabe von Tiddlern, in einem spezifizierten Format.&quot;,
-            &quot;text&quot;: &quot;Gefilterte Ausgabe mehrerer Tiddler, in ein angegebenes Dateiformat (standard: `text/html`) mit spezifischer Erweiterung (standard: `.html`).\n\n```\n--rendertiddlers &lt;filter&gt; &lt;template&gt; &lt;pathname&gt; [&lt;type&gt;] [&lt;extension&gt;]\n```\n\nBeispiel:\n\n```\n--rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html ./static text/plain\n```\n\nStandardmäßig ist das `output` Verzeichnis ein Unterverzeichnis im `edition` Verzeichnis. Der `--output` Befehl kann verwendet werden, um ein anderes Verzeichnis auszuwählen.\n\nNicht vorhandene Verzeichnisse werden automatisch erstellt.\n&quot;
+            &quot;text&quot;: &quot;Gefilterte Ausgabe mehrerer Tiddler, in ein angegebenes Dateiformat (standard: `text/html`) mit spezifischer Erweiterung (Standard: `.html`).\n\n```\n--rendertiddlers &lt;filter&gt; &lt;template&gt; &lt;pathname&gt; [&lt;type&gt;] [&lt;extension&gt;]\n```\n\nBeispiel:\n\n```\n--rendertiddlers [!is[system]] $:/core/templates/static.tiddler.html ./static text/plain\n```\n\nStandardmäßig ist das `output` Verzeichnis ein Unterverzeichnis im `edition` Verzeichnis. Der `--output` Befehl kann verwendet werden, um ein anderes Verzeichnis auszuwählen.\n\nNicht vorhandene Verzeichnisse werden automatisch erstellt.\n&quot;
         },
         &quot;$:/language/Help/savetiddler&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/savetiddler&quot;,
@@ -6378,7 +6378,7 @@ $src$
         &quot;$:/language/Help/server&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/server&quot;,
             &quot;description&quot;: &quot;Stellt einen HTTP server für TiddlyWiki zur Verfügung.&quot;,
-            &quot;text&quot;: &quot;TiddlyWiki bringt einen sehr einfachen Web-Server mit. Dieser ist zwar kompatibel mit dem TiddlyWeb Protokoll, ist jeoch nicht ausgereift genug, um im produktiven Einsatz im Netz eingesetzt zu werden. \n\nDer Server kann spezifische Tiddler im angegebnen Format anzeigen (rendern). Zudem können einzelne, oder mehrere Tiddler im JSON Format übertragen werden. Die unterstützten HTTP Funktionen sind: `GET`, `PUT` und `DELETE`\n\n```\n--server &lt;port&gt; &lt;roottiddler&gt; &lt;rendertype&gt; &lt;servetype&gt; &lt;username&gt; &lt;password&gt; &lt;host&gt;\n```\n\nDie Parameter sind: \n\n* ''port'' - Port Nummer mit der kommuniziert werden soll (standard: \&quot;8080\&quot;).\n* ''roottiddler'' - Der Tiddler, der als ~Basis-Tiddler verwendet werden soll ( standard: \&quot;$:/core/save/all\&quot;).\n* ''rendertype'' -  MIME-Type, zu dem der ~Basis-Tiddler \&quot;gerendert\&quot; werden soll ( standard: \&quot;text/plain\&quot;).\n* ''servetype'' - MIME-Type, mit dem der Basis-Tiddler ausgeliefert werden soll ( standard: \&quot;text/html\&quot;).\n* ''username'' - Benutzer Name, mit dem verändete Tiddler signiert werden.\n* ''password'' - Passwort mit dem eine sehr \&quot;simple\&quot; Zugangsbeschränkung aufgebaut werden kann.\n* ''host'' - ~Host-Name von dem ausgeliefert werden soll. Host ist optional ( standard: \&quot;127.0.0.1\&quot; oder auch \&quot;localhost\&quot;).\n\nWenn bem Server start ein Passwort angegeben wird, dann wird der Benutzer aufgefordert den Benutzernamen und das Passwort einzugeben, bevor ein Wiki angezeigt wird. ACHTUNG: Das Passwort wird im Klartext übertragen. Diese Vorgehensweise ist nicht für den Einsatz im Netz geeignet.\n\nBeispiel:\n\n```\n--server 8080 $:/core/save/all text/plain text/html MeinBenutzerName passw0rt\n```\n\nEs ist möglich mehrere TiddlyWiki Server gleichzeitig zu starten. Jeder Server muss jedoch mit einem eigenen Port gestartet werden.\n&quot;
+            &quot;text&quot;: &quot;TiddlyWiki bringt einen sehr einfachen Web-Server mit. Dieser ist zwar kompatibel mit dem TiddlyWeb Protokoll, ist jedoch nicht ausgereift genug, um im produktiven Einsatz im Netz eingesetzt zu werden. \n\nDer Server kann spezifische Tiddler im angegebenen Format anzeigen (rendern). Zudem können einzelne, oder mehrere Tiddler im JSON Format übertragen werden. Die unterstützten HTTP Funktionen sind: `GET`, `PUT` und `DELETE`\n\n```\n--server &lt;port&gt; &lt;roottiddler&gt; &lt;rendertype&gt; &lt;servetype&gt; &lt;username&gt; &lt;password&gt; &lt;host&gt;\n```\n\nDie Parameter sind: \n\n* ''port'' - Port Nummer mit der kommuniziert werden soll (Standard: \&quot;8080\&quot;).\n* ''roottiddler'' - Der Tiddler, der als ~Basis-Tiddler verwendet werden soll ( Standard: \&quot;$:/core/save/all\&quot;).\n* ''rendertype'' -  MIME-Type, zu dem der ~Basis-Tiddler \&quot;gerendert\&quot; werden soll ( Standard: \&quot;text/plain\&quot;).\n* ''servetype'' - MIME-Type, mit dem der Basis-Tiddler ausgeliefert werden soll ( Standard: \&quot;text/html\&quot;).\n* ''username'' - Benutzer Name, mit dem veränderte Tiddler signiert werden.\n* ''password'' - Passwort mit dem eine sehr \&quot;simple\&quot; Zugangsbeschränkung aufgebaut werden kann.\n* ''host'' - ~Host-Name von dem ausgeliefert werden soll. Host ist optional ( Standard: \&quot;127.0.0.1\&quot; oder auch \&quot;localhost\&quot;).\n\nWenn beim Serverstart ein Passwort angegeben wird, dann wird der Benutzer aufgefordert den Benutzernamen und das Passwort einzugeben, bevor ein Wiki angezeigt wird. ACHTUNG: Das Passwort wird im Klartext übertragen. Diese Vorgehensweise ist nicht für den Einsatz im Netz geeignet.\n\nBeispiel:\n\n```\n--server 8080 $:/core/save/all text/plain text/html MeinBenutzerName passw0rt\n```\n\nEs ist möglich mehrere TiddlyWiki Server gleichzeitig zu starten. Jeder Server muss jedoch mit einem eigenen Port gestartet werden.\n&quot;
         },
         &quot;$:/language/Help/setfield&quot;: {
             &quot;title&quot;: &quot;$:/language/Help/setfield&quot;,
@@ -6573,7 +6573,7 @@ $src$
             &quot;subtitle&quot;: &quot;Änderungen Speichern&quot;,
             &quot;footer&quot;: &quot;&lt;$button message=\&quot;tm-close-tiddler\&quot;&gt;Schließen&lt;/$button&gt;&quot;,
             &quot;help&quot;: &quot;http://tiddlywiki.com/static/DownloadingChanges.html&quot;,
-            &quot;text&quot;: &quot;Ihr Browser unterstützt nur manuelles Speichern. \n\nUm das geänderte Wiki zu speichern, machen sie einen \&quot;rechts klick\&quot; auf den folgenden Link. Wählen sie \&quot;Datei herunterladen\&quot; oder \&quot;Datei speichern\&quot; und wählen sie Name und Verzeichnis.\n\n//Sie können den Vorgang etwas beschleunigen, indem sie die \&quot;Control-Taste\&quot; (Windows) oder die \&quot;Options/Alt-Taste\&quot; (Max OS X) drücken. Es wird kein \&quot;Speichern Dialog\&quot; erscheinen. Jedoch wird bei einigen Browsern die Datei einen zufälligen Namen bekommen. Sie müssen die Datei eventuell umbenennen, um sie öffnen zu können.//\n\nBei \&quot;smartphones\&quot;, die das Speichern von Dateien nicht erlauben, können sie ein Lesezeichen erstellen, dass mit ihrem PC synchronisiert wird. Dort können sie die Datein dann wie gewohnt speichern. \n&quot;
+            &quot;text&quot;: &quot;Ihr Browser unterstützt nur manuelles Speichern. \n\nUm das geänderte Wiki zu speichern, machen sie einen \&quot;rechts klick\&quot; auf den folgenden Link. Wählen sie \&quot;Datei herunterladen\&quot; oder \&quot;Datei speichern\&quot; und wählen sie Name und Verzeichnis.\n\n//Sie können den Vorgang etwas beschleunigen, indem sie die \&quot;Control-Taste\&quot; (Windows) oder die \&quot;Options/Alt-Taste\&quot; (Max OS X) drücken. Es wird kein \&quot;Speichern Dialog\&quot; erscheinen. Jedoch wird bei einigen Browsern die Datei einen zufälligen Namen bekommen. Sie müssen die Datei eventuell umbenennen, um sie öffnen zu können.//\n\nBei \&quot;Smartphones\&quot;, die das Speichern von Dateien nicht erlauben, können sie ein Lesezeichen erstellen, dass mit ihrem PC synchronisiert wird. Dort können sie die Dateien dann wie gewohnt speichern. \n&quot;
         },
         &quot;$:/language/Modals/SaveInstructions&quot;: {
             &quot;title&quot;: &quot;$:/language/Modals/SaveInstructions&quot;,
@@ -6581,7 +6581,7 @@ $src$
             &quot;subtitle&quot;: &quot;Aktuellen Stand speichern&quot;,
             &quot;footer&quot;: &quot;&lt;$button message=\&quot;tm-close-tiddler\&quot;&gt;Schließen&lt;/$button&gt;&quot;,
             &quot;help&quot;: &quot;http://tiddlywiki.com/static/SavingChanges.html&quot;,
-            &quot;text&quot;: &quot;Ihre Änderungen sollen als ~TiddlyWiki HTML Datei gespeichert werden. \n\n!!! Desktop Browser\n\n# Verwenden sie ''Speichern unter'' aus dem ''Datei'' Menü.\n# Wählen sie den Dateinamen und das Verzeichnis. \n\n#* Bei einigen Browsern müssen sie das Format explizit angeben. Zb: ''Webseite, nur HTML'' oder ähnliches.\n# Den Browser-tab schließen.\n\n!!! Smartphone Browser\n\n# Erstellen sie ein \&quot;Lesezeichen\&quot;\n#* Wenn sie \&quot;iCloud\&quot; oder \&quot;Google Sync\&quot; verwenden, dann werden ihre Daten automatisch mit dem Desktop PC synchronisiert. Dort können sie wie oben beschrieben fortfahren. \n# Den Browser-tab schließen.\n\n//Wenn sie das Lesezeichen mit \&quot;Mobile Safari\&quot; öffnen, dann wird diese Meldung erneut angezeigt. Klicken sie ''Schließen'' um fort zu fahren.//\n&quot;
+            &quot;text&quot;: &quot;Ihre Änderungen sollen als ~TiddlyWiki HTML Datei gespeichert werden. \n\n!!! Desktop Browser\n\n# Verwenden sie ''Speichern unter'' aus dem ''Datei'' Menü.\n# Wählen sie den Dateinamen und das Verzeichnis. \n\n#* Bei einigen Browsern müssen sie das Format explizit angeben. Zb: ''Webseite, nur HTML'' oder ähnliches.\n# Den Browser-Tab schließen.\n\n!!! Smartphone Browser\n\n# Erstellen sie ein \&quot;Lesezeichen\&quot;\n#* Wenn sie \&quot;iCloud\&quot; oder \&quot;Google Sync\&quot; verwenden, dann werden ihre Daten automatisch mit dem Desktop PC synchronisiert. Dort können sie wie oben beschrieben fortfahren. \n# Den Browser-Tab schließen.\n\n//Wenn sie das Lesezeichen mit \&quot;Mobile Safari\&quot; öffnen, dann wird diese Meldung erneut angezeigt. Klicken sie ''Schließen'' um fort zu fahren.//\n&quot;
         },
         &quot;$:/language/Notifications/Save/Done&quot;: {
             &quot;title&quot;: &quot;$:/language/Notifications/Save/Done&quot;,
@@ -6761,7 +6761,7 @@ $src$
         },
         &quot;$:/language/TiddlerInfo/Listed/Empty&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Listed/Empty&quot;,
-            &quot;text&quot;: &quot;Dieser Tiddler wird nicht von anderen Tiddlern gelisted.&quot;
+            &quot;text&quot;: &quot;Dieser Tiddler wird nicht von anderen Tiddlern gelistet.&quot;
         },
         &quot;$:/language/TiddlerInfo/References/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/References/Caption&quot;,
@@ -6777,7 +6777,7 @@ $src$
         },
         &quot;$:/language/TiddlerInfo/Tagging/Empty&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Tagging/Empty&quot;,
-            &quot;text&quot;: &quot;Kein Tiddler ist mit diesem \&quot;getagged\&quot;.&quot;
+            &quot;text&quot;: &quot;Kein Tiddler ist mit diesem \&quot;getaggt\&quot;.&quot;
         },
         &quot;$:/language/TiddlerInfo/Tools/Caption&quot;: {
             &quot;title&quot;: &quot;$:/language/TiddlerInfo/Tools/Caption&quot;,
@@ -6869,7 +6869,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="Browser sniffing for TiddlyWiki" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/browser-sniff" type="application/json" version="5.1.0">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="Browser sniffing for TiddlyWiki" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/browser-sniff" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tiddlywiki/browser-sniff/sniff.js&quot;: {
@@ -6891,7 +6891,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="Simon Whitaker, adapted for TiddlyWiki by JeremyRuston" dependents="" description="GitHub-style ribbon in pure CSS" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/github-fork-ribbon" type="application/json" version="5.1.0">
+<div author="Simon Whitaker, adapted for TiddlyWiki by JeremyRuston" dependents="" description="GitHub-style ribbon in pure CSS" list="readme" plugin-type="plugin" title="$:/plugins/tiddlywiki/github-fork-ribbon" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/tiddlywiki/github-fork-ribbon/readme&quot;: {
@@ -6930,7 +6930,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.1.0">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Experimental theme with a centred text column" name="Centralised" plugin-type="theme" title="$:/themes/tiddlywiki/centralised" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/centralised/styles.tid&quot;: {
@@ -6941,7 +6941,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.1.0">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="Theme for removing editing features" name="ReadOnly" plugin-type="theme" title="$:/themes/tiddlywiki/readonly" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/readonly/styles.tid&quot;: {
@@ -6952,7 +6952,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.0">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/vanilla" description="A clean theme that emphasises individual tiddlers" name="Snow White" plugin-type="theme" title="$:/themes/tiddlywiki/snowwhite" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/snowwhite/base&quot;: {
@@ -6963,7 +6963,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.1.0">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="$:/themes/tiddlywiki/snowwhite" description="An alternate theme" name="Starlight" plugin-type="theme" title="$:/themes/tiddlywiki/starlight" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/starlight/arvo.woff&quot;: {
@@ -6990,7 +6990,7 @@ $src$
     }
 }</pre>
 </div>
-<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.1.0">
+<div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="A basic default theme" name="Vanilla" plugin-type="theme" title="$:/themes/tiddlywiki/vanilla" type="application/json" version="5.1.1">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/themes/tiddlywiki/vanilla/themetweaks&quot;: {
@@ -7076,7 +7076,7 @@ Für Situationen, wo ein &quot;harter&quot; Zeilenumbruch benötigt wird sehen s
 <div created="20140918095343387" creator="pmario" modified="20140918095343388" modifier="pmario" tags="InhaltsVerzeichnis" title="Bilder" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
-<div caption="Bilder" created="20131205160221762" creator="pmario" modified="20140913185848258" modifier="pmario" tags="WikiText" title="Bilder in WikiText" type="text/vnd.tiddlywiki">
+<div caption="Bilder" created="20131205160221762" creator="pmario" modified="20140921170652909" modifier="pmario" tags="WikiText" title="Bilder in WikiText" type="text/vnd.tiddlywiki">
 <pre>!! Bild Formatierung
 
 Bilder können in WikiText mit folgender Syntax verwendet werden:
@@ -7103,7 +7103,7 @@ Ein [[Tooltip]] kann ebenfalls angegeben werden:
 
 [img width=100 [Ich bin der Tooltip text|Motovun Jack.jpg]]
 
-Attribute wie zB: CSS Klassen oder die höhe und Breite können ebenfalls angegeben werden. 
+Attribute wie zB: CSS Klassen oder die Höhe und Breite können ebenfalls angegeben werden. 
 
 ```
 [img width=64 [Motovun Jack.jpg]]
@@ -7169,8 +7169,8 @@ TODO some short videos, and upload my own Keyboard settings
 <div created="20140913190813353" creator="pmario" modified="20140913190821070" modifier="pmario" tags="Lexikon" title="DataTiddlers" type="text/vnd.tiddlywiki">
 <pre>Siehe: http://tiddlywiki.com/#DataTiddlers</pre>
 </div>
-<div caption="Definitionen" created="20131205160424246" creator="pmario" modified="20140913184933000" modifier="pmario" tags="WikiText" title="Definitionen in WikiText" type="text/vnd.tiddlywiki">
-<pre>HTML Definitions-listen werden wie folgt erstellt:
+<div caption="Definitionen" created="20131205160424246" creator="pmario" modified="20140921170646774" modifier="pmario" tags="WikiText" title="Definitionen in WikiText" type="text/vnd.tiddlywiki">
+<pre>HTML Definitionslisten werden wie folgt erstellt:
 
 &lt;&lt;wikitext-example src:&quot;; Term der zu definieren ist
 : Definition dieses Terms
@@ -7463,7 +7463,7 @@ Hinweis: [[Zitate|Zitate in WikiText]] und Listen lassen sich hervorragend gemei
 Ein Makro ist in der Softwareentwicklung eine unter einer bestimmten Bezeichnung (Makroname) zusammengefasste Folge von Anweisungen oder Deklarationen, um diese (anstelle der Einzelanweisungen, i. d. R. an mehreren Stellen im Programm) mit nur einem einfachen Aufruf ausführen zu können
 &lt;&lt;&lt; Wikipedia: http://de.wikipedia.org/wiki/Makro</pre>
 </div>
-<div caption="Makros" created="20131205160746466" creator="pmario" modified="20140913144641193" modifier="pmario" tags="WikiText" title="Makros in WikiText" type="text/vnd.tiddlywiki">
+<div caption="Makros" created="20131205160746466" creator="pmario" modified="20140921170734908" modifier="pmario" tags="WikiText" title="Makros in WikiText" type="text/vnd.tiddlywiki">
 <pre>\define meinErstesMakro(name:&quot;Bugs Bunny&quot;,adresse:&quot;Rabbit Hole Hill&quot;)
 Hallo, Ich bin $name$ und lebe in $adresse$
 \end
@@ -7527,7 +7527,7 @@ Für einzeilige Makros kann die `\end` Markierung entfallen!
 
 !!! Globale Makros
 
-* Globale Makros können in Tiddlern definiert weden, die mit dem System Tag: [[$:/tags/Macro]] getaggt sind. Diese Makros sind in jedem Tiddler sichtbar.
+* Globale Makros können in Tiddlern definiert werden, die mit dem System Tag: [[$:/tags/Macro]] getaggt sind. Diese Makros sind in jedem Tiddler sichtbar.
 
 * [[JavaScript Macros]] sind global sichtbar und haben Zugriff auf die TW Kern Funktionen. 
 
@@ -7668,8 +7668,8 @@ Verwendung von TWEdit:
 
 //HINWEIS: TWEdit steht in keiner Beziehung zu TiddlyWiki//</pre>
 </div>
-<div created="20140811171304926" creator="pmario" modified="20140909111713240" tags="howto" title="Speichern mit Safari" type="text/vnd.tiddlywiki">
-<pre>This method of saving changes is clunky because it requires manual intervention for each save.
+<div created="20140811171304926" creator="pmario" modified="20140921170749113" modifier="pmario" tags="howto" title="Speichern mit Safari" type="text/vnd.tiddlywiki">
+<pre>Diese Methode ist etwas umständlich, da jeder Schritt manuell gemacht werden muss. 
 
 # Speichern sie eine leere Datei der deutschen Version.
 #&gt; {{$:/editions/de-AT-DE/snippets/download-empty-button}}
@@ -7795,7 +7795,7 @@ Test Text, Test Text,
 &quot;&gt;&gt;
 </pre>
 </div>
-<div caption="Tabellen" created="20130914132100000" creator="pmario" modified="20140913175104046" modifier="pmario" tags="WikiText" title="Tabellen in WikiText" type="text/vnd.tiddlywiki">
+<div caption="Tabellen" created="20130914132100000" creator="pmario" modified="20140921170739118" modifier="pmario" tags="WikiText" title="Tabellen in WikiText" type="text/vnd.tiddlywiki">
 <pre>!! Basis Info
 
 TiddlyWiki formatiert Tabellen mit dem &quot;Pipe&quot; `|` Zeichen:
@@ -7837,7 +7837,7 @@ Dargestellt als:
 
 !! Vertikale Ausrichtung
 
-Die Vertikale Ausrichtung kann mit `^` für oben und `,` für unten als erstes Zeichen in der Zelle festgelegt werden:
+Die vertikale Ausrichtung kann mit `^` für oben und `,` für unten als erstes Zeichen in der Zelle festgelegt werden:
 Eine horizontale Ausrichtung ist zusätzlich möglich.
 
 ```
@@ -7904,7 +7904,7 @@ Renders as:
 |Fußzeile|Fußzeile|f
 </pre>
 </div>
-<div created="20140908130640417" creator="pmario" modified="20140918124555159" modifier="pmario" tags="Lexikon" title="Tags" type="text/vnd.tiddlywiki">
+<div created="20140908130640417" creator="pmario" modified="20140921170557820" modifier="pmario" tags="Lexikon" title="Tags" type="text/vnd.tiddlywiki">
 <pre>Als Tags werden Markierungen bezeichnet, die verwendet werden können um einzelne Tiddler, später, zu filtern.
 
 Zum Beispiel ist dieser Tiddler mit ''Lexikon'' &quot;getaggt&quot;. Es gibt &lt;$count filter=&quot;[tag[Lexikon]]&quot;/&gt; weitere Tiddler mit diesem Tag.
@@ -7917,7 +7917,7 @@ Eine gekürzte Liste wird hier angezeigt mit:
 
 &lt;&lt;list-links filter:&quot;[tag[Lexikon]limit[4]]&quot;&gt;&gt;
 
-Eine komplette liste können sie im rechten Menü unter ''Mehr: Tags&quot; sehen.
+Eine komplette Liste können sie im rechten Menü unter ''Mehr: Tags&quot; sehen.
 
 </pre>
 </div>
@@ -7971,10 +7971,10 @@ See [[Speichern mit TiddlyIE]].</pre>
 
 Siehe: http://tiddlyspot.com</pre>
 </div>
-<div created="20140908132950428" creator="pmario" modified="20140908133844484" modifier="pmario" tags="Lexikon" title="TiddlyWiki" type="text/vnd.tiddlywiki">
+<div created="20140908132950428" creator="pmario" modified="20140921170714471" modifier="pmario" tags="Lexikon" title="TiddlyWiki" type="text/vnd.tiddlywiki">
 <pre>~TiddlyWiki ist eine Wiki-Software, die komplett ohne Server auskommt - die gesamte Programmlogik befindet sich als ~JavaScript-Programm in der HTML-Seite (schauen Sie ruhig einmal in den Quelltext dieser Seite).
 
-~TiddlyWiki wird um ein Team von JeremyRuston entwickelt und gepflegt. Das Team ist organisiert unter der Organisation UnaMesa, einer Non-Profit-Organisation zur Entwicklung und Pflege von elektronischen Lernsystemen.
+~TiddlyWiki wird von einem Team um JeremyRuston entwickelt und gepflegt. Das Team ist organisiert unter der Organisation UnaMesa, einer Non-Profit-Organisation zur Entwicklung und Pflege von elektronischen Lernsystemen.
 
 Nähere Informationen und auch die jeweils aktuellste Fassung von ~TiddlyWiki finden Sie unter http://www.tiddlywiki.com/.</pre>
 </div>
@@ -8013,7 +8013,7 @@ Weitere Informationen zum Umgang mit ~TiddlyWiki und unterschiedlichen Browsern 
 
 # Installieren sie die aktuelle ~TiddlyDesktop Version von: from https://github.com/Jermolene/TiddlyDesktop/releases
 # Starten sie TiddlyDesktop
-# Verwenden sie den &quot;browse button&quot; um TiddlyWiki Datein zu öffnen.
+# Verwenden sie den &quot;browse button&quot; um TiddlyWiki Dateien zu öffnen.
 # Speicher der Änderungen funktioniert wie gewohnt. 
 
 -----
@@ -8028,21 +8028,21 @@ Ein kurzes, englisches Einführungs-Video zu TiddlyDesktop:
 Eine Transklusion (engl. transclusion) ist die Fähigkeit in meist Hypertext-Systemen, andere Dokumente oder Abschnitte daraus in sich einzuschließen (auch „einzubinden“). So können Textbausteine an unterschiedlichen Stellen mehrfach genutzt werden. Wird der transkludierte Text aktualisiert, aktualisiert sich automatisch auch die Transklusion in allen Seiten, in die diese eingebunden ist.
 &lt;&lt;&lt; Wikipedia: http://de.wikipedia.org/wiki/Transklusion</pre>
 </div>
-<div caption="Transklusion" created="20131205160146648" creator="pmario" modified="20140913193313316" modifier="pmario" tags="WikiText" title="Transklusion in WikiText" type="text/vnd.tiddlywiki">
+<div caption="Transklusion" created="20131205160146648" creator="pmario" modified="20140921170725154" modifier="pmario" tags="WikiText" title="Transklusion in WikiText" type="text/vnd.tiddlywiki">
 <pre>Sie können mit dem [[Transklusions Mechanismus|Transklusion]] den Inhalt eines Tiddlers in einen anderen Tiddler einbinden:
 
 * `{{MeinTiddler}}` transkludiert einen einzelnen Tiddler.
 * `{{MeinTiddler||VorlageTitel}}` zeigt den Tiddler mit Hilfe eines [[VorlagenTiddlers]] an.
 * `{{||VorlageTitel}}` benutzt einen Vorlagen Tiddler, ohne die interne Variable &quot;[[current tiddler|WidgetVariable: currentTiddler]]&quot; zu verändern.
 
-Statt den Tiddler Titel direkt anzugeben kann ein sogenannte TextReferenz verwendet werden:
+Statt den Tiddler Titel direkt anzugeben kann eine sogenannte TextReferenz verwendet werden:
 
 * `{{MeinTiddler!!feldName}}` transkludiert den Inhalt eines Tiddler Feldes.
-* `{{!!feldName}}` transkludiert das Feld des Tiddlres, der in der &quot;current tiddler&quot; Variable definiert ist.
+* `{{!!feldName}}` transkludiert das Feld des Tiddlers, der in der &quot;current tiddler&quot; Variable definiert ist.
 * `{{MyTiddler##index}}` transkludiert ein spezifisches Feld aus einem so genannten: DataTiddlers
-* `{{##index}}` transkludiert das angegeben Feld des &quot;current DataTiddlers&quot;
+* `{{##index}}` transkludiert das angegebene Feld des &quot;current DataTiddlers&quot;
 
-Eine ähnliche Syntax kann verwendet werde, um eine Liste von Tiddlern mit einem Filter einzubinden:
+Eine ähnliche Syntax kann verwendet werden, um eine Liste von Tiddlern mit einem Filter einzubinden:
 
 ```
 {{{ [tag[tagName]] }}}
@@ -8164,8 +8164,8 @@ $$$
 Ein Uniform Resource Locator (Abk. URL; englisch für einheitlicher Quellenanzeiger) identifiziert und lokalisiert eine Ressource, wie z. B. eine Website über die zu verwendende Zugriffsmethode (z. B. das verwendete Netzwerkprotokoll wie HTTP oder FTP) und den Ort (engl. location) der Ressource in Computernetzwerken.
 &lt;&lt;&lt;Wikipedia: http://de.wikipedia.org/wiki/Uniform_Resource_Locator</pre>
 </div>
-<div caption="Verknüpfungen" created="20131205155230596" creator="pmario" modified="20140918125129325" modifier="pmario" tags="WikiText Hyperlinks" title="Verknüpfungen in WikiText" type="text/vnd.tiddlywiki">
-<pre>Eine Schlüssel Fähigkeit von WikiText ist die einfache Möglichkeit Verknüfungen zu anderen Tiddlern oder externen Seiten herzustellen. 
+<div caption="Verknüpfungen" created="20131205155230596" creator="pmario" modified="20140921170658739" modifier="pmario" tags="WikiText Hyperlinks" title="Verknüpfungen in WikiText" type="text/vnd.tiddlywiki">
+<pre>Eine Schlüssel Fähigkeit von WikiText ist die einfache Möglichkeit, Verknüpfungen zu anderen Tiddlern oder externen Seiten herzustellen. 
 
 !! Manuelle Verknüpfungen
 
@@ -8276,7 +8276,7 @@ Bitte unter: https://groups.google.com/forum/#!forum/tiddlywiki</pre>
 <div created="20140918095112165" creator="pmario" modified="20140918095443085" modifier="pmario" tags="InhaltsVerzeichnis" title="Widgets" type="text/vnd.tiddlywiki">
 <pre>Es gibt momentan 30 Widgets. Siehe: http://tiddlywiki.com/#Widgets</pre>
 </div>
-<div caption="Widgets" created="20131205160840915" creator="pmario" modified="20140913183907225" modifier="pmario" tags="WikiText" title="Widgets in WikiText" type="text/vnd.tiddlywiki">
+<div caption="Widgets" created="20131205160840915" creator="pmario" modified="20140921170719673" modifier="pmario" tags="WikiText" title="Widgets in WikiText" type="text/vnd.tiddlywiki">
 <pre>Widgets sind die Grundbausteine von ~TiddlyWiki. Sie haben ein sehr ähnliche Syntax wie [[HTML Elemente|HTML in WikiText]] aber ihre &quot;Tag Namen&quot; beginnen immer mit einem `$`. zB:
 
 ```
@@ -8288,7 +8288,7 @@ Bitte unter: https://groups.google.com/forum/#!forum/tiddlywiki</pre>
 Widgets erben alle Funktionalitäten von [[HTML in WikiText]]:
 
 * Widget Attribute können spezifiziert werden als:
-** Zeichenkette ohne Anführungszeichen. Attribute könne dann keine Leerzeichen enthalten. 
+** Zeichenkette ohne Anführungszeichen. Attribute können dann keine Leerzeichen enthalten. 
 ** Zeichenkette mit einfachen oder doppelten Anführungszeichen. Leerzeichen sind möglich.
 ** Zeichenkette mit 3 x doppelten Anführungszeichen. Leerzeichen und 1 doppeltes Anführungszeichen sind möglich.
 ** Makro Aufruf zB: `attr=&lt;&lt;meinMakro&gt;&gt;`
@@ -8302,8 +8302,8 @@ Siehe auch: [[HTML in WikiText]] für mehr Informationen.
 Alle möglichen Widgets werden auf der TiddlyWiki Seite aufgelistet: [ext[http://tiddlywiki.com/#Widgets in WikiText]]
 </pre>
 </div>
-<div created="20131205155227468" creator="pmario" list="[[Formatierungen in WikiText]] [[Überschriften in WikiText]] [[Listen in WikiText]] [[Zitate in WikiText]] [[Verknüpfungen in WikiText]] [[Trennlinie in WikiText]] [[Paragraphs in WikiText]] [[Bilder in WikiText]] [[Code Block in WikiText]] [[Definitionen in WikiText]] [[Tabellen in WikiText]] [[Zeilenumbruch in WikiText]] [[Typisierte Blöcke in WikiText]]" modified="20140918095433441" modifier="pmario" tags="Konzept Referenz InhaltsVerzeichnis" title="WikiText" type="text/vnd.tiddlywiki">
-<pre>~WikiText ist eine Auszeichnungs-sprache, die es erlaubt auf einfache Weise Texte und ihre Formatierung in Textform einzugeben. Das erlaubt es ihnen, sich auf das Schreiben zu konzentrieren und nicht auf eine komplexe Oberfläche, die vom Wesentlichen ablenkt. Für Anwender, die bereits MarkDown kennen sollte es relativ leicht sein, sich in ~WikiText einzuarbeiten. WikiText biete mehr Möglichkeiten zum Verlinken und zur Erstellung von interaktiven Inhalten. 
+<div created="20131205155227468" creator="pmario" list="[[Formatierungen in WikiText]] [[Überschriften in WikiText]] [[Listen in WikiText]] [[Zitate in WikiText]] [[Verknüpfungen in WikiText]] [[Trennlinie in WikiText]] [[Paragraphs in WikiText]] [[Bilder in WikiText]] [[Code Block in WikiText]] [[Definitionen in WikiText]] [[Tabellen in WikiText]] [[Zeilenumbruch in WikiText]] [[Typisierte Blöcke in WikiText]]" modified="20140921170709979" modifier="pmario" tags="Konzept Referenz InhaltsVerzeichnis" title="WikiText" type="text/vnd.tiddlywiki">
+<pre>~WikiText ist eine Auszeichnungs-sprache, die es erlaubt auf einfache Weise Texte und ihre Formatierung in Textform einzugeben. Das erlaubt es ihnen, sich auf das Schreiben zu konzentrieren und nicht auf eine komplexe Oberfläche, die vom Wesentlichen ablenkt. Für Anwender, die bereits MarkDown kennen sollte es relativ leicht sein, sich in ~WikiText einzuarbeiten. WikiText bietet mehr Möglichkeiten zum Verlinken und zur Erstellung von interaktiven Inhalten. 
 
 Die folgenden Elemente sind im TW Kern enthalten:
 
@@ -8388,7 +8388,7 @@ HTML Code:
 ```
 </pre>
 </div>
-<div caption="Zitate" created="20131206154636572" creator="pmario" modified="20140913112420348" modifier="pmario" tags="WikiText" title="Zitate in WikiText" type="text/vnd.tiddlywiki">
+<div caption="Zitate" created="20131206154636572" creator="pmario" modified="20140921170704585" modifier="pmario" tags="WikiText" title="Zitate in WikiText" type="text/vnd.tiddlywiki">
 <pre>Es gibt zwei Möglichkeiten um Zitate zu erstellen. Eine, die mehrere Zeilen Text einfasst und eine, für einzelne Zeilen.
 
 ! Mehrzeilige Zitate
@@ -8403,7 +8403,7 @@ Das Ergebnis wird zusammenhängend dargestellt.
 &lt;&lt;&lt;
 &quot;&gt;&gt;
 
-!! Zitat mit Author
+!! Zitat mit Autor
 
 Wenn sie den Autor anführen möchten, dann schreiben sie wie folgt:
 
@@ -8428,7 +8428,7 @@ Zitate können &quot;verschachtelt&quot; werden:
 &gt; Zitat 2
 ```
 
-Which renders as:
+Dargestellt als: 
 
 &gt; Zitat 1
 &gt;&gt; Zitat 1.1

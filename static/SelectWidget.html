@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.1.0" />
+<meta name="tiddlywiki-version" content="5.1.1" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -169,6 +169,8 @@ SelectWidget
 
 <option value='picture'>picture</option>
 
+<option value='Plugins'>Plugins</option>
+
 <option value='Reference'>Reference</option>
 
 <option value='Release 5.0.11-beta'>Release 5.0.11-beta</option>
@@ -230,7 +232,7 @@ SelectWidget
 <option value='Working with TiddlyWiki'>Working with TiddlyWiki</option>
 
 </select>
-</p><p>The <a class='tc-tiddlylink tc-tiddlylink-missing' href='select-demo-896909202.html'>state tiddler</a> currently contains:</p><input value=''><p>See the text change as you switch entries in the select widget. Try changing the value of the state tiddler and see the select widget change. Notice how the select widget only displays an entry if there is a precise match with the tiddler text.</p><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$select&gt;</code> widget should be one or more HTML <code>&lt;option&gt;</code> or <code>&lt;optiongroup&gt;</code> elements that provide the available values.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The title of the tiddler containing the value to be displayed in the select widget (defaults to the current tiddler)</td></tr><tr class='evenRow'><td align='left'>field</td><td align='left'>The field name for the value in the current tiddler (defaults to &quot;text&quot;)</td></tr><tr class='oddRow'><td align='left'>index</td><td align='left'>The index of a property in a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a> (takes precedence over the field attribute)</td></tr><tr class='evenRow'><td align='left'>class</td><td align='left'>CSS classes to be assigned to the HTML select element</td></tr><tr class='oddRow'><td align='left'>default</td><td align='left'>Default value to be used if the tiddler, field or index specifies a missing value</td></tr></tbody></table><h1 class=''>Examples</h1><h2 class=''>Simple Lists</h2><p>This example sets the title of the current wiki <a class='tc-tiddlylink tc-tiddlylink-shadow tc-tiddlylink-resolves' href='%2524%253A%252FSiteTitle.html'>$:/SiteTitle</a> to one of a list of book titles:</p><pre><code>&lt;$select tiddler='$:/SiteTitle'&gt;
+</p><p>The <a class='tc-tiddlylink tc-tiddlylink-missing' href='select-demo-896909202.html'>state tiddler</a> currently contains:</p><input value=''><p>See the text change as you switch entries in the select widget. Try changing the value of the state tiddler and see the select widget change. Notice how the select widget only displays an entry if there is a precise match with the tiddler text.</p><h1 class=''>Content and Attributes</h1><p>The content of the <code>&lt;$select&gt;</code> widget should be one or more HTML <code>&lt;option&gt;</code> or <code>&lt;optiongroup&gt;</code> elements that provide the available values.</p><table><tbody><tr class='evenRow'><th align='left'>Attribute</th><th align='left'>Description</th></tr><tr class='oddRow'><td align='left'>tiddler</td><td align='left'>The title of the tiddler containing the value to be displayed/modified by the select widget (defaults to the current tiddler)</td></tr><tr class='evenRow'><td align='left'>field</td><td align='left'>The field name for the value in the current tiddler (defaults to &quot;text&quot;)</td></tr><tr class='oddRow'><td align='left'>index</td><td align='left'>The index of a property in a <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DataTiddlers.html'>DataTiddler</a> (takes precedence over the field attribute)</td></tr><tr class='evenRow'><td align='left'>class</td><td align='left'>CSS classes to be assigned to the HTML select element</td></tr><tr class='oddRow'><td align='left'>default</td><td align='left'>Default value to be used if the tiddler, field or index specifies a missing value</td></tr></tbody></table><h1 class=''>Examples</h1><h2 class=''>Simple Lists</h2><p>This example sets the title of the current wiki <a class='tc-tiddlylink tc-tiddlylink-shadow tc-tiddlylink-resolves' href='%2524%253A%252FSiteTitle.html'>$:/SiteTitle</a> to one of a list of book titles:</p><pre><code>&lt;$select tiddler='$:/SiteTitle'&gt;
 &lt;option&gt;A Tale of Two Cities&lt;/option&gt;
 &lt;option&gt;A New Kind of Science&lt;/option&gt;
 &lt;option&gt;The Dice Man&lt;/option&gt;

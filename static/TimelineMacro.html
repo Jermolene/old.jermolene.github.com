@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.1.0" />
+<meta name="tiddlywiki-version" content="5.1.1" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -47,7 +47,7 @@ TimelineMacro
 </div><div class='tc-subtitle'>
 <a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 7 days ago
+</a> 9 days ago
 </div>
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
@@ -61,6 +61,64 @@ TimelineMacro
 
 <div class='tc-tiddler-body'><p>The timeline macro produces a list of tiddlers in reverse chronological order of modification date that is grouped by the date of the day of modification.</p><h1 class=''>Parameters</h1><table><tbody><tr class='evenRow'><th align='left'>Position</th><th align='left'>Name</th><th align='left'>Description</th><th align='left'>Default</th></tr><tr class='oddRow'><td align='left'>1st</td><td align='left'>limit</td><td align='left'>The maximum number of tiddlers to list</td><td align='left'>100</td></tr><tr class='evenRow'><td align='left'>2nd</td><td align='left'>format</td><td align='left'>A <a class='tc-tiddlylink tc-tiddlylink-resolves' href='DateFormat.html'>DateFormat</a> string for formatting the date</td><td align='left'>DDth MMM YYYY</td></tr><tr class='oddRow'><td align='left'>3rd</td><td align='left'>subfilter</td><td align='left'>A subfilter to include in the timeline filter (see below)</td><td align='center'></td></tr></tbody></table><p>The subfilter and limit parameters are spliced into the filter string like this:</p><pre><code>[!is[system]$subfilter$has[modified]!sort[modified]limit[$limit$]eachday[modified]]</code></pre><p>To restrict the timeline to a particular tag, the subfilter can be set to something like <code>tag[mytag]</code>:</p><pre><code>&lt;&lt;timeline limit:10 subfilter:&quot;tag[mytag]&quot;&gt;&gt;</code></pre><h1 class=''>Examples</h1><pre><code>&lt;&lt;timeline limit:30 format:'DD/MM/YYYY'&gt;&gt;
 </code></pre><p>Renders as:</p><p><div class='tc-timeline'>
+
+<div class='tc-menu-list-item'>
+22/9/2014
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='HelloThere.html'>
+HelloThere
+</a>
+</div>
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='CodeMirror%2520Plugin.html'>
+CodeMirror Plugin
+</a>
+</div>
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='D3%2520Plugin.html'>
+D3 Plugin
+</a>
+</div>
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Highlight%2520Plugin.html'>
+Highlight Plugin
+</a>
+</div>
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='KaTeX%2520Plugin.html'>
+KaTeX Plugin
+</a>
+</div>
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Markdown%2520Plugin.html'>
+Markdown Plugin
+</a>
+</div>
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='TW2Parser%2520Plugin.html'>
+TW2Parser Plugin
+</a>
+</div>
+
+</div>
+
+<div class='tc-menu-list-item'>
+21/9/2014
+
+<div class='tc-menu-list-subitem'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Release%25205.1.1.html'>
+Release 5.1.1
+</a>
+</div>
+
+</div>
 
 <div class='tc-menu-list-item'>
 20/9/2014
@@ -108,26 +166,20 @@ TWGuides by Andreas Hahn
 </div>
 
 <div class='tc-menu-list-subitem'>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='HelloThere.html'>
-HelloThere
-</a>
-</div>
-
-<div class='tc-menu-list-subitem'>
 <a class='tc-tiddlylink tc-tiddlylink-resolves' href='Release%25205.1.0.html'>
 Release 5.1.0
 </a>
 </div>
 
 <div class='tc-menu-list-subitem'>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Chinese%2520(Traditional)%2520Edition.html'>
-Chinese (Traditional) Edition
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Chinese%2520(Simplified)%2520Edition.html'>
+Chinese (Simplified) Edition
 </a>
 </div>
 
 <div class='tc-menu-list-subitem'>
-<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Chinese%2520(Simplified)%2520Edition.html'>
-Chinese (Simplified) Edition
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='Chinese%2520(Traditional)%2520Edition.html'>
+Chinese (Traditional) Edition
 </a>
 </div>
 
