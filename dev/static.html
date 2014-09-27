@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.1.1" />
+<meta name="tiddlywiki-version" content="5.1.2" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <title>TiddlyWiki/Dev — documentation for developers</title>
@@ -946,6 +946,13 @@ pre > code {
 	vertical-align: baseline;
 	background-color: #d5ad34;
 	border-radius: 8px;
+}.tc-untagged-separator {
+	width: 10em;
+	left: 0;
+	margin-left: 0;
+	border: 0;
+	height: 1px;
+	background: #d8d8d8;
 }.tc-untagged-label {
 	background-color: #999999;
 }.tc-tag-label svg, .tc-tag-label img {
@@ -1376,7 +1383,7 @@ pre > code {
 }.tc-tab-buttons {
 	font-size: 0.85em;
 	padding-top: 1em;
-	margin-bottom: -1px;
+	margin-bottom: -2px;
 }.tc-tab-buttons.tc-vertical  {
 	z-index: 100;
 	display: block;
@@ -1627,6 +1634,11 @@ pre > code {
 	background: white;
 	cursor: pointer;
 	display: inline-block;
+}/*
+** Errors
+*/.tc-error {
+	background: #f00;
+	color: #fff;
 }
 
 
@@ -1777,7 +1789,7 @@ HelloThere
 </div><div class='tc-subtitle'>
 <a class='tc-tiddlylink tc-tiddlylink-missing' href='static/.html'>
 
-</a> 46 hours ago
+</a> 7 days ago
 </div>
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 

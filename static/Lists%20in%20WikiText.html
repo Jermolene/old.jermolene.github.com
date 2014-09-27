@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.1.1" />
+<meta name="tiddlywiki-version" content="5.1.2" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <link rel="stylesheet" href="static.css">
@@ -47,7 +47,7 @@ Lists in WikiText
 </div><div class='tc-subtitle'>
 <a class='tc-tiddlylink tc-tiddlylink-missing' href='.html'>
 
-</a> 9 months ago
+</a> 3 days ago
 </div>
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
@@ -77,7 +77,19 @@ Lists in WikiText
 **&gt; A quote
 **&gt; Another quote
 * List Three
-</code></pre><p>Renders as:</p><ul><li>List One<ul><li>List Two<blockquote><p>A quote</p><p>Another quote</p></blockquote></li></ul></li><li>List Three</li></ul><p>In HTML:</p><pre>&lt;ul&gt;&lt;li&gt;List One&lt;ul&gt;&lt;li&gt;List Two&lt;blockquote&gt;&lt;p&gt;A quote&lt;/p&gt;&lt;p&gt;Another quote&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;List Three&lt;/li&gt;&lt;/ul&gt;</pre></div>
+</code></pre><p>Renders as:</p><ul><li>List One<ul><li>List Two<blockquote><p>A quote</p><p>Another quote</p></blockquote></li></ul></li><li>List Three</li></ul><p>In HTML:</p><pre>&lt;ul&gt;&lt;li&gt;List One&lt;ul&gt;&lt;li&gt;List Two&lt;blockquote&gt;&lt;p&gt;A quote&lt;/p&gt;&lt;p&gt;Another quote&lt;/p&gt;&lt;/blockquote&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;List Three&lt;/li&gt;&lt;/ul&gt;</pre><h1 class=''>Paragraphs in Lists</h1><p>Entries in the list are delimited with a linebreak, making it impossible to include linebreaks within a list entry. There are a couple of workarounds.</p><p>First, you can transclude paragraph content from another tiddler. For example:</p><pre><code>* First entry
+* &lt;$transclude tiddler=&quot;MyTiddler&quot; mode=&quot;block&quot;/&gt;
+* Third entry</code></pre><p>Secondly, you can use an HTML &quot;div&quot; element to contain the multiline content. For example:</p><pre><code># Step 1
+# Step 2
+# Step 3&lt;div&gt;
+
+Here is the first of several paragraphs. Note that the double linebreak preceding this paragraph is significant.
+
+And here is the second of several paragraphs.
+&lt;/div&gt;
+# Step 4
+# Step 5
+# Step 6</code></pre></div>
 
 
 

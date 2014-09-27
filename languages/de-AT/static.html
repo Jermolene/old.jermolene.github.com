@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="generator" content="TiddlyWiki" />
-<meta name="tiddlywiki-version" content="5.1.1" />
+<meta name="tiddlywiki-version" content="5.1.2" />
 <meta name="format-detection" content="telephone=no">
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
 <title>Mein TiddlyWiki
@@ -948,6 +948,13 @@ pre > code {
 	vertical-align: baseline;
 	background-color: #d5ad34;
 	border-radius: 8px;
+}.tc-untagged-separator {
+	width: 10em;
+	left: 0;
+	margin-left: 0;
+	border: 0;
+	height: 1px;
+	background: #d8d8d8;
 }.tc-untagged-label {
 	background-color: #999999;
 }.tc-tag-label svg, .tc-tag-label img {
@@ -1378,7 +1385,7 @@ pre > code {
 }.tc-tab-buttons {
 	font-size: 0.85em;
 	padding-top: 1em;
-	margin-bottom: -1px;
+	margin-bottom: -2px;
 }.tc-tab-buttons.tc-vertical  {
 	z-index: 100;
 	display: block;
@@ -1629,6 +1636,23 @@ pre > code {
 	background: white;
 	cursor: pointer;
 	display: inline-block;
+}/*
+** Errors
+*/.tc-error {
+	background: #f00;
+	color: #fff;
+}
+
+
+li.Done {
+list-style-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22tc-list-image-done%20tc-list-image%22%20height%3D%2215%22%20width%3D%2215%22%3E%0A%3Cpath%20id%3D%22path3757%22%20stroke-linejoin%3D%22round%22%20d%3D%22M3.5168%2C8.809%2C6.3999%2C12.172%2C12.747%2C5.9087%22%20stroke%3D%22%2331a837%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%222.5%22%20fill%3D%22none%22%2F%3E%0A%3C%2Fsvg%3E);
+font-weight:normal;
+}li.Check {
+list-style-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22tc-list-image-check%20tc-list-image%22%20height%3D%2215%22%20width%3D%2215%22%20%3E%0A%3Cg%20stroke-linejoin%3D%22round%22%20stroke%3D%22%23e15a2d%22%20stroke-linecap%3D%22round%22%20stroke-miterlimit%3D%224%22%20stroke-dasharray%3D%22none%22%20stroke-width%3D%222.4%22%20fill%3D%22none%22%3E%0A%3Cpath%20d%3D%22M10.209%2C10.056v-1.1683c7.449-4.9934-0.719-9.2766-3.331-4.7527%22%2F%3E%0A%3Cpath%20d%3D%22m9.855%2C13.771%2C0.67115%2C0%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E);
+font-weight:normal;
+}li.ToDo {
+list-style-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22tc-list-image-task%20tc-list-image%22%20height%3D%2215%22%20width%3D%2215%22%20%3E%0A%3Cg%20stroke%3D%22%232929e4%22%20stroke-linejoin%3D%22miter%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%222.5%22%20fill%3D%22none%22%3E%0A%3Cpath%20d%3D%22m11.002%2C2.5018%2C0%2C6.4319%22%2F%3E%0A%3Cpath%20d%3D%22m10.547%2C13.61%2C0.95879-0.0067%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A);
+font-weight:bold;
 }
 
 
@@ -1723,7 +1747,7 @@ pre > code {
 <span class=' tc-reveal' hidden='true'></span>
 
 <span class=' tc-reveal'>
-<div class='github-fork-ribbon-wrapper right' style='true'><div class='github-fork-ribbon' style='background-color:#DF4848;'><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/TiddlyWiki%2520Speichern.html'>5.1.1</a></div></div>
+<div class='github-fork-ribbon-wrapper right' style='true'><div class='github-fork-ribbon' style='background-color:#DF4848;'><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/TiddlyWiki%2520Speichern.html'>5.1.2</a></div></div>
 
 
 </span>
@@ -1803,7 +1827,7 @@ Willkommen!
 </div><div class='tc-subtitle'>
 <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/pmario.html'>
 pmario
-</a> vor 4 Tagen
+</a> vor 9 Tagen
 </div>
 <div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
 
@@ -1824,7 +1848,7 @@ pmario
 </div>
 
 <div class='tc-tiddler-body'><p>TiddlyWiki ist eine Web-Applikation, die sie frei herunterladen können. Sie können sie speichern, wo sie wollen:</p><ul><li>Auf ihrem Laufwerk,</li><li>USB-Wechselspeicher</li><li>oder ihrem &quot;Cloud Speicher&quot;</li></ul><p>Sie sind der Herr über ihre Daten!</p><p>Sie können TiddlyWiki verwenden um Ihre Notizen zu erstellen / organisieren / oder mit Freunden zu teilen, in einer Weise, die kein anderes Textverarbeitungsprogramm vermag. TiddlyWiki speichert ihre Texte in einer &quot;nicht-linearen&quot; Form, mit Hilfe von <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Tags.html'>Tags</a>, <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Hyperlinks.html'>Hyperlinks</a> und vielen weiteren Möglichkeiten. So können sie Ihre Notizen strukturieren, in einer 
-Weise, die mehr dem entspricht, &quot;wie wir denken&quot;, nicht in einem vom Entwickler vorgegebenen starren Korsett. </p><p>Sie können <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/TiddlyWiki.html'>TiddlyWiki</a> als eine einzige Datei speichern, die sie mit dem Web-Browser, online oder offline, verwenden können. Für geübte Benutzer kann TiddlyWiki als <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Node.js.html'>Node.js Applikation</a> verwendet werden, die jeden <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Tiddler.html'>Tiddler</a> als einzelne Datei behandelt und dabei als zentrales Archiv fungiert.</p><h3 class=''>Wie können sie TiddlyWiki nun für sich nutzen?</h3><ul><li>Im Anschluss sind einige Links aufgeführt, mit denen sie starten sollten, oder sie können jederzeit das <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/InhaltsVerzeichnis.html'>InhaltsVerzeichnis</a> verwenden.</li><li>Das InhaltsVerzeichnis kann auch über den Reiter &quot;Inhalt&quot; auf der rechten Seite aufgerufen werden.</li><li><strong>Starten Sie jetzt mit &quot;<a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/ErsteSchritte.html'>ErsteSchritte</a>&quot;.</strong> Viel Spaß!</li></ul><h3 class=''>Weitere Links</h3><ul><li><strong><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/ErsteSchritte.html'>ErsteSchritte</a></strong></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/WikiText.html'>TiddlyWiki Syntax</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Liste%2520aller%2520HowTo's.html'>Liste aller HowTo's</a></li><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='static/Was%2520kann%2520TiddlyWiki.html'>Was kann TiddlyWiki</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-missing' href='static/WikiText%2520mehr%2520Beispiele.html'>WikiText mehr Beispiele</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Was%2520geschah%2520mit%2520dem%2520alten%2520TiddlyWiki.html'>Was geschah mit dem alten TiddlyWiki?</a></li></ul></div>
+Weise, die mehr dem entspricht, &quot;wie wir denken&quot;, nicht in einem vom Entwickler vorgegebenen starren Korsett. </p><p>Sie können <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/TiddlyWiki.html'>TiddlyWiki</a> als eine einzige Datei speichern, die sie mit dem Web-Browser, online oder offline, verwenden können. Für geübte Benutzer kann TiddlyWiki als <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Node.js.html'>Node.js Applikation</a> verwendet werden, die jeden <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Tiddler.html'>Tiddler</a> als einzelne Datei behandelt und dabei als zentrales Archiv fungiert.</p><h3 class=''>Wie können sie TiddlyWiki nun für sich nutzen?</h3><ul><li>Im Anschluss sind einige Links aufgeführt, mit denen sie starten sollten, oder sie können jederzeit das <a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/InhaltsVerzeichnis.html'>InhaltsVerzeichnis</a> verwenden.</li><li>Das InhaltsVerzeichnis kann auch über den Reiter &quot;Inhalt&quot; auf der rechten Seite aufgerufen werden.</li><li><strong>Starten Sie jetzt mit &quot;<a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/ErsteSchritte.html'>ErsteSchritte</a>&quot;.</strong> Viel Spaß!</li></ul><h3 class=''>Weitere Links</h3><ul><li><strong><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/ErsteSchritte.html'>ErsteSchritte</a></strong></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/WikiText.html'>TiddlyWiki Syntax</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Liste%2520aller%2520HowTo's.html'>Liste aller HowTo's</a></li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Was%2520kann%2520TiddlyWiki.html'>Was kann TiddlyWiki</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/WikiText%2520mehr%2520Beispiele.html'>WikiText mehr Beispiele</a> </li><li><a class='tc-tiddlylink tc-tiddlylink-resolves' href='static/Was%2520geschah%2520mit%2520dem%2520alten%2520TiddlyWiki.html'>Was geschah mit dem alten TiddlyWiki?</a></li></ul></div>
 
 
 

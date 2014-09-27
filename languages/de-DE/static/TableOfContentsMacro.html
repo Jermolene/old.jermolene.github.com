@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="generator" content="TiddlyWiki" />
+<meta name="tiddlywiki-version" content="5.1.2" />
+<meta name="format-detection" content="telephone=no">
+<link id="faviconLink" rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" href="static.css">
+<title>Mein TiddlyWiki
+ — ein persönliches nicht-lineares Web-Notizbuch
+</title>
+</head>
+<body class="tc-body">
+<p><div class='tc-static-alert'><div class='tc-static-alert-inner'>Diese Seite ist Teil der &quot;reinen&quot; HTML Version von TiddlyWiki auf <a class='tc-tiddlylink-external' href='http://tiddlywiki.com/languages/de-DE' target='_blank'>http://tiddlywiki.com/languages/de-DE</a></div></div>
+</p>
+<section class="tc-story-river">
+
+<p><div class='tc-tiddler-frame tc-tiddler-view-frame tc-tiddler-exists   tc-tagged-Makros'><div class='tc-tiddler-title'>
+<h2 class='tc-titlebar'>
+<span class='tc-tiddler-controls'>
+<span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='info' class='tc-btn-invisible' title='Informationen zu diesem Tiddler anzeigen'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='bearbeiten' class='tc-btn-invisible' title='Bearbeite diesen Tiddler'>
+
+
+</button>
+</span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal' hidden='true'></span><span class=' tc-reveal'><button aria-label='schließen' class='tc-btn-invisible' title='Schließe diesen Tiddler'>
+
+
+</button></span>
+</span>
+
+<span style='fill:;'>
+
+</span>
+
+
+
+<span class='tc-title'>
+TableOfContentsMacro
+</span>
+
+</h2>
+
+<div class='tc-tiddler-info tc-popup tc-reveal' hidden='true'></div>
+</div><div class='tc-subtitle'>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='pmario.html'>
+pmario
+</a> vor 3 Tagen
+</div>
+<div class='tc-tags-wrapper'><span class='tc-tag-list-item'>
+
+<button class='tc-btn-invisible tc-tag-label' style='background-color:;'>
+ Makros
+</button>
+
+<span class=' tc-reveal' hidden='true'></span>
+</span>
+</div>
+
+<div class='tc-tiddler-body'><p>Das Inhaltsverzeichnis Makro (englisch: table of content) erstellt einen hierarchischen Baum von Verknüpfungen (Links), basierend auf ihren Tags.</p><p>Der Basis Eintrag in das Verzeichnis wird als &quot;root tag&quot; bezeichnet. Die weiteren Ebenen werden von Tiddlern gebildet, die mit den &quot;root tags&quot; getaggt sind. Einträge können sortiert werden, indem im <code>list</code> Feld eines Tags die Reihenfolge der Tiddler festgelegt wird. (Die Sortierung muss momentan per Hand vorgenommen werden). Siehe auch: <a class='tc-tiddlylink tc-tiddlylink-missing' href='Tagging.html'>Tagging</a></p><p>Der Text für die Einträge wird aus dem <code>caption</code> Feld des Tiddlers genommen. Ist dieser nicht vorhanden, dann wird der Tiddler Titel angezeigt.Dieser Tiddler hat ein <code>caption</code> Feld mit dem Inhalt: <strong>toc-Inhaltsverzeichnis</strong>. Im (i)nfo Button unter Felder können Sie alle Felder sehen!</p><p>Die Einträge werden als Links dargestellt, außer, der Tiddler hat ein weiteres Feld mit dem Namen: <code>toc-link</code> und dem Wert: <code>no</code>. In den folgenden Beispielen ist dies der Fall für den Tiddler: <strong><a class='tc-tiddlylink tc-tiddlylink-resolves' href='EinsB.html'>EinsB</a>.</strong></p><p>Es gibt mehrere Varianten des &quot;toc&quot; Makros:</p><ul><li><code>&lt;&lt;toc&gt;&gt;</code> erstellt eine hierarchische Liste mit Links.</li><li><code>&lt;&lt;toc-expandable&gt;&gt;</code> erstellt einen erweiterbaren Baum mit Links.</li><li><code>&lt;&lt;toc-selective-expandable&gt;&gt;</code> erstellt einen erweiterbaren Baum, bei dem der &quot;erweitern&quot; Button nur dann vorhanden ist, wenn der Zweig weitere Elemente hat. </li></ul><p>Die Makros erzeugen HTML <code>&lt;ol&gt;</code> Elemente (geordnete Listen):</p><ul><li>Die <code>&lt;ol&gt;</code> Elemente haben eine CSS Klasse: <code>tc-toc</code>.</li><li>Die erweiterbaren Elemente habe zusätzlich die Klasse: <code>tc-toc-expandable</code>.</li><li>Die &quot;selective-expandable&quot; Variante hat die Klasse: <code>tc-toc-selective-expandable</code></li></ul><h2 class=''>Parameter</h2><table><thead><tr class='evenRow'><td align='left'>Position</td><td align='left'>Name</td><td align='left'>Beschreibung</td><td align='left'>Standard</td></tr></thead><tbody><tr class='oddRow'><td align='left'>1</td><td align='left'>tag</td><td align='left'>Der &quot;root tag&quot; legt die erste Ebene der Hierarchie fest</td><td align='center'></td></tr><tr class='evenRow'><td align='left'>2</td><td align='left'>sort</td><td align='left'>Optional können die Einträge sortiert werden. zB: <code>sort[title]</code></td><td align='center'></td></tr></tbody></table><p>Der &quot;tag&quot; und &quot;sort&quot; Parameter werden kombiniert und legen den Filterausdruck fest:</p><pre><code>[tag[$tag$]$sort$]</code></pre><h2 class=''>Beispiele</h2><p><div class='tc-tab-set '>
+<div class='tc-tab-buttons '>
+
+<button class=' tc-tab-selected'>
+Einfach
+</button>
+
+<button class=''>
+Erweiterbar
+</button>
+
+<button class=''>
+Selectiv Erweiterbar
+</button>
+
+<button class=''>
+Sorted Expandable
+</button>
+
+</div><div class='tc-tab-divider '></div><div class='tc-tab-content '>
+<div class=' tc-reveal'><h3 class=''>Einfaches Inhaltsverzeichnis</h3><pre><code>&lt;div class=&quot;tc-table-of-contents&quot;&gt;
+&lt;&lt;toc &quot;tocBeispiel&quot;&gt;&gt;
+&lt;/div&gt;
+</code></pre><p>Dargestellt als:</p><p><div class='tc-table-of-contents'>
+<ol class='tc-toc'>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='tocDrei.html'>tocDrei</a>
+<ol class='tc-toc'>
+
+</ol>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='tocEins.html'>tocEins</a>
+<ol class='tc-toc'>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EinsA.html'>EinsA</a>
+<ol class='tc-toc'>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EinsA1.html'>EinsA1</a>
+<ol class='tc-toc'>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+<li>
+
+
+EinsB
+
+
+<ol class='tc-toc'>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EinsB1.html'>EinsB1</a>
+<ol class='tc-toc'>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='EinsC.html'>EinsC</a>
+<ol class='tc-toc'>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='tocZwei.html'>tocZwei</a>
+<ol class='tc-toc'>
+
+<li>
+<a class='tc-tiddlylink tc-tiddlylink-resolves' href='ZweiA.html'>ZweiA</a>
+<ol class='tc-toc'>
+
+</ol>
+</li>
+
+</ol>
+</li>
+
+</ol>
+</div></p></div><div class=' tc-reveal' hidden='true'></div><div class=' tc-reveal' hidden='true'></div><div class=' tc-reveal' hidden='true'></div>
+</div>
+</div></p></div>
+
+
+
+</div>
+
+</p>
+
+</section>
+</body>
+</html>

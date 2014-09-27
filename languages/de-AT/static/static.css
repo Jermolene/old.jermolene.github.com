@@ -933,6 +933,13 @@ pre > code {
 	vertical-align: baseline;
 	background-color: #d5ad34;
 	border-radius: 8px;
+}.tc-untagged-separator {
+	width: 10em;
+	left: 0;
+	margin-left: 0;
+	border: 0;
+	height: 1px;
+	background: #d8d8d8;
 }.tc-untagged-label {
 	background-color: #999999;
 }.tc-tag-label svg, .tc-tag-label img {
@@ -1363,7 +1370,7 @@ pre > code {
 }.tc-tab-buttons {
 	font-size: 0.85em;
 	padding-top: 1em;
-	margin-bottom: -1px;
+	margin-bottom: -2px;
 }.tc-tab-buttons.tc-vertical  {
 	z-index: 100;
 	display: block;
@@ -1614,6 +1621,23 @@ pre > code {
 	background: white;
 	cursor: pointer;
 	display: inline-block;
+}/*
+** Errors
+*/.tc-error {
+	background: #f00;
+	color: #fff;
+}
+
+
+li.Done {
+list-style-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22tc-list-image-done%20tc-list-image%22%20height%3D%2215%22%20width%3D%2215%22%3E%0A%3Cpath%20id%3D%22path3757%22%20stroke-linejoin%3D%22round%22%20d%3D%22M3.5168%2C8.809%2C6.3999%2C12.172%2C12.747%2C5.9087%22%20stroke%3D%22%2331a837%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%222.5%22%20fill%3D%22none%22%2F%3E%0A%3C%2Fsvg%3E);
+font-weight:normal;
+}li.Check {
+list-style-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22tc-list-image-check%20tc-list-image%22%20height%3D%2215%22%20width%3D%2215%22%20%3E%0A%3Cg%20stroke-linejoin%3D%22round%22%20stroke%3D%22%23e15a2d%22%20stroke-linecap%3D%22round%22%20stroke-miterlimit%3D%224%22%20stroke-dasharray%3D%22none%22%20stroke-width%3D%222.4%22%20fill%3D%22none%22%3E%0A%3Cpath%20d%3D%22M10.209%2C10.056v-1.1683c7.449-4.9934-0.719-9.2766-3.331-4.7527%22%2F%3E%0A%3Cpath%20d%3D%22m9.855%2C13.771%2C0.67115%2C0%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E);
+font-weight:normal;
+}li.ToDo {
+list-style-image:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20class%3D%22tc-list-image-task%20tc-list-image%22%20height%3D%2215%22%20width%3D%2215%22%20%3E%0A%3Cg%20stroke%3D%22%232929e4%22%20stroke-linejoin%3D%22miter%22%20stroke-linecap%3D%22round%22%20stroke-width%3D%222.5%22%20fill%3D%22none%22%3E%0A%3Cpath%20d%3D%22m11.002%2C2.5018%2C0%2C6.4319%22%2F%3E%0A%3Cpath%20d%3D%22m10.547%2C13.61%2C0.95879-0.0067%22%2F%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A);
+font-weight:bold;
 }
 
 
